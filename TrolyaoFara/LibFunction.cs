@@ -64,6 +64,22 @@ namespace TrolyaoFara
             return check;
         }
 
+        public string GetUsername()
+        {
+            string username = "";
+            string sql = "SELECT * FROM account WHERE id = 1";
+            databaseObject.OpenConnection();
+            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+            SQLiteDataReader rd = command.ExecuteReader();
+            while (rd.Read())
+            {
+                username = rd["username"].ToString();
+            }
+            command.Dispose();
+            databaseObject.CloseConnection();
+            return username;
+        }
+
         public void TypeOfBody(double BMI, ref string type, ref string warning)
         {
             if (BMI < 18.5)
@@ -120,77 +136,5 @@ namespace TrolyaoFara
             }
             return calo;
         }
-
-        /*
-static Random rd = new Random();
-public int GetFirstValueinList(List<int> Data)
-{
-    int value = rd.Next(11);
-    return value;
-}
-*/
-
-        //Code test 
-        public void LoadMenu(ref string a,ref string b,ref string c, string path)
-        {
-            a = b = c = "";
-            //int[] getdata = new int[nInfo];
-            if (System.IO.File.Exists(path))
-            {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string[] words = sr.ReadToEnd().Split('\n');
-                    int k = 0;
-                    foreach (string i in words)
-                    {
-                        if (i == "")
-                            break;
-                        string[] getline = i.Split(',');
-                        foreach (string d in getline)
-                        {
-                            if (k == 0)
-                            {
-                                a += d + "\n";
-                            }
-                            else if (k == 1)
-                            {
-                                b += d + "\n";
-                            }
-                            else
-                                c += d + "\n";
-                        }
-                        k++;
-                    }
-                }
-            }
-            else
-                Console.WriteLine("File does not exist");
-        }
-        
-        /*
-        LoadData lData = new LoadData();
-        public void LoadInfoinForm()
-        {
-            string img = lData.loginimg;
-            using (StreamReader sr = new StreamReader(lData.pathinfo))
-            {
-                string data = sr.ReadLine();
-                string[] birthday = data.Split('-');
-                DateTime UTCNow = DateTime.UtcNow;
-                int old = UTCNow.Year - Convert.ToInt32(birthday[0]);
-                lblOld.Text = old.ToString();
-
-                data = sr.ReadLine();
-                lblHello.Text = "Xin chào, " + data;
-
-                string height = sr.ReadLine();
-                lblHeight.Text = height;
-
-                string weight = sr.ReadLine();
-                lblWeight.Text = weight;
-                int i = -1;
-                //int BMI = Int32.TryParse(weight, out i);
-            }
-        }*/
     }
 }

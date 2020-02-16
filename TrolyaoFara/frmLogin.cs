@@ -17,6 +17,7 @@ namespace TrolyaoFara
         SettingSever sSever = new SettingSever();
         LoadData lData = new LoadData();
         LibFunction lib = new LibFunction();
+        GetData db = new GetData();
 
         public frmLogin()
         {
@@ -279,6 +280,10 @@ namespace TrolyaoFara
                 string strInsert = string.Format("INSERT INTO info(iduser, lname, fname, gender, birthday, district, city, country, height, weight, weight_target, intensity) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')", iduser, lname, fname, gender, birthday, district, city, country, height, weight, weight_target, intensity);
                 databaseObject.RunSQL(strInsert);
             }
+
+            // Download Database From Server
+            db.GetFoodDB();
+            db.Download2();
         }
 
         private void lblPasswordReset_Click(object sender, EventArgs e)

@@ -32,6 +32,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabInfo = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cmbIntensity = new Guna.UI.WinForms.GunaComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblGender = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.btnMale = new Guna.UI.WinForms.GunaCircleButton();
@@ -94,8 +96,6 @@
             this.txtCountry = new Guna.UI.WinForms.GunaComboBox();
             this.btnPre4 = new Guna.UI.WinForms.GunaGradientButton();
             this.btnFinish = new Guna.UI.WinForms.GunaGradientButton();
-            this.label1 = new System.Windows.Forms.Label();
-            this.cmbIntensity = new Guna.UI.WinForms.GunaComboBox();
             this.tabControl1.SuspendLayout();
             this.tabInfo.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -169,6 +169,46 @@
             this.panel1.Size = new System.Drawing.Size(776, 455);
             this.panel1.TabIndex = 49;
             // 
+            // cmbIntensity
+            // 
+            this.cmbIntensity.AllowDrop = true;
+            this.cmbIntensity.BackColor = System.Drawing.Color.Transparent;
+            this.cmbIntensity.BaseColor = System.Drawing.Color.White;
+            this.cmbIntensity.BorderColor = System.Drawing.Color.Silver;
+            this.cmbIntensity.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.cmbIntensity.DropDownHeight = 200;
+            this.cmbIntensity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbIntensity.FocusedColor = System.Drawing.Color.Empty;
+            this.cmbIntensity.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbIntensity.ForeColor = System.Drawing.Color.Black;
+            this.cmbIntensity.FormattingEnabled = true;
+            this.cmbIntensity.IntegralHeight = false;
+            this.cmbIntensity.Items.AddRange(new object[] {
+            "Nhóm ít vận động",
+            "Nhóm có vận động từ 1- 3 lần trong tuần",
+            "Nhóm có vận động từ 3- 5 lần trong tuần",
+            "Nhóm có vận động từ 6- 7 lần trong tuần",
+            "Nhóm vận động nặng với hơn 7 lần trong tuần"});
+            this.cmbIntensity.Location = new System.Drawing.Point(139, 341);
+            this.cmbIntensity.Name = "cmbIntensity";
+            this.cmbIntensity.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.cmbIntensity.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.cmbIntensity.Radius = 4;
+            this.cmbIntensity.Size = new System.Drawing.Size(310, 28);
+            this.cmbIntensity.TabIndex = 55;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
+            this.label1.Location = new System.Drawing.Point(37, 330);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 54);
+            this.label1.TabIndex = 54;
+            this.label1.Text = "Cường độ \r\nvận động";
+            // 
             // lblGender
             // 
             this.lblGender.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -176,7 +216,7 @@
             this.lblGender.AutoSize = true;
             this.lblGender.Font = new System.Drawing.Font("SVN-Aptima", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGender.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(160)))), ((int)(((byte)(230)))));
-            this.lblGender.Location = new System.Drawing.Point(662, 348);
+            this.lblGender.Location = new System.Drawing.Point(662, 327);
             this.lblGender.Name = "lblGender";
             this.lblGender.Size = new System.Drawing.Size(48, 23);
             this.lblGender.TabIndex = 0;
@@ -189,7 +229,7 @@
             this.label18.AutoSize = true;
             this.label18.Font = new System.Drawing.Font("SVN-Aptima", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(160)))), ((int)(((byte)(230)))));
-            this.label18.Location = new System.Drawing.Point(472, 348);
+            this.label18.Location = new System.Drawing.Point(472, 327);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(200, 23);
             this.label18.TabIndex = 0;
@@ -209,7 +249,7 @@
             this.btnMale.ForeColor = System.Drawing.Color.White;
             this.btnMale.Image = ((System.Drawing.Image)(resources.GetObject("btnMale.Image")));
             this.btnMale.ImageSize = new System.Drawing.Size(50, 50);
-            this.btnMale.Location = new System.Drawing.Point(466, 186);
+            this.btnMale.Location = new System.Drawing.Point(466, 165);
             this.btnMale.Name = "btnMale";
             this.btnMale.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(138)))), ((int)(((byte)(225)))));
             this.btnMale.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -235,7 +275,7 @@
             this.btnFemale.ForeColor = System.Drawing.Color.White;
             this.btnFemale.Image = ((System.Drawing.Image)(resources.GetObject("btnFemale.Image")));
             this.btnFemale.ImageSize = new System.Drawing.Size(50, 50);
-            this.btnFemale.Location = new System.Drawing.Point(626, 186);
+            this.btnFemale.Location = new System.Drawing.Point(626, 165);
             this.btnFemale.Name = "btnFemale";
             this.btnFemale.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(57)))), ((int)(((byte)(129)))));
             this.btnFemale.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -258,7 +298,7 @@
             this.txtLname.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtLname.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtLname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtLname.Location = new System.Drawing.Point(139, 95);
+            this.txtLname.Location = new System.Drawing.Point(139, 114);
             this.txtLname.Name = "txtLname";
             this.txtLname.PasswordChar = '\0';
             this.txtLname.Radius = 5;
@@ -275,7 +315,7 @@
             this.inputBirthday.ForeColor = System.Drawing.Color.White;
             this.inputBirthday.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.inputBirthday.FormatCustom = "dd/MM/yyyy";
-            this.inputBirthday.Location = new System.Drawing.Point(139, 155);
+            this.inputBirthday.Location = new System.Drawing.Point(139, 174);
             this.inputBirthday.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.inputBirthday.Name = "inputBirthday";
             this.inputBirthday.Size = new System.Drawing.Size(228, 37);
@@ -287,7 +327,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label3.Location = new System.Drawing.Point(38, 155);
+            this.label3.Location = new System.Drawing.Point(38, 174);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 27);
             this.label3.TabIndex = 52;
@@ -298,7 +338,7 @@
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label9.Location = new System.Drawing.Point(62, 99);
+            this.label9.Location = new System.Drawing.Point(62, 118);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(57, 27);
             this.label9.TabIndex = 53;
@@ -315,7 +355,7 @@
             this.txtFname.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtFname.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtFname.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.txtFname.Location = new System.Drawing.Point(346, 95);
+            this.txtFname.Location = new System.Drawing.Point(346, 114);
             this.txtFname.Name = "txtFname";
             this.txtFname.PasswordChar = '\0';
             this.txtFname.Radius = 5;
@@ -371,7 +411,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.label12.Location = new System.Drawing.Point(40, 211);
+            this.label12.Location = new System.Drawing.Point(40, 230);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(79, 27);
             this.label12.TabIndex = 27;
@@ -383,7 +423,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.label11.Location = new System.Drawing.Point(41, 267);
+            this.label11.Location = new System.Drawing.Point(41, 286);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(78, 27);
             this.label11.TabIndex = 28;
@@ -401,7 +441,7 @@
             this.txtHeight.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtHeight.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.txtHeight.Location = new System.Drawing.Point(139, 211);
+            this.txtHeight.Location = new System.Drawing.Point(139, 230);
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.PasswordChar = '\0';
             this.txtHeight.Radius = 4;
@@ -415,11 +455,12 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.label14.Location = new System.Drawing.Point(359, 330);
+            this.label14.Location = new System.Drawing.Point(355, 400);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(28, 27);
             this.label14.TabIndex = 35;
             this.label14.Text = "kg";
+            this.label14.Visible = false;
             // 
             // txtWeight
             // 
@@ -433,7 +474,7 @@
             this.txtWeight.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtWeight.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtWeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.txtWeight.Location = new System.Drawing.Point(139, 267);
+            this.txtWeight.Location = new System.Drawing.Point(139, 286);
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.PasswordChar = '\0';
             this.txtWeight.Radius = 4;
@@ -453,12 +494,13 @@
             this.txtWeightTarget.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtWeightTarget.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtWeightTarget.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.txtWeightTarget.Location = new System.Drawing.Point(139, 328);
+            this.txtWeightTarget.Location = new System.Drawing.Point(139, 400);
             this.txtWeightTarget.Name = "txtWeightTarget";
             this.txtWeightTarget.PasswordChar = '\0';
             this.txtWeightTarget.Radius = 4;
             this.txtWeightTarget.Size = new System.Drawing.Size(210, 30);
             this.txtWeightTarget.TabIndex = 5;
+            this.txtWeightTarget.Visible = false;
             this.txtWeightTarget.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtWeightTarget_KeyPress);
             // 
             // label10
@@ -467,7 +509,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.label10.Location = new System.Drawing.Point(356, 213);
+            this.label10.Location = new System.Drawing.Point(356, 232);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(31, 27);
             this.label10.TabIndex = 31;
@@ -479,11 +521,12 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.label17.Location = new System.Drawing.Point(28, 314);
+            this.label17.Location = new System.Drawing.Point(28, 390);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(91, 54);
             this.label17.TabIndex = 33;
             this.label17.Text = "Cân nặng \r\nmong muốn";
+            this.label17.Visible = false;
             // 
             // label8
             // 
@@ -491,7 +534,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.label8.Location = new System.Drawing.Point(359, 269);
+            this.label8.Location = new System.Drawing.Point(359, 288);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(28, 27);
             this.label8.TabIndex = 32;
@@ -1285,46 +1328,6 @@
             this.btnFinish.TabIndex = 46;
             this.btnFinish.Text = "    Lưu";
             this.btnFinish.Click += new System.EventHandler(this.btnFinish_Click);
-            // 
-            // label1
-            // 
-            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.label1.Location = new System.Drawing.Point(18, 393);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 27);
-            this.label1.TabIndex = 54;
-            this.label1.Text = "Bạn là người";
-            // 
-            // cmbIntensity
-            // 
-            this.cmbIntensity.AllowDrop = true;
-            this.cmbIntensity.BackColor = System.Drawing.Color.Transparent;
-            this.cmbIntensity.BaseColor = System.Drawing.Color.White;
-            this.cmbIntensity.BorderColor = System.Drawing.Color.Silver;
-            this.cmbIntensity.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cmbIntensity.DropDownHeight = 200;
-            this.cmbIntensity.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbIntensity.FocusedColor = System.Drawing.Color.Empty;
-            this.cmbIntensity.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbIntensity.ForeColor = System.Drawing.Color.Black;
-            this.cmbIntensity.FormattingEnabled = true;
-            this.cmbIntensity.IntegralHeight = false;
-            this.cmbIntensity.Items.AddRange(new object[] {
-            "Nhóm ít vận động",
-            "Nhóm có vận động từ 1- 3 lần trong tuần",
-            "Nhóm có vận động từ 3- 5 lần trong tuần",
-            "Nhóm có vận động từ 6- 7 lần trong tuần",
-            "Nhóm vận động nặng với hơn 7 lần trong tuần"});
-            this.cmbIntensity.Location = new System.Drawing.Point(139, 392);
-            this.cmbIntensity.Name = "cmbIntensity";
-            this.cmbIntensity.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.cmbIntensity.OnHoverItemForeColor = System.Drawing.Color.White;
-            this.cmbIntensity.Radius = 4;
-            this.cmbIntensity.Size = new System.Drawing.Size(310, 28);
-            this.cmbIntensity.TabIndex = 55;
             // 
             // frmAccount
             // 

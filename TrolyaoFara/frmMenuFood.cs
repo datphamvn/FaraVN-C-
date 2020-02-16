@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -85,7 +86,7 @@ namespace TrolyaoFara
         #endregion
 
         // Khởi tạo thực đơn cơ sở
-        private void CallGA()
+        public void CallGA()
         {
             try
             {
@@ -97,7 +98,7 @@ namespace TrolyaoFara
             GetDataFromMenu();
         }
 
-        private void CalCalo()
+        public void CalCalo()
         {
             int gender = 0, height = 0, weight = 0, old = 0, intensity=0;
 
@@ -149,12 +150,17 @@ namespace TrolyaoFara
             plnLoadDinner.Controls.Clear();
         }
 
-        private void bunifuFlatButton4_Click(object sender, EventArgs e)
+        private void SetMenu()
         {
             RemoveControlInPanel();
             CallGA();
             CalCalo();
             calmenu.RunGACal();
+        }
+
+        private void bunifuFlatButton4_Click(object sender, EventArgs e)
+        {
+            SetMenu();
             //LoadMenu(gunaDataGridView1);
             tabControl1.SelectTab(0);
         }
@@ -163,6 +169,8 @@ namespace TrolyaoFara
         {
             try
             {
+                string today = DateTime.Today.ToString("dd/MM/yyyy");
+                string day = "";
                 string sql = string.Format("SELECT * FROM menu WHERE id=1");
                 databaseObject.OpenConnection();
                 SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
@@ -173,13 +181,14 @@ namespace TrolyaoFara
                     breakfast = Convert.ToInt32(rd["breakfast"]);
                     lunch = Convert.ToInt32(rd["lunch"]);
                     dinner = Convert.ToInt32(rd["dinner"]);
+                    day = rd["date"].ToString();
                 }
                 command.Dispose();
                 databaseObject.CloseConnection();
-                if (strmenu != "")
+                if (strmenu != "" && today==day)
                     LoadMenuForUser();
                 else
-                    CallGA();
+                    SetMenu();
             }
             catch(Exception)
             {
@@ -187,11 +196,12 @@ namespace TrolyaoFara
             }
         }
 
-        private void LoadItemToPanel(int begin, int end, int[] idmenu, FlowLayoutPanel plnPanel)
+        private void LoadItemToPanel(int begin, int end, int[] idmenu, double[] grmenu, FlowLayoutPanel plnPanel)
         {
             int id;
             string namefood;
             int timer;
+            double calo;
 
             databaseObject.OpenConnection();
             for (int i = begin; i < end; i++)
@@ -205,7 +215,8 @@ namespace TrolyaoFara
                 {
                     namefood = rd["title"].ToString();
                     timer = Convert.ToInt32(rd["timer"].ToString());
-                    plnPanel.Controls.Add(ItemFood.Add(id, namefood, timer));
+                    calo = Convert.ToDouble(rd["Calo"].ToString());
+                    plnPanel.Controls.Add(ItemFood.Add(id, namefood, timer, Convert.ToInt32(grmenu[i]*calo)));
                 }
                 command.Dispose();
             }
@@ -216,13 +227,27 @@ namespace TrolyaoFara
         {
             int[] idmenu = strmenu.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
 
-            LoadItemToPanel(0, breakfast, idmenu, plnLoadBreakfast);
-            LoadItemToPanel(breakfast, breakfast + lunch, idmenu, plnLoadLunch);
-            LoadItemToPanel(breakfast + lunch, breakfast + lunch + dinner, idmenu, plnLoadDinner); 
+            string grammenu = "";
+            string sql = string.Format("SELECT * FROM menu WHERE id=2");
+            databaseObject.OpenConnection();
+            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+            SQLiteDataReader rd = command.ExecuteReader();
+            while (rd.Read())
+            {
+                grammenu = rd["recommend"].ToString();
+            }
+            command.Dispose();
+            databaseObject.CloseConnection();
+
+            double[] grmenu = grammenu.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(double.Parse).ToArray();
+
+            LoadItemToPanel(0, breakfast, idmenu, grmenu, plnLoadBreakfast);
+            LoadItemToPanel(breakfast, breakfast + lunch, idmenu, grmenu, plnLoadLunch);
+            LoadItemToPanel(breakfast + lunch, breakfast + lunch + dinner, idmenu, grmenu, plnLoadDinner); 
         }
 
 
-
+        /*
         private void gunaDataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -234,7 +259,7 @@ namespace TrolyaoFara
             catch
             { }
         }
-
+        */
 
         private void LoadDataInCol(Stack StackMenu, int n, int idcol, Guna.UI.WinForms.GunaDataGridView gunaDataGridView)
         {
@@ -242,45 +267,6 @@ namespace TrolyaoFara
             {
                 gunaDataGridView.Rows[i].Cells[idcol].Value = StackMenu.Pop();
             }
-        }
-
-        private void LoadMenu(Guna.UI.WinForms.GunaDataGridView gunaDataGridView)
-        {
-            gunaDataGridView.Rows.Clear();
-            gunaDataGridView.Refresh();
-            int mRow = Math.Max(breakfast, Math.Max(lunch, dinner));
-            for(int i = 0; i<mRow; i++)
-                gunaDataGridView.Rows.Add();
-
-            int[] idmenu = strmenu.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
-            Array.Reverse(idmenu);
-            Stack StackMenu = new Stack(idmenu);
-
-            LoadDataInCol(StackMenu, breakfast, 0, gunaDataGridView); //Load bữa sáng
-            LoadDataInCol(StackMenu, lunch, 1, gunaDataGridView); //Load bữa trưa
-            LoadDataInCol(StackMenu, dinner, 2, gunaDataGridView); //Load bữa tối
-
-            for (int i=0; i<3; i++)
-            {
-                for(int j=0; j<mRow; j++)
-                {
-                    if (0 == Convert.ToInt32(gunaDataGridView.Rows[j].Cells[i].Value))
-                        gunaDataGridView.Rows[j].Cells[i].Value = "Chọn món ăn";
-                    else
-                        gunaDataGridView.Rows[j].Cells[i].Value = menu.LoadNameFood(Convert.ToInt32(gunaDataGridView.Rows[j].Cells[i].Value));
-                }
-            }
-        }
-        //End Loaddata
-
-        public static string Reverse(string s)
-        {
-            string[] strArray = s.Split(' ');
-            Array.Reverse(strArray);
-            string str = "";
-            foreach (var i in strArray)
-                str += " " + i;
-            return str;
         }
 
         //Save TEstData Selection

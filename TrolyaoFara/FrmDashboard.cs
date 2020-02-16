@@ -18,6 +18,13 @@ namespace TrolyaoFara
         LibFunction lib = new LibFunction();
         private const int cGrip = 16;
 
+        string strNhan = "";
+        public string Message
+        {
+            get { return strNhan; }
+            set { strNhan = value; }
+        }
+
         public FrmDashboard()
         {
             InitializeComponent();
@@ -26,6 +33,17 @@ namespace TrolyaoFara
         private void FrmDashboard_Load(object sender, EventArgs e)
         {
             OpenFrmHome();
+
+            if(strNhan == "1")
+            {
+                openChildForm(new frmMenuFood());
+                lblButton.Text = "1";
+            }
+            if (strNhan == "0")
+            {
+                openChildForm(new frmHome());
+                lblButton.Text = "0";
+            }
         }
 
 

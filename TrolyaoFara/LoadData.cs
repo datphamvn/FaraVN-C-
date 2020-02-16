@@ -152,6 +152,30 @@ namespace TrolyaoFara
 
         [JsonProperty("image")]
         public string URLimg { get; set; }
+
+        [JsonProperty("timer")]
+        public int Timer { get; set; }
+    }
+
+    public class CalFood
+    {
+        [JsonProperty("id")]
+        public long Id { get; set; }
+
+        [JsonProperty("foodname")]
+        public long Foodname { get; set; }
+
+        [JsonProperty("composition")]
+        public long Composition { get; set; }
+
+        [JsonProperty("amout")]
+        public long Amout { get; set; }
+
+        [JsonProperty("unit")]
+        public long Unit { get; set; }
+
+        [JsonProperty("main")]
+        public bool Main { get; set; }
     }
 
 }

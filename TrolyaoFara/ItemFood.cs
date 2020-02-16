@@ -13,20 +13,21 @@ namespace TrolyaoFara
     public partial class ItemFood : UserControl
     {
 
-        public ItemFood(int id, string namefood, int timer)
+        public ItemFood(int id, string namefood, int timer, int gram)
         {
             InitializeComponent();
 
             lblID.Text = id.ToString();
             lblNameFood.Text = namefood;
-            lblTimer.Text = timer.ToString();
+            lblTimer.Text = timer.ToString() + " min";
+            lblGr.Text = gram.ToString() + " Calo";
         }
 
         private static ItemFood _instance;
 
-        public static ItemFood Add(int id, string namefood, int timer)
+        public static ItemFood Add(int id, string namefood, int timer, int gram)
         {
-            _instance = new ItemFood(id, namefood, timer);
+            _instance = new ItemFood(id, namefood, timer, gram);
             return _instance;
         }
 

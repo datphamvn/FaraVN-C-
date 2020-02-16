@@ -30,36 +30,36 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.plnMenu = new System.Windows.Forms.Panel();
+            this.gunaGradient2Panel2 = new Guna.UI.WinForms.GunaGradient2Panel();
+            this.lblNameOfMenu = new System.Windows.Forms.Label();
+            this.plnLoadMenu = new System.Windows.Forms.FlowLayoutPanel();
+            this.lblGuide = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.gunaMetroTrackBar1 = new Guna.UI.WinForms.GunaMetroTrackBar();
             this.simpleButton3 = new HPTCControl.SimpleButton();
             this.simpleButton2 = new HPTCControl.SimpleButton();
-            this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gunaCirclePictureBox1 = new Guna.UI.WinForms.GunaCirclePictureBox();
             this.simpleButton1 = new HPTCControl.SimpleButton();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.gunaDataGridView1 = new Guna.UI.WinForms.GunaDataGridView();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label3 = new System.Windows.Forms.Label();
+            this.gunaElipse1 = new Guna.UI.WinForms.GunaElipse(this.components);
+            this.simpleButton4 = new HPTCControl.SimpleButton();
+            this.simpleButton5 = new HPTCControl.SimpleButton();
             this.panel1.SuspendLayout();
+            this.plnMenu.SuspendLayout();
+            this.gunaGradient2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaCirclePictureBox1)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.simpleButton5);
+            this.panel1.Controls.Add(this.simpleButton4);
+            this.panel1.Controls.Add(this.lblGuide);
+            this.panel1.Controls.Add(this.plnMenu);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.gunaDataGridView1);
             this.panel1.Controls.Add(this.gunaMetroTrackBar1);
             this.panel1.Controls.Add(this.simpleButton3);
             this.panel1.Controls.Add(this.simpleButton2);
@@ -71,6 +71,69 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(320, 750);
             this.panel1.TabIndex = 0;
+            // 
+            // plnMenu
+            // 
+            this.plnMenu.Controls.Add(this.gunaGradient2Panel2);
+            this.plnMenu.Controls.Add(this.plnLoadMenu);
+            this.plnMenu.Location = new System.Drawing.Point(3, 297);
+            this.plnMenu.Name = "plnMenu";
+            this.plnMenu.Size = new System.Drawing.Size(310, 318);
+            this.plnMenu.TabIndex = 41;
+            // 
+            // gunaGradient2Panel2
+            // 
+            this.gunaGradient2Panel2.BackColor = System.Drawing.Color.Transparent;
+            this.gunaGradient2Panel2.Controls.Add(this.lblNameOfMenu);
+            this.gunaGradient2Panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.gunaGradient2Panel2.GradientColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(186)))), ((int)(((byte)(171)))));
+            this.gunaGradient2Panel2.GradientColor2 = System.Drawing.Color.White;
+            this.gunaGradient2Panel2.Location = new System.Drawing.Point(0, 0);
+            this.gunaGradient2Panel2.Name = "gunaGradient2Panel2";
+            this.gunaGradient2Panel2.Size = new System.Drawing.Size(310, 31);
+            this.gunaGradient2Panel2.TabIndex = 38;
+            // 
+            // lblNameOfMenu
+            // 
+            this.lblNameOfMenu.AutoSize = true;
+            this.lblNameOfMenu.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNameOfMenu.ForeColor = System.Drawing.Color.Black;
+            this.lblNameOfMenu.Location = new System.Drawing.Point(125, 5);
+            this.lblNameOfMenu.Name = "lblNameOfMenu";
+            this.lblNameOfMenu.Size = new System.Drawing.Size(43, 20);
+            this.lblNameOfMenu.TabIndex = 4;
+            this.lblNameOfMenu.Text = "Sáng";
+            // 
+            // plnLoadMenu
+            // 
+            this.plnLoadMenu.AutoScroll = true;
+            this.plnLoadMenu.Location = new System.Drawing.Point(2, 29);
+            this.plnLoadMenu.Margin = new System.Windows.Forms.Padding(0);
+            this.plnLoadMenu.Name = "plnLoadMenu";
+            this.plnLoadMenu.Size = new System.Drawing.Size(306, 274);
+            this.plnLoadMenu.TabIndex = 40;
+            // 
+            // lblGuide
+            // 
+            this.lblGuide.AutoSize = true;
+            this.lblGuide.Font = new System.Drawing.Font("SVN-Lobster", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGuide.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblGuide.Location = new System.Drawing.Point(7, 631);
+            this.lblGuide.Name = "lblGuide";
+            this.lblGuide.Size = new System.Drawing.Size(306, 46);
+            this.lblGuide.TabIndex = 39;
+            this.lblGuide.Text = "\"Dashboard\" -> Hoàn tất thông tin -> \"Thực đơn\" \r\nđể khởi tạo thực đơn của bạn";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("SVN-Lobster", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.label2.Location = new System.Drawing.Point(69, 248);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(183, 35);
+            this.label2.TabIndex = 22;
+            this.label2.Text = "ĂN GÌ HÔM NAY";
             // 
             // gunaMetroTrackBar1
             // 
@@ -160,17 +223,6 @@
             this.simpleButton2.UsingTextColorHoverClick = true;
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("SVN-Lobster", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(69, 248);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(183, 35);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "ĂN GÌ HÔM NAY";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -230,114 +282,82 @@
             this.simpleButton1.UsingTextColorHoverClick = true;
             this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
-            // contextMenuStrip1
+            // gunaElipse1
             // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripMenuItem2});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(93, 26);
+            this.gunaElipse1.Radius = 5;
+            this.gunaElipse1.TargetControl = this.plnMenu;
             // 
-            // toolStripMenuItem2
+            // simpleButton4
             // 
-            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(92, 22);
-            this.toolStripMenuItem2.Text = "Exit";
-            this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
+            this.simpleButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton4.BackColor = System.Drawing.Color.Transparent;
+            this.simpleButton4.BackgroundColorClicked = System.Drawing.Color.White;
+            this.simpleButton4.BackgroundColorHover = System.Drawing.Color.Black;
+            this.simpleButton4.BackgroundColorNormal = System.Drawing.Color.Transparent;
+            this.simpleButton4.BackgroundImageClicked = null;
+            this.simpleButton4.BackgroundImageHover = null;
+            this.simpleButton4.BackgroundImageNormal = null;
+            this.simpleButton4.ButtonLayout = HPTCControl.SimpleButton.BtnLayout.TextOnly;
+            this.simpleButton4.ImageClicked = null;
+            this.simpleButton4.ImageHover = null;
+            this.simpleButton4.ImageNormal = null;
+            this.simpleButton4.LineColorClicked = System.Drawing.Color.Empty;
+            this.simpleButton4.LineColorHover = System.Drawing.Color.Empty;
+            this.simpleButton4.LineColorNormal = System.Drawing.Color.White;
+            this.simpleButton4.LineLayout = HPTCControl.SimpleButton.LinePostion.BottomLine;
+            this.simpleButton4.LineSize = 2;
+            this.simpleButton4.Location = new System.Drawing.Point(113, 605);
+            this.simpleButton4.Name = "simpleButton4";
+            this.simpleButton4.Size = new System.Drawing.Size(75, 23);
+            this.simpleButton4.TabIndex = 42;
+            this.simpleButton4.Text = "Xem chi tiết";
+            this.simpleButton4.TextAlignmentHorizontal = System.Drawing.StringAlignment.Center;
+            this.simpleButton4.TextAlignmentVertical = System.Drawing.StringAlignment.Center;
+            this.simpleButton4.TextColorClicked = System.Drawing.Color.Black;
+            this.simpleButton4.TextColorHover = System.Drawing.Color.White;
+            this.simpleButton4.TextColorNormal = System.Drawing.Color.White;
+            this.simpleButton4.UsingBackgroundColorHoverClick = true;
+            this.simpleButton4.UsingBackgroundImageHoverClick = false;
+            this.simpleButton4.UsingImageHoverClick = false;
+            this.simpleButton4.UsingLineColorHoverClick = false;
+            this.simpleButton4.UsingTextColorHoverClick = true;
+            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
             // 
-            // gunaDataGridView1
+            // simpleButton5
             // 
-            this.gunaDataGridView1.AllowUserToAddRows = false;
-            this.gunaDataGridView1.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
-            this.gunaDataGridView1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
-            this.gunaDataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.gunaDataGridView1.BackgroundColor = System.Drawing.Color.White;
-            this.gunaDataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.gunaDataGridView1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.gunaDataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gunaDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
-            this.gunaDataGridView1.ColumnHeadersHeight = 40;
-            this.gunaDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column3,
-            this.Column4,
-            this.Column5});
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(215)))), ((int)(((byte)(240)))));
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gunaDataGridView1.DefaultCellStyle = dataGridViewCellStyle18;
-            this.gunaDataGridView1.EnableHeadersVisualStyles = false;
-            this.gunaDataGridView1.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(193)))), ((int)(((byte)(232)))));
-            this.gunaDataGridView1.Location = new System.Drawing.Point(12, 295);
-            this.gunaDataGridView1.Name = "gunaDataGridView1";
-            this.gunaDataGridView1.ReadOnly = true;
-            this.gunaDataGridView1.RowHeadersVisible = false;
-            this.gunaDataGridView1.RowTemplate.DividerHeight = 1;
-            this.gunaDataGridView1.RowTemplate.Height = 25;
-            this.gunaDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.gunaDataGridView1.Size = new System.Drawing.Size(297, 317);
-            this.gunaDataGridView1.TabIndex = 38;
-            this.gunaDataGridView1.Theme = Guna.UI.WinForms.GunaDataGridViewPresetThemes.DeepPurple;
-            this.gunaDataGridView1.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(209)))), ((int)(((byte)(196)))), ((int)(((byte)(233)))));
-            this.gunaDataGridView1.ThemeStyle.AlternatingRowsStyle.Font = null;
-            this.gunaDataGridView1.ThemeStyle.AlternatingRowsStyle.ForeColor = System.Drawing.Color.Empty;
-            this.gunaDataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionBackColor = System.Drawing.Color.Empty;
-            this.gunaDataGridView1.ThemeStyle.AlternatingRowsStyle.SelectionForeColor = System.Drawing.Color.Empty;
-            this.gunaDataGridView1.ThemeStyle.BackColor = System.Drawing.Color.White;
-            this.gunaDataGridView1.ThemeStyle.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(207)))), ((int)(((byte)(193)))), ((int)(((byte)(232)))));
-            this.gunaDataGridView1.ThemeStyle.HeaderStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(103)))), ((int)(((byte)(58)))), ((int)(((byte)(183)))));
-            this.gunaDataGridView1.ThemeStyle.HeaderStyle.BorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.gunaDataGridView1.ThemeStyle.HeaderStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.gunaDataGridView1.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
-            this.gunaDataGridView1.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
-            this.gunaDataGridView1.ThemeStyle.HeaderStyle.Height = 40;
-            this.gunaDataGridView1.ThemeStyle.ReadOnly = true;
-            this.gunaDataGridView1.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(215)))), ((int)(((byte)(240)))));
-            this.gunaDataGridView1.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
-            this.gunaDataGridView1.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 10.5F);
-            this.gunaDataGridView1.ThemeStyle.RowsStyle.ForeColor = System.Drawing.Color.Black;
-            this.gunaDataGridView1.ThemeStyle.RowsStyle.Height = 25;
-            this.gunaDataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
-            this.gunaDataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Sáng";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Trưa";
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Tối";
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("SVN-Lobster", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label3.Location = new System.Drawing.Point(10, 407);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(306, 46);
-            this.label3.TabIndex = 39;
-            this.label3.Text = "\"Dashboard\" -> Hoàn tất thông tin -> \"Thực đơn\" \r\nđể khởi tạo thực đơn của bạn";
+            this.simpleButton5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.simpleButton5.BackColor = System.Drawing.Color.Transparent;
+            this.simpleButton5.BackgroundColorClicked = System.Drawing.Color.White;
+            this.simpleButton5.BackgroundColorHover = System.Drawing.Color.Black;
+            this.simpleButton5.BackgroundColorNormal = System.Drawing.Color.Transparent;
+            this.simpleButton5.BackgroundImageClicked = null;
+            this.simpleButton5.BackgroundImageHover = null;
+            this.simpleButton5.BackgroundImageNormal = null;
+            this.simpleButton5.ButtonLayout = HPTCControl.SimpleButton.BtnLayout.TextOnly;
+            this.simpleButton5.ImageClicked = null;
+            this.simpleButton5.ImageHover = null;
+            this.simpleButton5.ImageNormal = null;
+            this.simpleButton5.LineColorClicked = System.Drawing.Color.Empty;
+            this.simpleButton5.LineColorHover = System.Drawing.Color.Empty;
+            this.simpleButton5.LineColorNormal = System.Drawing.Color.White;
+            this.simpleButton5.LineLayout = HPTCControl.SimpleButton.LinePostion.BottomLine;
+            this.simpleButton5.LineSize = 2;
+            this.simpleButton5.Location = new System.Drawing.Point(288, 724);
+            this.simpleButton5.Name = "simpleButton5";
+            this.simpleButton5.Size = new System.Drawing.Size(25, 23);
+            this.simpleButton5.TabIndex = 43;
+            this.simpleButton5.Text = "X";
+            this.simpleButton5.TextAlignmentHorizontal = System.Drawing.StringAlignment.Center;
+            this.simpleButton5.TextAlignmentVertical = System.Drawing.StringAlignment.Center;
+            this.simpleButton5.TextColorClicked = System.Drawing.Color.Black;
+            this.simpleButton5.TextColorHover = System.Drawing.Color.White;
+            this.simpleButton5.TextColorNormal = System.Drawing.Color.White;
+            this.simpleButton5.UsingBackgroundColorHoverClick = true;
+            this.simpleButton5.UsingBackgroundImageHoverClick = false;
+            this.simpleButton5.UsingImageHoverClick = false;
+            this.simpleButton5.UsingLineColorHoverClick = false;
+            this.simpleButton5.UsingTextColorHoverClick = true;
+            this.simpleButton5.Click += new System.EventHandler(this.simpleButton5_Click);
             // 
             // Form1
             // 
@@ -357,9 +377,10 @@
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.plnMenu.ResumeLayout(false);
+            this.gunaGradient2Panel2.ResumeLayout(false);
+            this.gunaGradient2Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaCirclePictureBox1)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -374,13 +395,14 @@
         private HPTCControl.SimpleButton simpleButton3;
         private HPTCControl.SimpleButton simpleButton2;
         private Guna.UI.WinForms.GunaMetroTrackBar gunaMetroTrackBar1;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private Guna.UI.WinForms.GunaDataGridView gunaDataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblGuide;
+        private System.Windows.Forms.FlowLayoutPanel plnLoadMenu;
+        private Guna.UI.WinForms.GunaGradient2Panel gunaGradient2Panel2;
+        private System.Windows.Forms.Label lblNameOfMenu;
+        private System.Windows.Forms.Panel plnMenu;
+        private Guna.UI.WinForms.GunaElipse gunaElipse1;
+        private HPTCControl.SimpleButton simpleButton4;
+        private HPTCControl.SimpleButton simpleButton5;
     }
 }
 

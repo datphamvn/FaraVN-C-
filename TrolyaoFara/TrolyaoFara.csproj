@@ -137,14 +137,27 @@
     <Compile Include="frmSettings.Designer.cs">
       <DependentUpon>frmSettings.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTraining.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTraining.Designer.cs">
+      <DependentUpon>frmTraining.cs</DependentUpon>
+    </Compile>
     <Compile Include="GA.cs" />
     <Compile Include="GACal.cs" />
     <Compile Include="GAVer2.cs" />
+    <Compile Include="GetData.cs" />
     <Compile Include="ItemFood.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ItemFood.Designer.cs">
       <DependentUpon>ItemFood.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ItemFoodMini.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ItemFoodMini.Designer.cs">
+      <DependentUpon>ItemFoodMini.cs</DependentUpon>
     </Compile>
     <Compile Include="LibFunction.cs" />
     <Compile Include="Form1.cs">
@@ -231,8 +244,14 @@
     <EmbeddedResource Include="frmSettings.resx">
       <DependentUpon>frmSettings.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmTraining.resx">
+      <DependentUpon>frmTraining.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ItemFood.resx">
       <DependentUpon>ItemFood.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ItemFoodMini.resx">
+      <DependentUpon>ItemFoodMini.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Load.resx">
       <DependentUpon>Load.cs</DependentUpon>

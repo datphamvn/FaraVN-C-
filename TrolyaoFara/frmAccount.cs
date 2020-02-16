@@ -7,6 +7,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Net.Mail;
 using System.Text;
 using System.Windows.Forms;
@@ -21,6 +22,7 @@ namespace TrolyaoFara
         SettingSever sSever = new SettingSever();
         DataConfig datacf = new DataConfig();
         LoadData lData = new LoadData();
+        private static readonly HttpClient client = new HttpClient();
 
         int maxHeight = 300;
         int maxWeight = 800;
@@ -266,9 +268,24 @@ namespace TrolyaoFara
             {
                 string strUpdate = string.Format("UPDATE info set lname='{0}', fname='{1}', gender='{2}', birthday='{3}', height='{4}', weight='{5}', weight_target='{6}', intensity='{7}' where iduser='{8}'", txtLname.Text, txtFname.Text, ConvertGender(), inputBirthday.Value.ToString(), txtHeight.Text, txtWeight.Text, txtWeightTarget.Text, cmbIntensity.SelectedIndex, id);
                 databaseObject.RunSQL(strUpdate);
+                UpdateInfoSeverAsync(txtHeight.Text, txtWeight.Text, cmbIntensity.SelectedIndex.ToString());
                 alert.Show("Cập nhật thông tin thành công !", alert.AlertType.success);
                 NextPage();
             }
+        }
+
+        private async void UpdateInfoSeverAsync(string height, string weight, string intensity)
+        {
+            var values = new Dictionary<string, string>
+            {
+                {"user", lib.GetUsername()},
+                {"height", height},
+                {"weight", weight},
+                {"intensity", intensity}
+            };
+            var content = new FormUrlEncodedContent(values);
+            var response = await client.PostAsync(sSever.linksever + "dashboard/api/user/update-info/", content);
+            var responseString = await response.Content.ReadAsStringAsync();
         }
 
         private void btnReset1_Click(object sender, EventArgs e)
@@ -777,8 +794,30 @@ namespace TrolyaoFara
             {
                 string strUpdate = string.Format("UPDATE info set country='{0}', city='{1}', district='{2}' where iduser='{3}'", txtCountry.Text, txtCity.Text, txtDistrict.Text, lib.GetID());
                 databaseObject.RunSQL(strUpdate);
+                UpdateProfileSeverAsync(txtCountry.Text, txtCity.Text, txtDistrict.Text, inputBirthday.Value.ToString(), ConvertGender().ToString());
                 alert.Show("Cập nhật thông tin thành công !", alert.AlertType.success);
+
+                FrmDashboard frm = new FrmDashboard();
+                frm.Message = "0";
+                frm.Show();
             }
+        }
+
+        private async void UpdateProfileSeverAsync(string country, string city, string district, string birthday, string gender)
+        {
+
+            var values = new Dictionary<string, string>
+            {
+                {"user", lib.GetUsername()},
+                {"birthday", birthday},
+                {"gender", gender},
+                {"country", country},
+                {"city", city},
+                {"district", district}
+            };
+            var content = new FormUrlEncodedContent(values);
+            var response = await client.PostAsync(sSever.linksever + "dashboard/api/user/update-profile/", content);
+            var responseString = await response.Content.ReadAsStringAsync();
         }
 
         private void btnPre4_Click(object sender, EventArgs e)

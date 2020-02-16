@@ -123,9 +123,9 @@ namespace TrolyaoFara
 
             //Output
             string recommend = "";
-            foreach (int i in Generation[populationSize - 1])
+            foreach (double i in Generation[populationSize - 1])
             {
-                recommend += i + " ";
+                recommend += String.Format("{0:0.00}", i) + " ";
             }
 
             if (!lib.CheckExists("menu", "id", 2, ""))

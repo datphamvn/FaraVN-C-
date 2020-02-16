@@ -62,16 +62,10 @@ namespace TrolyaoFara
         private void Form1_Load(object sender, EventArgs e)
         {
             ReLocation();
-            //LoadInfoinForm();
-            Optimal();
-            label3.Visible = false;
+
+            GetDataFromMenu();
         }
 
-        private void Optimal()
-        {
-            string a = "", b = "", c = "";
-            libfun.LoadMenu(ref a, ref b, ref c, lData.menupath);
-        }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
@@ -145,60 +139,116 @@ namespace TrolyaoFara
                 this.Opacity = gunaMetroTrackBar1.Value / 100.0;
             }
         }
+        
+        string strmenu = "";
+        int breakfast = 0, lunch = 0, dinner = 0;
 
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void LoadMenu()
+        public void GetDataFromMenu()
         {
             try
             {
-                gunaDataGridView1.Visible = true;
-                gunaDataGridView1.Rows.Clear();
-                gunaDataGridView1.Refresh();
-                string path = lData.menupath;
-                if (System.IO.File.Exists(path))
+                lblGuide.Visible = false;
+                string today = DateTime.Today.ToString("dd/MM/yyyy");
+                string day = "";
+                string sql = string.Format("SELECT * FROM menu WHERE id=1");
+                databaseObject.OpenConnection();
+                SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+                SQLiteDataReader rd = command.ExecuteReader();
+                while (rd.Read())
                 {
-                    using (StreamReader sr = new StreamReader(path))
-                    {
-
-                        string[] row = sr.ReadToEnd().Split('\n');
-                        string[] info = row[0].Split(';');
-                        int maxrow = Convert.ToInt32(info[1]);
-                        string[] sang = row[1].Split('|');
-                        string[] trua = row[2].Split('|');
-                        string[] toi = row[3].Split('|');
-
-                        string[] menu = new string[3];
-                        for (int i = 0; i < Convert.ToInt32(info[2]); i++)
-                        { menu[0] = sang[i]; }
-
-                        for (int i = 0; i < maxrow; i++)
-                        {
-                            if (i >= Convert.ToInt32(info[2]))
-                                menu[0] = "";
-                            menu[1] = trua[i];
-                            menu[2] = toi[i];
-                            int idx = gunaDataGridView1.Rows.Add();
-                            gunaDataGridView1.Rows[idx].SetValues(menu);
-                        }
-
-                    }
+                    strmenu = rd["recommend"].ToString();
+                    breakfast = Convert.ToInt32(rd["breakfast"]);
+                    lunch = Convert.ToInt32(rd["lunch"]);
+                    dinner = Convert.ToInt32(rd["dinner"]);
+                    day = rd["date"].ToString();
                 }
-                label3.Visible = false;
+                command.Dispose();
+                databaseObject.CloseConnection();
+                if (strmenu != "" && today == day)
+                    LoadMenuForUser();
+                else
+                    SetMenu();
             }
             catch (Exception)
             {
-                gunaDataGridView1.Visible = false;
-                label3.Visible = true;
+                lblGuide.Visible = true;
+                lblGuide.Top = this.Size.Width + 10;
+                plnMenu.Visible = false;
+                label2.Visible = false;
             }
+        }
+        GACal calmenu = new GACal();
+
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            FrmDashboard frm = new FrmDashboard();
+            frm.Message = "1";
+            frm.Show();
+        }
+
+        private void SetMenu()
+        {
+            plnLoadMenu.Controls.Clear();
+            frmMenuFood frm = new frmMenuFood();
+            frm.CallGA();
+            frm.CalCalo();
+            calmenu.RunGACal();
+        }
+
+        private void LoadMenuForUser()
+        {
+            int[] idmenu = strmenu.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+
+            var date = DateTime.Now;
+            int hour = date.Hour;
+
+            if (hour <= 12)
+            {
+                lblNameOfMenu.Text = "Trưa";
+                LoadItemToPanel(breakfast, breakfast + lunch, idmenu);
+            }
+            else if (12 < hour && hour <= 19)
+            {
+                lblNameOfMenu.Text = "Tối";
+                LoadItemToPanel(breakfast + lunch, breakfast + lunch + dinner, idmenu);
+            }
+            else
+            {
+                lblNameOfMenu.Text = "Sáng";
+                LoadItemToPanel(0, breakfast, idmenu);
+            }
+        }
+
+        private void LoadItemToPanel(int begin, int end, int[] idmenu)
+        {
+            string namefood;
+
+            databaseObject.OpenConnection();
+            for (int i = begin; i < end; i++)
+            {
+                int idx = idmenu[i];
+                string sql = string.Format("SELECT * FROM ai_food WHERE id='{0}'", idx);
+
+                SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+                SQLiteDataReader rd = command.ExecuteReader();
+                while (rd.Read())
+                {
+                    namefood = rd["title"].ToString();
+                    plnLoadMenu.Controls.Add(ItemFoodMini.Add(namefood));
+                }
+                command.Dispose();
+            }
+            databaseObject.CloseConnection();
         }
 
         private void Form1_Shown(object sender, EventArgs e)
         {
-            LoadMenu();
+            //LoadMenu();
+        }
+
+        private void simpleButton5_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

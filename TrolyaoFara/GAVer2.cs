@@ -15,7 +15,7 @@ namespace TrolyaoFara
         static Random rd = new Random();
         static int nInfo = 5;
         static int nBreakfast = 10;//Update 10
-        static int nOtherFood = 60;//Update 60
+        static int nOtherFood = 100;//Update 60
 
         //Setting Menu
         //static int day = 1; // Nhận từ cài đặt
@@ -23,12 +23,12 @@ namespace TrolyaoFara
         //GA Variable
         static double totalFitness = 0.0;
 
-        static int populationSize = 50;
-        static int generationSize = 200;
-        static double mutationRate = 0.05;
+        static int populationSize = 80;
+        static int generationSize = 300;
+        static double mutationRate = 0.1;
         static double crossoverRate = 0.8;
 
-        const int nArrMenu = 100;
+        const int nArrMenu = 21;
 
         int breakfast = 0, lunch = 0, dinner = 0, lengthDNA = 0;
         public void GetDataFromSetting()
@@ -61,22 +61,6 @@ namespace TrolyaoFara
             }
         }
 
-        public string LoadNameFood(int id_food)
-        {
-            string namefood = "";
-            string sql = string.Format("SELECT * FROM ai_food WHERE id='{0}'", id_food);
-            databaseObject.OpenConnection();
-            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
-            SQLiteDataReader rd = command.ExecuteReader();
-            while (rd.Read())
-            {
-                namefood = rd["title"].ToString();
-            }
-            command.Dispose();
-            databaseObject.CloseConnection();
-            return namefood;
-        }
-
         public void GA1Day()
         {
             GetDataFromSetting();
@@ -102,7 +86,7 @@ namespace TrolyaoFara
             }
             command.Dispose();
             databaseObject.CloseConnection();
-            alert.Show("Load Data Success !", alert.AlertType.success);
+            //alert.Show("Load Data Success !", alert.AlertType.success);
 
             List<int[]> Generation = new List<int[]>();
             List<int[]> Generation2 = new List<int[]>();
@@ -123,7 +107,6 @@ namespace TrolyaoFara
             string path = Environment.CurrentDirectory + "/" + "log.txt";
             using (StreamWriter sw = new StreamWriter(path))
             {
-
                 sw.WriteLine();
                 foreach (var k in FitnessTable)
                 {
@@ -143,25 +126,24 @@ namespace TrolyaoFara
                 }
                 sw.WriteLine();
 
+                
             }
-
-            //Output
-
 
             //Save Recommend
             string recommend = "";
             foreach (int i in Generation[populationSize - 1])
             {
-                recommend += i + " ";
+                recommend += Database[i][0] + " ";
             }
             
             string strUdpate = string.Format("UPDATE menu set recommend='{0}', date='{1}', breakfast='{2}', lunch='{3}', dinner='{4}'  where id=1", recommend, DateTime.Today.ToString("dd/MM/yyyy"), breakfast, lunch, dinner);
             databaseObject.RunSQL(strUdpate);
         }
 
-        string[] temp_menu = new string[nArrMenu];
+        int[] temp_menu = new int[nArrMenu];
         public void GetTempMenu()
         {
+            /*
             string sql = string.Format("SELECT * FROM menu WHERE id=1");
             databaseObject.OpenConnection();
             SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
@@ -172,11 +154,20 @@ namespace TrolyaoFara
             }
             command.Dispose();
             databaseObject.CloseConnection();
+            */
+            for(int i=0; i<breakfast+lunch+dinner; i++)
+            {
+                temp_menu[i] = 0;
+            }
         }
 
         public void CreateDNA(List<int[]> Generation)
         {
-            try { GetTempMenu(); }
+            try
+            {
+                GetTempMenu();
+                //GetAntiComposition();
+            }
             catch (Exception)
             {
                 CreateTable();
@@ -188,14 +179,7 @@ namespace TrolyaoFara
                 int[] DNA = new int[lengthDNA];
                 for (int i = 0; i < lengthDNA; i++)
                 {
-                    try
-                    {
-                        DNA[i] = -Convert.ToInt32(temp_menu[i]);
-                    }
-                    catch (Exception)
-                    {
-                        DNA[i] = 0;
-                    }
+                        DNA[i] = temp_menu[i];
                 }
 
                 for (int i = breakfast; i < lengthDNA; i++)
@@ -206,7 +190,7 @@ namespace TrolyaoFara
                 for (int i = 0; i < breakfast; i++)
                 {
                     if(DNA[i] >= 0)
-                        DNA[i] = rd.Next(1, nBreakfast);
+                        DNA[i] = rd.Next(0, nBreakfast);
                 }
                 AddDNA(Generation, DNA);
             }
@@ -236,6 +220,27 @@ namespace TrolyaoFara
                 totalFitness += t;
             }
         }
+
+        int[] anti = new int[6];
+        private void GetAntiComposition()
+        {
+            for(int temp=0; temp <= 5; temp++)
+            {
+                anti[temp] = 0;
+            }
+            int i = 0;
+            string sql = string.Format("SELECT * FROM allergic");
+            databaseObject.OpenConnection();
+            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+            SQLiteDataReader rd = command.ExecuteReader();
+            while (rd.Read())
+            {
+                anti[i] = Convert.ToInt32(rd["composition_id"]);
+            }
+            command.Dispose();
+            databaseObject.CloseConnection();
+        }
+
         // cột 0 -> ID món ăn
         // cột 1 -> purpose (mục đích) sáng/trưa/tối
         // cột 2 -> Type (Phân loại món ăn)
@@ -253,9 +258,10 @@ namespace TrolyaoFara
             {
                 if (i < breakfast)
                 {
-                    if (Database[Math.Abs(x[i])][2] == 10)
+                    int index = Math.Abs(x[i]);
+                    if (Database[index][2] == 10)
                         Idx0++;
-                    else if (Database[Math.Abs(x[i])][2] == 12)
+                    else if (Database[index][2] == 12)
                         Idx1++;
                     else
                         Idx2++;
@@ -274,9 +280,10 @@ namespace TrolyaoFara
             {
                 if (i >= breakfast && i < (breakfast + lunch))
                 {
-                    if (Database[Math.Abs(x[i])][2] == 1)
+                    int index = Math.Abs(x[i]);
+                    if (Database[index][2] == 1)
                         Idx0++;
-                    else if (Database[Math.Abs(x[i])][2] == 2)
+                    else if (Database[index][2] == 2)
                         Idx1++;
                     else
                         Idx2++;
@@ -293,9 +300,10 @@ namespace TrolyaoFara
             {
                 if (i >= (breakfast + lunch) && i < lengthDNA)
                 {
-                    if (Database[Math.Abs(x[i])][2] == 1)
+                    int index = Math.Abs(x[i]);
+                    if (Database[index][2] == 1)
                         Idx0++;
-                    else if (Database[Math.Abs(x[i])][2] == 2)
+                    else if (Database[index][2] == 2)
                         Idx1++;
                     else
                         Idx2++;
@@ -305,6 +313,41 @@ namespace TrolyaoFara
                 Value_conflict += 0;
             else
                 Value_conflict = Value_conflict + (Idx0 * 1 + Idx1 * 2 + Idx2 * 3 + 1);
+
+            //Không lấy món ăn có thành phần bị dị ứng
+            /*
+            int[] composition = new int[200];
+
+            int dem = 0;
+            databaseObject.OpenConnection();
+            for (int i = 0; i < lengthDNA; i++)
+            {
+                int index = Math.Abs(x[i]);
+                string sql = string.Format("SELECT * FROM calforfood where foodname = " + Database[index][0]);
+
+                SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+                SQLiteDataReader rd = command.ExecuteReader();
+                while (rd.Read())
+                {
+                    composition[dem] = Convert.ToInt32(rd["composition"]);
+                    dem++;
+                }
+                command.Dispose();
+            }
+            databaseObject.CloseConnection();
+            for(int i=0; i<dem; i++)
+            {
+                for(int j=0; j<=5; j++)
+                {
+                    if(composition[i] == anti[j])
+                    {
+                        Value_conflict += 100;
+                        break;
+                    }
+                }
+            }
+            Value_conflict += 0;
+            */
 
             //SelectionSort(x, 0, breakfast - 1, Database);
             // SelectionSort(x, breakfast, lengthDNA - 1, Database);
@@ -316,7 +359,8 @@ namespace TrolyaoFara
             {
                 if ((i >= breakfast) && (i < (breakfast + lunch)))
                 {
-                    Method[k] = Database[Math.Abs(x[i])][3];
+                    int index = Math.Abs(x[i]);
+                    Method[k] = Database[index][3];
                     k++;
                 }
             }
@@ -354,7 +398,8 @@ namespace TrolyaoFara
             {
                 if (i >= (breakfast + lunch) && i < lengthDNA)
                 {
-                    Method[k++] = Database[Math.Abs(x[i])][3];
+                    int index = Math.Abs(x[i]);
+                    Method[k++] = Database[index][3];
                 }
             }
 
