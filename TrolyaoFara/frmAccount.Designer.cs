@@ -111,17 +111,14 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabInfo);
             this.tabControl1.Controls.Add(this.tabFood);
             this.tabControl1.Controls.Add(this.tabComposition);
             this.tabControl1.Controls.Add(this.tabLocation);
-            this.tabControl1.Location = new System.Drawing.Point(-1, -10);
+            this.tabControl1.Location = new System.Drawing.Point(-5, -11);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(783, 558);
+            this.tabControl1.Size = new System.Drawing.Size(795, 564);
             this.tabControl1.TabIndex = 1;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -134,7 +131,7 @@
             this.tabInfo.Location = new System.Drawing.Point(4, 22);
             this.tabInfo.Name = "tabInfo";
             this.tabInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabInfo.Size = new System.Drawing.Size(775, 532);
+            this.tabInfo.Size = new System.Drawing.Size(787, 538);
             this.tabInfo.TabIndex = 2;
             this.tabInfo.Text = "tabInfo";
             // 
@@ -164,9 +161,9 @@
             this.panel1.Controls.Add(this.label10);
             this.panel1.Controls.Add(this.label17);
             this.panel1.Controls.Add(this.label8);
-            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Location = new System.Drawing.Point(3, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(776, 455);
+            this.panel1.Size = new System.Drawing.Size(784, 455);
             this.panel1.TabIndex = 49;
             // 
             // cmbIntensity
@@ -203,7 +200,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.label1.Location = new System.Drawing.Point(37, 330);
+            this.label1.Location = new System.Drawing.Point(41, 330);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 54);
             this.label1.TabIndex = 54;
@@ -275,7 +272,7 @@
             this.btnFemale.ForeColor = System.Drawing.Color.White;
             this.btnFemale.Image = ((System.Drawing.Image)(resources.GetObject("btnFemale.Image")));
             this.btnFemale.ImageSize = new System.Drawing.Size(50, 50);
-            this.btnFemale.Location = new System.Drawing.Point(626, 165);
+            this.btnFemale.Location = new System.Drawing.Point(634, 165);
             this.btnFemale.Name = "btnFemale";
             this.btnFemale.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(57)))), ((int)(((byte)(129)))));
             this.btnFemale.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -379,7 +376,7 @@
             this.btnReset1.Image = global::TrolyaoFara.Properties.Resources.reset;
             this.btnReset1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btnReset1.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnReset1.Location = new System.Drawing.Point(729, -2);
+            this.btnReset1.Location = new System.Drawing.Point(732, -2);
             this.btnReset1.Name = "btnReset1";
             this.btnReset1.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnReset1.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
@@ -399,7 +396,7 @@
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("SVN-Aptima", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label7.Location = new System.Drawing.Point(274, 12);
+            this.label7.Location = new System.Drawing.Point(278, 12);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(238, 30);
             this.label7.TabIndex = 0;
@@ -411,7 +408,7 @@
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.label12.Location = new System.Drawing.Point(40, 230);
+            this.label12.Location = new System.Drawing.Point(44, 230);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(79, 27);
             this.label12.TabIndex = 27;
@@ -423,7 +420,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.label11.Location = new System.Drawing.Point(41, 286);
+            this.label11.Location = new System.Drawing.Point(45, 286);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(78, 27);
             this.label11.TabIndex = 28;
@@ -441,7 +438,7 @@
             this.txtHeight.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtHeight.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtHeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.txtHeight.Location = new System.Drawing.Point(139, 230);
+            this.txtHeight.Location = new System.Drawing.Point(143, 230);
             this.txtHeight.Name = "txtHeight";
             this.txtHeight.PasswordChar = '\0';
             this.txtHeight.Radius = 4;
@@ -455,7 +452,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.label14.Location = new System.Drawing.Point(355, 400);
+            this.label14.Location = new System.Drawing.Point(359, 400);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(28, 27);
             this.label14.TabIndex = 35;
@@ -474,7 +471,7 @@
             this.txtWeight.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtWeight.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtWeight.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.txtWeight.Location = new System.Drawing.Point(139, 286);
+            this.txtWeight.Location = new System.Drawing.Point(143, 286);
             this.txtWeight.Name = "txtWeight";
             this.txtWeight.PasswordChar = '\0';
             this.txtWeight.Radius = 4;
@@ -494,7 +491,7 @@
             this.txtWeightTarget.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtWeightTarget.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtWeightTarget.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.txtWeightTarget.Location = new System.Drawing.Point(139, 400);
+            this.txtWeightTarget.Location = new System.Drawing.Point(143, 400);
             this.txtWeightTarget.Name = "txtWeightTarget";
             this.txtWeightTarget.PasswordChar = '\0';
             this.txtWeightTarget.Radius = 4;
@@ -509,7 +506,7 @@
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.label10.Location = new System.Drawing.Point(356, 232);
+            this.label10.Location = new System.Drawing.Point(360, 232);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(31, 27);
             this.label10.TabIndex = 31;
@@ -521,7 +518,7 @@
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.label17.Location = new System.Drawing.Point(28, 390);
+            this.label17.Location = new System.Drawing.Point(32, 390);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(91, 54);
             this.label17.TabIndex = 33;
@@ -534,7 +531,7 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.label8.Location = new System.Drawing.Point(359, 288);
+            this.label8.Location = new System.Drawing.Point(363, 288);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(28, 27);
             this.label8.TabIndex = 32;
@@ -591,7 +588,7 @@
             this.tabFood.Location = new System.Drawing.Point(4, 22);
             this.tabFood.Name = "tabFood";
             this.tabFood.Padding = new System.Windows.Forms.Padding(3);
-            this.tabFood.Size = new System.Drawing.Size(775, 532);
+            this.tabFood.Size = new System.Drawing.Size(787, 538);
             this.tabFood.TabIndex = 3;
             this.tabFood.Text = "tabFood";
             this.tabFood.UseVisualStyleBackColor = true;
@@ -611,7 +608,7 @@
             this.btnReset2.Image = global::TrolyaoFara.Properties.Resources.reset;
             this.btnReset2.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btnReset2.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnReset2.Location = new System.Drawing.Point(731, 0);
+            this.btnReset2.Location = new System.Drawing.Point(737, 3);
             this.btnReset2.Name = "btnReset2";
             this.btnReset2.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnReset2.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
@@ -631,7 +628,7 @@
             this.lblUpdateRequire.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lblUpdateRequire.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUpdateRequire.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lblUpdateRequire.Location = new System.Drawing.Point(75, 311);
+            this.lblUpdateRequire.Location = new System.Drawing.Point(75, 306);
             this.lblUpdateRequire.Name = "lblUpdateRequire";
             this.lblUpdateRequire.Size = new System.Drawing.Size(284, 17);
             this.lblUpdateRequire.TabIndex = 39;
@@ -642,7 +639,8 @@
             // 
             this.picPreviewFood.BackColor = System.Drawing.Color.Transparent;
             this.picPreviewFood.BaseColor = System.Drawing.Color.White;
-            this.picPreviewFood.Location = new System.Drawing.Point(75, 310);
+            this.picPreviewFood.Image = ((System.Drawing.Image)(resources.GetObject("picPreviewFood.Image")));
+            this.picPreviewFood.Location = new System.Drawing.Point(75, 305);
             this.picPreviewFood.Name = "picPreviewFood";
             this.picPreviewFood.Radius = 6;
             this.picPreviewFood.Size = new System.Drawing.Size(276, 157);
@@ -665,7 +663,7 @@
             this.btnPre2.ForeColor = System.Drawing.Color.White;
             this.btnPre2.Image = global::TrolyaoFara.Properties.Resources.next__2_;
             this.btnPre2.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnPre2.Location = new System.Drawing.Point(18, 475);
+            this.btnPre2.Location = new System.Drawing.Point(13, 474);
             this.btnPre2.Name = "btnPre2";
             this.btnPre2.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnPre2.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
@@ -694,7 +692,7 @@
             this.btnNext2.Image = global::TrolyaoFara.Properties.Resources.next__1_;
             this.btnNext2.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btnNext2.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnNext2.Location = new System.Drawing.Point(657, 475);
+            this.btnNext2.Location = new System.Drawing.Point(657, 474);
             this.btnNext2.Name = "btnNext2";
             this.btnNext2.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnNext2.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
@@ -719,15 +717,16 @@
             // lstIdFoodName
             // 
             this.lstIdFoodName.FormattingEnabled = true;
-            this.lstIdFoodName.Location = new System.Drawing.Point(300, 113);
+            this.lstIdFoodName.Location = new System.Drawing.Point(300, 108);
             this.lstIdFoodName.Name = "lstIdFoodName";
             this.lstIdFoodName.Size = new System.Drawing.Size(60, 186);
             this.lstIdFoodName.TabIndex = 40;
             // 
             // pictureBox3
             // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Black;
             this.pictureBox3.Image = global::TrolyaoFara.Properties.Resources.next;
-            this.pictureBox3.Location = new System.Drawing.Point(429, 176);
+            this.pictureBox3.Location = new System.Drawing.Point(429, 171);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(40, 40);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -774,7 +773,7 @@
             this.btnAddFood.ForeColor = System.Drawing.Color.White;
             this.btnAddFood.Image = global::TrolyaoFara.Properties.Resources.plus;
             this.btnAddFood.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnAddFood.Location = new System.Drawing.Point(374, 74);
+            this.btnAddFood.Location = new System.Drawing.Point(374, 69);
             this.btnAddFood.Name = "btnAddFood";
             this.btnAddFood.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
             this.btnAddFood.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -790,8 +789,9 @@
             // 
             // pictureBox4
             // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Black;
             this.pictureBox4.Image = global::TrolyaoFara.Properties.Resources.search;
-            this.pictureBox4.Location = new System.Drawing.Point(27, 74);
+            this.pictureBox4.Location = new System.Drawing.Point(27, 69);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(32, 32);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -808,7 +808,7 @@
             this.txtFoodName.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
             this.txtFoodName.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtFoodName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtFoodName.Location = new System.Drawing.Point(65, 74);
+            this.txtFoodName.Location = new System.Drawing.Point(65, 69);
             this.txtFoodName.MultiLine = true;
             this.txtFoodName.Name = "txtFoodName";
             this.txtFoodName.PasswordChar = '\0';
@@ -834,7 +834,7 @@
             this.lstFoodName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstFoodName.FormattingEnabled = true;
             this.lstFoodName.ItemHeight = 17;
-            this.lstFoodName.Location = new System.Drawing.Point(65, 111);
+            this.lstFoodName.Location = new System.Drawing.Point(65, 106);
             this.lstFoodName.Name = "lstFoodName";
             this.lstFoodName.Size = new System.Drawing.Size(299, 191);
             this.lstFoodName.TabIndex = 32;
@@ -843,6 +843,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.Black;
             this.label5.Font = new System.Drawing.Font("SVN-Aptima", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label5.Location = new System.Drawing.Point(194, 19);
@@ -871,7 +872,7 @@
             this.tabComposition.Location = new System.Drawing.Point(4, 22);
             this.tabComposition.Name = "tabComposition";
             this.tabComposition.Padding = new System.Windows.Forms.Padding(3);
-            this.tabComposition.Size = new System.Drawing.Size(775, 532);
+            this.tabComposition.Size = new System.Drawing.Size(787, 538);
             this.tabComposition.TabIndex = 4;
             this.tabComposition.Text = "tabComposition";
             this.tabComposition.UseVisualStyleBackColor = true;
@@ -891,7 +892,7 @@
             this.btnReset3.Image = global::TrolyaoFara.Properties.Resources.reset;
             this.btnReset3.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btnReset3.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnReset3.Location = new System.Drawing.Point(734, 0);
+            this.btnReset3.Location = new System.Drawing.Point(737, 3);
             this.btnReset3.Name = "btnReset3";
             this.btnReset3.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnReset3.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
@@ -979,6 +980,7 @@
             // 
             // pictureBox2
             // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Black;
             this.pictureBox2.Image = global::TrolyaoFara.Properties.Resources.next;
             this.pictureBox2.Location = new System.Drawing.Point(443, 207);
             this.pictureBox2.Name = "pictureBox2";
@@ -1043,6 +1045,7 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.BackColor = System.Drawing.Color.Black;
             this.pictureBox1.Image = global::TrolyaoFara.Properties.Resources.search;
             this.pictureBox1.Location = new System.Drawing.Point(45, 97);
             this.pictureBox1.Name = "pictureBox1";
@@ -1095,6 +1098,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.Black;
             this.label6.Font = new System.Drawing.Font("SVN-Aptima", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label6.Location = new System.Drawing.Point(147, 23);
@@ -1120,7 +1124,7 @@
             this.tabLocation.Location = new System.Drawing.Point(4, 22);
             this.tabLocation.Name = "tabLocation";
             this.tabLocation.Padding = new System.Windows.Forms.Padding(3);
-            this.tabLocation.Size = new System.Drawing.Size(775, 532);
+            this.tabLocation.Size = new System.Drawing.Size(787, 538);
             this.tabLocation.TabIndex = 5;
             this.tabLocation.Text = "tabLocation";
             this.tabLocation.UseVisualStyleBackColor = true;
@@ -1140,7 +1144,7 @@
             this.btnReset4.Image = global::TrolyaoFara.Properties.Resources.reset;
             this.btnReset4.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btnReset4.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnReset4.Location = new System.Drawing.Point(734, 0);
+            this.btnReset4.Location = new System.Drawing.Point(738, 3);
             this.btnReset4.Name = "btnReset4";
             this.btnReset4.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnReset4.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
@@ -1156,6 +1160,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Black;
             this.label4.Font = new System.Drawing.Font("SVN-Aptima", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.label4.Location = new System.Drawing.Point(293, 15);
@@ -1167,6 +1172,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Black;
             this.label13.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label13.Location = new System.Drawing.Point(180, 278);
@@ -1178,6 +1184,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Black;
             this.label15.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label15.Location = new System.Drawing.Point(392, 157);
@@ -1212,6 +1219,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Black;
             this.label16.Font = new System.Drawing.Font("SVN-Bear", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label16.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
             this.label16.Location = new System.Drawing.Point(83, 157);
@@ -1285,7 +1293,7 @@
             this.btnPre4.ForeColor = System.Drawing.Color.White;
             this.btnPre4.Image = global::TrolyaoFara.Properties.Resources.next__2_;
             this.btnPre4.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnPre4.Location = new System.Drawing.Point(18, 475);
+            this.btnPre4.Location = new System.Drawing.Point(18, 478);
             this.btnPre4.Name = "btnPre4";
             this.btnPre4.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnPre4.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
@@ -1315,7 +1323,7 @@
             this.btnFinish.Image = global::TrolyaoFara.Properties.Resources.tick;
             this.btnFinish.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btnFinish.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnFinish.Location = new System.Drawing.Point(642, 475);
+            this.btnFinish.Location = new System.Drawing.Point(654, 478);
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnFinish.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));

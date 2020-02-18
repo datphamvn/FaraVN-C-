@@ -45,25 +45,30 @@ namespace TrolyaoFara
             this.Show();
         }
 
-        void LoadInfoinForm()
-        {
-            //gunaCirclePictureBox1.Image = Image.FromFile(lData.loginimg);
-            using (StreamReader sr = new StreamReader(lData.pathinfo))
-            {
-                string[] info = sr.ReadLine().Split(';');
-                label1.Text = info[0] + " " + info[1];
-                int formWidth = this.Width;
-                int lblWidth = label1.Width;
-                label1.Left = (formWidth - lblWidth) / 2;
-            }
-        }
-        LibFunction libfun = new LibFunction();
-
         private void Form1_Load(object sender, EventArgs e)
         {
             ReLocation();
 
             GetDataFromMenu();
+            GetFullName();
+            
+        }
+
+        private void GetFullName()
+        {
+            string lname = "", fname = "";
+            string sql = string.Format("SELECT * FROM info WHERE iduser='{0}'", lib.GetID());
+            databaseObject.OpenConnection();
+            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+            SQLiteDataReader rd = command.ExecuteReader();
+            while (rd.Read())
+            {
+                fname = rd["fname"].ToString();
+                lname = rd["lname"].ToString();
+            }
+            command.Dispose();
+            databaseObject.CloseConnection();
+            lblNameUser.Text = lname + " " + fname;
         }
 
 
@@ -73,7 +78,6 @@ namespace TrolyaoFara
             ReleaseRAM();
             this.Opacity = 1;
             gunaMetroTrackBar1.Value = 0;
-            //LoadMenu();
         }
 
         private void simpleButton3_Click(object sender, EventArgs e)
@@ -81,14 +85,11 @@ namespace TrolyaoFara
             FrmDashboard frm = new FrmDashboard();
             frm.Show();
         }
+
         LoadData lData = new LoadData();
         string username = "", email = "", userlogin = "";
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            System.IO.File.WriteAllText(lData.path, string.Empty);
-            System.IO.File.WriteAllText(lData.pathinfo, string.Empty);
-            System.IO.File.WriteAllText(lData.menupath, string.Empty);
-
             string sql = string.Format("SELECT * FROM account WHERE iduser='{0}'", lib.GetID());
             databaseObject.OpenConnection();
             SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
@@ -193,6 +194,7 @@ namespace TrolyaoFara
             frm.CallGA();
             frm.CalCalo();
             calmenu.RunGACal();
+            frm.GetDataFromMenu();
         }
 
         private void LoadMenuForUser()
@@ -226,14 +228,14 @@ namespace TrolyaoFara
             databaseObject.OpenConnection();
             for (int i = begin; i < end; i++)
             {
-                int idx = idmenu[i];
-                string sql = string.Format("SELECT * FROM ai_food WHERE id='{0}'", idx);
+                int idx = idmenu[i]+1;
+                string sql = string.Format("SELECT * FROM food_db WHERE id='{0}'", idx);
 
                 SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
                 SQLiteDataReader rd = command.ExecuteReader();
                 while (rd.Read())
                 {
-                    namefood = rd["title"].ToString();
+                    namefood = rd["name"].ToString();
                     plnLoadMenu.Controls.Add(ItemFoodMini.Add(namefood));
                 }
                 command.Dispose();

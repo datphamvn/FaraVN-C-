@@ -24,7 +24,7 @@ namespace TrolyaoFara
                 string url = sSever.linksever + "ai/api/food/?search=1";
                 DownloadData(url, 10);
                 url = sSever.linksever + "ai/api/food/?search=2&3";
-                DownloadData(url, 200);
+                DownloadData(url, 60);
             }
         }
 
@@ -45,7 +45,7 @@ namespace TrolyaoFara
                         byte[] bytes = Encoding.Default.GetBytes(item.Title.ToString());
                         string foodname = Encoding.UTF8.GetString(bytes);
 
-                        string strInsert = string.Format("INSERT INTO food_db(id_food, id_purpose, id_type, id_method, calo, name, timer) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')", item.Id, item.Purpose[0], item.Type[0], item.Method[0], item.Calo, foodname, item.Timer);
+                        string strInsert = string.Format("INSERT INTO food_db(id_food, id_purpose, id_type, id_method, calo, name, timer) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')", item.Id, item.Purpose[0], item.Type[0], item.Method[0], item.Calo , foodname, item.Timer);
                         databaseObject.RunSQL(strInsert);
                         i++;
                     }

@@ -13,9 +13,9 @@ namespace TrolyaoFara
 
         //Variable Data
         static Random rd = new Random();
-        static int nInfo = 5;
+        static int nInfo = 4;
         static int nBreakfast = 10;//Update 10
-        static int nOtherFood = 100;//Update 60
+        static int nOtherFood = 60;//Update 60
 
         //Setting Menu
         //static int day = 1; // Nhận từ cài đặt
@@ -24,8 +24,8 @@ namespace TrolyaoFara
         static double totalFitness = 0.0;
 
         static int populationSize = 80;
-        static int generationSize = 300;
-        static double mutationRate = 0.1;
+        static int generationSize = 200;
+        static double mutationRate = 0.15;
         static double crossoverRate = 0.8;
 
         const int nArrMenu = 21;
@@ -49,7 +49,7 @@ namespace TrolyaoFara
             lengthDNA = breakfast + lunch + dinner;
         }
 
-        private void CreateTable()
+        public void CreateTable()
         {
             string sql = "CREATE TABLE IF NOT EXISTS menu([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, recommend string, date string, breakfast INTEGER NOT NULL, lunch INTEGER NOT NULL, dinner INTEGER NOT NULL, calo INTEGER NOT NULL)";
             databaseObject.RunSQL(sql);
@@ -69,7 +69,7 @@ namespace TrolyaoFara
             List<int[]> Database = new List<int[]>();
 
             int[] getdata = new int[nInfo];
-            string sql = string.Format("SELECT * FROM db_food");
+            string sql = string.Format("SELECT * FROM food_db");
             databaseObject.OpenConnection();
             SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
             SQLiteDataReader rd = command.ExecuteReader();
@@ -79,7 +79,7 @@ namespace TrolyaoFara
                 getdata[1] = Convert.ToInt32(rd["id_purpose"]);
                 getdata[2] = Convert.ToInt32(rd["id_type"]);
                 getdata[3] = Convert.ToInt32(rd["id_method"]);
-                getdata[4] = Convert.ToInt32(rd["calo"]);
+                //getdata[4] = Convert.ToInt32(rd["calo"]);
                 Database.Add(new int[nInfo]);
                 for (int lst = 0; lst < nInfo; lst++)
                     Database[Database.Count() - 1][lst] = getdata[lst];
@@ -125,7 +125,6 @@ namespace TrolyaoFara
                     sw.Write(i + " ");
                 }
                 sw.WriteLine();
-
                 
             }
 
@@ -133,7 +132,7 @@ namespace TrolyaoFara
             string recommend = "";
             foreach (int i in Generation[populationSize - 1])
             {
-                recommend += Database[i][0] + " ";
+                recommend += i + " ";
             }
             
             string strUdpate = string.Format("UPDATE menu set recommend='{0}', date='{1}', breakfast='{2}', lunch='{3}', dinner='{4}'  where id=1", recommend, DateTime.Today.ToString("dd/MM/yyyy"), breakfast, lunch, dinner);
@@ -163,6 +162,7 @@ namespace TrolyaoFara
 
         public void CreateDNA(List<int[]> Generation)
         {
+            /*
             try
             {
                 GetTempMenu();
@@ -173,23 +173,26 @@ namespace TrolyaoFara
                 CreateTable();
                 GetTempMenu();
             }
+            */
 
             for (int n = 0; n < populationSize; n++)
             {
                 int[] DNA = new int[lengthDNA];
+                /*
                 for (int i = 0; i < lengthDNA; i++)
                 {
                         DNA[i] = temp_menu[i];
                 }
+                */
 
                 for (int i = breakfast; i < lengthDNA; i++)
                 {
-                    if(DNA[i] >= 0)
+                   // if(DNA[i] >= 0)
                         DNA[i] = rd.Next(nBreakfast, (nBreakfast + nOtherFood));
                 }
                 for (int i = 0; i < breakfast; i++)
                 {
-                    if(DNA[i] >= 0)
+                   // if(DNA[i] >= 0)
                         DNA[i] = rd.Next(0, nBreakfast);
                 }
                 AddDNA(Generation, DNA);

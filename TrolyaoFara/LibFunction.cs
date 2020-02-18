@@ -1,33 +1,32 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.NetworkInformation;
-using System.Runtime;
-using System.Runtime.InteropServices;
-using System.IO;
-using System.Diagnostics;
-using System.Globalization;
 using System.Data.SQLite;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Net.NetworkInformation;
 
 namespace TrolyaoFara
 {
     class LibFunction
     {
+        Database databaseObject = new Database();
+
         public bool CheckForInternetConnection()
         {
-            /*
             bool con = NetworkInterface.GetIsNetworkAvailable();
             if (con == true)
                 return true;
             else
-                return false;
-                */
-            return true;
+                return false;  
+            //return true;
         }
 
-        Database databaseObject = new Database();
+        public void HideAllTabsOnTabControl(TabControl theTabControl)
+        {
+            theTabControl.Appearance = TabAppearance.FlatButtons;
+            theTabControl.ItemSize = new Size(0, 1);
+            theTabControl.SizeMode = TabSizeMode.Fixed;
+        }
+
         public int GetID()
         {
             int id = -1;

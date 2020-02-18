@@ -34,6 +34,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTraining));
             this.label2 = new System.Windows.Forms.Label();
             this.gunaDataGridView1 = new Guna.UI.WinForms.GunaDataGridView();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.namefood = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rating = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lstIdFoodName = new System.Windows.Forms.ListBox();
             this.txtFoodName = new Guna.UI.WinForms.GunaTextBox();
             this.lstFoodName = new System.Windows.Forms.ListBox();
@@ -47,15 +50,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnDelete = new Guna.UI.WinForms.GunaButton();
             this.btnUpdate = new Guna.UI.WinForms.GunaButton();
-            this.picPreviewFood = new Guna.UI.WinForms.GunaPictureBox();
             this.btnSubmit = new Guna.UI.WinForms.GunaButton();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.namefood = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rating = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView1)).BeginInit();
             this.groupEdit.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picPreviewFood)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
@@ -137,6 +135,27 @@
             this.gunaDataGridView1.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(153)))), ((int)(((byte)(123)))), ((int)(((byte)(207)))));
             this.gunaDataGridView1.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
             this.gunaDataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gunaDataGridView1_CellContentClick);
+            // 
+            // ID
+            // 
+            this.ID.FillWeight = 76.14214F;
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
+            // 
+            // namefood
+            // 
+            this.namefood.FillWeight = 166.1283F;
+            this.namefood.HeaderText = "Món ăn";
+            this.namefood.Name = "namefood";
+            this.namefood.ReadOnly = true;
+            // 
+            // rating
+            // 
+            this.rating.FillWeight = 57.72959F;
+            this.rating.HeaderText = "Rating";
+            this.rating.Name = "rating";
+            this.rating.ReadOnly = true;
             // 
             // lstIdFoodName
             // 
@@ -253,7 +272,7 @@
             this.groupEdit.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.groupEdit.LineColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
             this.groupEdit.LineTop = 36;
-            this.groupEdit.Location = new System.Drawing.Point(422, 325);
+            this.groupEdit.Location = new System.Drawing.Point(219, 328);
             this.groupEdit.Name = "groupEdit";
             this.groupEdit.Radius = 5;
             this.groupEdit.Size = new System.Drawing.Size(473, 196);
@@ -367,19 +386,6 @@
             this.btnUpdate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // picPreviewFood
-            // 
-            this.picPreviewFood.BackColor = System.Drawing.Color.Transparent;
-            this.picPreviewFood.BaseColor = System.Drawing.Color.White;
-            this.picPreviewFood.Location = new System.Drawing.Point(75, 316);
-            this.picPreviewFood.Name = "picPreviewFood";
-            this.picPreviewFood.Radius = 6;
-            this.picPreviewFood.Size = new System.Drawing.Size(276, 157);
-            this.picPreviewFood.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picPreviewFood.TabIndex = 50;
-            this.picPreviewFood.TabStop = false;
-            this.picPreviewFood.UseTransfarantBackground = true;
-            // 
             // btnSubmit
             // 
             this.btnSubmit.AnimationHoverSpeed = 0.07F;
@@ -417,27 +423,6 @@
             this.pictureBox4.TabIndex = 47;
             this.pictureBox4.TabStop = false;
             // 
-            // ID
-            // 
-            this.ID.FillWeight = 76.14214F;
-            this.ID.HeaderText = "ID";
-            this.ID.Name = "ID";
-            this.ID.ReadOnly = true;
-            // 
-            // namefood
-            // 
-            this.namefood.FillWeight = 166.1283F;
-            this.namefood.HeaderText = "Món ăn";
-            this.namefood.Name = "namefood";
-            this.namefood.ReadOnly = true;
-            // 
-            // rating
-            // 
-            this.rating.FillWeight = 57.72959F;
-            this.rating.HeaderText = "Rating";
-            this.rating.Name = "rating";
-            this.rating.ReadOnly = true;
-            // 
             // frmTraining
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -446,7 +431,6 @@
             this.ClientSize = new System.Drawing.Size(921, 538);
             this.Controls.Add(this.groupEdit);
             this.Controls.Add(this.numRaing);
-            this.Controls.Add(this.picPreviewFood);
             this.Controls.Add(this.lstIdFoodName);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.pictureBox4);
@@ -461,7 +445,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView1)).EndInit();
             this.groupEdit.ResumeLayout(false);
             this.groupEdit.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.picPreviewFood)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -472,7 +455,6 @@
 
         private System.Windows.Forms.Label label2;
         private Guna.UI.WinForms.GunaDataGridView gunaDataGridView1;
-        private Guna.UI.WinForms.GunaPictureBox picPreviewFood;
         private System.Windows.Forms.ListBox lstIdFoodName;
         private Guna.UI.WinForms.GunaButton btnSubmit;
         private System.Windows.Forms.PictureBox pictureBox4;

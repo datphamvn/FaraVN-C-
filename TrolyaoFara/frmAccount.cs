@@ -74,6 +74,12 @@ namespace TrolyaoFara
 
             //TabInfo
             LoadSomeInfo();
+
+            lib.HideAllTabsOnTabControl(tabControl1);
+            lstIdDiung.Visible = false;
+            lstIdFoodName.Visible = false;
+            lstIdDiungAdd.Visible = false;
+            lstIdFoodNameAdd.Visible = false;
         }
 
         private void tabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -214,17 +220,17 @@ namespace TrolyaoFara
 
         private void txtWeight_KeyPress(object sender, KeyPressEventArgs e)
         {
-            NumberOnly(sender, e);
+            e.Handled = !(Char.IsNumber(e.KeyChar) || e.KeyChar == 8);
         }
 
         private void txtHeight_KeyPress(object sender, KeyPressEventArgs e)
         {
-            NumberOnly(sender, e);
+            e.Handled = !(Char.IsNumber(e.KeyChar) || e.KeyChar == 8);
         }
 
         private void txtWeightTarget_KeyPress(object sender, KeyPressEventArgs e)
         {
-            NumberOnly(sender, e);
+            e.Handled = !(Char.IsNumber(e.KeyChar) || e.KeyChar == 8);
         }
 
         public string standardString(string strSource)
@@ -262,14 +268,14 @@ namespace TrolyaoFara
                 alert.Show("Chiều cao không hợp lệ !", alert.AlertType.error);
             else if (Int32.Parse(txtWeight.Text) > maxWeight || Int32.Parse(txtWeight.Text) <= 0)
                 alert.Show("Cân nặng không hợp lệ !", alert.AlertType.error);
-            else if (Int32.Parse(txtWeightTarget.Text) > maxWeight || Int32.Parse(txtWeightTarget.Text) <= 0)
-                alert.Show("Cân nặng mục tiêu không hợp lệ !", alert.AlertType.error);
+            //else if (Int32.Parse(txtWeightTarget.Text) > maxWeight || Int32.Parse(txtWeightTarget.Text) <= 0)
+                //alert.Show("Cân nặng mục tiêu không hợp lệ !", alert.AlertType.error);
             else
             {
                 string strUpdate = string.Format("UPDATE info set lname='{0}', fname='{1}', gender='{2}', birthday='{3}', height='{4}', weight='{5}', weight_target='{6}', intensity='{7}' where iduser='{8}'", txtLname.Text, txtFname.Text, ConvertGender(), inputBirthday.Value.ToString(), txtHeight.Text, txtWeight.Text, txtWeightTarget.Text, cmbIntensity.SelectedIndex, id);
                 databaseObject.RunSQL(strUpdate);
                 UpdateInfoSeverAsync(txtHeight.Text, txtWeight.Text, cmbIntensity.SelectedIndex.ToString());
-                alert.Show("Cập nhật thông tin thành công !", alert.AlertType.success);
+                //alert.Show("Cập nhật thông tin thành công !", alert.AlertType.success);
                 NextPage();
             }
         }
@@ -515,7 +521,7 @@ namespace TrolyaoFara
             strDelete = string.Format("DELETE FROM ratings where stt='{0}'", false);
             databaseObject.RunSQL(strDelete);
 
-            alert.Show("Cập nhật thông tin thành công!", alert.AlertType.success);
+            //alert.Show("Cập nhật thông tin thành công!", alert.AlertType.success);
             NextPage();
 
         }
@@ -666,7 +672,7 @@ namespace TrolyaoFara
             string strDelete = string.Format("DELETE FROM allergic where stt='{0}'", false);
             databaseObject.RunSQL(strDelete);
 
-            alert.Show("Cập nhật thông tin thành công!", alert.AlertType.success);
+            //alert.Show("Cập nhật thông tin thành công!", alert.AlertType.success);
             NextPage();
         }
 

@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,19 +11,15 @@ namespace TrolyaoFara
 {
     public class LoadData
     {
-        public string path = Environment.CurrentDirectory + "/" + "user.dat";
-        public string pathinfo = Environment.CurrentDirectory + "/" + "info.dat";
         public string loginimg = Environment.CurrentDirectory + "/" + "logouser.png";
-        public string menupath = Environment.CurrentDirectory + "/" + "menu.dat";
         public string countryname = Environment.CurrentDirectory + "/" + "world.json";
-
         public string keyGetLocation = "scbFnhg3VEhNerT0CMe6zZhx79PDqc0VMLFDNjW6gTgdGb0G";
         public string userGetLocation = "pvtd264";
     }
 
     public class SettingSever
     {
-        public string linksever = "http://localhost:8000/";
+        public string linksever = "https://faravn.herokuapp.com/";
     }
 
     public class DataConfig
@@ -176,6 +173,12 @@ namespace TrolyaoFara
 
         [JsonProperty("main")]
         public bool Main { get; set; }
+    }
+
+    public class ContentFood
+    {
+        [JsonProperty("content")]
+        public string Content { get; set; }
     }
 
 }

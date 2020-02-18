@@ -16,7 +16,6 @@ namespace TrolyaoFara
         static int breakfast = 0, lunch = 0, dinner = 0;
         static int lengthDNA = 0, nInfo = 2;
 
-        //static int[] input = { 4, 46, 33, 17, 34, 25, 14, 16, 46 };
         static int[] tile = { 15, 45, 40 };
         //static double hesochia = 10.0;
 
@@ -67,7 +66,7 @@ namespace TrolyaoFara
             List<int[]> Database = new List<int[]>();
 
             int[] getdata = new int[nInfo];
-            sql = string.Format("SELECT * FROM db_food");
+            sql = string.Format("SELECT * FROM food_db");
             databaseObject.OpenConnection();
             command = new SQLiteCommand(sql, databaseObject.myConnection);
             rd = command.ExecuteReader();
@@ -83,8 +82,8 @@ namespace TrolyaoFara
             databaseObject.CloseConnection();
             alert.Show("Load Data Success !", alert.AlertType.success);
 
-            //int[] idmenu = strmenu.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
-            int[] idmenu = { 5, 18, 20, 31, 29, 44, 45, 51, 55 };
+            int[] idmenu = strmenu.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+            //int[] idmenu = { 5, 18, 20, 31, 29, 44, 45, 51, 55 };
             List<double[]> Generation = new List<double[]>();
             List<double[]> Generation2 = new List<double[]>();
             List<double> FitnessTable = new List<double>();
@@ -130,7 +129,7 @@ namespace TrolyaoFara
 
             if (!lib.CheckExists("menu", "id", 2, ""))
             {
-                string strInsert = string.Format("INSERT INTO menu(recommend, date, breakfast, lunch, dinner, calo) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", "", DateTime.Today.ToString("dd/MM/yyyy"), 0, 0, 0, 0);
+                string strInsert = string.Format("INSERT INTO menu(recommend, date, breakfast, lunch, dinner, calo) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", recommend, DateTime.Today.ToString("dd/MM/yyyy"), 0, 0, 0, 0);
                 databaseObject.RunSQL(strInsert);
             }
             else
@@ -190,7 +189,7 @@ namespace TrolyaoFara
             // Hệ số có tổng Calo phù hợp
             for (int i = 0; i < lengthDNA; i++)
             {
-                int idx = input[i] - 1;
+                int idx = input[i];
                 sumCalo += Database[idx][1] * x[i];
             }
             if (Math.Abs(sumCalo - GoalCalo) <= 10)
@@ -204,7 +203,7 @@ namespace TrolyaoFara
             sumCalo = 0;
             for(int i=0; i<breakfast; i++)
             {
-                int idx = input[i] - 1;
+                int idx = input[i];
                 sumCalo += Database[idx][1] * x[i];
             }
             if (Math.Abs(sumCalo-PartCalo) <= 10)
@@ -217,7 +216,7 @@ namespace TrolyaoFara
             sumCalo = 0;
             for (int i = breakfast; i < breakfast + lunch; i++)
             {
-                int idx = input[i] - 1;
+                int idx = input[i];
                 sumCalo += Database[idx][1] * x[i];
             }
             if (Math.Abs(sumCalo-PartCalo) <= 10)

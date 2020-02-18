@@ -77,15 +77,6 @@ namespace TrolyaoFara
         private void frmHome_Load(object sender, EventArgs e)
         {
             LoadInfoinForm();
-
-            string path = Environment.CurrentDirectory + "/" + "log2.txt";
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                for(int i=0; i<20; i++)
-                {
-                    sw.WriteLine(rd.Next(1, 10 + 1) * rd.NextDouble());
-                }
-            }
         }
 
         private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)

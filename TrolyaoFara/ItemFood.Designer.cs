@@ -69,11 +69,12 @@
             this.lblNameFood.AutoSize = true;
             this.lblNameFood.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNameFood.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.lblNameFood.Location = new System.Drawing.Point(170, 11);
+            this.lblNameFood.Location = new System.Drawing.Point(166, 11);
             this.lblNameFood.Name = "lblNameFood";
             this.lblNameFood.Size = new System.Drawing.Size(89, 20);
             this.lblNameFood.TabIndex = 1;
             this.lblNameFood.Text = "Tên món ăn";
+            this.lblNameFood.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblGr
             // 

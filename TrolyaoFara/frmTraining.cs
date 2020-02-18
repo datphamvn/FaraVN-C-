@@ -127,16 +127,18 @@ namespace TrolyaoFara
                 LoadFoodFavourite();
             if (lstFoodName.Items.Count == 0)
             {
-                picPreviewFood.Hide();
+                //picPreviewFood.Hide();
+                alert.Show("Hiện chưa có món ăn này!", alert.AlertType.error);
             }
             else
             {
-                picPreviewFood.Show();
+                //picPreviewFood.Show();
             }
         }
 
         private void lstFoodName_SelectedIndexChanged(object sender, EventArgs e)
         {
+            /*
             if (lib.CheckForInternetConnection())
             {
                 try
@@ -160,11 +162,14 @@ namespace TrolyaoFara
             }
             else
                 picPreviewFood.Hide();
+                */
         }
 
         private void frmTraining_Load(object sender, EventArgs e)
         {
             GetFavoriteFormData();
+
+            lstIdFoodName.Visible = false;
 
             string path = Environment.CurrentDirectory + "/" + "FoodUpload.txt";
             if (!File.Exists(path))
