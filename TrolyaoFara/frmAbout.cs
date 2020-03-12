@@ -17,7 +17,7 @@ namespace TrolyaoFara
     public partial class frmAbout : Form
     {
         SettingSever sSever = new SettingSever();
-        string pathsave = Environment.CurrentDirectory + "/log.zip";
+        string pathsave = Environment.CurrentDirectory + "/setup_faravn.exe";
         WebClient wc;
 
         public frmAbout()
@@ -25,23 +25,17 @@ namespace TrolyaoFara
             InitializeComponent();
         }
 
-        private string Version()
-        {
-            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            return version;
-        }
-
         string linkdown = "";
         private void frmAbout_Load(object sender, EventArgs e)
         {
+            var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             pnlUpdate.Hide();
-            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
-            lblVersion.Text = "Version " + Version();
+            lblVersion.Text = "Version " + version;
 
             wc = new WebClient();
             string webData = wc.DownloadString(sSever.linksever + "version");
             string[] data = webData.Split(';');
-            if (data[0] != Version())
+            if (data[0] != version.ToString())
             {
                 alert.Show("Hiện có phiên bản mới!", alert.AlertType.info);
                 pnlUpdate.Show();
@@ -66,7 +60,8 @@ namespace TrolyaoFara
                 double receive = double.Parse(e.BytesReceived.ToString());
                 double total = double.Parse(e.TotalBytesToReceive.ToString());
                 double percentage = receive / total * 100;
-                ProgressBarDown.Value = int.Parse(Math.Truncate(percentage).ToString());            }
+                ProgressBarDown.Value = int.Parse(Math.Truncate(percentage).ToString());
+            }
             ));
         }
 

@@ -26,6 +26,9 @@ namespace TrolyaoFara
         GACal calmenu = new GACal();
         SettingSever sSever = new SettingSever();
 
+        public delegate void GETDATA(string data);
+        public GETDATA mydata;
+
         string strmenu = "";
         int breakfast = 0, lunch = 0, dinner = 0;
 
@@ -36,13 +39,13 @@ namespace TrolyaoFara
 
         private void frmMenuFood_Load(object sender, EventArgs e)
         {
-            LoadSettings();
+            //LoadSettings();
             GetDataFromMenu();
-            //Add
-            //tabControl1.SelectTab(1);
+
         }
 
         #region TabSettings
+        /*
         public void GetDataFormSettings()
         {
             string sql = string.Format("SELECT * FROM settings");
@@ -59,33 +62,39 @@ namespace TrolyaoFara
             command.Dispose();
             databaseObject.CloseConnection();
         }
-
-        public void LoadSettings()
-        {
-            try
-            {
-                GetDataFormSettings();
-            }
-            catch (Exception)
-            {
-                CreateTable();
-            }
-        }
-
-        private void btnSaveSetting_Click(object sender, EventArgs e)
-        {
-            string strUdpate = string.Format("UPDATE settings set breakfast='{0}', lunch='{1}', dinner='{2}', mode='{3}' where id > 0", numBreakfast.Value, numLunch.Value, numDinner.Value, cbxMode.SelectedIndex);
-            databaseObject.RunSQL(strUdpate);
-            alert.Show("Đã lưu thiết lập!", alert.AlertType.success);
-        }
-
-        private void btnResetSetting_Click(object sender, EventArgs e)
-        {
-            LoadSettings();
-        }
+        */
         #endregion
 
+        public void GetDataFromMenu()
+        {
+            string today = DateTime.Today.ToString("dd/MM/yyyy");
+            string day = "";
+            string sql = string.Format("SELECT * FROM menu WHERE id=1");
+            databaseObject.OpenConnection();
+            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+            SQLiteDataReader rd = command.ExecuteReader();
+            while (rd.Read())
+            {
+                strmenu = rd["recommend"].ToString();
+                breakfast = Convert.ToInt32(rd["breakfast"]);
+                lunch = Convert.ToInt32(rd["lunch"]);
+                dinner = Convert.ToInt32(rd["dinner"]);
+                day = rd["date"].ToString();
+            }
+            command.Dispose();
+            databaseObject.CloseConnection();
+            if (strmenu != "" && today == day)
+            {
+                LoadMenuForUser();
+            }
+            else
+            {
+                SetMenu();
+            }
+        }
+
         // Khởi tạo thực đơn cơ sở
+        /*
         public void CallGA()
         {
             try
@@ -93,56 +102,14 @@ namespace TrolyaoFara
                 string strUdpate = string.Format("UPDATE menu set recommend='{0}', date='{1}', breakfast='{2}', lunch='{3}', dinner='{4}'  where id=1", "", DateTime.Today.ToString("dd/MM/yyyy"), numBreakfast.Value, numLunch.Value, numDinner.Value);
                 databaseObject.RunSQL(strUdpate);
             }
-            catch(Exception) { }
+            catch(Exception) {
+                menu.CreateTable();
+                string strUdpate = string.Format("UPDATE menu set recommend='{0}', date='{1}', breakfast='{2}', lunch='{3}', dinner='{4}'  where id=1", "", DateTime.Today.ToString("dd/MM/yyyy"), numBreakfast.Value, numLunch.Value, numDinner.Value);
+                databaseObject.RunSQL(strUdpate);
+            }
             menu.GA1Day();
-            GetDataFromMenu();
         }
-
-        public void CalCalo()
-        {
-            int gender = 0, height = 0, weight = 0, old = 0, intensity=0;
-
-            string sql = string.Format("SELECT * FROM info WHERE id=1");
-            databaseObject.OpenConnection();
-            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
-            SQLiteDataReader rd = command.ExecuteReader();
-            while (rd.Read())
-            {
-                gender = Convert.ToInt32(rd["gender"]);
-                height = Convert.ToInt32(rd["height"]);
-                weight = Convert.ToInt32(rd["weight"]);
-                intensity = Convert.ToInt32(rd["intensity"]);
-
-                DateTime now = DateTime.Today;
-                int nyear = Convert.ToInt32(now.ToString("yyyy"));
-                int birthday = Convert.ToDateTime(rd["birthday"].ToString()).Year;
-                old = nyear - birthday;
-            }
-            command.Dispose();
-            databaseObject.CloseConnection();
-
-            double calo = 0;
-            if (gender == 1) // Là Nam
-            {
-                calo = (13.397 * weight) + (4.799 * height) - (5.677 * old) + 88.362;
-                calo = lib.CoefficientCalo(intensity, calo);
-            }
-            else // Là nữ
-            {
-                calo = (9.247 * weight) + (3.098 * height) - (4.330 * old) + 447.593;
-                calo = lib.CoefficientCalo(intensity, calo);
-            }
-
-            int idxcbMode = cbxMode.SelectedIndex;
-            if (idxcbMode == 1)
-                calo = calo * 90 / 100;
-            else if (idxcbMode == 2)
-                calo = calo * 110 / 100;
-
-            string strUdpate = string.Format("UPDATE menu set calo='{0}' where id=1", Math.Truncate(calo));
-            databaseObject.RunSQL(strUdpate);
-        }
-
+        */
         private void RemoveControlInPanel()
         {
             plnLoadBreakfast.Controls.Clear();
@@ -153,77 +120,41 @@ namespace TrolyaoFara
         private void SetMenu()
         {
             RemoveControlInPanel();
-            CallGA();
-            CalCalo();
+            //CallGA();
+            //CalCalo();
             calmenu.RunGACal();
+            GetDataFromMenu();
         }
 
-        private void bunifuFlatButton4_Click(object sender, EventArgs e)
+        public void LoadItemToPanel(int begin, int end, int[] idmenu, double[] grmenu, FlowLayoutPanel plnPanel)
         {
-            SetMenu();
-            //LoadMenu(gunaDataGridView1);
-            tabControl1.SelectTab(0);
-        }
-
-        public void GetDataFromMenu()
-        {
-            try
-            {
-                string today = DateTime.Today.ToString("dd/MM/yyyy");
-                string day = "";
-                string sql = string.Format("SELECT * FROM menu WHERE id=1");
-                databaseObject.OpenConnection();
-                SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
-                SQLiteDataReader rd = command.ExecuteReader();
-                while (rd.Read())
-                {
-                    strmenu = rd["recommend"].ToString();
-                    breakfast = Convert.ToInt32(rd["breakfast"]);
-                    lunch = Convert.ToInt32(rd["lunch"]);
-                    dinner = Convert.ToInt32(rd["dinner"]);
-                    day = rd["date"].ToString();
-                }
-                command.Dispose();
-                databaseObject.CloseConnection();
-                if (strmenu != "" && today==day)
-                    LoadMenuForUser();
-                else
-                    SetMenu();
-            }
-            catch(Exception)
-            {
-                tabControl1.SelectTab(1);
-            }
-        }
-
-        private void LoadItemToPanel(int begin, int end, int[] idmenu, double[] grmenu, FlowLayoutPanel plnPanel)
-        {
-            int id;
+            int id, timer;
             string namefood;
-            int timer;
+            long idFood;
             double calo;
 
             databaseObject.OpenConnection();
             for (int i = begin; i < end; i++)
             {
-                id = idmenu[i];
-                string sql = string.Format("SELECT * FROM ai_food WHERE id='{0}'", id);
+                id = idmenu[i]+1;
+                string sql = string.Format("SELECT * FROM food_db WHERE id='{0}'", id);
 
                 SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
                 SQLiteDataReader rd = command.ExecuteReader();
                 while (rd.Read())
                 {
-                    namefood = rd["title"].ToString();
+                    idFood = Convert.ToInt64(rd["id_food"].ToString());
+                    namefood = rd["name"].ToString();
                     timer = Convert.ToInt32(rd["timer"].ToString());
-                    calo = Convert.ToDouble(rd["Calo"].ToString());
-                    plnPanel.Controls.Add(ItemFood.Add(id, namefood, timer, Convert.ToInt32(grmenu[i]*calo)));
+                    calo = Convert.ToDouble(rd["calo"].ToString());
+                    plnPanel.Controls.Add(ItemFood.Add(idFood, namefood, timer, calo, grmenu[i]));
                 }
                 command.Dispose();
             }
             databaseObject.CloseConnection();
         }
 
-        private void LoadMenuForUser()
+        public void LoadMenuForUser()
         {
             int[] idmenu = strmenu.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
 
@@ -269,71 +200,13 @@ namespace TrolyaoFara
             }
         }
 
-        //Save TEstData Selection
-        private void gunaButton1_Click(object sender, EventArgs e)
+
+        private void gunaGradientButton1_Click(object sender, EventArgs e)
         {
-            Stack NewStack = new Stack();
-            for (int i = gunaDataGridView2.Columns.Count - 1; i >= 0; i--)
-            {
-                for (int j = gunaDataGridView2.Rows.Count - 1; j >= 0; j--)
-                {
-                    string temp = "";
-                    try
-                    {
-                        temp = gunaDataGridView2.Rows[j].Cells[i].Value.ToString();
-                    }
-                    catch (Exception) { }
-                    if (!string.IsNullOrEmpty(temp))
-                        NewStack.Push(gunaDataGridView2.Rows[j].Cells[i].Value);
-                    else
-                        continue;
-                }
-            }
-
-            //Save Database
-            strmenu = "";
-            int Length = NewStack.Count;
-            for (int i = 0; i < Length; i++)
-            {
-                strmenu += " " + NewStack.Pop();
-            }
-            string strUdpate = string.Format("UPDATE menu set recommend='{0}', date='{1}', breakfast='{2}', lunch='{3}', dinner='{4}'  where id=1", strmenu, DateTime.Today.ToString("dd/MM/yyyy"), breakfast, lunch, dinner);
-            databaseObject.RunSQL(strUdpate);
-
-            //Log - Test file
-            string path = Environment.CurrentDirectory + "/" + "log1.txt";
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                sw.Write(strmenu);
-            }
+            lblTab.Text = "1";
+            mydata(lblTab.Text);
         }
 
-
-        #region CreateData
-        /* Mode int
-         * 0 => Bình thường
-         * 1 => Giảm cân
-         * 2 => Tăng cân
-        */
-        private void CreateTable()
-        {
-            string sql = "CREATE TABLE IF NOT EXISTS settings ([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, breakfast integer NOT NULL, lunch integer NOT NULL, dinner integer NOT NULL, mode integer NOT NULL)";
-            databaseObject.RunSQL(sql);
-            SetFirstLine();
-        }
-
-        private void SetFirstLine()
-        {
-            if (!lib.CheckExists("settings", "id", 1, ""))
-            {
-                string strInsert = string.Format("INSERT INTO settings(breakfast, lunch, dinner, mode) VALUES('{0}','{1}','{2}','{3}')", numBreakfast.Value, numLunch.Value, numDinner.Value, 0);
-                databaseObject.RunSQL(strInsert);
-            }
-        }
-        #endregion
-
-
-        
         private void bunifuFlatButton1_Click(object sender, EventArgs e)
         {/*
             string sql = "CREATE TABLE IF NOT EXISTS db_food([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, id_food INTEGER NOT NULL, id_purpose INTEGER NOT NULL, id_type INTEGER NOT NULL, id_method INTEGER NOT NULL, calo INTEGER NOT NULL)";

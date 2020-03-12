@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,8 @@ namespace TrolyaoFara
 {
     public class LoadData
     {
-        public string path = Environment.CurrentDirectory + "/" + "user.dat";
-        public string pathinfo = Environment.CurrentDirectory + "/" + "info.dat";
         public string loginimg = Environment.CurrentDirectory + "/" + "logouser.png";
-        public string menupath = Environment.CurrentDirectory + "/" + "menu.dat";
-        public string countryname = Environment.CurrentDirectory + "/" + "world.json";
-
+        public string countryname = Environment.CurrentDirectory + "/" + "vn.json";
         public string keyGetLocation = "scbFnhg3VEhNerT0CMe6zZhx79PDqc0VMLFDNjW6gTgdGb0G";
         public string userGetLocation = "pvtd264";
     }
@@ -23,6 +20,8 @@ namespace TrolyaoFara
     public class SettingSever
     {
         public string linksever = "http://localhost:8000/";
+        public string linkimg = "https://res.cloudinary.com/pvtd264/";
+        //public string linksever = "https://faravn.herokuapp.com/";
     }
 
     public class DataConfig
@@ -60,60 +59,31 @@ namespace TrolyaoFara
     {
         public int height { get; set; }
         public int weight { get; set; }
+        public int neck { get; set; }
+        public int waist { get; set; }
+        public int hip { get; set; }
+        public int intensity { get; set; }
     }
 
-    public class WorldName
+    public class VietNam
     {
         [JsonProperty("id")]
-        public int Id { get; set; }
+        public long Id { get; set; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
 
-        [JsonProperty("iso3")]
-        public string Iso3 { get; set; }
-
-        [JsonProperty("iso2")]
-        public string Iso2 { get; set; }
-
-        [JsonProperty("phone_code")]
-        public string PhoneCode { get; set; }
-
-        [JsonProperty("capital")]
-        public string Capital { get; set; }
-
-        [JsonProperty("currency")]
-        public string Currency { get; set; }
-
-        [JsonProperty("states", NullValueHandling = NullValueHandling.Ignore)]
-        public Hashtable States { get; set; }  
+        [JsonProperty("districts")]
+        public District[] Districts { get; set; }
     }
 
-    public class GetLocation
+    public class District
     {
-        [JsonProperty("country")]
-        public string Country { get; set; }
+        [JsonProperty("id")]
+        public long Id { get; set; }
 
-        [JsonProperty("country-code")]
-        public string CountryCode { get; set; }
-
-        [JsonProperty("city")]
-        public string City { get; set; }
-
-        [JsonProperty("currency-code")]
-        public string CurrencyCode { get; set; }
-
-        [JsonProperty("region")]
-        public string Region { get; set; }
-
-        [JsonProperty("country-code3")]
-        public string CountryCode3 { get; set; }
-    }
-
-    public class GetIP
-    {
-        [JsonProperty("ip")]
-        public string Ip { get; set; }
+        [JsonProperty("name")]
+        public string Name { get; set; }
     }
 
     public class FoodComposition
@@ -155,6 +125,9 @@ namespace TrolyaoFara
 
         [JsonProperty("timer")]
         public int Timer { get; set; }
+
+        [JsonProperty("draft")]
+        public bool Draft { get; set; }
     }
 
     public class CalFood
@@ -163,13 +136,13 @@ namespace TrolyaoFara
         public long Id { get; set; }
 
         [JsonProperty("foodname")]
-        public long Foodname { get; set; }
+        public long id_Foodname { get; set; }
 
         [JsonProperty("composition")]
-        public long Composition { get; set; }
+        public long id_Composition { get; set; }
 
         [JsonProperty("amout")]
-        public long Amout { get; set; }
+        public double Amout { get; set; }
 
         [JsonProperty("unit")]
         public long Unit { get; set; }
@@ -177,5 +150,41 @@ namespace TrolyaoFara
         [JsonProperty("main")]
         public bool Main { get; set; }
     }
+
+    public class ContentFood
+    {
+        [JsonProperty("content")]
+        public string Content { get; set; }
+    }
+
+    public class Composition
+    {
+        [JsonProperty("food_id")]
+        public long FoodId { get; set; }
+
+        [JsonProperty("food_code")]
+        public long FoodCode { get; set; }
+
+        [JsonProperty("food_name")]
+        public string FoodName { get; set; }
+    }
+
+    public class Unit
+    {
+        [JsonProperty("id")]
+        public long Id { get; set; }
+        [JsonProperty("name")]
+        public string NameUnit { get; set; }
+    }
+
+    public partial class FoodRecommend
+    {
+        [JsonProperty("user")]
+        public long User { get; set; }
+
+        [JsonProperty("items")]
+        public long[] Items { get; set; }
+    }
+
 
 }

@@ -35,11 +35,12 @@
             this.panel_Main = new System.Windows.Forms.TableLayoutPanel();
             this.panel_TopMenu = new System.Windows.Forms.TableLayoutPanel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.lblTab = new System.Windows.Forms.Label();
+            this.btnMinimize = new Bunifu.Framework.UI.BunifuImageButton();
             this.lblButton = new System.Windows.Forms.Label();
             this.btnClose = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnFullScreen = new Bunifu.Framework.UI.BunifuImageButton();
             this.btnRestore_down = new Bunifu.Framework.UI.BunifuImageButton();
-            this.btnMinimize = new Bunifu.Framework.UI.BunifuImageButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCustomSidebar = new Bunifu.Framework.UI.BunifuImageButton();
             this.lblDashboard = new System.Windows.Forms.Label();
@@ -62,13 +63,14 @@
             this.AnimationSidebarBack = new BunifuAnimatorNS.BunifuTransition(this.components);
             this.bunifuDragControl1 = new Bunifu.Framework.UI.BunifuDragControl(this.components);
             this.BoderfrmDashboard = new Bunifu.Framework.UI.BunifuElipse(this.components);
+            this.gunaElipse1 = new Guna.UI.WinForms.GunaElipse(this.components);
             this.panel_Main.SuspendLayout();
             this.panel_TopMenu.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnFullScreen)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestore_down)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCustomSidebar)).BeginInit();
             this.panelContent.SuspendLayout();
@@ -117,6 +119,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.lblTab);
             this.panel2.Controls.Add(this.btnMinimize);
             this.panel2.Controls.Add(this.lblButton);
             this.panel2.Controls.Add(this.btnClose);
@@ -130,6 +133,38 @@
             this.panel2.Size = new System.Drawing.Size(814, 38);
             this.panel2.TabIndex = 1;
             // 
+            // lblTab
+            // 
+            this.lblTab.AutoSize = true;
+            this.lblTab.BackColor = System.Drawing.Color.White;
+            this.AnimationSidebar.SetDecoration(this.lblTab, BunifuAnimatorNS.DecorationType.None);
+            this.AnimationSidebarBack.SetDecoration(this.lblTab, BunifuAnimatorNS.DecorationType.None);
+            this.lblTab.Location = new System.Drawing.Point(101, 14);
+            this.lblTab.Name = "lblTab";
+            this.lblTab.Size = new System.Drawing.Size(36, 13);
+            this.lblTab.TabIndex = 17;
+            this.lblTab.Text = "lblTab";
+            this.lblTab.Visible = false;
+            this.lblTab.TextChanged += new System.EventHandler(this.lblTab_TextChanged);
+            // 
+            // btnMinimize
+            // 
+            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMinimize.BackColor = System.Drawing.Color.Transparent;
+            this.btnMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.AnimationSidebarBack.SetDecoration(this.btnMinimize, BunifuAnimatorNS.DecorationType.None);
+            this.AnimationSidebar.SetDecoration(this.btnMinimize, BunifuAnimatorNS.DecorationType.None);
+            this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
+            this.btnMinimize.ImageActive = null;
+            this.btnMinimize.Location = new System.Drawing.Point(762, 3);
+            this.btnMinimize.Name = "btnMinimize";
+            this.btnMinimize.Size = new System.Drawing.Size(22, 22);
+            this.btnMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.btnMinimize.TabIndex = 13;
+            this.btnMinimize.TabStop = false;
+            this.btnMinimize.Zoom = 10;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
+            // 
             // lblButton
             // 
             this.lblButton.AutoSize = true;
@@ -137,7 +172,7 @@
             this.AnimationSidebar.SetDecoration(this.lblButton, BunifuAnimatorNS.DecorationType.None);
             this.AnimationSidebarBack.SetDecoration(this.lblButton, BunifuAnimatorNS.DecorationType.None);
             this.lblButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(46)))));
-            this.lblButton.Location = new System.Drawing.Point(53, 14);
+            this.lblButton.Location = new System.Drawing.Point(47, 14);
             this.lblButton.Name = "lblButton";
             this.lblButton.Size = new System.Drawing.Size(48, 13);
             this.lblButton.TabIndex = 1;
@@ -198,24 +233,6 @@
             this.btnRestore_down.TabStop = false;
             this.btnRestore_down.Zoom = 10;
             this.btnRestore_down.Click += new System.EventHandler(this.btnRestore_down_Click);
-            // 
-            // btnMinimize
-            // 
-            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMinimize.BackColor = System.Drawing.Color.Transparent;
-            this.btnMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.AnimationSidebarBack.SetDecoration(this.btnMinimize, BunifuAnimatorNS.DecorationType.None);
-            this.AnimationSidebar.SetDecoration(this.btnMinimize, BunifuAnimatorNS.DecorationType.None);
-            this.btnMinimize.Image = ((System.Drawing.Image)(resources.GetObject("btnMinimize.Image")));
-            this.btnMinimize.ImageActive = null;
-            this.btnMinimize.Location = new System.Drawing.Point(762, 3);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(22, 22);
-            this.btnMinimize.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.btnMinimize.TabIndex = 13;
-            this.btnMinimize.TabStop = false;
-            this.btnMinimize.Zoom = 10;
-            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
             // panel1
             // 
@@ -606,7 +623,7 @@
             // 
             // AnimationSidebarBack
             // 
-            this.AnimationSidebarBack.AnimationType = BunifuAnimatorNS.AnimationType.VertSlide;
+            this.AnimationSidebarBack.AnimationType = BunifuAnimatorNS.AnimationType.HorizBlind;
             this.AnimationSidebarBack.Cursor = null;
             animation3.AnimateOnlyDifferences = true;
             animation3.BlindCoeff = ((System.Drawing.PointF)(resources.GetObject("animation3.BlindCoeff")));
@@ -637,6 +654,11 @@
             this.BoderfrmDashboard.ElipseRadius = 5;
             this.BoderfrmDashboard.TargetControl = this;
             // 
+            // gunaElipse1
+            // 
+            this.gunaElipse1.Radius = 6;
+            this.gunaElipse1.TargetControl = this.panelOpenform;
+            // 
             // FrmDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -655,10 +677,10 @@
             this.panel_TopMenu.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnFullScreen)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnRestore_down)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnCustomSidebar)).EndInit();
@@ -705,6 +727,8 @@
         private Bunifu.Framework.UI.BunifuFlatButton btnAccount;
         private Bunifu.Framework.UI.BunifuFlatButton btnMenu;
         private Bunifu.Framework.UI.BunifuFlatButton btnHome;
+        private Guna.UI.WinForms.GunaElipse gunaElipse1;
+        private System.Windows.Forms.Label lblTab;
     }
 }
 

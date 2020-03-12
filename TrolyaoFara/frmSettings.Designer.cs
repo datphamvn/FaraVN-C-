@@ -31,9 +31,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.gunaComboBox1 = new Guna.UI.WinForms.GunaComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnSaveSetting = new Guna.UI.WinForms.GunaGradientButton();
+            this.label3 = new System.Windows.Forms.Label();
+            this.gunaComboBox2 = new Guna.UI.WinForms.GunaComboBox();
             this.SuspendLayout();
             // 
             // label2
@@ -80,43 +80,77 @@
             this.label1.TabIndex = 5;
             this.label1.Text = "Chế độ";
             // 
-            // button1
+            // btnSaveSetting
             // 
-            this.button1.Location = new System.Drawing.Point(175, 132);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSaveSetting.AnimationHoverSpeed = 0.07F;
+            this.btnSaveSetting.AnimationSpeed = 0.03F;
+            this.btnSaveSetting.BackColor = System.Drawing.Color.Transparent;
+            this.btnSaveSetting.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
+            this.btnSaveSetting.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
+            this.btnSaveSetting.BorderColor = System.Drawing.Color.Black;
+            this.btnSaveSetting.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnSaveSetting.FocusedColor = System.Drawing.Color.Empty;
+            this.btnSaveSetting.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSaveSetting.ForeColor = System.Drawing.Color.White;
+            this.btnSaveSetting.Image = global::TrolyaoFara.Properties.Resources.tick;
+            this.btnSaveSetting.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnSaveSetting.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnSaveSetting.Location = new System.Drawing.Point(175, 215);
+            this.btnSaveSetting.Name = "btnSaveSetting";
+            this.btnSaveSetting.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
+            this.btnSaveSetting.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
+            this.btnSaveSetting.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnSaveSetting.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnSaveSetting.OnHoverImage = null;
+            this.btnSaveSetting.OnPressedColor = System.Drawing.Color.Black;
+            this.btnSaveSetting.Radius = 5;
+            this.btnSaveSetting.Size = new System.Drawing.Size(158, 40);
+            this.btnSaveSetting.TabIndex = 28;
+            this.btnSaveSetting.Text = "  Huấn luyện AI";
+            this.btnSaveSetting.Click += new System.EventHandler(this.btnSaveSetting_Click);
             // 
-            // textBox1
+            // label3
             // 
-            this.textBox1.Location = new System.Drawing.Point(122, 194);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(182, 100);
-            this.textBox1.TabIndex = 7;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(81, 133);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(76, 20);
+            this.label3.TabIndex = 30;
+            this.label3.Text = "Ngôn ngữ";
             // 
-            // button2
+            // gunaComboBox2
             // 
-            this.button2.Location = new System.Drawing.Point(389, 250);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.gunaComboBox2.BackColor = System.Drawing.Color.Transparent;
+            this.gunaComboBox2.BaseColor = System.Drawing.Color.White;
+            this.gunaComboBox2.BorderColor = System.Drawing.Color.Silver;
+            this.gunaComboBox2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.gunaComboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.gunaComboBox2.FocusedColor = System.Drawing.Color.Empty;
+            this.gunaComboBox2.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.gunaComboBox2.ForeColor = System.Drawing.Color.Black;
+            this.gunaComboBox2.FormattingEnabled = true;
+            this.gunaComboBox2.Items.AddRange(new object[] {
+            "Việt Nam"});
+            this.gunaComboBox2.Location = new System.Drawing.Point(175, 130);
+            this.gunaComboBox2.Name = "gunaComboBox2";
+            this.gunaComboBox2.OnHoverItemBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            this.gunaComboBox2.OnHoverItemForeColor = System.Drawing.Color.White;
+            this.gunaComboBox2.Radius = 3;
+            this.gunaComboBox2.Size = new System.Drawing.Size(210, 26);
+            this.gunaComboBox2.StartIndex = 0;
+            this.gunaComboBox2.TabIndex = 29;
             // 
             // frmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(23)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.gunaComboBox2);
+            this.Controls.Add(this.btnSaveSetting);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.gunaComboBox1);
             this.Controls.Add(this.label2);
@@ -134,8 +168,8 @@
         private System.Windows.Forms.Label label2;
         private Guna.UI.WinForms.GunaComboBox gunaComboBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button2;
+        private Guna.UI.WinForms.GunaGradientButton btnSaveSetting;
+        private System.Windows.Forms.Label label3;
+        private Guna.UI.WinForms.GunaComboBox gunaComboBox2;
     }
 }

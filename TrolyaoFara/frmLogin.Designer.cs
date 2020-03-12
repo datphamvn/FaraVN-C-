@@ -46,7 +46,6 @@
             this.PicLogo = new System.Windows.Forms.PictureBox();
             this.panelLoad = new System.Windows.Forms.Panel();
             this.lblLoading = new System.Windows.Forms.Label();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.loading = new TrolyaoFara.Load();
             ((System.ComponentModel.ISupportInitialize)(this.indicator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
@@ -286,11 +285,6 @@
             this.lblLoading.TabIndex = 23;
             this.lblLoading.Text = "Đang đăng nhập ...";
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 2000;
-            // 
             // loading
             // 
             this.loading.Location = new System.Drawing.Point(90, 15);
@@ -355,6 +349,5 @@
         private Load loading;
         private System.Windows.Forms.Panel panelLoad;
         private System.Windows.Forms.Label lblLoading;
-        private System.Windows.Forms.Timer timer1;
     }
 }

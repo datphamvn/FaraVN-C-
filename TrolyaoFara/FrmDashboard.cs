@@ -32,20 +32,11 @@ namespace TrolyaoFara
 
         private void FrmDashboard_Load(object sender, EventArgs e)
         {
-            OpenFrmHome();
-
-            if(strNhan == "1")
-            {
-                openChildForm(new frmMenuFood());
-                lblButton.Text = "1";
-            }
-            if (strNhan == "0")
-            {
-                openChildForm(new frmHome());
-                lblButton.Text = "0";
-            }
+            //openfrmRequireUpdateInfo(0); // Open home tab
+            openChildForm(new frmSettingsMenu());
+            if (strNhan == "1")
+                openTabMenuFood();       
         }
-
 
         #region Setup_Form
         private void btnClose_Click(object sender, EventArgs e)
@@ -109,6 +100,7 @@ namespace TrolyaoFara
             panelOpenform.Tag = childForm;
             childForm.BringToFront();
             childForm.Show();
+            lblTab.Text = "lblTab";
         }
 
         void SetcurrentTab(int index)
@@ -148,8 +140,7 @@ namespace TrolyaoFara
             SQLiteDataReader rd = command.ExecuteReader();
             while (rd.Read())
             {
-
-                if (String.IsNullOrEmpty(rd["fname"].ToString()) || String.IsNullOrEmpty(rd["birthday"].ToString()) || String.IsNullOrEmpty(rd["height"].ToString()) || String.IsNullOrEmpty(rd["weight"].ToString()))
+                if (String.IsNullOrEmpty(rd["fname"].ToString()) || String.IsNullOrEmpty(rd["birthday"].ToString()) || String.IsNullOrEmpty(rd["gender"].ToString()))
                     check = false;
             }
             command.Dispose();
@@ -157,36 +148,74 @@ namespace TrolyaoFara
             return check;
         }
 
-        private void OpenFrmHome()
+        private void openfrmRequireUpdateInfo(int idxTab)
         {
             if (CheckUpdateData())
             {
-                openChildForm(new frmHome());
-                lblButton.Text = "0";
+                if (idxTab == 0)
+                    openTabHome();
+                else if (idxTab == 1)
+                    openTabMenuFood();
+                else
+                    openTabAccount();
             }
             else
-            {
-                openChildForm(new frmAccount());
-                lblButton.Text = "2";
-                alert.Show("Vui lòng cập nhật đầy đủ thông tin cá nhân!", alert.AlertType.warning);
-            }
+                openTabUpdateInfo();
         }
 
-        private void btnMenu_Click(object sender, EventArgs e)
+        private void openTabHome()
         {
-            openChildForm(new frmMenuFood());
-            lblButton.Text = "1";
+            frmHome frm = new frmHome();
+            frm.mydata = new frmHome.GETDATA(GETVALUE);
+            openChildForm(frm);
+            lblButton.Text = "0";
         }
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            OpenFrmHome();
+            openfrmRequireUpdateInfo(0);
+        }
+
+        private void openTabMenuFood()
+        {
+            frmMenuFood frm = new frmMenuFood();
+            frm.mydata = new frmMenuFood.GETDATA(GETVALUE);
+            openChildForm(frm);
+            lblButton.Text = "1";
+        }
+
+        private void btnMenu_Click(object sender, EventArgs e)
+        {
+            openfrmRequireUpdateInfo(1);
+        }
+
+        private void openTabAccount()
+        {
+            frmAccount frm = new frmAccount();
+            frm.mydata = new frmAccount.GETDATA(GETVALUE);
+            openChildForm(frm);
+            lblButton.Text = "2";
+        }
+
+        private void openTabUpdateInfo()
+        {
+            frmUpdateInfo frm = new frmUpdateInfo();
+            frm.mydata = new frmUpdateInfo.GETDATA(GETVALUE);
+            openChildForm(frm);
+            lblButton.Text = "2";
+        }
+
+        private void openTabIndexBody()
+        {
+            frmIndexBody frm = new frmIndexBody();
+            frm.mydata = new frmIndexBody.GETDATA(GETVALUE);
+            openChildForm(frm);
+            lblButton.Text = "2";
         }
 
         private void btnAccount_Click(object sender, EventArgs e)
         {
-            openChildForm(new frmAccount());
-            lblButton.Text = "2";
+            openfrmRequireUpdateInfo(2);
         }
 
         private void btnSettings_Click(object sender, EventArgs e)
@@ -200,13 +229,24 @@ namespace TrolyaoFara
             openChildForm(new frmAbout());
             lblButton.Text = "4";
         }
+
         #endregion
-
-        private void lblGetDataFromForm_TextChanged(object sender, EventArgs e)
+        
+        public void GETVALUE(string value)
         {
-
+            lblTab.Text = value;
         }
-
-
+        
+        private void lblTab_TextChanged(object sender, EventArgs e)
+        {
+            if (lblTab.Text == "2")
+                openTabAccount();
+            if (lblTab.Text == "2.1")
+                openTabUpdateInfo();
+            if (lblTab.Text == "2.2")
+                openTabIndexBody();
+            if (lblTab.Text == "1")
+                openTabMenuFood();
+        }
     }
 }

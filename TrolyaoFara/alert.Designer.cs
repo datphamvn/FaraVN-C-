@@ -38,7 +38,6 @@
             this.show = new System.Windows.Forms.Timer(this.components);
             this.close_alert = new System.Windows.Forms.Timer(this.components);
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             this.SuspendLayout();
@@ -107,12 +106,6 @@
             this.imageList1.Images.SetKeyName(1, "information.png");
             this.imageList1.Images.SetKeyName(2, "warning.png");
             // 
-            // timer1
-            // 
-            this.timer1.Enabled = true;
-            this.timer1.Interval = 2000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // alert
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -147,6 +140,5 @@
         private System.Windows.Forms.Timer show;
         private System.Windows.Forms.Timer close_alert;
         private System.Windows.Forms.ImageList imageList1;
-        private System.Windows.Forms.Timer timer1;
     }
 }

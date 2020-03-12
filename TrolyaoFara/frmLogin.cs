@@ -17,7 +17,7 @@ namespace TrolyaoFara
         SettingSever sSever = new SettingSever();
         LoadData lData = new LoadData();
         LibFunction lib = new LibFunction();
-        GetData db = new GetData();
+        SQLquery sql = new SQLquery();
 
         public frmLogin()
         {
@@ -25,17 +25,9 @@ namespace TrolyaoFara
         }
 
         #region SomeFunction
-        private void CreateTable()
-        {
-            string sql = "CREATE TABLE IF NOT EXISTS account ([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, username varchar NULL UNIQUE, email varchar NULL UNIQUE, password varchar NOT NULL, iduser integer, login bool NOT NULL)";
-            databaseObject.RunSQL(sql);
-            sql = "CREATE TABLE IF NOT EXISTS info ([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, iduser integer, lname varchar, fname varchar, gender integer, birthday varchar, district varchar, city varchar, country varchar, height integer, weight integer, weight_target integer, intensity integer )";
-            databaseObject.RunSQL(sql);
-        }
-
         void LoadMainForm()
         {
-            if (lib.CheckExists("account","login",1,""))
+            if (lib.CheckExists("account","login",-1,"True"))
             {
                 this.Hide();
                 Form1 frm = new Form1();
@@ -72,7 +64,7 @@ namespace TrolyaoFara
         private void frmLogin_Load(object sender, EventArgs e)
         {
             this.ActiveControl = PicLogo;
-            CreateTable();
+            sql.createTableForDatabase();
             LoadMainForm();
             panelLoad.Visible = false;
         }
@@ -131,6 +123,7 @@ namespace TrolyaoFara
                 alert.Show("Vui lòng điền đầy đủ thông tin", alert.AlertType.warning);
             else
             {
+                btnLogin.Enabled = false;
                 string username, email;
                 string userlogin = txtUsername.Text;
                 string password = txtPassword.Text;
@@ -166,7 +159,10 @@ namespace TrolyaoFara
                         {
                             stt = await reader.ReadToEndAsync();
                             if (stt.Contains("non_field_errors"))
+                            {
+                                btnLogin.Enabled = true;
                                 alert.Show("Username/Password không chính xác !", alert.AlertType.error);
+                            }
                             else
                             {
                                 Thread thread = new Thread(() =>
@@ -181,10 +177,17 @@ namespace TrolyaoFara
                             }
                         }
                     }
-                    catch(Exception) { alert.Show("Lỗi Server!", alert.AlertType.error); }
+                    catch (Exception)
+                    {
+                        alert.Show("Lỗi Server!", alert.AlertType.error);
+                        btnLogin.Enabled = true;
+                    }
                 }
                 else
+                {
                     alert.Show("Vui lòng kết nối Internet!", alert.AlertType.error);
+                    btnLogin.Enabled = true;
+                }
             }
         }
 
@@ -194,96 +197,84 @@ namespace TrolyaoFara
 
             if (lib.CheckExists("account", "username", -1, username) || lib.CheckExists("account", "email", -1, email))
             {
-                string strUpdate = string.Format("UPDATE account set login=1 where username='{0}' or email='{1}'", username, email);
+                string strUpdate = string.Format("UPDATE account set login='{0}', password='{1}' where username='{2}' or email='{3}'", "True", Encrypt(password), username, email);
                 databaseObject.RunSQL(strUpdate);
             }
             else
             {
-                string strInsert = string.Format("INSERT INTO account(username, email, password, iduser, login) VALUES('{0}','{1}','{2}','{3}','{4}')", username, email, Encrypt(password), data.id, 1);
+                string strInsert = string.Format("INSERT INTO account(username, email, password, iduser, login) VALUES('{0}','{1}','{2}','{3}','{4}')", username, email, Encrypt(password), data.id, "True");
                 databaseObject.RunSQL(strInsert);
-            }
 
-            // Biến lưu thông tin
-            int iduser = data.id;
-            string birthday = DateTime.Now.ToString("dd/MM/yyyy");
-            int height = 0, weight = 0;
-            string lname = "", fname = "", district = "", city = "", country = "";
-            int gender = 0, weight_target = 0, intensity = 0; // Update On web
+                // Biến lưu thông tin
+                int iduser = data.id;
+                string lname = "", fname = "";
+                string birthday = DateTime.Now.ToString("dd/MM/yyyy"), district = "", city = "", country = "";
+                int gender = 0;
+                int height = 0, weight = 0, neck = 0, waist = 0, hip = 0, intensity = 0;
 
-            // Load Họ và tên User
-            try
-            {
-                var jsondetailuser = new WebClient().DownloadString(sSever.linksever + "dashboard/api/user/" + iduser.ToString());
-                var detailuser = JsonConvert.DeserializeObject<DetailUser>(jsondetailuser);
-
-                byte[] bytes = Encoding.Default.GetBytes(detailuser.last_name.ToString());
-                lname = Encoding.UTF8.GetString(bytes);
-                byte[] bytes1 = Encoding.Default.GetBytes(detailuser.first_name.ToString());
-                fname = Encoding.UTF8.GetString(bytes1);
-            }
-            catch (WebException)
-            {
-                //alert.Show("ERROR: LDATA1 - Load họ tên user không thành công !", alert.AlertType.error);
-            }
-
-            //Load thong tin ca nhan
-            try
-            {
-                var jsondata = new WebClient().DownloadString(sSever.linksever + "dashboard/api/profile/" + iduser.ToString());
-                var info = JsonConvert.DeserializeObject<LoadInfo>(jsondata);
-
-                //Download Avata User
+                // Load Họ và tên User
                 try
                 {
-                    using (WebClient img = new WebClient())
-                    {
-                        img.DownloadFile(new Uri(info.image.ToString()), lData.loginimg);
-                    }
+                    var jsondetailuser = new WebClient().DownloadString(sSever.linksever + "dashboard/api/user/" + iduser.ToString());
+                    var detailuser = JsonConvert.DeserializeObject<DetailUser>(jsondetailuser);
+
+                    byte[] bytes = Encoding.Default.GetBytes(detailuser.last_name.ToString());
+                    lname = Encoding.UTF8.GetString(bytes);
+                    byte[] bytes1 = Encoding.Default.GetBytes(detailuser.first_name.ToString());
+                    fname = Encoding.UTF8.GetString(bytes1);
                 }
-                catch (Exception)
+                catch (WebException)
                 {
-                    //alert.Show("ERROR: LDATA2 - Download Avatar User không thành công !", alert.AlertType.error);
+                    alert.Show("Lỗi Server!", alert.AlertType.error);
+                    //alert.Show("ERROR: LDATA1 - Load họ tên user không thành công !", alert.AlertType.error);
                 }
 
-                birthday = info.birthday;
-                district = info.district;
-                city = info.city;
-                country = info.country;
+                //Load thong tin ca nhan
+                try
+                {
+                    var jsondata = new WebClient().DownloadString(sSever.linksever + "dashboard/api/profile/" + iduser.ToString());
+                    var info = JsonConvert.DeserializeObject<LoadInfo>(jsondata);
+                    //Download Avata User
+                    /*
+                        using (WebClient img = new WebClient())
+                        {
+                            img.DownloadFile(new Uri(info.image.ToString()), lData.loginimg);
+                        }
+                    */
+                    
+                    birthday = info.birthday;
+                    district = info.district;
+                    city = info.city;
+                    country = info.country;
+                    gender = info.gender;
+                }
+                catch (WebException)
+                {
+                    alert.Show("Lỗi Server!", alert.AlertType.error);
+                    //alert.Show("ERROR: LDATA3 - Cập nhật thông tin User không thành công !", alert.AlertType.error);
+                }
 
-            }
-            catch (WebException)
-            {
-                //alert.Show("ERROR: LDATA3 - Cập nhật thông tin User không thành công !", alert.AlertType.error);
-            }
+                // Load thong tin suc khoe
+                try
+                {
+                    var jsonhealthidx = new WebClient().DownloadString(sSever.linksever + "dashboard/api/healthidx/" + iduser.ToString());
+                    var healthidx = JsonConvert.DeserializeObject<HealthIdx>(jsonhealthidx);
 
-            // Load thong tin suc khoe
-            try
-            {
-                var jsonhealthidx = new WebClient().DownloadString(sSever.linksever + "dashboard/api/healthidx/" + iduser.ToString());
-                var healthidx = JsonConvert.DeserializeObject<HealthIdx>(jsonhealthidx);
+                    height = healthidx.height;
+                    weight = healthidx.weight;
+                    neck = healthidx.neck;
+                    waist = healthidx.waist;
+                    hip = healthidx.hip;
+                    intensity = healthidx.intensity;
+                }
+                catch (WebException)
+                {
+                    alert.Show("Lỗi Server!", alert.AlertType.error);
+                    //alert.Show("ERROR: LDATA4 - Cập nhật thông số sức khỏe User không thành công !", alert.AlertType.error);
+                }
 
-                height = healthidx.height;
-                weight = healthidx.weight;
+                sql.SQLforInfoTable(lname, fname, gender, birthday, district, city, country, height, weight, neck, waist, hip, intensity);
             }
-            catch (WebException)
-            {
-                //alert.Show("ERROR: LDATA4 - Cập nhật thông số sức khỏe User không thành công !", alert.AlertType.error);
-            }
-
-            if (lib.CheckExists("info", "iduser", lib.GetID(), ""))
-            {
-                string strUdpate = string.Format("UPDATE info set lname='{0}', fname='{1}', gender='{2}', birthday='{3}', district='{4}', city='{5}', country='{6}', height='{7}', weight='{8}', weight_target='{9}', intensity='{10}' where iduser='{11}'", lname, fname, gender, birthday, district, city, country, height, weight, weight_target, intensity, iduser);
-                databaseObject.RunSQL(strUdpate);
-            }
-            else
-            {
-                string strInsert = string.Format("INSERT INTO info(iduser, lname, fname, gender, birthday, district, city, country, height, weight, weight_target, intensity) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}')", iduser, lname, fname, gender, birthday, district, city, country, height, weight, weight_target, intensity);
-                databaseObject.RunSQL(strInsert);
-            }
-
-            // Download Database From Server
-            db.GetFoodDB();
-            db.Download2();
         }
 
         private void lblPasswordReset_Click(object sender, EventArgs e)

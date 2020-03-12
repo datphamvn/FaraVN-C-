@@ -12,7 +12,7 @@ namespace TrolyaoFara
 {
     public partial class alert : Form
     {
-        public alert(string _message, AlertType type)
+        public alert(string _message, AlertType type, int height)
         {
             InitializeComponent();
 
@@ -36,6 +36,7 @@ namespace TrolyaoFara
                     pictureBox1.Image = imageList1.Images[2];
                     break;
             }
+            this.Height = height;
         }
 
         public enum AlertType
@@ -43,9 +44,9 @@ namespace TrolyaoFara
             success, info, warning, error
         }
 
-        public static void Show(string message, AlertType type)
+        public static void Show(string message, AlertType type, int height=81)
         {
-            new alert(message, type).Show();
+            new alert(message, type, height).Show();
         }
 
         private void btnClose_Click(object sender, EventArgs e)

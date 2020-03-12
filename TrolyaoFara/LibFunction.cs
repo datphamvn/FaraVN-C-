@@ -1,37 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.NetworkInformation;
-using System.Runtime;
-using System.Runtime.InteropServices;
-using System.IO;
-using System.Diagnostics;
-using System.Globalization;
 using System.Data.SQLite;
+using System.Windows.Forms;
+using System.Drawing;
+using System.Net.NetworkInformation;
 
 namespace TrolyaoFara
 {
     class LibFunction
     {
+        Database databaseObject = new Database();
+
         public bool CheckForInternetConnection()
         {
-            /*
             bool con = NetworkInterface.GetIsNetworkAvailable();
             if (con == true)
                 return true;
             else
-                return false;
-                */
-            return true;
+                return false;  
+            //return true;
         }
 
-        Database databaseObject = new Database();
+        public void HideAllTabsOnTabControl(TabControl theTabControl)
+        {
+            theTabControl.Appearance = TabAppearance.FlatButtons;
+            theTabControl.ItemSize = new Size(0, 1);
+            theTabControl.SizeMode = TabSizeMode.Fixed;
+        }
+
         public int GetID()
         {
             int id = -1;
-            string sql = "SELECT * FROM account WHERE login = 1";
+            string sql = "SELECT * FROM account WHERE login=\"True\"";
             databaseObject.OpenConnection();
             SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
             SQLiteDataReader rd = command.ExecuteReader();
@@ -44,7 +43,7 @@ namespace TrolyaoFara
             return id;
         }
 
-        public bool CheckExists(string nameTable, string nameCol, int data, string data1)
+        public bool CheckExists(string nameTable, string nameCol, long data, string data1)
         {
             bool check = false;
             databaseObject.OpenConnection();
@@ -67,7 +66,7 @@ namespace TrolyaoFara
         public string GetUsername()
         {
             string username = "";
-            string sql = "SELECT * FROM account WHERE id = 1";
+            string sql = "SELECT * FROM account WHERE login=\"True\"";
             databaseObject.OpenConnection();
             SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
             SQLiteDataReader rd = command.ExecuteReader();

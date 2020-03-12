@@ -22,6 +22,15 @@ namespace TrolyaoFara
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            ReLocation();
+
+            GetFullName();
+            GetDataFromMenu();
+        }
+
+        #region UI
         [DllImport("KERNEL32.DLL", EntryPoint = "SetProcessWorkingSetSize", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
         internal static extern bool SetProcessWorkingSetSize(IntPtr pProcess, int dwMinimumWorkingSetSize, int dwMaximumWorkingSetSize);
         [DllImport("KERNEL32.DLL", EntryPoint = "GetCurrentProcess", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
@@ -31,7 +40,6 @@ namespace TrolyaoFara
             IntPtr pHandle = GetCurrentProcess();
             SetProcessWorkingSetSize(pHandle, -1, -1);
         }
-
 
         private void ReLocation()
         {
@@ -44,28 +52,33 @@ namespace TrolyaoFara
             this.BackgroundImage = bm;
             this.Show();
         }
+        #endregion
 
-        void LoadInfoinForm()
+        #region DataUser
+        private void GetFullName()
         {
-            //gunaCirclePictureBox1.Image = Image.FromFile(lData.loginimg);
-            using (StreamReader sr = new StreamReader(lData.pathinfo))
+            string lname = "", fname = "";
+            string sql = string.Format("SELECT * FROM info WHERE iduser='{0}'", lib.GetID());
+            databaseObject.OpenConnection();
+            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+            SQLiteDataReader rd = command.ExecuteReader();
+            while (rd.Read())
             {
-                string[] info = sr.ReadLine().Split(';');
-                label1.Text = info[0] + " " + info[1];
-                int formWidth = this.Width;
-                int lblWidth = label1.Width;
-                label1.Left = (formWidth - lblWidth) / 2;
+                fname = rd["fname"].ToString();
+                lname = rd["lname"].ToString();
             }
+            command.Dispose();
+            databaseObject.CloseConnection();
+            lblNameUser.Text = lname + " " + fname;
         }
-        LibFunction libfun = new LibFunction();
+        #endregion
 
-        private void Form1_Load(object sender, EventArgs e)
+        #region FooterUI
+        private void simpleButton3_Click(object sender, EventArgs e)
         {
-            ReLocation();
-
-            GetDataFromMenu();
+            FrmDashboard frm = new FrmDashboard();
+            frm.Show();
         }
-
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
@@ -73,22 +86,12 @@ namespace TrolyaoFara
             ReleaseRAM();
             this.Opacity = 1;
             gunaMetroTrackBar1.Value = 0;
-            //LoadMenu();
         }
 
-        private void simpleButton3_Click(object sender, EventArgs e)
-        {
-            FrmDashboard frm = new FrmDashboard();
-            frm.Show();
-        }
         LoadData lData = new LoadData();
         string username = "", email = "", userlogin = "";
         private void simpleButton2_Click(object sender, EventArgs e)
         {
-            System.IO.File.WriteAllText(lData.path, string.Empty);
-            System.IO.File.WriteAllText(lData.pathinfo, string.Empty);
-            System.IO.File.WriteAllText(lData.menupath, string.Empty);
-
             string sql = string.Format("SELECT * FROM account WHERE iduser='{0}'", lib.GetID());
             databaseObject.OpenConnection();
             SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
@@ -106,7 +109,7 @@ namespace TrolyaoFara
             else
                 userlogin = username;
                   
-            string strUpdate = string.Format("UPDATE account set login=false where username='{0}' or email='{0}'", userlogin);
+            string strUpdate = string.Format("UPDATE account set login=\"False\" where username='{0}' or email='{0}'", userlogin);
             databaseObject.RunSQL(strUpdate);
             //gunaCirclePictureBox1.Image = null;
             //gunaCirclePictureBox1.Update();
@@ -115,18 +118,6 @@ namespace TrolyaoFara
             frmLogin frm = new frmLogin();
             frm.ShowDialog();
             this.Close();
-            try
-            {
-                File.Delete(lData.loginimg);
-            }
-            catch(Exception)
-            {
-                Console.Write("Warning");
-            }
-        }
-
-        private void gunaMetroTrackBar1_Scroll(object sender, ScrollEventArgs e)
-        {
             
         }
 
@@ -139,7 +130,21 @@ namespace TrolyaoFara
                 this.Opacity = gunaMetroTrackBar1.Value / 100.0;
             }
         }
-        
+
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            FrmDashboard frm = new FrmDashboard();
+            frm.Message = "1";
+            frm.Show();
+        }
+
+        private void simpleButton5_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        #endregion
+
+        #region RunGA
         string strmenu = "";
         int breakfast = 0, lunch = 0, dinner = 0;
 
@@ -179,20 +184,12 @@ namespace TrolyaoFara
         }
         GACal calmenu = new GACal();
 
-        private void simpleButton4_Click(object sender, EventArgs e)
-        {
-            FrmDashboard frm = new FrmDashboard();
-            frm.Message = "1";
-            frm.Show();
-        }
-
         private void SetMenu()
         {
             plnLoadMenu.Controls.Clear();
             frmMenuFood frm = new frmMenuFood();
-            frm.CallGA();
-            frm.CalCalo();
             calmenu.RunGACal();
+            frm.GetDataFromMenu();
         }
 
         private void LoadMenuForUser()
@@ -226,29 +223,20 @@ namespace TrolyaoFara
             databaseObject.OpenConnection();
             for (int i = begin; i < end; i++)
             {
-                int idx = idmenu[i];
-                string sql = string.Format("SELECT * FROM ai_food WHERE id='{0}'", idx);
+                int idx = idmenu[i]+1;
+                string sql = string.Format("SELECT * FROM food_db WHERE id='{0}'", idx);
 
                 SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
                 SQLiteDataReader rd = command.ExecuteReader();
                 while (rd.Read())
                 {
-                    namefood = rd["title"].ToString();
+                    namefood = rd["name"].ToString();
                     plnLoadMenu.Controls.Add(ItemFoodMini.Add(namefood));
                 }
                 command.Dispose();
             }
             databaseObject.CloseConnection();
         }
-
-        private void Form1_Shown(object sender, EventArgs e)
-        {
-            //LoadMenu();
-        }
-
-        private void simpleButton5_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        #endregion
     }
 }

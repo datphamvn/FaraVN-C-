@@ -41,7 +41,7 @@
             this.lblHeight = new System.Windows.Forms.Label();
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.bunifuGradientPanel5 = new Bunifu.Framework.UI.BunifuGradientPanel();
+            this.plnTypeOfBody = new Bunifu.Framework.UI.BunifuGradientPanel();
             this.lblType = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -53,33 +53,50 @@
             this.lblWarning = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.bunifuGradientPanel7 = new Bunifu.Framework.UI.BunifuGradientPanel();
+            this.picFemale = new System.Windows.Forms.PictureBox();
+            this.picMale = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.plnFatPercent = new Bunifu.Framework.UI.BunifuGradientPanel();
+            this.lblFatPercent = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.bunifuGradientPanel8 = new Bunifu.Framework.UI.BunifuGradientPanel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.lblWater = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.gunaCirclePictureBox1 = new Guna.UI.WinForms.GunaCirclePictureBox();
             this.lblHello = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.btnOpenIndexBody = new System.Windows.Forms.Button();
+            this.lblTab = new System.Windows.Forms.Label();
             this.bunifuGradientPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.bunifuGradientPanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             this.bunifuGradientPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            this.bunifuGradientPanel5.SuspendLayout();
+            this.plnTypeOfBody.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.bunifuGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.bunifuGradientPanel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            this.flowLayoutPanel1.SuspendLayout();
+            this.bunifuGradientPanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picFemale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMale)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.plnFatPercent.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.bunifuGradientPanel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaCirclePictureBox1)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
-            this.tableLayoutPanel2.SuspendLayout();
-            this.panel3.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.panel5.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // bunifuGradientPanel3
@@ -93,7 +110,7 @@
             this.bunifuGradientPanel3.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
             this.bunifuGradientPanel3.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
             this.bunifuGradientPanel3.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.bunifuGradientPanel3.Location = new System.Drawing.Point(2, 3);
+            this.bunifuGradientPanel3.Location = new System.Drawing.Point(3, 104);
             this.bunifuGradientPanel3.Name = "bunifuGradientPanel3";
             this.bunifuGradientPanel3.Quality = 10;
             this.bunifuGradientPanel3.Size = new System.Drawing.Size(198, 95);
@@ -105,11 +122,11 @@
             this.lblWeight.BackColor = System.Drawing.Color.Transparent;
             this.lblWeight.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWeight.ForeColor = System.Drawing.Color.White;
-            this.lblWeight.Location = new System.Drawing.Point(154, 47);
+            this.lblWeight.Location = new System.Drawing.Point(140, 50);
             this.lblWeight.Name = "lblWeight";
-            this.lblWeight.Size = new System.Drawing.Size(34, 25);
+            this.lblWeight.Size = new System.Drawing.Size(48, 25);
             this.lblWeight.TabIndex = 2;
-            this.lblWeight.Text = "50";
+            this.lblWeight.Text = "? kg";
             // 
             // pictureBox8
             // 
@@ -128,7 +145,7 @@
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label17.ForeColor = System.Drawing.Color.White;
-            this.label17.Location = new System.Drawing.Point(98, 19);
+            this.label17.Location = new System.Drawing.Point(103, 12);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(91, 21);
             this.label17.TabIndex = 1;
@@ -145,7 +162,7 @@
             this.bunifuGradientPanel4.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
             this.bunifuGradientPanel4.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
             this.bunifuGradientPanel4.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.bunifuGradientPanel4.Location = new System.Drawing.Point(3, 104);
+            this.bunifuGradientPanel4.Location = new System.Drawing.Point(207, 104);
             this.bunifuGradientPanel4.Name = "bunifuGradientPanel4";
             this.bunifuGradientPanel4.Quality = 10;
             this.bunifuGradientPanel4.Size = new System.Drawing.Size(198, 95);
@@ -168,11 +185,11 @@
             this.lblBMI.BackColor = System.Drawing.Color.Transparent;
             this.lblBMI.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBMI.ForeColor = System.Drawing.Color.White;
-            this.lblBMI.Location = new System.Drawing.Point(151, 46);
+            this.lblBMI.Location = new System.Drawing.Point(151, 50);
             this.lblBMI.Name = "lblBMI";
-            this.lblBMI.Size = new System.Drawing.Size(34, 25);
+            this.lblBMI.Size = new System.Drawing.Size(20, 25);
             this.lblBMI.TabIndex = 2;
-            this.lblBMI.Text = "18";
+            this.lblBMI.Text = "?";
             // 
             // label19
             // 
@@ -180,7 +197,7 @@
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label19.ForeColor = System.Drawing.Color.White;
-            this.label19.Location = new System.Drawing.Point(152, 19);
+            this.label19.Location = new System.Drawing.Point(152, 11);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(37, 21);
             this.label19.TabIndex = 1;
@@ -197,7 +214,7 @@
             this.bunifuGradientPanel2.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
             this.bunifuGradientPanel2.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
             this.bunifuGradientPanel2.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.bunifuGradientPanel2.Location = new System.Drawing.Point(3, 3);
+            this.bunifuGradientPanel2.Location = new System.Drawing.Point(411, 3);
             this.bunifuGradientPanel2.Name = "bunifuGradientPanel2";
             this.bunifuGradientPanel2.Quality = 10;
             this.bunifuGradientPanel2.Size = new System.Drawing.Size(198, 95);
@@ -209,11 +226,11 @@
             this.lblHeight.BackColor = System.Drawing.Color.Transparent;
             this.lblHeight.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHeight.ForeColor = System.Drawing.Color.White;
-            this.lblHeight.Location = new System.Drawing.Point(148, 47);
+            this.lblHeight.Location = new System.Drawing.Point(140, 47);
             this.lblHeight.Name = "lblHeight";
-            this.lblHeight.Size = new System.Drawing.Size(45, 25);
+            this.lblHeight.Size = new System.Drawing.Size(51, 25);
             this.lblHeight.TabIndex = 2;
-            this.lblHeight.Text = "166";
+            this.lblHeight.Text = "? cm";
             // 
             // pictureBox7
             // 
@@ -232,29 +249,28 @@
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.Color.White;
-            this.label15.Location = new System.Drawing.Point(100, 19);
+            this.label15.Location = new System.Drawing.Point(104, 14);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(90, 21);
             this.label15.TabIndex = 1;
             this.label15.Text = "CHIỀU CAO";
-            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
-            // bunifuGradientPanel5
+            // plnTypeOfBody
             // 
-            this.bunifuGradientPanel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuGradientPanel5.BackgroundImage")));
-            this.bunifuGradientPanel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.bunifuGradientPanel5.Controls.Add(this.lblType);
-            this.bunifuGradientPanel5.Controls.Add(this.label21);
-            this.bunifuGradientPanel5.Controls.Add(this.pictureBox4);
-            this.bunifuGradientPanel5.GradientBottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
-            this.bunifuGradientPanel5.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
-            this.bunifuGradientPanel5.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
-            this.bunifuGradientPanel5.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.bunifuGradientPanel5.Location = new System.Drawing.Point(3, 104);
-            this.bunifuGradientPanel5.Name = "bunifuGradientPanel5";
-            this.bunifuGradientPanel5.Quality = 10;
-            this.bunifuGradientPanel5.Size = new System.Drawing.Size(198, 95);
-            this.bunifuGradientPanel5.TabIndex = 9;
+            this.plnTypeOfBody.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("plnTypeOfBody.BackgroundImage")));
+            this.plnTypeOfBody.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.plnTypeOfBody.Controls.Add(this.lblType);
+            this.plnTypeOfBody.Controls.Add(this.label21);
+            this.plnTypeOfBody.Controls.Add(this.pictureBox4);
+            this.plnTypeOfBody.GradientBottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
+            this.plnTypeOfBody.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
+            this.plnTypeOfBody.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
+            this.plnTypeOfBody.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.plnTypeOfBody.Location = new System.Drawing.Point(411, 104);
+            this.plnTypeOfBody.Name = "plnTypeOfBody";
+            this.plnTypeOfBody.Quality = 10;
+            this.plnTypeOfBody.Size = new System.Drawing.Size(198, 95);
+            this.plnTypeOfBody.TabIndex = 9;
             // 
             // lblType
             // 
@@ -262,11 +278,11 @@
             this.lblType.BackColor = System.Drawing.Color.Transparent;
             this.lblType.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblType.ForeColor = System.Drawing.Color.White;
-            this.lblType.Location = new System.Drawing.Point(83, 46);
+            this.lblType.Location = new System.Drawing.Point(154, 50);
             this.lblType.Name = "lblType";
-            this.lblType.Size = new System.Drawing.Size(111, 25);
+            this.lblType.Size = new System.Drawing.Size(20, 25);
             this.lblType.TabIndex = 2;
-            this.lblType.Text = "Trung Bình";
+            this.lblType.Text = "?";
             // 
             // label21
             // 
@@ -274,7 +290,7 @@
             this.label21.BackColor = System.Drawing.Color.Transparent;
             this.label21.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.ForeColor = System.Drawing.Color.White;
-            this.label21.Location = new System.Drawing.Point(102, 19);
+            this.label21.Location = new System.Drawing.Point(104, 11);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(88, 21);
             this.label21.TabIndex = 1;
@@ -302,7 +318,7 @@
             this.bunifuGradientPanel1.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
             this.bunifuGradientPanel1.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
             this.bunifuGradientPanel1.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.bunifuGradientPanel1.Location = new System.Drawing.Point(3, 3);
+            this.bunifuGradientPanel1.Location = new System.Drawing.Point(207, 3);
             this.bunifuGradientPanel1.Name = "bunifuGradientPanel1";
             this.bunifuGradientPanel1.Quality = 10;
             this.bunifuGradientPanel1.Size = new System.Drawing.Size(198, 95);
@@ -314,11 +330,11 @@
             this.lblOld.BackColor = System.Drawing.Color.Transparent;
             this.lblOld.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblOld.ForeColor = System.Drawing.Color.White;
-            this.lblOld.Location = new System.Drawing.Point(150, 47);
+            this.lblOld.Location = new System.Drawing.Point(156, 47);
             this.lblOld.Name = "lblOld";
-            this.lblOld.Size = new System.Drawing.Size(34, 25);
+            this.lblOld.Size = new System.Drawing.Size(20, 25);
             this.lblOld.TabIndex = 2;
-            this.lblOld.Text = "18";
+            this.lblOld.Text = "?";
             // 
             // pictureBox1
             // 
@@ -337,7 +353,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(144, 19);
+            this.label2.Location = new System.Drawing.Point(147, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(45, 21);
             this.label2.TabIndex = 1;
@@ -354,7 +370,7 @@
             this.bunifuGradientPanel6.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
             this.bunifuGradientPanel6.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
             this.bunifuGradientPanel6.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.bunifuGradientPanel6.Location = new System.Drawing.Point(2, 104);
+            this.bunifuGradientPanel6.Location = new System.Drawing.Point(3, 205);
             this.bunifuGradientPanel6.Name = "bunifuGradientPanel6";
             this.bunifuGradientPanel6.Quality = 10;
             this.bunifuGradientPanel6.Size = new System.Drawing.Size(198, 95);
@@ -366,11 +382,11 @@
             this.lblWarning.BackColor = System.Drawing.Color.Transparent;
             this.lblWarning.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWarning.ForeColor = System.Drawing.Color.White;
-            this.lblWarning.Location = new System.Drawing.Point(82, 59);
+            this.lblWarning.Location = new System.Drawing.Point(140, 59);
             this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(111, 25);
+            this.lblWarning.Size = new System.Drawing.Size(20, 25);
             this.lblWarning.TabIndex = 2;
-            this.lblWarning.Text = "Trung Bình";
+            this.lblWarning.Text = "?";
             // 
             // label23
             // 
@@ -378,7 +394,7 @@
             this.label23.BackColor = System.Drawing.Color.Transparent;
             this.label23.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label23.ForeColor = System.Drawing.Color.White;
-            this.label23.Location = new System.Drawing.Point(79, 8);
+            this.label23.Location = new System.Drawing.Point(81, 8);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(116, 40);
             this.label23.TabIndex = 1;
@@ -395,15 +411,200 @@
             this.pictureBox6.TabIndex = 0;
             this.pictureBox6.TabStop = false;
             // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Controls.Add(this.bunifuGradientPanel7);
+            this.flowLayoutPanel1.Controls.Add(this.bunifuGradientPanel1);
+            this.flowLayoutPanel1.Controls.Add(this.bunifuGradientPanel2);
+            this.flowLayoutPanel1.Controls.Add(this.bunifuGradientPanel3);
+            this.flowLayoutPanel1.Controls.Add(this.bunifuGradientPanel4);
+            this.flowLayoutPanel1.Controls.Add(this.plnTypeOfBody);
+            this.flowLayoutPanel1.Controls.Add(this.bunifuGradientPanel6);
+            this.flowLayoutPanel1.Controls.Add(this.plnFatPercent);
+            this.flowLayoutPanel1.Controls.Add(this.bunifuGradientPanel8);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(166, 3);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(619, 404);
+            this.flowLayoutPanel1.TabIndex = 14;
+            // 
+            // bunifuGradientPanel7
+            // 
+            this.bunifuGradientPanel7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuGradientPanel7.BackgroundImage")));
+            this.bunifuGradientPanel7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuGradientPanel7.Controls.Add(this.picFemale);
+            this.bunifuGradientPanel7.Controls.Add(this.picMale);
+            this.bunifuGradientPanel7.Controls.Add(this.pictureBox2);
+            this.bunifuGradientPanel7.Controls.Add(this.label3);
+            this.bunifuGradientPanel7.GradientBottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
+            this.bunifuGradientPanel7.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
+            this.bunifuGradientPanel7.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
+            this.bunifuGradientPanel7.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.bunifuGradientPanel7.Location = new System.Drawing.Point(3, 3);
+            this.bunifuGradientPanel7.Name = "bunifuGradientPanel7";
+            this.bunifuGradientPanel7.Quality = 10;
+            this.bunifuGradientPanel7.Size = new System.Drawing.Size(198, 95);
+            this.bunifuGradientPanel7.TabIndex = 7;
+            // 
+            // picFemale
+            // 
+            this.picFemale.BackColor = System.Drawing.Color.Transparent;
+            this.picFemale.Image = ((System.Drawing.Image)(resources.GetObject("picFemale.Image")));
+            this.picFemale.Location = new System.Drawing.Point(142, 40);
+            this.picFemale.Name = "picFemale";
+            this.picFemale.Size = new System.Drawing.Size(45, 45);
+            this.picFemale.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picFemale.TabIndex = 4;
+            this.picFemale.TabStop = false;
+            // 
+            // picMale
+            // 
+            this.picMale.BackColor = System.Drawing.Color.Transparent;
+            this.picMale.Image = ((System.Drawing.Image)(resources.GetObject("picMale.Image")));
+            this.picMale.Location = new System.Drawing.Point(143, 40);
+            this.picMale.Name = "picMale";
+            this.picMale.Size = new System.Drawing.Size(45, 45);
+            this.picMale.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picMale.TabIndex = 3;
+            this.picMale.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(14, 25);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(38, 38);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 0;
+            this.pictureBox2.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.Font = new System.Drawing.Font("Segoe UI Semilight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(114, 12);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 21);
+            this.label3.TabIndex = 1;
+            this.label3.Text = "GIỚI TÍNH";
+            // 
+            // plnFatPercent
+            // 
+            this.plnFatPercent.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("plnFatPercent.BackgroundImage")));
+            this.plnFatPercent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.plnFatPercent.Controls.Add(this.lblFatPercent);
+            this.plnFatPercent.Controls.Add(this.label1);
+            this.plnFatPercent.Controls.Add(this.pictureBox3);
+            this.plnFatPercent.GradientBottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
+            this.plnFatPercent.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
+            this.plnFatPercent.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
+            this.plnFatPercent.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.plnFatPercent.Location = new System.Drawing.Point(207, 205);
+            this.plnFatPercent.Name = "plnFatPercent";
+            this.plnFatPercent.Quality = 10;
+            this.plnFatPercent.Size = new System.Drawing.Size(273, 95);
+            this.plnFatPercent.TabIndex = 12;
+            // 
+            // lblFatPercent
+            // 
+            this.lblFatPercent.AutoSize = true;
+            this.lblFatPercent.BackColor = System.Drawing.Color.Transparent;
+            this.lblFatPercent.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFatPercent.ForeColor = System.Drawing.Color.White;
+            this.lblFatPercent.Location = new System.Drawing.Point(69, 50);
+            this.lblFatPercent.Name = "lblFatPercent";
+            this.lblFatPercent.Size = new System.Drawing.Size(41, 25);
+            this.lblFatPercent.TabIndex = 2;
+            this.lblFatPercent.Text = "? %";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Transparent;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(141, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(87, 20);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "LƯỢNG MỠ";
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(14, 25);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(38, 38);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
+            // bunifuGradientPanel8
+            // 
+            this.bunifuGradientPanel8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuGradientPanel8.BackgroundImage")));
+            this.bunifuGradientPanel8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.bunifuGradientPanel8.Controls.Add(this.label4);
+            this.bunifuGradientPanel8.Controls.Add(this.pictureBox9);
+            this.bunifuGradientPanel8.Controls.Add(this.lblWater);
+            this.bunifuGradientPanel8.GradientBottomLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
+            this.bunifuGradientPanel8.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
+            this.bunifuGradientPanel8.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
+            this.bunifuGradientPanel8.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(86)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.bunifuGradientPanel8.Location = new System.Drawing.Point(3, 306);
+            this.bunifuGradientPanel8.Name = "bunifuGradientPanel8";
+            this.bunifuGradientPanel8.Quality = 10;
+            this.bunifuGradientPanel8.Size = new System.Drawing.Size(198, 95);
+            this.bunifuGradientPanel8.TabIndex = 11;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(90, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(105, 20);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "LƯỢNG NƯỚC";
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(14, 25);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(38, 38);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 0;
+            this.pictureBox9.TabStop = false;
+            // 
+            // lblWater
+            // 
+            this.lblWater.AutoSize = true;
+            this.lblWater.BackColor = System.Drawing.Color.Transparent;
+            this.lblWater.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWater.ForeColor = System.Drawing.Color.White;
+            this.lblWater.Location = new System.Drawing.Point(133, 50);
+            this.lblWater.Name = "lblWater";
+            this.lblWater.Size = new System.Drawing.Size(35, 25);
+            this.lblWater.TabIndex = 2;
+            this.lblWater.Text = "? L";
+            // 
             // panel1
             // 
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel1.Controls.Add(this.lblTab);
+            this.panel1.Controls.Add(this.btnOpenIndexBody);
             this.panel1.Controls.Add(this.gunaCirclePictureBox1);
             this.panel1.Controls.Add(this.lblHello);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(153, 196);
+            this.panel1.Size = new System.Drawing.Size(157, 253);
             this.panel1.TabIndex = 11;
             // 
             // gunaCirclePictureBox1
@@ -425,87 +626,58 @@
             this.lblHello.AutoSize = true;
             this.lblHello.Font = new System.Drawing.Font("SVN-Lobster", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblHello.ForeColor = System.Drawing.Color.WhiteSmoke;
-            this.lblHello.Location = new System.Drawing.Point(11, 147);
+            this.lblHello.Location = new System.Drawing.Point(7, 148);
             this.lblHello.Name = "lblHello";
-            this.lblHello.Size = new System.Drawing.Size(94, 29);
+            this.lblHello.Size = new System.Drawing.Size(100, 29);
             this.lblHello.TabIndex = 1;
-            this.lblHello.Text = "Hello,  Đạt";
+            this.lblHello.Text = "Hi, {Name}";
             // 
-            // tableLayoutPanel1
+            // tableLayoutPanel3
             // 
-            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(23)))), ((int)(((byte)(48)))));
-            this.tableLayoutPanel1.ColumnCount = 1;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 0);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(1, 4);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 2;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 97.58813F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 2.411874F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(782, 539);
-            this.tableLayoutPanel1.TabIndex = 13;
-            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
+            this.tableLayoutPanel3.ColumnCount = 2;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.70313F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 79.29688F));
+            this.tableLayoutPanel3.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.flowLayoutPanel1, 1, 0);
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(2, 12);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 1;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(791, 446);
+            this.tableLayoutPanel3.TabIndex = 15;
             // 
-            // tableLayoutPanel2
+            // btnOpenIndexBody
             // 
-            this.tableLayoutPanel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel2.ColumnCount = 4;
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 20.5F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.5F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.5F));
-            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 26.5F));
-            this.tableLayoutPanel2.Controls.Add(this.panel1, 0, 0);
-            this.tableLayoutPanel2.Controls.Add(this.panel3, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.panel4, 2, 0);
-            this.tableLayoutPanel2.Controls.Add(this.panel5, 3, 0);
-            this.tableLayoutPanel2.Location = new System.Drawing.Point(3, 3);
-            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 1;
-            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(776, 211);
-            this.tableLayoutPanel2.TabIndex = 0;
-            this.tableLayoutPanel2.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
+            this.btnOpenIndexBody.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenIndexBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenIndexBody.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnOpenIndexBody.Location = new System.Drawing.Point(20, 195);
+            this.btnOpenIndexBody.Name = "btnOpenIndexBody";
+            this.btnOpenIndexBody.Size = new System.Drawing.Size(111, 42);
+            this.btnOpenIndexBody.TabIndex = 16;
+            this.btnOpenIndexBody.Text = "Cập nhật \r\nchỉ số cơ thể";
+            this.btnOpenIndexBody.UseVisualStyleBackColor = true;
+            this.btnOpenIndexBody.Click += new System.EventHandler(this.btnOpenIndexBody_Click);
             // 
-            // panel3
+            // lblTab
             // 
-            this.panel3.Controls.Add(this.bunifuGradientPanel1);
-            this.panel3.Controls.Add(this.bunifuGradientPanel4);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(162, 3);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(199, 205);
-            this.panel3.TabIndex = 12;
-            // 
-            // panel4
-            // 
-            this.panel4.Controls.Add(this.bunifuGradientPanel2);
-            this.panel4.Controls.Add(this.bunifuGradientPanel5);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(367, 3);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(199, 205);
-            this.panel4.TabIndex = 13;
-            // 
-            // panel5
-            // 
-            this.panel5.Controls.Add(this.bunifuGradientPanel6);
-            this.panel5.Controls.Add(this.bunifuGradientPanel3);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel5.Location = new System.Drawing.Point(572, 3);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(201, 205);
-            this.panel5.TabIndex = 14;
+            this.lblTab.AutoSize = true;
+            this.lblTab.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
+            this.lblTab.Location = new System.Drawing.Point(82, 104);
+            this.lblTab.Name = "lblTab";
+            this.lblTab.Size = new System.Drawing.Size(49, 20);
+            this.lblTab.TabIndex = 55;
+            this.lblTab.Text = "lblTab";
+            this.lblTab.Visible = false;
             // 
             // frmHome
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(41)))), ((int)(((byte)(61)))));
-            this.ClientSize = new System.Drawing.Size(782, 544);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(23)))), ((int)(((byte)(48)))));
+            this.ClientSize = new System.Drawing.Size(800, 544);
+            this.Controls.Add(this.tableLayoutPanel3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmHome";
             this.ShowIcon = false;
@@ -521,8 +693,8 @@
             this.bunifuGradientPanel2.ResumeLayout(false);
             this.bunifuGradientPanel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            this.bunifuGradientPanel5.ResumeLayout(false);
-            this.bunifuGradientPanel5.PerformLayout();
+            this.plnTypeOfBody.ResumeLayout(false);
+            this.plnTypeOfBody.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.bunifuGradientPanel1.ResumeLayout(false);
             this.bunifuGradientPanel1.PerformLayout();
@@ -530,14 +702,22 @@
             this.bunifuGradientPanel6.ResumeLayout(false);
             this.bunifuGradientPanel6.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            this.flowLayoutPanel1.ResumeLayout(false);
+            this.bunifuGradientPanel7.ResumeLayout(false);
+            this.bunifuGradientPanel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picFemale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picMale)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.plnFatPercent.ResumeLayout(false);
+            this.plnFatPercent.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.bunifuGradientPanel8.ResumeLayout(false);
+            this.bunifuGradientPanel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaCirclePictureBox1)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
-            this.panel4.ResumeLayout(false);
-            this.panel5.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -556,7 +736,7 @@
         private System.Windows.Forms.Label lblHeight;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Label label15;
-        private Bunifu.Framework.UI.BunifuGradientPanel bunifuGradientPanel5;
+        private Bunifu.Framework.UI.BunifuGradientPanel plnTypeOfBody;
         private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -568,13 +748,25 @@
         private System.Windows.Forms.Label lblWarning;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private Bunifu.Framework.UI.BunifuGradientPanel bunifuGradientPanel7;
+        private System.Windows.Forms.PictureBox picFemale;
+        private System.Windows.Forms.PictureBox picMale;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Panel panel1;
         private Guna.UI.WinForms.GunaCirclePictureBox gunaCirclePictureBox1;
         private System.Windows.Forms.Label lblHello;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private Bunifu.Framework.UI.BunifuGradientPanel bunifuGradientPanel8;
+        private System.Windows.Forms.Label lblWater;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private Bunifu.Framework.UI.BunifuGradientPanel plnFatPercent;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label lblFatPercent;
+        private System.Windows.Forms.Button btnOpenIndexBody;
+        private System.Windows.Forms.Label lblTab;
     }
 }
