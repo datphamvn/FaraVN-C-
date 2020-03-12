@@ -22,6 +22,15 @@ namespace TrolyaoFara
             InitializeComponent();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            ReLocation();
+
+            GetFullName();
+            GetDataFromMenu();
+        }
+
+        #region UI
         [DllImport("KERNEL32.DLL", EntryPoint = "SetProcessWorkingSetSize", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
         internal static extern bool SetProcessWorkingSetSize(IntPtr pProcess, int dwMinimumWorkingSetSize, int dwMaximumWorkingSetSize);
         [DllImport("KERNEL32.DLL", EntryPoint = "GetCurrentProcess", SetLastError = true, CallingConvention = CallingConvention.StdCall)]
@@ -31,7 +40,6 @@ namespace TrolyaoFara
             IntPtr pHandle = GetCurrentProcess();
             SetProcessWorkingSetSize(pHandle, -1, -1);
         }
-
 
         private void ReLocation()
         {
@@ -44,16 +52,9 @@ namespace TrolyaoFara
             this.BackgroundImage = bm;
             this.Show();
         }
+        #endregion
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            ReLocation();
-
-            GetDataFromMenu();
-            GetFullName();
-            
-        }
-
+        #region DataUser
         private void GetFullName()
         {
             string lname = "", fname = "";
@@ -70,7 +71,14 @@ namespace TrolyaoFara
             databaseObject.CloseConnection();
             lblNameUser.Text = lname + " " + fname;
         }
+        #endregion
 
+        #region FooterUI
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+            FrmDashboard frm = new FrmDashboard();
+            frm.Show();
+        }
 
         private void simpleButton1_Click(object sender, EventArgs e)
         {
@@ -78,12 +86,6 @@ namespace TrolyaoFara
             ReleaseRAM();
             this.Opacity = 1;
             gunaMetroTrackBar1.Value = 0;
-        }
-
-        private void simpleButton3_Click(object sender, EventArgs e)
-        {
-            FrmDashboard frm = new FrmDashboard();
-            frm.Show();
         }
 
         LoadData lData = new LoadData();
@@ -107,7 +109,7 @@ namespace TrolyaoFara
             else
                 userlogin = username;
                   
-            string strUpdate = string.Format("UPDATE account set login=false where username='{0}' or email='{0}'", userlogin);
+            string strUpdate = string.Format("UPDATE account set login=\"False\" where username='{0}' or email='{0}'", userlogin);
             databaseObject.RunSQL(strUpdate);
             //gunaCirclePictureBox1.Image = null;
             //gunaCirclePictureBox1.Update();
@@ -116,18 +118,6 @@ namespace TrolyaoFara
             frmLogin frm = new frmLogin();
             frm.ShowDialog();
             this.Close();
-            try
-            {
-                File.Delete(lData.loginimg);
-            }
-            catch(Exception)
-            {
-                Console.Write("Warning");
-            }
-        }
-
-        private void gunaMetroTrackBar1_Scroll(object sender, ScrollEventArgs e)
-        {
             
         }
 
@@ -140,7 +130,21 @@ namespace TrolyaoFara
                 this.Opacity = gunaMetroTrackBar1.Value / 100.0;
             }
         }
-        
+
+        private void simpleButton4_Click(object sender, EventArgs e)
+        {
+            FrmDashboard frm = new FrmDashboard();
+            frm.Message = "1";
+            frm.Show();
+        }
+
+        private void simpleButton5_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+        #endregion
+
+        #region RunGA
         string strmenu = "";
         int breakfast = 0, lunch = 0, dinner = 0;
 
@@ -180,19 +184,10 @@ namespace TrolyaoFara
         }
         GACal calmenu = new GACal();
 
-        private void simpleButton4_Click(object sender, EventArgs e)
-        {
-            FrmDashboard frm = new FrmDashboard();
-            frm.Message = "1";
-            frm.Show();
-        }
-
         private void SetMenu()
         {
             plnLoadMenu.Controls.Clear();
             frmMenuFood frm = new frmMenuFood();
-            frm.CallGA();
-            frm.CalCalo();
             calmenu.RunGACal();
             frm.GetDataFromMenu();
         }
@@ -242,15 +237,6 @@ namespace TrolyaoFara
             }
             databaseObject.CloseConnection();
         }
-
-        private void Form1_Shown(object sender, EventArgs e)
-        {
-            //LoadMenu();
-        }
-
-        private void simpleButton5_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
+        #endregion
     }
 }

@@ -12,22 +12,22 @@ namespace TrolyaoFara
 {
     public partial class ItemFood : UserControl
     {
-
-        public ItemFood(int id, string namefood, int timer, int gram)
+        public ItemFood(long id, string namefood, int timer, double calo, double factor)
         {
             InitializeComponent();
 
+            lblFactor.Text = factor.ToString();
             lblID.Text = id.ToString();
             lblNameFood.Text = namefood;
             lblTimer.Text = timer.ToString() + " min";
-            lblGr.Text = gram.ToString() + " Calo";
+            lblGr.Text = Convert.ToInt32(factor*calo).ToString() + " Calo";
         }
 
         private static ItemFood _instance;
 
-        public static ItemFood Add(int id, string namefood, int timer, int gram)
+        public static ItemFood Add(long id, string namefood, int timer, double calo, double factor)
         {
-            _instance = new ItemFood(id, namefood, timer, gram);
+            _instance = new ItemFood(id, namefood, timer, calo, factor);
             return _instance;
         }
 
@@ -39,14 +39,14 @@ namespace TrolyaoFara
 
         private void btnResetSetting_Click(object sender, EventArgs e)
         {
-            frmInfoFood infofood = new frmInfoFood(Convert.ToInt32(lblID.Text), lblNameFood.Text);
+            frmGuideForFood infofood = new frmGuideForFood(Convert.ToInt32(lblID.Text), lblNameFood.Text);
             infofood.ShowDialog();
         }
 
         private void gunaGradientButton1_Click(object sender, EventArgs e)
         {
-
+            frmComposition cpFood = new frmComposition(Convert.ToInt32(lblID.Text), lblNameFood.Text, Convert.ToDouble(lblFactor.Text));
+            cpFood.ShowDialog();
         }
-
     }
 }

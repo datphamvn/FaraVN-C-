@@ -14,87 +14,145 @@ namespace TrolyaoFara
         Database databaseObject = new Database();
         LibFunction lib = new LibFunction();
         SettingSever sSever = new SettingSever();
+        SQLquery sql = new SQLquery();
+        int nType1 = 10, nType2 = 60;
 
-        public void GetFoodDB()
+        public void MainGetData()
         {
-            string sql = "CREATE TABLE IF NOT EXISTS food_db([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, id_food INTEGER NOT NULL, id_purpose INTEGER NOT NULL, id_type INTEGER NOT NULL, id_method INTEGER NOT NULL, calo INTEGER NOT NULL, name varchar NOT NULL, timer INTEGER NOT NULL)";
-            databaseObject.RunSQL(sql);
-            if (!lib.CheckExists("food_db", "id", 1, ""))
-            {
-                string url = sSever.linksever + "ai/api/food/?search=1";
-                DownloadData(url, 10);
-                url = sSever.linksever + "ai/api/food/?search=2&3";
-                DownloadData(url, 60);
-            }
+            sql.createTableForDatabase(); // Dev Line
+
+            GetFoodRecommend();
+            string url = sSever.linksever + "ai/api/food/?search=1";
+            DownloadData(url, nType1 - CountRow(1));
+            url = sSever.linksever + "ai/api/food/?search=2&3";
+            DownloadData(url, nType2 - CountRow(2));
         }
 
-        public void DownloadData(string url, int limit)
+        #region GetFoodFromRecommend
+        public void GetFoodRecommend()
         {
-            int i = 0;
-            
+            int id = lib.GetID();
             if (lib.CheckForInternetConnection())
             {
                 using (WebClient wc = new WebClient())
                 {
-                    var json = wc.DownloadString(url);
-                    List<Food> data = JsonConvert.DeserializeObject<List<Food>>(json);
-                    foreach (var item in data)
-                    {
-                        if (i == limit)
-                            break;
-                        byte[] bytes = Encoding.Default.GetBytes(item.Title.ToString());
-                        string foodname = Encoding.UTF8.GetString(bytes);
+                    var json = wc.DownloadString(sSever.linksever + "ai/kq");
+                    List<FoodRecommend> data = JsonConvert.DeserializeObject<List<FoodRecommend>>(json);
 
-                        string strInsert = string.Format("INSERT INTO food_db(id_food, id_purpose, id_type, id_method, calo, name, timer) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')", item.Id, item.Purpose[0], item.Type[0], item.Method[0], item.Calo , foodname, item.Timer);
-                        databaseObject.RunSQL(strInsert);
-                        i++;
+                    foreach (var item in data[id].Items)
+                    {
+                        json = wc.DownloadString(sSever.linksever + "ai/api/food/" + item);
+                        json = "[" + json + "]";
+                        List<Food> food = JsonConvert.DeserializeObject<List<Food>>(json);
+                        foreach (var ifood in food)
+                        {
+                            getFoodProcess(ifood);
+                        }
                     }
                 }
             }
             else
                 alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
         }
-
-        //Bảng nguyên liệu
-        public void Download2()
+        
+        private void getFoodProcess(Food ifood)
         {
-            string sql = "CREATE TABLE IF NOT EXISTS calforfood([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, foodname INTEGER NOT NULL, composition INTEGER NOT NULL, amout FLOAT NOT NULL, unit INTEGER NOT NULL, main BOOL NOT NULL)";
-            databaseObject.RunSQL(sql);
-            if (!lib.CheckExists("calforfood", "id", 1, ""))
+            if (ifood.Draft == false && !lib.CheckExists("food_db", "id_food", ifood.Id, ""))
             {
-                List<int> Database = new List<int>();
-
-                sql = string.Format("SELECT * FROM food_db");
-                databaseObject.OpenConnection();
-                SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
-                SQLiteDataReader rd = command.ExecuteReader();
-                while (rd.Read())
+                if (GetCompositionOfFood(ifood.Id)) // Kiểm tra tp món ăn thỏa mãn không -(True)-> Lưu vào bảng calforfood
                 {
-                    int idf = Convert.ToInt32(rd["id_food"]);
-                    Database.Add(idf);
+                    byte[] bytes = Encoding.Default.GetBytes(ifood.Title.ToString());
+                    string foodname = Encoding.UTF8.GetString(bytes);
+
+                    string strInsert = string.Format("INSERT INTO food_db(id_food, id_purpose, id_type, id_method, calo, name, timer) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')", ifood.Id, ifood.Purpose[0], ifood.Type[0], ifood.Method[0], ifood.Calo, foodname, ifood.Timer);
+                    databaseObject.RunSQL(strInsert);
                 }
-                command.Dispose();
-                databaseObject.CloseConnection();
+            }
+        }
 
-                foreach (var getfood in Database)
+        private bool GetCompositionOfFood(long idFood)
+        {
+            if (lib.CheckForInternetConnection())
+            {
+                using (WebClient wc = new WebClient())
                 {
-                    if (lib.CheckForInternetConnection())
+                    var json = wc.DownloadString(sSever.linksever + "ai/api/cal/?id=&foodname=" + idFood);
+                    List<CalFood> data = JsonConvert.DeserializeObject<List<CalFood>>(json);
+                    foreach (var item in data)
                     {
-                        using (WebClient wc = new WebClient())
+                        if (item.Main == true)
                         {
-                            var json = wc.DownloadString(sSever.linksever + "ai/api/cal/?id=&foodname=" + getfood);
-                            List<CalFood> data = JsonConvert.DeserializeObject<List<CalFood>>(json);
-                            foreach (var item in data)
+                            if (lib.CheckExists("allergic", "composition_id", item.id_Composition, ""))
+                                return false;
+                        }
+                    }
+
+                    foreach (var item in data)
+                    {
+                        if (item.Main == true)
+                        {
+                            if (!CheckExistsCalForFood(idFood, item.id_Composition))
                             {
-                                string strInsert = string.Format("INSERT INTO calforfood(foodname, composition, amout, unit, main) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')", item.Foodname, item.Composition, item.Amout, item.Unit, item.Main);
+                                string strInsert = string.Format("INSERT INTO calforfood(id_food, id_composition, amout, unit, main) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')", item.id_Foodname, item.id_Composition, item.Amout, item.Unit, item.Main);
                                 databaseObject.RunSQL(strInsert);
                             }
                         }
                     }
-                    else
-                        alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
                 }
             }
+            else
+            {
+                alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
+                return false;
+            }
+            return true;
+        }
+
+        public bool CheckExistsCalForFood(long idFood, long idComposition)
+        {
+            bool check = false;
+            databaseObject.OpenConnection();
+
+            string sql = "SELECT * FROM calforfood WHERE id_food = " + idFood + " AND id_composition = " + idComposition;
+            SQLiteCommand cmd = new SQLiteCommand(sql, databaseObject.myConnection);
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+            if (count != 0)
+                check = true;
+
+            databaseObject.CloseConnection();
+            return check;
+        }
+        #endregion
+
+        private int CountRow(int nType)
+        {
+            databaseObject.OpenConnection();
+            string sql = "SELECT * FROM food_db WHERE id_purpose = " + nType;
+            SQLiteCommand cmd = new SQLiteCommand(sql, databaseObject.myConnection);
+            int count = Convert.ToInt32(cmd.ExecuteScalar());
+            return count;
+        }
+
+        public void DownloadData(string url, int limit)
+        {
+            int i = 0;
+            if (lib.CheckForInternetConnection())
+            {
+                using (WebClient wc = new WebClient())
+                {
+                    var json = wc.DownloadString(url);
+                    List<Food> food = JsonConvert.DeserializeObject<List<Food>>(json);
+                    foreach (var ifood in food)
+                    {
+                        if (i == limit)
+                            break;
+                        getFoodProcess(ifood);
+                    }
+                }
+            }
+            else
+                alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
         }
     }
 }

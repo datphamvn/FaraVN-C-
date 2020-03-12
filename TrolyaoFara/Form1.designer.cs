@@ -127,7 +127,7 @@
             this.simpleButton4.LineColorNormal = System.Drawing.Color.White;
             this.simpleButton4.LineLayout = HPTCControl.SimpleButton.LinePostion.BottomLine;
             this.simpleButton4.LineSize = 2;
-            this.simpleButton4.Location = new System.Drawing.Point(113, 605);
+            this.simpleButton4.Location = new System.Drawing.Point(113, 597);
             this.simpleButton4.Name = "simpleButton4";
             this.simpleButton4.Size = new System.Drawing.Size(75, 23);
             this.simpleButton4.TabIndex = 42;
@@ -149,7 +149,7 @@
             this.lblGuide.AutoSize = true;
             this.lblGuide.Font = new System.Drawing.Font("SVN-Lobster", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGuide.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblGuide.Location = new System.Drawing.Point(7, 631);
+            this.lblGuide.Location = new System.Drawing.Point(7, 604);
             this.lblGuide.Name = "lblGuide";
             this.lblGuide.Size = new System.Drawing.Size(306, 46);
             this.lblGuide.TabIndex = 39;
@@ -159,7 +159,7 @@
             // 
             this.plnMenu.Controls.Add(this.gunaGradient2Panel2);
             this.plnMenu.Controls.Add(this.plnLoadMenu);
-            this.plnMenu.Location = new System.Drawing.Point(3, 297);
+            this.plnMenu.Location = new System.Drawing.Point(3, 283);
             this.plnMenu.Name = "plnMenu";
             this.plnMenu.Size = new System.Drawing.Size(310, 318);
             this.plnMenu.TabIndex = 41;
@@ -201,7 +201,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("SVN-Lobster", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(69, 248);
+            this.label2.Location = new System.Drawing.Point(69, 234);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(183, 35);
             this.label2.TabIndex = 22;
@@ -221,7 +221,6 @@
             this.gunaMetroTrackBar1.TrackPressedColor = System.Drawing.Color.Black;
             this.gunaMetroTrackBar1.Value = 0;
             this.gunaMetroTrackBar1.ValueChanged += new System.EventHandler(this.gunaMetroTrackBar1_ValueChanged);
-            this.gunaMetroTrackBar1.Scroll += new System.Windows.Forms.ScrollEventHandler(this.gunaMetroTrackBar1_Scroll);
             // 
             // simpleButton3
             // 
@@ -299,7 +298,7 @@
             // 
             this.lblNameUser.Font = new System.Drawing.Font("SVN-Lobster", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNameUser.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblNameUser.Location = new System.Drawing.Point(47, 176);
+            this.lblNameUser.Location = new System.Drawing.Point(63, 148);
             this.lblNameUser.Name = "lblNameUser";
             this.lblNameUser.Size = new System.Drawing.Size(202, 35);
             this.lblNameUser.TabIndex = 21;
@@ -310,9 +309,9 @@
             // 
             this.gunaCirclePictureBox1.BaseColor = System.Drawing.Color.White;
             this.gunaCirclePictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("gunaCirclePictureBox1.Image")));
-            this.gunaCirclePictureBox1.Location = new System.Drawing.Point(86, 8);
+            this.gunaCirclePictureBox1.Location = new System.Drawing.Point(98, 12);
             this.gunaCirclePictureBox1.Name = "gunaCirclePictureBox1";
-            this.gunaCirclePictureBox1.Size = new System.Drawing.Size(150, 150);
+            this.gunaCirclePictureBox1.Size = new System.Drawing.Size(120, 120);
             this.gunaCirclePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.gunaCirclePictureBox1.TabIndex = 20;
             this.gunaCirclePictureBox1.TabStop = false;
@@ -374,7 +373,6 @@
             this.ShowInTaskbar = false;
             this.Text = "d";
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.Shown += new System.EventHandler(this.Form1_Shown);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.plnMenu.ResumeLayout(false);

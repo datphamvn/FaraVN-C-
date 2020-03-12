@@ -17,10 +17,8 @@ namespace TrolyaoFara
     public partial class frmAbout : Form
     {
         SettingSever sSever = new SettingSever();
-        string pathsave = Environment.CurrentDirectory + "/log.zip";
+        string pathsave = Environment.CurrentDirectory + "/setup_faravn.exe";
         WebClient wc;
-
-        string version = "0.1.0.0";
 
         public frmAbout()
         {
@@ -30,13 +28,14 @@ namespace TrolyaoFara
         string linkdown = "";
         private void frmAbout_Load(object sender, EventArgs e)
         {
+            var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             pnlUpdate.Hide();
             lblVersion.Text = "Version " + version;
 
             wc = new WebClient();
             string webData = wc.DownloadString(sSever.linksever + "version");
             string[] data = webData.Split(';');
-            if (data[0] != version)
+            if (data[0] != version.ToString())
             {
                 alert.Show("Hiện có phiên bản mới!", alert.AlertType.info);
                 pnlUpdate.Show();

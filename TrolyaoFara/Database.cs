@@ -1,4 +1,5 @@
-﻿using System.Data.SQLite;
+﻿using System;
+using System.Data.SQLite;
 using System.IO;
 
 namespace TrolyaoFara
@@ -9,16 +10,24 @@ namespace TrolyaoFara
 
         public Database()
         {
-            myConnection = new SQLiteConnection("Data Source=database.sqlite3");
-            if (!File.Exists("./database.sqlite3"))
+            string path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
+            if (Environment.OSVersion.Version.Major >= 6)
             {
-                SQLiteConnection.CreateFile("database.sqlite3");
+                path = Directory.GetParent(path).ToString() + @"\.faraVN";
+            }
+            Directory.CreateDirectory(path);
+            string dbpath = path + "/database.sqlite";
+
+            myConnection = new SQLiteConnection(string.Format("Data Source={0}", dbpath));
+            if (!File.Exists(dbpath))
+            {
+                SQLiteConnection.CreateFile(dbpath);
             }
         }
 
         public void OpenConnection()
         {
-            if(myConnection.State!=System.Data.ConnectionState.Open)
+            if (myConnection.State != System.Data.ConnectionState.Open)
             {
                 myConnection.Open();
             }

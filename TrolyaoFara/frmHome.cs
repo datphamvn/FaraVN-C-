@@ -16,29 +16,40 @@ namespace TrolyaoFara
     {
         Database databaseObject = new Database();
         LibFunction lib = new LibFunction();
+        CalculateMacro calMacro = new CalculateMacro();
+        public delegate void GETDATA(string data);
+        public GETDATA mydata;
 
         public frmHome()
         {
             InitializeComponent();
         }
 
-        private void label15_Click(object sender, EventArgs e)
+        private void LoadInfoinForm()
         {
-
-        }
-
-        LibFunction libfun = new LibFunction();
-        void LoadInfoinForm()
-        {
-            gunaCirclePictureBox1.Image = Image.FromFile(lData.loginimg);
+            //gunaCirclePictureBox1.Image = Image.FromFile(lData.loginimg);
             string sql = string.Format("SELECT * FROM info WHERE iduser='{0}'", lib.GetID());
             databaseObject.OpenConnection();
             SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
             SQLiteDataReader rd = command.ExecuteReader();
             while (rd.Read())
             {
+                
+                // Giới tính  1-Nam ; 2-Nữ
+                int gender = Convert.ToInt32(rd["gender"]);
+                if (gender == 1)
+                {
+                    picMale.Show();
+                    picFemale.Hide();
+                }
+                else
+                {
+                    picFemale.Show();
+                    picMale.Hide();
+                }
+
                 //FullName
-                lblHello.Text = "Xin chào, " + rd["fname"];
+                lblHello.Text = "Hi, " + rd["fname"];
                 int panelWidth = panel1.Width;
                 lblHello.Left = (panelWidth - lblHello.Width) / 2;
 
@@ -49,49 +60,57 @@ namespace TrolyaoFara
                 lblOld.Text = old.ToString();
 
                 // Healthy Index
+                int weight = Convert.ToInt32(rd["weight"]);
+                int height = Convert.ToInt32(rd["height"]);
                 panelWidth = bunifuGradientPanel1.Width;
-                lblHeight.Text = rd["height"] + " cm";
+                lblHeight.Text = height.ToString() + " cm";
                 lblHeight.Left = panelWidth - (lblHeight.Width);
 
-                lblWeight.Text = rd["weight"] + " kg";
+                lblWeight.Text = weight.ToString() + " kg";
                 lblWeight.Left = panelWidth - (lblWeight.Width);
 
-                double BMI = Convert.ToInt32(rd["weight"]) / ((Convert.ToInt32(rd["height"]) * Convert.ToInt32(rd["height"])) / 10000.0);
+                double BMI = calMacro.BMI(weight,height);
                 lblBMI.Text = String.Format("{0:0.00}", BMI);
                 lblBMI.Left = panelWidth - (lblBMI.Width);
 
                 string type = "", warning = "";
-                libfun.TypeOfBody(BMI, ref type, ref warning);
+                calMacro.TypeOfBody(BMI, ref type, ref warning);
                 lblType.Text = type;
                 lblWarning.Text = warning;
                 lblType.Left = panelWidth - (lblType.Width);
                 lblWarning.Left = panelWidth - (lblWarning.Width);
 
+                // Lượng nước
+                lblWater.Text = String.Format("{0:0.00}", weight * 0.033) + " L";
+
+                //% Mỡ
+                int neck = Convert.ToInt32(rd["neck"]);
+                if (neck != 0)
+                {
+                    plnTypeOfBody.Hide();
+                    plnFatPercent.Show();
+                    double BodyFat = calMacro.BodyFat(height, neck, Convert.ToInt32(rd["waist"]), Convert.ToInt32(rd["hip"]), gender);
+                    lblFatPercent.Text = String.Format("{0:0.00}", BodyFat) + " %";
+                    string alertBodyFat = " - " + calMacro.TypeOfBody2(BodyFat, gender);
+                    lblFatPercent.Text += alertBodyFat;
+                    lblFatPercent.Left = plnFatPercent.Width - (lblFatPercent.Width);
+                }
+                else
+                    plnFatPercent.Hide();
             }
             command.Dispose();
             databaseObject.CloseConnection();
-           
         }
-        static Random rd = new Random();
-        LoadData lData = new LoadData();
+
         private void frmHome_Load(object sender, EventArgs e)
         {
             LoadInfoinForm();
         }
 
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
+        private void btnOpenIndexBody_Click(object sender, EventArgs e)
         {
-
-        }
-
-        private void panel2_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
+            lblTab.Text = "2.2";
+            mydata(lblTab.Text);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace TrolyaoFara
         public int GetID()
         {
             int id = -1;
-            string sql = "SELECT * FROM account WHERE login = 1";
+            string sql = "SELECT * FROM account WHERE login=\"True\"";
             databaseObject.OpenConnection();
             SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
             SQLiteDataReader rd = command.ExecuteReader();
@@ -43,7 +43,7 @@ namespace TrolyaoFara
             return id;
         }
 
-        public bool CheckExists(string nameTable, string nameCol, int data, string data1)
+        public bool CheckExists(string nameTable, string nameCol, long data, string data1)
         {
             bool check = false;
             databaseObject.OpenConnection();
@@ -66,7 +66,7 @@ namespace TrolyaoFara
         public string GetUsername()
         {
             string username = "";
-            string sql = "SELECT * FROM account WHERE id = 1";
+            string sql = "SELECT * FROM account WHERE login=\"True\"";
             databaseObject.OpenConnection();
             SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
             SQLiteDataReader rd = command.ExecuteReader();

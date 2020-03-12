@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Data.SQLite;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -13,17 +12,17 @@ using System.Windows.Forms;
 
 namespace TrolyaoFara
 {
-    public partial class frmInfoFood : Form
+    public partial class frmGuideForFood : Form
     {
         Database databaseObject = new Database();
         SettingSever sSever = new SettingSever();
         LibFunction lib = new LibFunction();
 
-        public frmInfoFood(int idFood, string nameFood)
+        public frmGuideForFood(int idFood, string nameFood)
         {
             InitializeComponent();
 
-            lblTitle.Text = "Công thức món: " + nameFood;
+            this.Text = "Công thức món: " + nameFood;
 
             if (lib.CheckForInternetConnection())
             {
@@ -31,7 +30,7 @@ namespace TrolyaoFara
                 {
                     var json = wc.DownloadString(sSever.linksever + "ai/api/food/content/" + idFood);
                     json = "[" + json + "]";
-                    List <ContentFood> data = JsonConvert.DeserializeObject<List<ContentFood>>(json);
+                    List<ContentFood> data = JsonConvert.DeserializeObject<List<ContentFood>>(json);
                     foreach (var item in data)
                     {
                         byte[] bytes = Encoding.Default.GetBytes(item.Content);
@@ -43,28 +42,11 @@ namespace TrolyaoFara
             else
                 alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
 
-            /*
-            string sql = string.Format("SELECT * FROM food_db WHERE id='{0}'", idFood);
-            databaseObject.OpenConnection();
-            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
-            SQLiteDataReader rd = command.ExecuteReader();
-            while (rd.Read())
-            {
-                webBrowser1.DocumentText = rd["content"].ToString();
-            }
-            command.Dispose();
-            databaseObject.CloseConnection();
-            */
         }
 
         public static void Show(int idFood, string nameFood)
         {
-            new frmInfoFood(idFood, nameFood).Show();
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
+            new frmGuideForFood(idFood, nameFood).Show();
         }
     }
 }
