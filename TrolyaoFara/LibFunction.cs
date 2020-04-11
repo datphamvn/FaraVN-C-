@@ -3,20 +3,20 @@ using System.Data.SQLite;
 using System.Windows.Forms;
 using System.Drawing;
 using System.Net.NetworkInformation;
+using System.IO;
+using System.Collections.Generic;
 
 namespace TrolyaoFara
 {
-    class LibFunction
+    public class LibFunction
     {
-        Database databaseObject = new Database();
-
         public bool CheckForInternetConnection()
         {
             bool con = NetworkInterface.GetIsNetworkAvailable();
             if (con == true)
                 return true;
             else
-                return false;  
+                return false;
             //return true;
         }
 
@@ -27,8 +27,9 @@ namespace TrolyaoFara
             theTabControl.SizeMode = TabSizeMode.Fixed;
         }
 
-        public int GetID()
+        public long GetID()
         {
+            Database databaseObject = new Database();
             int id = -1;
             string sql = "SELECT * FROM account WHERE login=\"True\"";
             databaseObject.OpenConnection();
@@ -45,11 +46,12 @@ namespace TrolyaoFara
 
         public bool CheckExists(string nameTable, string nameCol, long data, string data1)
         {
+            Database databaseObject = new Database();
             bool check = false;
             databaseObject.OpenConnection();
 
             string sql = "";
-            if(data >= 0)
+            if (data >= 0)
                 sql = "SELECT count(*) FROM " + nameTable + " WHERE " + nameCol + "=" + data;
             else
                 sql = "SELECT count(*) FROM " + nameTable + " WHERE " + nameCol + "= \"" + data1 + "\"";
@@ -63,8 +65,20 @@ namespace TrolyaoFara
             return check;
         }
 
+        public string getPathDataInPCUser(string extensionPath)
+        {
+            string path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
+            if (Environment.OSVersion.Version.Major >= 6)
+            {
+                path = Directory.GetParent(path).ToString() + extensionPath;
+            }
+            Directory.CreateDirectory(path);
+            return path;
+        }
+
         public string GetUsername()
         {
+            Database databaseObject = new Database();
             string username = "";
             string sql = "SELECT * FROM account WHERE login=\"True\"";
             databaseObject.OpenConnection();
@@ -79,61 +93,22 @@ namespace TrolyaoFara
             return username;
         }
 
-        public void TypeOfBody(double BMI, ref string type, ref string warning)
+        public List<string> getUserLocal()
         {
-            if (BMI < 18.5)
-            {
-                type = "Gầy";
-                warning = "Thấp";
-            }
-            else if (18.5 <= BMI && BMI <= 24.9)
-            {
-                type = "Bình thường";
-                warning = "Trung bình";
-            }
-            else if (25.0 <= BMI && BMI <= 29.9)
-            {
-                type = "Hơi béo";
-                warning = "Cao";
-            }
-            else if (30.0 <= BMI && BMI <= 34.9)
-            {
-                type = "Béo phì cấp độ 3";
-                warning = "Cao";
-            }
-            else if (35.0 <= BMI && BMI <= 39.9)
-            {
-                type = "Béo phì cấp độ 2";
-                warning = "Rất cao";
-            }
-            else
-            {
-                type = "Béo phì cấp độ 3";
-                warning = "Nguy hiểm";
-            }
-        }
+            Database databaseObject = new Database();
+            List<string> listUserLocal = new List<string>();
 
-        public double CoefficientCalo(int idx, double calo)
-        {
-            switch (idx)
+            string sql = string.Format("SELECT * FROM info WHERE iduser < 0");
+            databaseObject.OpenConnection();
+            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+            SQLiteDataReader rd = command.ExecuteReader();
+            while (rd.Read())
             {
-                case 1:
-                    calo *= 1.375;
-                    break;
-                case 2:
-                    calo *= 1.55;
-                    break;
-                case 3:
-                    calo *= 1.725;
-                    break;
-                case 4:
-                    calo *= 1.9;
-                    break;
-                default:
-                    calo *= 1.2;
-                    break;
+                listUserLocal.Add(rd["fname"].ToString());
             }
-            return calo;
+            command.Dispose();
+            databaseObject.CloseConnection();
+            return listUserLocal;
         }
     }
 }

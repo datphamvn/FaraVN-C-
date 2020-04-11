@@ -7,15 +7,11 @@ namespace TrolyaoFara
     class Database
     {
         public SQLiteConnection myConnection;
+        LibFunction lib = new LibFunction();
 
         public Database()
         {
-            string path = Directory.GetParent(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)).FullName;
-            if (Environment.OSVersion.Version.Major >= 6)
-            {
-                path = Directory.GetParent(path).ToString() + @"\.faraVN";
-            }
-            Directory.CreateDirectory(path);
+            string path = lib.getPathDataInPCUser(@"\.faraVN");
             string dbpath = path + "/database.sqlite";
 
             myConnection = new SQLiteConnection(string.Format("Data Source={0}", dbpath));

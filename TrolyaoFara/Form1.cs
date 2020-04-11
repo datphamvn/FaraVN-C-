@@ -76,7 +76,7 @@ namespace TrolyaoFara
         #region FooterUI
         private void simpleButton3_Click(object sender, EventArgs e)
         {
-            FrmDashboard frm = new FrmDashboard();
+            frmDashboard frm = new frmDashboard();
             frm.Show();
         }
 
@@ -133,7 +133,7 @@ namespace TrolyaoFara
 
         private void simpleButton4_Click(object sender, EventArgs e)
         {
-            FrmDashboard frm = new FrmDashboard();
+            frmDashboard frm = new frmDashboard();
             frm.Message = "1";
             frm.Show();
         }
@@ -189,7 +189,7 @@ namespace TrolyaoFara
             plnLoadMenu.Controls.Clear();
             frmMenuFood frm = new frmMenuFood();
             calmenu.RunGACal();
-            frm.GetDataFromMenu();
+            frm.getDataFromMenuTable();
         }
 
         private void LoadMenuForUser()

@@ -31,7 +31,7 @@ namespace TrolyaoFara
         #region GetFoodFromRecommend
         public void GetFoodRecommend()
         {
-            int id = lib.GetID();
+            int id = Convert.ToInt32(lib.GetID()); // Edit lại kiểu dữ liệu long và int
             if (lib.CheckForInternetConnection())
             {
                 using (WebClient wc = new WebClient())

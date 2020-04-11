@@ -109,7 +109,7 @@ namespace TrolyaoFara
 
         private void btnOpenIndexBody_Click(object sender, EventArgs e)
         {
-            lblTab.Text = "2.2";
+            lblTab.Text = "2.2.2";
             mydata(lblTab.Text);
         }
     }

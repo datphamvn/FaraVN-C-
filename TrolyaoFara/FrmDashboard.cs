@@ -12,7 +12,7 @@ using System.Windows.Forms;
 
 namespace TrolyaoFara
 {
-    public partial class FrmDashboard : Form
+    public partial class frmDashboard : Form
     {
         Database databaseObject = new Database();
         LibFunction lib = new LibFunction();
@@ -25,7 +25,7 @@ namespace TrolyaoFara
             set { strNhan = value; }
         }
 
-        public FrmDashboard()
+        public frmDashboard()
         {
             InitializeComponent();
         }
@@ -209,6 +209,15 @@ namespace TrolyaoFara
         {
             frmIndexBody frm = new frmIndexBody();
             frm.mydata = new frmIndexBody.GETDATA(GETVALUE);
+            frm.dataFromDashboard = lblTab.Text;
+            openChildForm(frm);
+            lblButton.Text = "2";
+        }
+
+        private void openTabSettingsMenu()
+        {
+            frmSettingsMenu frm = new frmSettingsMenu();
+            frm.mydata = new frmSettingsMenu.GETDATA(GETVALUE);
             openChildForm(frm);
             lblButton.Text = "2";
         }
@@ -236,17 +245,21 @@ namespace TrolyaoFara
         {
             lblTab.Text = value;
         }
-        
+
         private void lblTab_TextChanged(object sender, EventArgs e)
         {
+            if (lblTab.Text == "1")
+                openTabMenuFood();
             if (lblTab.Text == "2")
                 openTabAccount();
             if (lblTab.Text == "2.1")
                 openTabUpdateInfo();
-            if (lblTab.Text == "2.2")
+            if (lblTab.Text == "2.2.1" || lblTab.Text == "2.2.2" || lblTab.Text == "2.2.3")
                 openTabIndexBody();
-            if (lblTab.Text == "1")
-                openTabMenuFood();
+            if (lblTab.Text == "3")
+                openTabSettingsMenu();
+            if (lblTab.Text == "4")
+                openTabHome();
         }
     }
 }

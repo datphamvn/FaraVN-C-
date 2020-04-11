@@ -56,7 +56,6 @@
             this.btnNext2 = new Guna.UI.WinForms.GunaGradientButton();
             this.lstIdFoodNameAdd = new System.Windows.Forms.ListBox();
             this.lstIdFoodName = new System.Windows.Forms.ListBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.btnDeleteFood = new Guna.UI.WinForms.GunaButton();
             this.btnAddFood = new Guna.UI.WinForms.GunaButton();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
@@ -70,7 +69,6 @@
             this.btnNext3 = new Guna.UI.WinForms.GunaGradientButton();
             this.lstIdDiungAdd = new System.Windows.Forms.ListBox();
             this.lstIdDiung = new System.Windows.Forms.ListBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.btnCompositionDel = new Guna.UI.WinForms.GunaButton();
             this.btnAddComposition = new Guna.UI.WinForms.GunaButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -82,21 +80,23 @@
             this.tabInfo = new MetroFramework.Controls.MetroTabPage();
             this.tabComposition = new MetroFramework.Controls.MetroTabPage();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.loadDiung = new System.Windows.Forms.PictureBox();
             this.tabFood = new MetroFramework.Controls.MetroTabPage();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.loadFoodName = new System.Windows.Forms.PictureBox();
             this.gunaElipse1 = new Guna.UI.WinForms.GunaElipse(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPreviewFood)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.metroTabControl1.SuspendLayout();
             this.tabInfo.SuspendLayout();
             this.tabComposition.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadDiung)).BeginInit();
             this.tabFood.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadFoodName)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -590,17 +590,6 @@
             this.lstIdFoodName.Size = new System.Drawing.Size(60, 186);
             this.lstIdFoodName.TabIndex = 40;
             // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox3.Image = global::TrolyaoFara.Properties.Resources.next;
-            this.pictureBox3.Location = new System.Drawing.Point(426, 153);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox3.TabIndex = 38;
-            this.pictureBox3.TabStop = false;
-            // 
             // btnDeleteFood
             // 
             this.btnDeleteFood.AnimationHoverSpeed = 0.07F;
@@ -639,19 +628,19 @@
             this.btnAddFood.FocusedColor = System.Drawing.Color.Empty;
             this.btnAddFood.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddFood.ForeColor = System.Drawing.Color.White;
-            this.btnAddFood.Image = global::TrolyaoFara.Properties.Resources.plus;
+            this.btnAddFood.Image = ((System.Drawing.Image)(resources.GetObject("btnAddFood.Image")));
+            this.btnAddFood.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.btnAddFood.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnAddFood.Location = new System.Drawing.Point(371, 51);
+            this.btnAddFood.Location = new System.Drawing.Point(387, 156);
             this.btnAddFood.Name = "btnAddFood";
             this.btnAddFood.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
             this.btnAddFood.OnHoverBorderColor = System.Drawing.Color.Black;
             this.btnAddFood.OnHoverForeColor = System.Drawing.Color.White;
             this.btnAddFood.OnHoverImage = null;
             this.btnAddFood.OnPressedColor = System.Drawing.Color.Black;
-            this.btnAddFood.Radius = 7;
-            this.btnAddFood.Size = new System.Drawing.Size(91, 35);
+            this.btnAddFood.Radius = 6;
+            this.btnAddFood.Size = new System.Drawing.Size(90, 38);
             this.btnAddFood.TabIndex = 36;
-            this.btnAddFood.Text = "    Thêm";
             this.btnAddFood.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.btnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
             // 
@@ -828,21 +817,10 @@
             // lstIdDiung
             // 
             this.lstIdDiung.FormattingEnabled = true;
-            this.lstIdDiung.Location = new System.Drawing.Point(340, 108);
+            this.lstIdDiung.Location = new System.Drawing.Point(329, 108);
             this.lstIdDiung.Name = "lstIdDiung";
             this.lstIdDiung.Size = new System.Drawing.Size(62, 225);
             this.lstIdDiung.TabIndex = 40;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox2.Image = global::TrolyaoFara.Properties.Resources.next;
-            this.pictureBox2.Location = new System.Drawing.Point(432, 178);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 39;
-            this.pictureBox2.TabStop = false;
             // 
             // btnCompositionDel
             // 
@@ -882,9 +860,10 @@
             this.btnAddComposition.FocusedColor = System.Drawing.Color.Empty;
             this.btnAddComposition.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddComposition.ForeColor = System.Drawing.Color.White;
-            this.btnAddComposition.Image = global::TrolyaoFara.Properties.Resources.plus;
+            this.btnAddComposition.Image = ((System.Drawing.Image)(resources.GetObject("btnAddComposition.Image")));
+            this.btnAddComposition.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.btnAddComposition.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnAddComposition.Location = new System.Drawing.Point(188, 352);
+            this.btnAddComposition.Location = new System.Drawing.Point(403, 199);
             this.btnAddComposition.Name = "btnAddComposition";
             this.btnAddComposition.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
             this.btnAddComposition.OnHoverBorderColor = System.Drawing.Color.Black;
@@ -892,9 +871,8 @@
             this.btnAddComposition.OnHoverImage = null;
             this.btnAddComposition.OnPressedColor = System.Drawing.Color.Black;
             this.btnAddComposition.Radius = 6;
-            this.btnAddComposition.Size = new System.Drawing.Size(100, 40);
+            this.btnAddComposition.Size = new System.Drawing.Size(90, 38);
             this.btnAddComposition.TabIndex = 37;
-            this.btnAddComposition.Text = "    Thêm";
             this.btnAddComposition.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.btnAddComposition.Click += new System.EventHandler(this.btnAddComposition_Click);
             // 
@@ -902,7 +880,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::TrolyaoFara.Properties.Resources.search;
-            this.pictureBox1.Location = new System.Drawing.Point(34, 68);
+            this.pictureBox1.Location = new System.Drawing.Point(23, 68);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(32, 32);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -919,7 +897,7 @@
             this.txtDiung.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
             this.txtDiung.FocusedForeColor = System.Drawing.SystemColors.ControlText;
             this.txtDiung.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtDiung.Location = new System.Drawing.Point(72, 70);
+            this.txtDiung.Location = new System.Drawing.Point(61, 70);
             this.txtDiung.MultiLine = true;
             this.txtDiung.Name = "txtDiung";
             this.txtDiung.PasswordChar = '\0';
@@ -935,7 +913,7 @@
             this.lstDiungAdd.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstDiungAdd.FormattingEnabled = true;
             this.lstDiungAdd.ItemHeight = 17;
-            this.lstDiungAdd.Location = new System.Drawing.Point(490, 108);
+            this.lstDiungAdd.Location = new System.Drawing.Point(506, 108);
             this.lstDiungAdd.Name = "lstDiungAdd";
             this.lstDiungAdd.Size = new System.Drawing.Size(227, 225);
             this.lstDiungAdd.TabIndex = 35;
@@ -945,7 +923,7 @@
             this.lstDiung.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstDiung.FormattingEnabled = true;
             this.lstDiung.ItemHeight = 17;
-            this.lstDiung.Location = new System.Drawing.Point(73, 108);
+            this.lstDiung.Location = new System.Drawing.Point(62, 108);
             this.lstDiung.Name = "lstDiung";
             this.lstDiung.Size = new System.Drawing.Size(329, 225);
             this.lstDiung.TabIndex = 33;
@@ -969,7 +947,7 @@
             this.metroTabControl1.Controls.Add(this.tabComposition);
             this.metroTabControl1.Location = new System.Drawing.Point(2, 0);
             this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 1;
+            this.metroTabControl1.SelectedIndex = 0;
             this.metroTabControl1.Size = new System.Drawing.Size(779, 540);
             this.metroTabControl1.TabIndex = 2;
             this.metroTabControl1.UseSelectable = true;
@@ -1017,6 +995,7 @@
             this.panel3.BackColor = System.Drawing.Color.Transparent;
             this.panel3.BackgroundImage = global::TrolyaoFara.Properties.Resources.background;
             this.panel3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel3.Controls.Add(this.loadDiung);
             this.panel3.Controls.Add(this.lblTab);
             this.panel3.Controls.Add(this.lstDiung);
             this.panel3.Controls.Add(this.btnReset3);
@@ -1029,12 +1008,21 @@
             this.panel3.Controls.Add(this.pictureBox1);
             this.panel3.Controls.Add(this.lstIdDiung);
             this.panel3.Controls.Add(this.btnAddComposition);
-            this.panel3.Controls.Add(this.pictureBox2);
             this.panel3.Controls.Add(this.btnCompositionDel);
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(771, 498);
             this.panel3.TabIndex = 2;
+            // 
+            // loadDiung
+            // 
+            this.loadDiung.Image = ((System.Drawing.Image)(resources.GetObject("loadDiung.Image")));
+            this.loadDiung.Location = new System.Drawing.Point(164, 126);
+            this.loadDiung.Name = "loadDiung";
+            this.loadDiung.Size = new System.Drawing.Size(111, 111);
+            this.loadDiung.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.loadDiung.TabIndex = 55;
+            this.loadDiung.TabStop = false;
             // 
             // tabFood
             // 
@@ -1056,6 +1044,7 @@
             this.panel2.BackColor = System.Drawing.Color.Transparent;
             this.panel2.BackgroundImage = global::TrolyaoFara.Properties.Resources.background;
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.loadFoodName);
             this.panel2.Controls.Add(this.lstFoodName);
             this.panel2.Controls.Add(this.btnReset2);
             this.panel2.Controls.Add(this.label5);
@@ -1070,11 +1059,20 @@
             this.panel2.Controls.Add(this.lstIdFoodNameAdd);
             this.panel2.Controls.Add(this.btnDeleteFood);
             this.panel2.Controls.Add(this.lstIdFoodName);
-            this.panel2.Controls.Add(this.pictureBox3);
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(771, 498);
             this.panel2.TabIndex = 2;
+            // 
+            // loadFoodName
+            // 
+            this.loadFoodName.Image = ((System.Drawing.Image)(resources.GetObject("loadFoodName.Image")));
+            this.loadFoodName.Location = new System.Drawing.Point(156, 103);
+            this.loadFoodName.Name = "loadFoodName";
+            this.loadFoodName.Size = new System.Drawing.Size(111, 111);
+            this.loadFoodName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.loadFoodName.TabIndex = 46;
+            this.loadFoodName.TabStop = false;
             // 
             // gunaElipse1
             // 
@@ -1095,18 +1093,18 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picPreviewFood)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.metroTabControl1.ResumeLayout(false);
             this.tabInfo.ResumeLayout(false);
             this.tabComposition.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadDiung)).EndInit();
             this.tabFood.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadFoodName)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1117,7 +1115,6 @@
         private Guna.UI.WinForms.GunaGradientButton btnNext3;
         private System.Windows.Forms.ListBox lstIdDiungAdd;
         private System.Windows.Forms.ListBox lstIdDiung;
-        private System.Windows.Forms.PictureBox pictureBox2;
         private Guna.UI.WinForms.GunaButton btnCompositionDel;
         private Guna.UI.WinForms.GunaButton btnAddComposition;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -1132,7 +1129,6 @@
         private Guna.UI.WinForms.GunaGradientButton btnNext2;
         private System.Windows.Forms.ListBox lstIdFoodNameAdd;
         private System.Windows.Forms.ListBox lstIdFoodName;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private Guna.UI.WinForms.GunaButton btnDeleteFood;
         private Guna.UI.WinForms.GunaButton btnAddFood;
         private System.Windows.Forms.PictureBox pictureBox4;
@@ -1167,5 +1163,7 @@
         private MetroFramework.Controls.MetroTabPage tabComposition;
         private System.Windows.Forms.Panel panel3;
         private Guna.UI.WinForms.GunaElipse gunaElipse1;
+        private System.Windows.Forms.PictureBox loadFoodName;
+        private System.Windows.Forms.PictureBox loadDiung;
     }
 }

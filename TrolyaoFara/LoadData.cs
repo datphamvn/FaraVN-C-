@@ -32,7 +32,7 @@ namespace TrolyaoFara
 
     public class LoadUser
     {
-        public int id { get; set; }
+        public long id { get; set; }
         public string username { get; set; }
         public string email { get; set; }
         public string token { get; set; }
@@ -51,8 +51,14 @@ namespace TrolyaoFara
 
     public class DetailUser
     {
-        public string first_name { get; set; }
-        public string last_name { get; set; }
+        [JsonProperty("id")]
+        public long Id { get; set; }
+        [JsonProperty("username")]
+        public string Username { get; set; }
+        [JsonProperty("first_name")]
+        public string FirstName { get; set; }
+        [JsonProperty("last_name")]
+        public string LastName { get; set; }
     }
 
     public class HealthIdx
@@ -89,7 +95,7 @@ namespace TrolyaoFara
     public class FoodComposition
     {
         [JsonProperty("food_id")]
-        public int id { get; set; }
+        public long id { get; set; }
         [JsonProperty("food_name")]
         public string food_name { get; set; }
     }

@@ -11,6 +11,34 @@ namespace TrolyaoFara
         Database databaseObject = new Database();
         LibFunction lib = new LibFunction();
 
+        public void SQLforSettingsMenu(int breakfast, int lunch, int dinner, int mode, int level, int protein, int lipid, int carb, int p_breakfast, int p_lunch, int p_dinner)
+        {
+            if (lib.CheckExists("settings", "id", 1, ""))
+            {
+                string strUdpate = string.Format("UPDATE settings set breakfast='{0}', lunch='{1}', dinner='{2}', mode='{3}', level='{4}', protein='{5}', lipid='{6}', carb='{7}', p_breakfast='{8}', p_lunch='{9}', p_dinner='{10}' where id=1", breakfast, lunch, dinner, mode, level, protein, lipid, carb, p_breakfast, p_lunch, p_dinner);
+                databaseObject.RunSQL(strUdpate);
+            }
+            else
+            {
+                string strInsert = string.Format("INSERT INTO settings(breakfast, lunch, dinner, mode, level, protein, lipid, carb, p_breakfast, p_lunch, p_dinner) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}')", breakfast, lunch, dinner, mode, level, protein, lipid, carb, p_breakfast, p_lunch, p_dinner);
+                databaseObject.RunSQL(strInsert);
+            }
+        }
+
+        public void SQLforMemberFamily(string strId, bool hide)
+        {
+            if (lib.CheckExists("family_member", "id_member", -1, strId))
+            {
+                string strUdpate = string.Format("UPDATE family_member set hide='{0}' where id_member='{1}'", hide, strId);
+                databaseObject.RunSQL(strUdpate);
+            }
+            else
+            {
+                string strInsert = string.Format("INSERT INTO family_member(id_member) VALUES('{0}')", strId);
+                databaseObject.RunSQL(strInsert);
+            }
+        }
+
         public void SQLforMenuTable(int numBreakfast, int numLunch, int numDinner)
         {
             if (lib.CheckExists("menu", "id", 1, ""))
@@ -72,7 +100,7 @@ namespace TrolyaoFara
 
         public void SQLforInfoTable(string lname, string fname, int gender, string birthday, string district, string city, string country, int height, int weight, int neck, int waist, int hip, int intensity)
         {
-            int iduser = lib.GetID();
+            long iduser = lib.GetID();
             if (lib.CheckExists("info", "iduser", iduser, ""))
             {
                 string strUdpate = string.Format("UPDATE info set lname='{0}', fname='{1}', gender='{2}', birthday='{3}', district='{4}', city='{5}', country='{6}', height='{7}', weight='{8}', neck='{9}', waist='{10}', hip='{11}' where iduser='{12}'", lname, fname, gender, birthday, district, city, country, height, weight, neck, waist, hip, iduser);
@@ -91,19 +119,23 @@ namespace TrolyaoFara
             //Table Menu
             string sql = "CREATE TABLE IF NOT EXISTS menu([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, recommend STRING, date STRING, breakfast INTEGER, lunch INTEGER, dinner INTEGER, calo INTEGER, protein INTEGER, lipid INTEGER, carb INTEGER, main BOOL)";
             databaseObject.RunSQL(sql);
-            sql = "CREATE TABLE IF NOT EXISTS account ([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, username varchar NULL UNIQUE, email varchar NULL UNIQUE, password varchar NOT NULL, iduser integer, login bool NOT NULL)";
+            sql = "CREATE TABLE IF NOT EXISTS account ([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, username varchar NULL UNIQUE, email varchar NULL UNIQUE, password varchar NOT NULL, iduser INTEGER, login bool)";
             databaseObject.RunSQL(sql);
             sql = "CREATE TABLE IF NOT EXISTS info ([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, iduser INTEGER, lname varchar, fname varchar, gender INTEGER, birthday varchar, district varchar, city varchar, country varchar, height INTEGER, weight INTEGER, neck INTEGER, waist INTEGER, hip INTEGER, intensity INTEGER)";
             databaseObject.RunSQL(sql);
-            sql = "CREATE TABLE IF NOT EXISTS allergic([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, composition_id integer NOT NULL UNIQUE, name_composition varchar, stt bool)";
+            sql = "CREATE TABLE IF NOT EXISTS allergic([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, composition_id INTEGER, name_composition varchar, stt bool)";
             databaseObject.RunSQL(sql);
-            sql = "CREATE TABLE IF NOT EXISTS favorite([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, food_id integer NOT NULL UNIQUE, name_food varchar, stt bool)";
+            sql = "CREATE TABLE IF NOT EXISTS favorite([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, food_id INTEGER, name_food varchar, stt bool)";
             databaseObject.RunSQL(sql);
-            sql = "CREATE TABLE IF NOT EXISTS ratings([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, food_id integer NOT NULL UNIQUE, rate integer NOT NULL, stt bool)";
+            sql = "CREATE TABLE IF NOT EXISTS ratings([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, food_id INTEGER, rate integer NOT NULL, stt bool)";
             databaseObject.RunSQL(sql);
-            sql = "CREATE TABLE IF NOT EXISTS food_db([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, id_food INTEGER NOT NULL, id_purpose INTEGER NOT NULL, id_type INTEGER NOT NULL, id_method INTEGER NOT NULL, calo INTEGER NOT NULL, name varchar NOT NULL, timer INTEGER NOT NULL)";
+            sql = "CREATE TABLE IF NOT EXISTS food_db([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, id_food INTEGER, id_purpose INTEGER, id_type INTEGER, id_method INTEGER, calo INTEGER, name varchar, timer INTEGER)";
             databaseObject.RunSQL(sql);
-            sql = "CREATE TABLE IF NOT EXISTS calforfood([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, id_food INTEGER NOT NULL, id_composition INTEGER NOT NULL, amout FLOAT NOT NULL, unit INTEGER NOT NULL, main BOOL NOT NULL)";
+            sql = "CREATE TABLE IF NOT EXISTS calforfood([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, id_food INTEGER, id_composition INTEGER, amout FLOAT, unit INTEGER, main BOOL)";
+            databaseObject.RunSQL(sql);
+            sql = "CREATE TABLE IF NOT EXISTS family_member([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, id_member STRING NOT NULL, hide BOOL)";
+            databaseObject.RunSQL(sql);
+            sql = "CREATE TABLE IF NOT EXISTS settings([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, breakfast INTEGER, lunch INTEGER, dinner INTEGER, mode INTEGER, level INTEGER, protein INTEGER, lipid INTEGER, carb INTEGER, p_breakfast INTEGER, p_lunch INTEGER, p_dinner INTEGER)";
             databaseObject.RunSQL(sql);
         }
     }

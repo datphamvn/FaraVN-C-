@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
 using System.Net;
-using System.Reflection;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -31,25 +25,32 @@ namespace TrolyaoFara
             var version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             pnlUpdate.Hide();
             lblVersion.Text = "Version " + version;
+            checkNewVersion(version.ToString());
+        }
 
-            wc = new WebClient();
-            string webData = wc.DownloadString(sSever.linksever + "version");
-            string[] data = webData.Split(';');
-            if (data[0] != version.ToString())
-            {
-                alert.Show("Hiện có phiên bản mới!", alert.AlertType.info);
-                pnlUpdate.Show();
-                linkdown = data[1];
-            }
+        private void checkNewVersion(string version)
+        {
+            Action checkVersion = () => {
+                wc = new WebClient();
+                string webData = wc.DownloadString(sSever.linksever + "version");
+                string[] data = webData.Split(';');
+                if (data[0] != version)
+                {
+                    alert.Show("Hiện có phiên bản mới!", alert.AlertType.info);
+                    pnlUpdate.Show();
+                    linkdown = data[1];
+                }
 
-            
-            wc.DownloadProgressChanged += Client_DownloadProgressChanged;
-            wc.DownloadFileCompleted += Clinet_DownloadFileCompleted;
+                wc.DownloadProgressChanged += Client_DownloadProgressChanged;
+                wc.DownloadFileCompleted += Clinet_DownloadFileCompleted;
+            };
+            Task task = new Task(checkVersion);
+            task.Start();  
         }
 
         private void Clinet_DownloadFileCompleted(object sender, AsyncCompletedEventArgs e)
         {
-            RunFile(pathsave);
+            runFile(pathsave);
         }
 
         private void Client_DownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
@@ -65,7 +66,7 @@ namespace TrolyaoFara
             ));
         }
 
-        private void RunFile(string pathsave)
+        private void runFile(string pathsave)
         {
             Process process = Process.Start(pathsave);
             int id = process.Id;
@@ -80,14 +81,14 @@ namespace TrolyaoFara
                 Thread thread = new Thread(() =>
                 {
                     wc.DownloadFileAsync(
-                        new System.Uri(linkdown), pathsave
+                        new Uri(linkdown), pathsave
                     );
 
                 });
                 thread.Start();
             }
             else
-                RunFile(pathsave);
+                runFile(pathsave);
         }
     }
 }

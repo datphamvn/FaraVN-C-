@@ -8,20 +8,20 @@ namespace TrolyaoFara
 {
     class CalculateMacro
     {
-        public void macroCalo(double BMR, double TDEE, int type, int level, ref int protein, ref int lipid, ref int carb, ref double calo)
+        public void macroCalo(double BMR, double TDEE, int mode, int level, ref int protein, ref int lipid, ref int carb, ref double calo)
         {
             int pProtein = protein, pLipid = lipid, pCarb = carb;
             calo = (BMR + TDEE) / 2;
-            calo = caloForTarget(type, level, calo);
-
+            calo = caloForTarget(mode, level, calo);
+            
             protein = Convert.ToInt32(calo * pProtein / 100 / 4);
             lipid = Convert.ToInt32(calo * pLipid / 100 / 9);
             carb = Convert.ToInt32((calo - (protein * 4 + lipid * 9)) / 4);
         }
 
-        private double caloForTarget(int type, int level, double calo)
+        private double caloForTarget(int mode, int level, double calo)
         {
-            if (type == 0)
+            if (mode == 0)
                 return calo;
             else
             {
@@ -33,22 +33,22 @@ namespace TrolyaoFara
                 else //Thay đổi 1kg / tuần
                     change = calo * 56 / 100;
 
-                if (type == 1) // Giảm
+                if (mode == 1) // Giảm
                     return calo - change;
                 else // Tăng
                     return calo + change;
             }
         }
 
-        public double TDEE(double BMR, int type)
+        public double TDEE(double BMR, int intensity)
         {
-            if (type == 0) // Ít hoạt động
+            if (intensity == 0) // Ít hoạt động
                 return BMR * 1.2;
-            else if (type == 1) // Hoạt động nhẹ
+            else if (intensity == 1) // Hoạt động nhẹ
                 return BMR * 1.375;
-            else if (type == 2) // Hoạt động vừa phải
+            else if (intensity == 2) // Hoạt động vừa phải
                 return BMR * 1.55;
-            else if (type == 3) // Hoạt động nhiều
+            else if (intensity == 3) // Hoạt động nhiều
                 return BMR * 1.725;
             else // Hoạt động nặng
                 return BMR * 1.9;

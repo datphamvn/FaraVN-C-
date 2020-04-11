@@ -17,68 +17,57 @@ namespace TrolyaoFara
         SettingSever sSever = new SettingSever();
         LibFunction lib = new LibFunction();
 
-        public frmComposition(int idFood, string nameFood, double factor)
+        public frmComposition(int[] idMenu, double[] calMenuArr)
         {
             InitializeComponent();
 
-            this.Text = "Nguyên liệu món: " + nameFood;
-            List<string> lstUnit = new List<string>();
-            getUnit(lstUnit);
-
-            if (lib.CheckForInternetConnection())
+            int idx = 0;
+            foreach (var item in idMenu)
             {
-                using (WebClient wc = new WebClient())
+                frmGuideForFood frm = new frmGuideForFood(item, "", calMenuArr[idx]);
+                frm.getDataUsingAsync(item, calMenuArr[idx], panelLoad, gunaDataGridView2);
+                idx++;
+            }
+
+        }
+
+        public static void Show(int[] idMenu, double[] calMenuArr)
+        {
+            new frmComposition(idMenu, calMenuArr).Show();
+        }
+       
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+            // creating new WorkBook within Excel application  
+            Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
+            // creating new Excelsheet in workbook  
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+            // see the excel sheet behind the program  
+            app.Visible = true;
+            // get the reference of first sheet. By default its name is Sheet1.  
+            // store its reference to worksheet  
+            worksheet = workbook.Sheets["Sheet1"];
+            worksheet = workbook.ActiveSheet;
+            // changing the name of active sheet  
+            //worksheet.Name = "Exported from gridview";
+            // storing header part in Excel  
+            for (int i = 1; i < gunaDataGridView2.Columns.Count + 1; i++)
+            {
+                worksheet.Cells[1, i] = gunaDataGridView2.Columns[i - 1].HeaderText;
+            }
+            // storing Each row and column value to excel sheet  
+            for (int i = 0; i < gunaDataGridView2.Rows.Count - 1; i++)
+            {
+                for (int j = 0; j < gunaDataGridView2.Columns.Count; j++)
                 {
-                    var json = wc.DownloadString(sSever.linksever + "ai/api/cal/?id=&foodname=" + idFood);
-                    List<CalFood> data = JsonConvert.DeserializeObject<List<CalFood>>(json);
-                    foreach (var item in data)
-                    {
-                        gunaDataGridView2.Rows.Add(getNameCompostion(item.id_Composition), Math.Round(item.Amout * factor, 1), lstUnit[Convert.ToInt32(item.Unit)-1]);
-                    }
+                    worksheet.Cells[i + 2, j + 1] = gunaDataGridView2.Rows[i].Cells[j].Value.ToString();
                 }
             }
-            else
-                alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
-
+            // save the application  
+            workbook.SaveAs("output.xls", Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            // Exit from the application  
+            app.Quit();
         }
-
-        public static void Show(int idFood, string nameFood, double factor)
-        {
-            new frmComposition(idFood, nameFood, factor).Show();
-        }
-
-        private void frmComposition_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private string getNameCompostion(long idComposition)
-        {
-            using (WebClient wc = new WebClient())
-            {
-                var json = wc.DownloadString(sSever.linksever + "ai/api/composition/?food_id=" + idComposition);
-                List<Composition> data = JsonConvert.DeserializeObject<List<Composition>>(json);
-                byte[] bytes = Encoding.Default.GetBytes(data[0].FoodName.ToString());
-                string nameCp = Encoding.UTF8.GetString(bytes);
-                return nameCp;
-            }
-        }
-
-        public void getUnit(List<string> lstUnit)
-        {
-            using (WebClient wc = new WebClient())
-            {
-                var json = wc.DownloadString(sSever.linksever + "ai/api/unit");
-                List<Unit> data = JsonConvert.DeserializeObject<List<Unit>>(json);
-
-                foreach(var item in data)
-                {
-                    byte[] bytes = Encoding.Default.GetBytes(item.NameUnit.ToString());
-                    string nUnit = Encoding.UTF8.GetString(bytes);
-                    lstUnit.Add(nUnit);
-                }
-            }
-        }
-        
     }
 }

@@ -68,11 +68,11 @@
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.lblWater = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblTab = new System.Windows.Forms.Label();
+            this.btnOpenIndexBody = new System.Windows.Forms.Button();
             this.gunaCirclePictureBox1 = new Guna.UI.WinForms.GunaCirclePictureBox();
             this.lblHello = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.btnOpenIndexBody = new System.Windows.Forms.Button();
-            this.lblTab = new System.Windows.Forms.Label();
             this.bunifuGradientPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.bunifuGradientPanel4.SuspendLayout();
@@ -525,7 +525,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(141, 8);
+            this.label1.Location = new System.Drawing.Point(182, 11);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 20);
             this.label1.TabIndex = 1;
@@ -607,6 +607,31 @@
             this.panel1.Size = new System.Drawing.Size(157, 253);
             this.panel1.TabIndex = 11;
             // 
+            // lblTab
+            // 
+            this.lblTab.AutoSize = true;
+            this.lblTab.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
+            this.lblTab.Location = new System.Drawing.Point(82, 104);
+            this.lblTab.Name = "lblTab";
+            this.lblTab.Size = new System.Drawing.Size(49, 20);
+            this.lblTab.TabIndex = 55;
+            this.lblTab.Text = "lblTab";
+            this.lblTab.Visible = false;
+            // 
+            // btnOpenIndexBody
+            // 
+            this.btnOpenIndexBody.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnOpenIndexBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenIndexBody.ForeColor = System.Drawing.SystemColors.ActiveCaption;
+            this.btnOpenIndexBody.Location = new System.Drawing.Point(20, 195);
+            this.btnOpenIndexBody.Name = "btnOpenIndexBody";
+            this.btnOpenIndexBody.Size = new System.Drawing.Size(111, 42);
+            this.btnOpenIndexBody.TabIndex = 16;
+            this.btnOpenIndexBody.Text = "Cập nhật \r\nchỉ số cơ thể";
+            this.btnOpenIndexBody.UseVisualStyleBackColor = true;
+            this.btnOpenIndexBody.Click += new System.EventHandler(this.btnOpenIndexBody_Click);
+            // 
             // gunaCirclePictureBox1
             // 
             this.gunaCirclePictureBox1.BaseColor = System.Drawing.Color.White;
@@ -645,31 +670,6 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(791, 446);
             this.tableLayoutPanel3.TabIndex = 15;
-            // 
-            // btnOpenIndexBody
-            // 
-            this.btnOpenIndexBody.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenIndexBody.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenIndexBody.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.btnOpenIndexBody.Location = new System.Drawing.Point(20, 195);
-            this.btnOpenIndexBody.Name = "btnOpenIndexBody";
-            this.btnOpenIndexBody.Size = new System.Drawing.Size(111, 42);
-            this.btnOpenIndexBody.TabIndex = 16;
-            this.btnOpenIndexBody.Text = "Cập nhật \r\nchỉ số cơ thể";
-            this.btnOpenIndexBody.UseVisualStyleBackColor = true;
-            this.btnOpenIndexBody.Click += new System.EventHandler(this.btnOpenIndexBody_Click);
-            // 
-            // lblTab
-            // 
-            this.lblTab.AutoSize = true;
-            this.lblTab.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTab.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.lblTab.Location = new System.Drawing.Point(82, 104);
-            this.lblTab.Name = "lblTab";
-            this.lblTab.Size = new System.Drawing.Size(49, 20);
-            this.lblTab.TabIndex = 55;
-            this.lblTab.Text = "lblTab";
-            this.lblTab.Visible = false;
             // 
             // frmHome
             // 

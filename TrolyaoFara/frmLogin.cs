@@ -191,6 +191,78 @@ namespace TrolyaoFara
             }
         }
 
+        public void getInfoUserFormServer(long iduser)
+        {
+            // Biến lưu thông tin
+            string lname = "", fname = "";
+            string birthday = DateTime.Now.ToString("dd/MM/yyyy"), district = "", city = "", country = "";
+            int gender = 0;
+            int height = 0, weight = 0, neck = 0, waist = 0, hip = 0, intensity = 0;
+
+            // Load Họ và tên User
+            try
+            {
+                var jsondetailuser = new WebClient().DownloadString(sSever.linksever + "dashboard/api/user/" + iduser.ToString());
+                var detailuser = JsonConvert.DeserializeObject<DetailUser>(jsondetailuser);
+
+                byte[] bytes = Encoding.Default.GetBytes(detailuser.LastName.ToString());
+                lname = Encoding.UTF8.GetString(bytes);
+                byte[] bytes1 = Encoding.Default.GetBytes(detailuser.FirstName.ToString());
+                fname = Encoding.UTF8.GetString(bytes1);
+            }
+            catch (WebException)
+            {
+                alert.Show("Lỗi Server!", alert.AlertType.error);
+                //alert.Show("ERROR: LDATA1 - Load họ tên user không thành công !", alert.AlertType.error);
+            }
+
+            //Load thong tin ca nhan
+            try
+            {
+                var jsondata = new WebClient().DownloadString(sSever.linksever + "dashboard/api/profile/" + iduser.ToString());
+                var info = JsonConvert.DeserializeObject<LoadInfo>(jsondata);
+                //Download Avata User
+                /*
+                    using (WebClient img = new WebClient())
+                    {
+                        img.DownloadFile(new Uri(info.image.ToString()), lData.loginimg);
+                    }
+                */
+
+                birthday = info.birthday;
+                district = info.district;
+                city = info.city;
+                country = info.country;
+                gender = info.gender;
+            }
+            catch (WebException)
+            {
+                alert.Show("Lỗi Server!", alert.AlertType.error);
+                //alert.Show("ERROR: LDATA3 - Cập nhật thông tin User không thành công !", alert.AlertType.error);
+            }
+
+            // Load thong tin suc khoe
+            try
+            {
+                var jsonhealthidx = new WebClient().DownloadString(sSever.linksever + "dashboard/api/healthidx/" + iduser.ToString());
+                var healthidx = JsonConvert.DeserializeObject<HealthIdx>(jsonhealthidx);
+
+                height = healthidx.height;
+                weight = healthidx.weight;
+                neck = healthidx.neck;
+                waist = healthidx.waist;
+                hip = healthidx.hip;
+                intensity = healthidx.intensity;
+            }
+            catch (WebException)
+            {
+                alert.Show("Lỗi Server!", alert.AlertType.error);
+                //alert.Show("ERROR: LDATA4 - Cập nhật thông số sức khỏe User không thành công !", alert.AlertType.error);
+            }
+
+            sql.SQLforInfoTable(lname, fname, gender, birthday, district, city, country, height, weight, neck, waist, hip, intensity);
+        }
+
         private void LoginAsync(string stt, string username, string email, string password)
         {
             var data = JsonConvert.DeserializeObject<LoadUser>(stt);
@@ -205,75 +277,7 @@ namespace TrolyaoFara
                 string strInsert = string.Format("INSERT INTO account(username, email, password, iduser, login) VALUES('{0}','{1}','{2}','{3}','{4}')", username, email, Encrypt(password), data.id, "True");
                 databaseObject.RunSQL(strInsert);
 
-                // Biến lưu thông tin
-                int iduser = data.id;
-                string lname = "", fname = "";
-                string birthday = DateTime.Now.ToString("dd/MM/yyyy"), district = "", city = "", country = "";
-                int gender = 0;
-                int height = 0, weight = 0, neck = 0, waist = 0, hip = 0, intensity = 0;
-
-                // Load Họ và tên User
-                try
-                {
-                    var jsondetailuser = new WebClient().DownloadString(sSever.linksever + "dashboard/api/user/" + iduser.ToString());
-                    var detailuser = JsonConvert.DeserializeObject<DetailUser>(jsondetailuser);
-
-                    byte[] bytes = Encoding.Default.GetBytes(detailuser.last_name.ToString());
-                    lname = Encoding.UTF8.GetString(bytes);
-                    byte[] bytes1 = Encoding.Default.GetBytes(detailuser.first_name.ToString());
-                    fname = Encoding.UTF8.GetString(bytes1);
-                }
-                catch (WebException)
-                {
-                    alert.Show("Lỗi Server!", alert.AlertType.error);
-                    //alert.Show("ERROR: LDATA1 - Load họ tên user không thành công !", alert.AlertType.error);
-                }
-
-                //Load thong tin ca nhan
-                try
-                {
-                    var jsondata = new WebClient().DownloadString(sSever.linksever + "dashboard/api/profile/" + iduser.ToString());
-                    var info = JsonConvert.DeserializeObject<LoadInfo>(jsondata);
-                    //Download Avata User
-                    /*
-                        using (WebClient img = new WebClient())
-                        {
-                            img.DownloadFile(new Uri(info.image.ToString()), lData.loginimg);
-                        }
-                    */
-                    
-                    birthday = info.birthday;
-                    district = info.district;
-                    city = info.city;
-                    country = info.country;
-                    gender = info.gender;
-                }
-                catch (WebException)
-                {
-                    alert.Show("Lỗi Server!", alert.AlertType.error);
-                    //alert.Show("ERROR: LDATA3 - Cập nhật thông tin User không thành công !", alert.AlertType.error);
-                }
-
-                // Load thong tin suc khoe
-                try
-                {
-                    var jsonhealthidx = new WebClient().DownloadString(sSever.linksever + "dashboard/api/healthidx/" + iduser.ToString());
-                    var healthidx = JsonConvert.DeserializeObject<HealthIdx>(jsonhealthidx);
-
-                    height = healthidx.height;
-                    weight = healthidx.weight;
-                    neck = healthidx.neck;
-                    waist = healthidx.waist;
-                    hip = healthidx.hip;
-                    intensity = healthidx.intensity;
-                }
-                catch (WebException)
-                {
-                    alert.Show("Lỗi Server!", alert.AlertType.error);
-                    //alert.Show("ERROR: LDATA4 - Cập nhật thông số sức khỏe User không thành công !", alert.AlertType.error);
-                }
-
-                sql.SQLforInfoTable(lname, fname, gender, birthday, district, city, country, height, weight, neck, waist, hip, intensity);
+                getInfoUserFormServer(data.id);
             }
         }
 

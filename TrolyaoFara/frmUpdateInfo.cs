@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Net.Mail;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 
@@ -24,19 +22,25 @@ namespace TrolyaoFara
         DataConfig datacf = new DataConfig();
         LoadData lData = new LoadData();
         private static readonly HttpClient client = new HttpClient();
+
         public delegate void GETDATA(string data);
         public GETDATA mydata;
 
         int maxTPdiung = 5;
         int maxRatings = 5;
-        int id = 0;
+        long iduser = 0;
         int nTab = 2;
         bool[] load = new bool[2];
 
-        string txtfood = "Nhập tên món ăn";
-        string txtcomposition = "Nhập tên thành phần bạn bị dị ứng";
-        string txtfname = "Tên";
-        string txtlname = "Họ";
+        string textFood = "Nhập tên món ăn";
+        string textComposition = "Nhập tên thành phần bạn bị dị ứng";
+        string textFname = "Tên";
+        string textLname = "Họ";
+
+        List<string> listFood = new List<string>();
+        List<long> listIdFood = new List<long>();
+        List<string> listComposition = new List<string>();
+        List<long> listIdComposition = new List<long>();
 
         public frmUpdateInfo()
         {
@@ -58,7 +62,7 @@ namespace TrolyaoFara
         private void frmAccount_Load(object sender, EventArgs e)
         {
             metroTabControl1.SelectedTab = tabInfo;
-            id = lib.GetID();
+            iduser = lib.GetID();
             for(int i=0; i<nTab; i++)
             {
                 load[i] = false;
@@ -71,6 +75,16 @@ namespace TrolyaoFara
             lstIdFoodName.Visible = false;
             lstIdDiungAdd.Visible = false;
             lstIdFoodNameAdd.Visible = false;
+
+            picPreviewFood.Hide();
+            txtFoodName.Enabled = false;
+            txtDiung.Enabled = false;
+            lstFoodName.Hide();
+            lstDiung.Hide();
+
+            //Load data BĐB
+            LoadFoodFavourite();
+            LoadDatatxtDiung();
         }
 
         private void metroTabControl1_SelectedIndexChanged(object sender, EventArgs e)
@@ -90,7 +104,7 @@ namespace TrolyaoFara
         #region TabInfo
         private void LoadSomeInfo()
         {
-            string sql = string.Format("SELECT * FROM info WHERE iduser='{0}'", id);
+            string sql = string.Format("SELECT * FROM info WHERE iduser='{0}'", iduser);
             databaseObject.OpenConnection();
             SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
             SQLiteDataReader rd = command.ExecuteReader();
@@ -99,11 +113,11 @@ namespace TrolyaoFara
                 if (!string.IsNullOrEmpty(rd["lname"].ToString()))
                 {
                     txtLname.Text = rd["lname"].ToString();
-                    txtLname.ForeColor = Color.FromArgb(165, 21, 80);
+                    txtLname.ForeColor = Color.Black;
                 }
                 else
                 {
-                    txtLname.Text = txtlname;
+                    txtLname.Text = textLname;
                     txtLname.ForeColor = Color.Gray;
                 }
 
@@ -111,11 +125,11 @@ namespace TrolyaoFara
                 if (!string.IsNullOrEmpty(rd["fname"].ToString()))
                 {
                     txtFname.Text = rd["fname"].ToString();
-                    txtFname.ForeColor = Color.FromArgb(165, 21, 80);
+                    txtFname.ForeColor = Color.Black;
                 }
                 else
                 {
-                    txtFname.Text = txtfname;
+                    txtFname.Text = textFname;
                     txtFname.ForeColor = Color.Gray;
                 }
 
@@ -137,10 +151,10 @@ namespace TrolyaoFara
 
         private void txtLname_Enter(object sender, EventArgs e)
         {
-            if (txtLname.Text == txtlname)
+            if (txtLname.Text == textLname)
             {
                 txtLname.ResetText();
-                txtLname.ForeColor = Color.FromArgb(165, 21, 80);
+                txtLname.ForeColor = Color.Black;
             }
         }
 
@@ -148,17 +162,17 @@ namespace TrolyaoFara
         {
             if (txtLname.Text == "")
             {
-                txtLname.Text = txtlname;
+                txtLname.Text = textLname;
                 txtLname.ForeColor = Color.Gray;
             }
         }
 
         private void txtFname_Enter(object sender, EventArgs e)
         {
-            if (txtFname.Text == txtfname)
+            if (txtFname.Text == textFname)
             {
                 txtFname.ResetText();
-                txtFname.ForeColor = Color.FromArgb(165, 21, 80);
+                txtFname.ForeColor = Color.Black;
             }
         }
 
@@ -166,7 +180,7 @@ namespace TrolyaoFara
         {
             if (txtFname.Text == "")
             {
-                txtFname.Text = txtfname;
+                txtFname.Text = textFname;
                 txtFname.ForeColor = Color.Gray;
             }
         }
@@ -207,7 +221,7 @@ namespace TrolyaoFara
             txtFname.Text = standardString(txtFname.Text);
             txtLname.Text = standardString(txtLname.Text);
 
-            if (txtFname.Text == txtfname || txtLname.Text == txtlname || string.IsNullOrEmpty(txtLname.Text) || string.IsNullOrEmpty(txtFname.Text))
+            if (txtFname.Text == textFname || txtLname.Text == textLname || string.IsNullOrEmpty(txtLname.Text) || string.IsNullOrEmpty(txtFname.Text))
             {
                 alert.Show("Vui lòng điền đầy đủ họ tên !", alert.AlertType.error);
             }
@@ -224,7 +238,7 @@ namespace TrolyaoFara
                 alert.Show("Vui lòng chọn vị trí bạn sinh sống!", alert.AlertType.error);
             else
             {
-                string strUpdate = string.Format("UPDATE info set lname='{0}', fname='{1}', gender='{2}', birthday='{3}', country='{4}', city='{5}', district='{6}' where iduser='{7}'", txtLname.Text, txtFname.Text, ConvertGender(), inputBirthday.Value.ToString(), txtCountry.Text, txtCity.Text, txtDistrict.Text, id);
+                string strUpdate = string.Format("UPDATE info set lname='{0}', fname='{1}', gender='{2}', birthday='{3}', country='{4}', city='{5}', district='{6}' where iduser='{7}'", txtLname.Text, txtFname.Text, ConvertGender(), inputBirthday.Value.ToString(), txtCountry.Text, txtCity.Text, txtDistrict.Text, iduser);
                 databaseObject.RunSQL(strUpdate);
                 //alert.Show("Cập nhật thông tin thành công !", alert.AlertType.success);
                 NextPage();
@@ -240,7 +254,7 @@ namespace TrolyaoFara
         #region LocationInfo
         private void LoadLocation()
         {
-            string sql = string.Format("SELECT * FROM info WHERE iduser='{0}'", id);
+            string sql = string.Format("SELECT * FROM info WHERE iduser='{0}'", iduser);
             databaseObject.OpenConnection();
             SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
             SQLiteDataReader rd = command.ExecuteReader();
@@ -301,10 +315,10 @@ namespace TrolyaoFara
         #region TabFood
         private void txtFoodName_Enter(object sender, EventArgs e)
         {
-            if (txtFoodName.Text == txtfood)
+            if (txtFoodName.Text == textFood)
             {
                 txtFoodName.ResetText();
-                txtFoodName.ForeColor = Color.FromArgb(165, 21, 80);
+                txtFoodName.ForeColor = Color.Black;
             }
         }
 
@@ -312,14 +326,14 @@ namespace TrolyaoFara
         {
             if (txtFoodName.Text == "")
             {
-                txtFoodName.Text = txtfood;
+                txtFoodName.Text = textFood;
                 txtFoodName.ForeColor = Color.Gray;
             }
         }
 
         private void GetFavoriteFormData()
         {
-            txtFoodName.Text = txtfood;
+            txtFoodName.Text = textFood;
             txtFoodName.ForeColor = Color.Gray;
             lblUpdateRequire.Hide();
             string sql = string.Format("SELECT * FROM favorite");
@@ -335,41 +349,57 @@ namespace TrolyaoFara
             databaseObject.CloseConnection();
         }
 
-        public void LoadFoodFavourite()
+        public async void LoadFoodFavourite()
         {
-            lstFoodName.Items.Clear();
-            lstIdFoodName.Items.Clear();
-            if (lib.CheckForInternetConnection())
-            {
-                try
+            Action load = () => {
+                if (lib.CheckForInternetConnection())
                 {
                     using (WebClient wc = new WebClient())
                     {
-                        var json = wc.DownloadString(sSever.linksever + "ai/api/food/?search=" + txtFoodName.Text.ToLower());
+                        var json = wc.DownloadString(sSever.linksever + "ai/api/food/?search=");
                         List<Food> data = JsonConvert.DeserializeObject<List<Food>>(json);
                         foreach (var item in data)
                         {
                             byte[] bytes = Encoding.Default.GetBytes(item.Title.ToString());
                             string temp = Encoding.UTF8.GetString(bytes);
-                            lstFoodName.Items.Add(temp);
-                            lstIdFoodName.Items.Add(item.Id);
+
+                            listFood.Add(temp);
+                            listIdFood.Add(item.Id);
                         }
                     }
                 }
-                catch (Exception)
-                {
-                    alert.Show("Lỗi Server !", alert.AlertType.error);
-                }
-            }
-            else
-                alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
+                else
+                    alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
+            };
+            Task task = new Task(load);
+            task.Start();  
+            await task;
+            
+            txtFoodName.Enabled = true;
+            loadFoodName.Hide();
         }
 
         private void txtFoodName_KeyUp(object sender, KeyEventArgs e)
         {
-            txtFoodName.ForeColor = Color.FromArgb(165, 21, 80);
-            if (!(string.IsNullOrEmpty(txtFoodName.Text.Trim()) || txtFoodName.Text == txtfood))
-                LoadFoodFavourite();
+            lstFoodName.Items.Clear();
+            lstIdFoodName.Items.Clear();
+            txtFoodName.ForeColor = Color.Black;
+            if (!(string.IsNullOrEmpty(txtFoodName.Text.Trim()) || txtFoodName.Text == textFood))
+            {
+                int idx = 0;
+                foreach (string str in listFood)
+                {
+                    if (str.ToUpper().Contains(txtFoodName.Text.ToUpper()))
+                    {
+                        lstFoodName.Items.Add(str);
+                        lstIdFoodName.Items.Add(listIdFood[idx]);
+                    }
+                    idx++;
+                }
+                lstFoodName.Show();
+            }
+            else
+                lstFoodName.Hide();
             if (lstFoodName.Items.Count == 0)
             {
                 lblUpdateRequire.Show();
@@ -386,12 +416,13 @@ namespace TrolyaoFara
         {
             if (lib.CheckForInternetConnection())
             {
-                try
+                //try
+                //{
+                using (WebClient wc = new WebClient())
                 {
-                    using (WebClient wc = new WebClient())
-                    {
-                        int index = lstFoodName.Items.IndexOf(lstFoodName.SelectedItem);
-                        var json = wc.DownloadString(sSever.linksever + "ai/api/food/?search=" + lstFoodName.Items[index].ToString());
+                    int index = lstFoodName.Items.IndexOf(lstFoodName.SelectedItem);
+                    var json = wc.DownloadString(sSever.linksever + "ai/api/food/" + lstIdFoodName.Items[index].ToString());
+                    json = "[" + json + "]";
                         List<Food> data = JsonConvert.DeserializeObject<List<Food>>(json);
                         foreach (var item in data)
                         {
@@ -399,11 +430,11 @@ namespace TrolyaoFara
                             picPreviewFood.LoadAsync(sSever.linkimg +  item.URLimg);
                         }
                     }
-                }
+               /* }
                 catch (Exception)
                 {
                     alert.Show("Lỗi Server !", alert.AlertType.error);
-                }
+                }*/
             }
             else
                 picPreviewFood.Hide();
@@ -519,7 +550,7 @@ namespace TrolyaoFara
             lstFoodName.Items.Clear();
             lstIdFoodName.Items.Clear(); 
             GetFavoriteFormData();
-            txtFoodName.Text = txtfood;
+            txtFoodName.Text = textFood;
             txtFoodName.ForeColor = Color.Gray;
         }
         #endregion
@@ -528,7 +559,7 @@ namespace TrolyaoFara
 
         public void GetDataAllergic()
         {
-            txtDiung.Text = txtcomposition;
+            txtDiung.Text = textComposition;
             txtDiung.ForeColor = Color.Gray;
             string sql = string.Format("SELECT * FROM allergic");
             databaseObject.OpenConnection();
@@ -545,10 +576,10 @@ namespace TrolyaoFara
 
         private void txtDiung_Enter(object sender, EventArgs e)
         {
-            if (txtDiung.Text == txtcomposition)
+            if (txtDiung.Text == textComposition)
             {
                 txtDiung.ResetText();
-                txtDiung.ForeColor = Color.FromArgb(165, 21, 80);
+                txtDiung.ForeColor = Color.Black;
             }
         }
 
@@ -556,39 +587,61 @@ namespace TrolyaoFara
         {
             if (txtDiung.Text == "")
             {
-                txtDiung.Text = txtcomposition;
+                txtDiung.Text = textComposition;
                 txtDiung.ForeColor = Color.Gray;
             }
         }
 
-        public void LoadDatatxtDiung()
+        public async void LoadDatatxtDiung()
         {
-            lstDiung.Items.Clear();
-            lstIdDiung.Items.Clear();
-            if (lib.CheckForInternetConnection())
-            {
-                using (WebClient wc = new WebClient())
+            Action load = () => {
+                if (lib.CheckForInternetConnection())
                 {
-                    var json = wc.DownloadString(sSever.linksever + "ai/api/composition/?search=" + txtDiung.Text.ToUpper());
-                    List<FoodComposition> data = JsonConvert.DeserializeObject<List<FoodComposition>>(json);
-                    foreach (var item in data)
+                    using (WebClient wc = new WebClient())
                     {
-                        byte[] bytes = Encoding.Default.GetBytes(item.food_name.ToString());
-                        string temp = Encoding.UTF8.GetString(bytes);
-                        lstDiung.Items.Add(temp);
-                        lstIdDiung.Items.Add(item.id.ToString());
+                        var json = wc.DownloadString(sSever.linksever + "ai/api/composition/?search=");
+                        List<FoodComposition> data = JsonConvert.DeserializeObject<List<FoodComposition>>(json);
+                        foreach (var item in data)
+                        {
+                            byte[] bytes = Encoding.Default.GetBytes(item.food_name.ToString());
+                            string temp = Encoding.UTF8.GetString(bytes);
+                            listComposition.Add(temp);
+                            listIdComposition.Add(item.id);
+                        }
                     }
                 }
-            }
-            else
-                alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
+                else
+                    alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
+            };
+            Task task = new Task(load);
+            task.Start();
+            await task;
+
+            txtDiung.Enabled = true;
+            loadDiung.Hide();
         }
 
         private void txtDiung_KeyUp(object sender, KeyEventArgs e)
         {
-            txtDiung.ForeColor = Color.FromArgb(165, 21, 80);
-            if (! (string.IsNullOrEmpty(txtDiung.Text.Trim()) || txtDiung.Text == txtcomposition))
-                LoadDatatxtDiung();
+            txtDiung.ForeColor = Color.Black;
+            lstDiung.Items.Clear();
+            lstIdDiung.Items.Clear();
+            if (!(string.IsNullOrEmpty(txtDiung.Text.Trim()) || txtDiung.Text == textComposition))
+            {
+                int idx = 0;
+                foreach (string str in listComposition)
+                {
+                    if (str.ToUpper().Contains(txtDiung.Text.ToUpper()))
+                    {
+                        lstDiung.Items.Add(str);
+                        lstIdDiung.Items.Add(listIdComposition[idx]);
+                    }
+                    idx++;
+                }
+                lstDiung.Show();
+            }
+            else
+                lstDiung.Hide();
         }
 
         private void btnAddComposition_Click(object sender, EventArgs e)
@@ -646,7 +699,7 @@ namespace TrolyaoFara
             databaseObject.RunSQL(strDelete);
 
             alert.Show("Cập nhật thông tin thành công !", alert.AlertType.success);
-            lblTab.Text = "2.2";
+            lblTab.Text = "2.2.1";
             mydata(lblTab.Text);
         }
 
@@ -662,7 +715,7 @@ namespace TrolyaoFara
             lstDiung.Items.Clear();
             lstIdDiung.Items.Clear();
             GetDataAllergic();
-            txtDiung.Text = txtcomposition;
+            txtDiung.Text = textComposition;
             txtDiung.ForeColor = Color.Gray;
         }
         #endregion

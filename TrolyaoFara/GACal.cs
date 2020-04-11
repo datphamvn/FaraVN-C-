@@ -14,9 +14,10 @@ namespace TrolyaoFara
         static string strmenu = "";
         static int GoalCalo = 0;
         static int breakfast = 0, lunch = 0, dinner = 0;
-        static int lengthDNA = 0, nInfo = 2;
+        static int lengthDNA = 0;
+        int nInfo = 2;
 
-        static int[] tile = { 15, 45, 40 };
+        static int[] tile = {30, 40, 30};
         //static double hesochia = 10.0;
 
         //Variable Data
@@ -28,6 +29,7 @@ namespace TrolyaoFara
         //GA Variable
         static double totalFitness = 0.0;
         static int hscanbang = 10;
+        static int epsilon = 10;
 
         static int populationSize = 50;
         static int generationSize = 200;
@@ -74,6 +76,9 @@ namespace TrolyaoFara
             {
                 getdata[0] = Convert.ToInt32(rd["id_food"]);
                 getdata[1] = Convert.ToInt32(rd["calo"]);
+                // getdata[1] = Convert.ToInt32(rd["protein"]);
+                // getdata[1] = Convert.ToInt32(rd["lipid"]);
+                // getdata[1] = Convert.ToInt32(rd["carb"]);
                 Database.Add(new int[nInfo]);
                 for (int lst = 0; lst < nInfo; lst++)
                     Database[Database.Count() - 1][lst] = getdata[lst];
@@ -148,7 +153,6 @@ namespace TrolyaoFara
                 for (int k = 0; k < lengthDNA; k++)
                 {
                     DNA[k] = RandomHS();
-                    //DNA[k] = rd.Next(1, hscanbang+1) * rd.NextDouble();
                 }
                 AddDNA(Generation, DNA);
             }
@@ -179,63 +183,40 @@ namespace TrolyaoFara
             }
         }
 
+        static int calConflict(double[] x, List<int[]> Database, int[] input, int goalCalo, int begin, int end) // goalProtein, goalLipid, goalCarb
+        {
+            double sumCalo = 0; // sumProtein, sumLipid, sumCarb;
+            for (int i = begin; i < end; i++)
+            {
+                int idx = input[i];
+                sumCalo += Database[idx][1] * x[i];
+                // sumProtein += Database[idx][  ] * x[i];
+                // sumLipid
+                // sumCarb
+            }
+            if (Math.Abs(sumCalo - GoalCalo) <= epsilon)
+                return 0;
+            else
+                return Convert.ToInt32(Math.Abs(sumCalo - GoalCalo));
+        }
+
         //Hàm mục tiêu
         static double FitnessCal(double[] x, List<int[]> Database, int[] input)
         {
             int Value_conflict = 0;
 
-
-            double sumCalo = 0;
-            // Hệ số có tổng Calo phù hợp
-            for (int i = 0; i < lengthDNA; i++)
-            {
-                int idx = input[i];
-                sumCalo += Database[idx][1] * x[i];
-            }
-            if (Math.Abs(sumCalo - GoalCalo) <= 10)
-                Value_conflict += 0;
-            else
-                Value_conflict += Convert.ToInt32(Math.Abs(sumCalo - GoalCalo));
-
+            // Hệ số có tổng Calo phù hợp (Protein, Lipid, Carb)
+            Value_conflict += calConflict(x,Database,input,GoalCalo, 0, lengthDNA);
 
             //He so can bang 3 bua
+            //Buasang
             int PartCalo = GoalCalo * tile[0] / 100;
-            sumCalo = 0;
-            for(int i=0; i<breakfast; i++)
-            {
-                int idx = input[i];
-                sumCalo += Database[idx][1] * x[i];
-            }
-            if (Math.Abs(sumCalo-PartCalo) <= 10)
-                Value_conflict += 0;
-            else
-                Value_conflict += Convert.ToInt32(Math.Abs(sumCalo - PartCalo));
+            Value_conflict += calConflict(x, Database, input, PartCalo, 0, breakfast);
 
             // Trưa
             PartCalo = GoalCalo * tile[1] / 100;
-            sumCalo = 0;
-            for (int i = breakfast; i < breakfast + lunch; i++)
-            {
-                int idx = input[i];
-                sumCalo += Database[idx][1] * x[i];
-            }
-            if (Math.Abs(sumCalo-PartCalo) <= 10)
-                Value_conflict += 0;
-            else
-                Value_conflict += Convert.ToInt32(Math.Abs(sumCalo - PartCalo));
-            /*
-            //Tối
-            PartCalo = GoalCalo * tile[2] / 100;
-            sumCalo = 0;
-            for (int i = breakfast; i < breakfast + lunch; i++)
-            {
-                sumCalo += Database[input[i]][1] * x[i];
-            }
-            if (Math.Abs(sumCalo - PartCalo) <= 10)
-                Value_conflict += 0;
-            else
-                Value_conflict += Convert.ToInt32(Math.Abs(sumCalo - PartCalo));
-           */
+            Value_conflict += calConflict(x, Database, input, PartCalo, breakfast, breakfast + lunch);
+
             return (1.0 / (Value_conflict + 1));
         }
 
@@ -247,7 +228,6 @@ namespace TrolyaoFara
 
         static void Crossover(double[] parent1, double[] parent2, double[] child1, double[] child2)
         {
-            //Random rd = new Random();
             int pos = rd.Next(0, lengthDNA);
 
             for (int i = 0; i < lengthDNA; i++)
@@ -267,13 +247,11 @@ namespace TrolyaoFara
 
         static void Mutate(double[] DNA, int lengthDNA)
         {
-            //Random rd = new Random();
             for (int pos = 0; pos < lengthDNA; pos++)
             {
                 if (rd.NextDouble() < mutationRate)
                 {
                     DNA[pos] = RandomHS();
-                    //DNA[pos] = rd.Next(1, hscanbang + 1) * rd.NextDouble();
                 }
             }
         }
@@ -298,7 +276,6 @@ namespace TrolyaoFara
                 parent1 = Generation[pidx1];
                 parent2 = Generation[pidx2];
 
-                //Random rd = new Random();
                 if (rd.NextDouble() < crossoverRate)
                 {
                     Crossover(parent1, parent2, child1, child2);
@@ -322,18 +299,15 @@ namespace TrolyaoFara
                 AddDNA(Generation, dna);
         }
 
-        static int RouletteSelection(List<double> FitnessTable)// chọn lọc sử dụng vòng quay bánh xe.
+        static int RouletteSelection(List<double> FitnessTable)
         {
-            //Random rd = new Random();
-            double randomFitness = rd.NextDouble() * totalFitness; //m_random.NextDouble * m_totalFitness;
-            //Console.WriteLine("Random: " + randomFitness);
+            double randomFitness = rd.NextDouble() * totalFitness;
             int idx = -1;
             int mid;
             int first = 0;
             int last = populationSize - 1;
             mid = (last - first) / 2;
 
-            //Tìm kiếm nhị phân
             while (idx == -1 && first <= last)
             {
                 if (randomFitness < FitnessTable[mid])
@@ -345,7 +319,6 @@ namespace TrolyaoFara
                     first = mid;
                 }
                 mid = (first + last) / 2;
-                //  lies between i and i+1
                 if ((last - first) == 1)
                     idx = last;
             }
