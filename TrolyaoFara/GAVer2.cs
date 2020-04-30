@@ -10,6 +10,7 @@ namespace TrolyaoFara
     {
         Database databaseObject = new Database();
         LibFunction lib = new LibFunction();
+        SQLquery runSQL = new SQLquery();
 
         //Variable Data
         static Random rd = new Random();
@@ -29,7 +30,7 @@ namespace TrolyaoFara
         static double crossoverRate = 0.8;
 
         const int nArrMenu = 21;
-        int breakfast = 0, lunch = 0, dinner = 0, lengthDNA = 0;
+        int breakfast = 0, lunch = 0, dinner = 0, mod = 0, lengthDNA = 0;
 
         public void GetDataFromSetting()
         {
@@ -42,6 +43,7 @@ namespace TrolyaoFara
                 breakfast = Convert.ToInt32(rd["breakfast"]);
                 lunch = Convert.ToInt32(rd["lunch"]);
                 dinner = Convert.ToInt32(rd["dinner"]);
+                mod = Convert.ToInt32(rd["mod"]);
             }
             command.Dispose();
             databaseObject.CloseConnection();
@@ -97,7 +99,8 @@ namespace TrolyaoFara
             {
                 recommend += i + " ";
             }
-            string strUdpate = string.Format("UPDATE menu set recommend='{0}', date='{1}', breakfast='{2}', lunch='{3}', dinner='{4}'  where id=1", recommend, DateTime.Today.ToString("dd/MM/yyyy"), breakfast, lunch, dinner);
+
+            string strUdpate = string.Format("UPDATE menu set recommend='{0}' where date='{1}'", recommend, DateTime.Today.ToString("dd/MM/yyyy"));
             databaseObject.RunSQL(strUdpate);
         }
 

@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SQLite;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -17,7 +18,7 @@ namespace TrolyaoFara
     {
         LibFunction lib = new LibFunction();
         Database databaseObject = new Database();
-        SQLquery sql = new SQLquery();
+        SQLquery runSQL = new SQLquery();
         SettingSever sSever = new SettingSever();
         CalculateMacro cMacro = new CalculateMacro();
         GAVer2 GA = new GAVer2();
@@ -27,8 +28,8 @@ namespace TrolyaoFara
         public GETDATA mydata;
 
         long iduser;
-        int mode, level;
-        int old, weight, height, neck, waist, hip, gender, intensity;// Nam 1; Nữ 2
+        int mode, level, mod;
+        int old, weight, height, neck, waist, hip, gender, intensity;// Male 1; Female 2
         double calo;
 
         //Tab family variable
@@ -37,6 +38,7 @@ namespace TrolyaoFara
         List<string> listUsername = new List<string>();
         List<long> listIDUsername = new List<long>();
         List<string> listUserLocal = new List<string>();
+        List<int> listIDUserLocal = new List<int>();
 
         public frmSettingsMenu()
         {
@@ -45,8 +47,7 @@ namespace TrolyaoFara
 
         private void frmSettingsMenu_Load(object sender, EventArgs e)
         {
-            sql.createTableForDatabase(); // Dev Line
-            sql.SQLforMenuTable(Convert.ToInt32(numBreakfast.Value), Convert.ToInt32(numLunch.Value), Convert.ToInt32(numDinner.Value));
+            runSQL.createTableForDatabase(); // Dev Line
             iduser = lib.GetID();
 
             //Setting TabControl
@@ -65,10 +66,16 @@ namespace TrolyaoFara
             //Tab Family
             txtUsername.Enabled = false;
             lstUsername.Hide();
+            //Settings Datagridview tab Family
+            datatableFamily.ReadOnly = false;
+            datatableFamily.Columns[0].ReadOnly = true;
+            datatableFamily.Columns[1].ReadOnly = true;
+            datatableFamily.Columns[2].ReadOnly = true;
 
             datatableFamily.Rows.Add(iduser, lib.GetUsername());
-            loadUserOnline();
-            loadUserLocal();
+            loadMemberFamilyToDGV();
+            loadUserOnlineToTxtSearch();
+            loadUserLocalToTxtSearch();
         }
 
         #region TabControlSettings
@@ -98,6 +105,32 @@ namespace TrolyaoFara
         #endregion
 
         #region Setting
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            mydata("1");
+        }
+
+        private void btnResetSetting_Click(object sender, EventArgs e)
+        {
+            //Chung
+            numBreakfast.Value = 1;
+            numLunch.Value = 4;
+            numDinner.Value = 4;
+            DefaultSetPercentNutri();
+            SetValue(30, 40, 30, 2); // DefaultSetPercentCaloinDay
+            //Textbox
+            txtUsername.Text = textUsername;
+            txtUsername.ForeColor = Color.Gray;
+
+            //Tab Personal
+            cbxMode.SelectedIndex = 0;
+            plnLevel.Hide();
+        }
+
+        private void txtCount_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            e.Handled = !(Char.IsNumber(e.KeyChar) || e.KeyChar == 8);
+        }
         #region SettingTextbox
         //TabFamily
         private void txtUsername_Leave(object sender, EventArgs e)
@@ -256,7 +289,7 @@ namespace TrolyaoFara
         #endregion
 
         #region tabPersonal
-        private void getDataForTabPersonal(long iduser)
+        private void getDataPersonal(long iduser)
         {
             string sql = string.Format("SELECT * FROM info WHERE iduser='{0}'", iduser);
             databaseObject.OpenConnection();
@@ -264,7 +297,15 @@ namespace TrolyaoFara
             SQLiteDataReader rd = command.ExecuteReader();
             while (rd.Read())
             {
-                DateTime b_day = Convert.ToDateTime(rd["birthday"]);
+                DateTime b_day;
+                try
+                {
+                    b_day = DateTime.Parse(rd["birthday"].ToString());
+                }
+                catch (Exception)
+                {
+                    b_day = DateTime.ParseExact(rd["birthday"].ToString(), "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                }
                 DateTime UTCNow = DateTime.UtcNow;
                 old = UTCNow.Year - b_day.Year;
 
@@ -274,7 +315,7 @@ namespace TrolyaoFara
                 waist = Convert.ToInt32(rd["waist"]);
                 hip = Convert.ToInt32(rd["hip"]);
                 gender = Convert.ToInt32(rd["gender"]);
-                intensity = Convert.ToInt32(rd["gender"]);
+                intensity = Convert.ToInt32(rd["intensity"]);
             }
             command.Dispose();
             databaseObject.CloseConnection();
@@ -317,12 +358,13 @@ namespace TrolyaoFara
         }
         #endregion
 
-        private void calMacroGeneral(int mod)
+        public void calMacroGeneral()
         {
             int protein = trackbarProtein.Value;
             int lipid = trackbarLipid.Value;
             int carb = trackbarCarb.Value;
             double BMR, TDEE;
+
             if (neck == 0)
                 BMR = cMacro.Miffin_St_jeor(weight, height, old, gender);
             else
@@ -333,10 +375,9 @@ namespace TrolyaoFara
             TDEE = cMacro.TDEE(BMR, intensity);
             cMacro.macroCalo(BMR, TDEE, mode, level, ref protein, ref lipid, ref carb, ref calo);
 
-            if(mod == 1) //tab Personal
+            if (mod == 1) //tab Personal
             {
-                string strUpdate = string.Format("UPDATE menu set calo='{0}', protein='{1}', lipid='{2}', carb='{3}' where id='{4}'", Convert.ToInt32(calo), protein, lipid, carb, 1);
-                databaseObject.RunSQL(strUpdate);
+                runSQL.SQLforMenuTable(Convert.ToInt32(numBreakfast.Value), Convert.ToInt32(numLunch.Value), Convert.ToInt32(numDinner.Value), Convert.ToInt32(calo), protein, lipid, carb, mod);
             }
             if(mod == 2) // Tab family
             {
@@ -347,53 +388,111 @@ namespace TrolyaoFara
             }
         }
 
-        private void calMacroNutriForPersonal()
+        public void generateMenuForToday(int mod)// Update function
         {
-            getDataForTabPersonal(iduser);
-            calMacroGeneral(1);
-        }
+            if(mod == 1)
+            {
+                getDataPersonal(iduser);
+                calMacroGeneral();
+            }
+            if(mod == 2)
+                calMacroNutriForFamily();
 
-        public void generateMenuForToday()
-        {
-            calMacroNutriForPersonal(); // Main Account
             GA.MainGA();
             gaCal.RunGACal();
         }
 
-      
-
         private void btnRun_Click(object sender, EventArgs e)
         {
-            //Save settings
-            sql.SQLforSettingsMenu(Convert.ToInt32(numBreakfast.Value), Convert.ToInt32(numLunch.Value), Convert.ToInt32(numDinner.Value), cbxMode.SelectedIndex, Convert.ToInt32(numLevel.Value), trackbarProtein.Value, trackbarLipid.Value, trackbarCarb.Value, trackbarCaloBreakfast.Value, trackbarCaloLunch.Value, trackbarCaloDinner.Value);
-
-            for (int i = 0; i < datatableFamily.Rows.Count - 1; i++)
+            if (metroTabControl.SelectedTab == metroTabControl.TabPages["tabPersonal"])
             {
-                string id = datatableFamily.Rows[i].Cells[0].Value.ToString();
-                bool hide = Convert.ToBoolean(datatableFamily.Rows[i].Cells[3].Value);
-                sql.SQLforMemberFamily(id, hide);
+                mod = 1;
+                //Get level tab personal
+                mode = cbxMode.SelectedIndex;
+                if (mode == 0)
+                    level = 0;
+                else
+                    level = Convert.ToInt32(numLevel.Value);
             }
 
-            //Tab personal
-            mode = cbxMode.SelectedIndex;
-            if (mode == 0)
-                level = 0;
-            else
-                level = Convert.ToInt32(numLevel.Value);
+            if (metroTabControl.SelectedTab == metroTabControl.TabPages["tabFamily"])
+            {
+                mod = 2;
+                //Save data member family
+                for (int i = 0; i < datatableFamily.Rows.Count; i++)
+                {
+                    string id = datatableFamily.Rows[i].Cells[0].Value.ToString();
+                    string username = datatableFamily.Rows[i].Cells[1].Value.ToString();
+                    bool hide = Convert.ToBoolean(datatableFamily.Rows[i].Cells[3].Value);
+                    runSQL.SQLforMemberFamily(id, username, hide);
+                }
+            }
+            //Save settings
+            runSQL.SQLforSettingsMenu(Convert.ToInt32(numBreakfast.Value), Convert.ToInt32(numLunch.Value), Convert.ToInt32(numDinner.Value), cbxMode.SelectedIndex, Convert.ToInt32(numLevel.Value), trackbarProtein.Value, trackbarLipid.Value, trackbarCarb.Value, trackbarCaloBreakfast.Value, trackbarCaloLunch.Value, trackbarCaloDinner.Value, mod);
 
-
-            //Code tạm
-            string strUdpate = string.Format("UPDATE menu set calo='{0}' where id='{1}'", 1000, 1);
-            databaseObject.RunSQL(strUdpate);
-
-
-
-            generateMenuForToday();
+            generateMenuForToday(mod);
             alert.Show("Test OK !", alert.AlertType.success);
         }
 
+        public void calMacroNutriForFamily()
+        {
+            for (int i = 0; i < datatableFamily.Rows.Count; i++)
+            {
+                if (!Convert.ToBoolean(datatableFamily.Rows[i].Cells[3].Value)) // User không bị ẩn
+                {
+                    string id = datatableFamily.Rows[i].Cells[0].Value.ToString();
+                    if(i == 0) // Main account
+                    {
+                        getDataPersonal(Convert.ToInt32(id));
+                        calMacroGeneral();
+                    }
+                    else if (id[0] == 'A') // Ktra User local
+                    {
+                        id = id.Replace("A", "-");
+                        getDataPersonal(Convert.ToInt32(id));
+                        calMacroGeneral();
+                    }
+                    else // Ktra user sever
+                    {
+                        int idSubUser = Convert.ToInt32(id);
+                        frmLogin frm = new frmLogin();
+                        frm.getInfoUserFormServer(Convert.ToInt32(idSubUser));
+                        getDataPersonal(idSubUser);
+                        calMacroGeneral();
+                    }
+                }
+            }
+            runSQL.SQLforMenuTable(Convert.ToInt32(numBreakfast.Value), Convert.ToInt32(numLunch.Value), Convert.ToInt32(numDinner.Value), sumCalo, sumProtein, sumLipid, sumCarb, mod);
+        }
+
         #region TabFamily
-        private async void loadUserOnline()
+        private void loadMemberFamilyToDGV()
+        {
+            int idx = 0;
+            string sql = string.Format("SELECT * FROM family_member");
+            databaseObject.OpenConnection();
+            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+            SQLiteDataReader rd = command.ExecuteReader();
+            while (rd.Read())
+            {
+                if (idx == 0)
+                {
+                    idx++;
+                    continue;
+                }
+                string idStr = rd["id_member"].ToString();
+                string username = rd["username"].ToString();
+                bool hide = Convert.ToBoolean(rd["hide"]);
+                datatableFamily.Rows.Add(idStr, username);
+                datatableFamily.Rows[idx].Cells[3].Value = hide;
+                idx++;
+            }
+            command.Dispose();
+            databaseObject.CloseConnection();
+
+        }
+
+        private async void loadUserOnlineToTxtSearch()
         {
             Action load = () => {
                 if (lib.CheckForInternetConnection())
@@ -421,14 +520,15 @@ namespace TrolyaoFara
             txtUsername.Enabled = true;
             loadUsername.Hide();
         }
-        
-        private void loadUserLocal()
+
+        private void loadUserLocalToTxtSearch()
         {
             Action load = () => {
-                listUserLocal = lib.getUserLocal();
+                //listUserLocal = lib.getUserLocal();
+                lib.getUserLocal(listUserLocal, listIDUserLocal);
             };
             Task task = new Task(load);
-            task.Start(); 
+            task.Start();
         }
 
         private void txtUsername_KeyUp(object sender, KeyEventArgs e)
@@ -454,12 +554,12 @@ namespace TrolyaoFara
                 lstUsername.Hide();
             lstUsername.Show();
             // Add user local
-            int subID = 1;
+            int idUser = 0;
             foreach (var user in listUserLocal)
             {
                 lstUsername.Items.Add(user + " ★");
-                lstIDUsername.Items.Add(-subID);
-                subID++;
+                lstIDUsername.Items.Add(listIDUserLocal[idUser]);
+                idUser++;
             }
         }
 
@@ -485,127 +585,35 @@ namespace TrolyaoFara
                 {
                     lstIDUsername.SelectedIndex = lstUsername.Items.IndexOf(lstUsername.SelectedItem);
                     string idUser = lstIDUsername.GetItemText(lstIDUsername.SelectedItem);
-                    this.datatableFamily.Rows.Add(idUser, itemsel);
+                    datatableFamily.Rows.Add(idUser.Replace("-", "A"), itemsel);
                 }
                 else
                     alert.Show("Bạn đã thêm user này rồi!", alert.AlertType.error);
             }
         }
-
-        private void datatableFamily_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void datatableFamily_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (datatableFamily.Columns[e.ColumnIndex].Name == "Delete" && datatableFamily.SelectedRows[0].Index != 0)
+            if (datatableFamily.Columns[e.ColumnIndex].Name == "Delete" && datatableFamily.SelectedRows[0].Index > 0)
             {
-                if (MessageBox.Show("Bạn có muốn xóa user này khỏi dánh sách không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                if (MessageBox.Show("Bạn có muốn xóa '" + datatableFamily.SelectedRows[0].Cells[1].Value.ToString() + "' khỏi dánh sách không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    string strDelete = string.Format("DELETE FROM family_member where id_member='{0}'", datatableFamily.SelectedRows[0].Cells[0].Value.ToString());
+                    databaseObject.RunSQL(strDelete);
                     datatableFamily.Rows.RemoveAt(datatableFamily.SelectedRows[0].Index);
+                }
             }
-            if (datatableFamily.Columns[e.ColumnIndex].Name == "Hide" && datatableFamily.SelectedRows[0].Index == 0)
-                alert.Show("Tick để tạo suất ăn cho thành viên đó!", alert.AlertType.info);
         }
-        #endregion
 
-
-        private void btnSaveSetting_Click(object sender, EventArgs e)
+        private void datatableFamily_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            
+            if (datatableFamily.Columns[e.ColumnIndex].Name == "Hide")
+                alert.Show("Tick để hủy suất ăn của thành viên đó!", alert.AlertType.info);
         }
-        //Btn tạo mới 
 
-        private void gunaGradientButton5_Click(object sender, EventArgs e)
+        private void btnEditProfile_Click(object sender, EventArgs e)
         {
             mydata("2.2.3");
         }
-
-
-
-        private void getInfoUserLocal(string id)
-        {
-            id = id.Replace("A", "-");
-            string sql = string.Format("SELECT * FROM info WHERE iduser = '{0}'", Convert.ToInt32(id));
-
-            databaseObject.OpenConnection();
-            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
-            SQLiteDataReader rd = command.ExecuteReader();
-            while (rd.Read())
-            {
-                DateTime b_day = Convert.ToDateTime(rd["birthday"]);
-                DateTime UTCNow = DateTime.UtcNow;
-                int old = UTCNow.Year - b_day.Year;
-
-                height = Convert.ToInt32(rd["height"]);
-                weight = Convert.ToInt32(rd["weight"]);
-                neck = Convert.ToInt32(rd["neck"]);
-                waist = Convert.ToInt32(rd["waist"]);
-                hip = Convert.ToInt32(rd["hip"]);
-                gender = Convert.ToInt32(rd["gender"]);
-            }
-            command.Dispose();
-            databaseObject.CloseConnection();
-
-            calMacroGeneral(2);
-        }
-
-        private void calMacroNutriForFamily()
-        {
-
-            for(int i = 0; i < datatableFamily.Rows.Count - 1; i++)
-            {
-                string id = datatableFamily.Rows[i].Cells[0].Value.ToString();
-                if(id[0] == 'A') // Ktra User local
-                {
-                    getInfoUserLocal(id);
-                }
-                else // Ktra user sever
-                {
-                    int idSubUser = Convert.ToInt32(id);
-                    frmLogin frm = new frmLogin();
-                    frm.getInfoUserFormServer(Convert.ToInt32(idSubUser));
-                    getDataForTabPersonal(idSubUser);
-                    calMacroGeneral(2);
-                }
-            }
-            /*
-            for (int i = 0; i < datatableFamily.Rows.Count - 1; i++)
-            {
-                for (int j = 0; j < datatableFamily.Columns.Count; j++)
-                {
-                    if()
-                    worksheet.Cells[i + 2, j + 1] = gunaDataGridView2.Rows[i].Cells[j].Value.ToString();
-                }
-            }
-
-
-            if (true) // id dòng 1 = id user chính -> Tính cal riêng
-            {
-                calMacroNutriForPersonal();
-            }
-
-            */
-
-
-            // Update data into table menu
-        }
-
-        private void btnResetSetting_Click(object sender, EventArgs e)
-        {
-            //Chung
-            numBreakfast.Value = 1;
-            numLunch.Value = 4;
-            numDinner.Value = 4;
-            DefaultSetPercentNutri();
-            SetValue(30, 40, 30, 2); // DefaultSetPercentCaloinDay
-            //Textbox
-            txtUsername.Text = textUsername;
-            txtUsername.ForeColor = Color.Gray;
-
-            //Tab Personal
-            cbxMode.SelectedIndex = 0;
-            plnLevel.Hide();
-        }
-
-        private void txtCount_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            e.Handled = !(Char.IsNumber(e.KeyChar) || e.KeyChar == 8);
-        }
+        #endregion
     }
 }

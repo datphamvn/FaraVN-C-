@@ -91,9 +91,9 @@ namespace TrolyaoFara
                     plnFatPercent.Show();
                     double BodyFat = calMacro.BodyFat(height, neck, Convert.ToInt32(rd["waist"]), Convert.ToInt32(rd["hip"]), gender);
                     lblFatPercent.Text = String.Format("{0:0.00}", BodyFat) + " %";
-                    string alertBodyFat = " - " + calMacro.TypeOfBody2(BodyFat, gender);
-                    lblFatPercent.Text += alertBodyFat;
-                    lblFatPercent.Left = plnFatPercent.Width - (lblFatPercent.Width);
+
+                    lblWarmingBodyFat.Text = calMacro.TypeOfBody2(BodyFat, gender);
+                    lblWarmingBodyFat.Left = plnFatPercent.Width - (lblWarmingBodyFat.Width);
                 }
                 else
                     plnFatPercent.Hide();

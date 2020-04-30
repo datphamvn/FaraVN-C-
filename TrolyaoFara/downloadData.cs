@@ -9,17 +9,17 @@ using System.Threading.Tasks;
 
 namespace TrolyaoFara
 {
-    class GetData
+    class downloadData
     {
         Database databaseObject = new Database();
         LibFunction lib = new LibFunction();
         SettingSever sSever = new SettingSever();
-        SQLquery sql = new SQLquery();
+        SQLquery runSQL = new SQLquery();
         int nType1 = 10, nType2 = 60;
 
         public void MainGetData()
         {
-            sql.createTableForDatabase(); // Dev Line
+            runSQL.createTableForDatabase(); // Dev Line
 
             GetFoodRecommend();
             string url = sSever.linksever + "ai/api/food/?search=1";

@@ -88,7 +88,7 @@ namespace TrolyaoFara
             gunaMetroTrackBar1.Value = 0;
         }
 
-        LoadData lData = new LoadData();
+        classData lData = new classData();
         string username = "", email = "", userlogin = "";
         private void simpleButton2_Click(object sender, EventArgs e)
         {
@@ -148,14 +148,14 @@ namespace TrolyaoFara
         string strmenu = "";
         int breakfast = 0, lunch = 0, dinner = 0;
 
-        public void GetDataFromMenu()
+        public void GetDataFromMenu() // Update
         {
             try
             {
                 lblGuide.Visible = false;
                 string today = DateTime.Today.ToString("dd/MM/yyyy");
                 string day = "";
-                string sql = string.Format("SELECT * FROM menu WHERE id=1");
+                string sql = string.Format("SELECT * FROM menu WHERE id=1"); // Update line
                 databaseObject.OpenConnection();
                 SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
                 SQLiteDataReader rd = command.ExecuteReader();
@@ -189,7 +189,7 @@ namespace TrolyaoFara
             plnLoadMenu.Controls.Clear();
             frmMenuFood frm = new frmMenuFood();
             calmenu.RunGACal();
-            frm.getDataFromMenuTable();
+            frm.getDataFromMenuTable(true);
         }
 
         private void LoadMenuForUser()

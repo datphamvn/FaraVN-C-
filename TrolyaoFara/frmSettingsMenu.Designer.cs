@@ -128,6 +128,7 @@
             this.boderTabControl = new Guna.UI.WinForms.GunaElipse(this.components);
             this.boderBtnPersonal = new Guna.UI.WinForms.GunaElipse(this.components);
             this.boderBtnFamily = new Guna.UI.WinForms.GunaElipse(this.components);
+            this.btnBack = new Guna.UI.WinForms.GunaGradientButton();
             this.plnGoTabPersonal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).BeginInit();
             this.gunaGroupBox3.SuspendLayout();
@@ -358,7 +359,7 @@
             // loadUsername
             // 
             this.loadUsername.Image = ((System.Drawing.Image)(resources.GetObject("loadUsername.Image")));
-            this.loadUsername.Location = new System.Drawing.Point(86, 94);
+            this.loadUsername.Location = new System.Drawing.Point(91, 94);
             this.loadUsername.Name = "loadUsername";
             this.loadUsername.Size = new System.Drawing.Size(111, 111);
             this.loadUsername.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -369,6 +370,8 @@
             // 
             this.datatableFamily.AllowUserToAddRows = false;
             this.datatableFamily.AllowUserToDeleteRows = false;
+            this.datatableFamily.AllowUserToResizeColumns = false;
+            this.datatableFamily.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.datatableFamily.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.datatableFamily.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
@@ -376,7 +379,7 @@
             this.datatableFamily.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.datatableFamily.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.datatableFamily.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
@@ -402,6 +405,7 @@
             this.datatableFamily.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
             this.datatableFamily.Location = new System.Drawing.Point(387, 43);
             this.datatableFamily.Name = "datatableFamily";
+            this.datatableFamily.ReadOnly = true;
             this.datatableFamily.RowHeadersVisible = false;
             this.datatableFamily.RowTemplate.DividerHeight = 1;
             this.datatableFamily.RowTemplate.Height = 25;
@@ -422,7 +426,7 @@
             this.datatableFamily.ThemeStyle.HeaderStyle.ForeColor = System.Drawing.Color.White;
             this.datatableFamily.ThemeStyle.HeaderStyle.HeaightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.datatableFamily.ThemeStyle.HeaderStyle.Height = 40;
-            this.datatableFamily.ThemeStyle.ReadOnly = false;
+            this.datatableFamily.ThemeStyle.ReadOnly = true;
             this.datatableFamily.ThemeStyle.RowsStyle.BackColor = System.Drawing.Color.White;
             this.datatableFamily.ThemeStyle.RowsStyle.BorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.datatableFamily.ThemeStyle.RowsStyle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -430,7 +434,8 @@
             this.datatableFamily.ThemeStyle.RowsStyle.Height = 25;
             this.datatableFamily.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.White;
             this.datatableFamily.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            this.datatableFamily.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datatableFamily_CellContentClick);
+            this.datatableFamily.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.datatableFamily_CellClick);
+            this.datatableFamily.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.datatableFamily_ColumnHeaderMouseClick);
             // 
             // ID
             // 
@@ -458,6 +463,7 @@
             this.Delete.Image = ((System.Drawing.Image)(resources.GetObject("Delete.Image")));
             this.Delete.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.Delete.Name = "Delete";
+            this.Delete.ReadOnly = true;
             this.Delete.Width = 35;
             // 
             // Hide
@@ -466,6 +472,7 @@
             this.Hide.FillWeight = 32F;
             this.Hide.HeaderText = "Ẩn❓";
             this.Hide.Name = "Hide";
+            this.Hide.ReadOnly = true;
             this.Hide.Width = 47;
             // 
             // btnEditProfile
@@ -495,7 +502,7 @@
             this.btnEditProfile.Size = new System.Drawing.Size(195, 36);
             this.btnEditProfile.TabIndex = 57;
             this.btnEditProfile.Text = "Thông tin thành viên";
-            this.btnEditProfile.Click += new System.EventHandler(this.gunaGradientButton5_Click);
+            this.btnEditProfile.Click += new System.EventHandler(this.btnEditProfile_Click);
             // 
             // lstIDUsername
             // 
@@ -1017,7 +1024,7 @@
             this.tabcontrolAdvanced.Controls.Add(this.metroTabPage2);
             this.tabcontrolAdvanced.Location = new System.Drawing.Point(3, 37);
             this.tabcontrolAdvanced.Name = "tabcontrolAdvanced";
-            this.tabcontrolAdvanced.SelectedIndex = 1;
+            this.tabcontrolAdvanced.SelectedIndex = 0;
             this.tabcontrolAdvanced.Size = new System.Drawing.Size(508, 181);
             this.tabcontrolAdvanced.TabIndex = 48;
             this.tabcontrolAdvanced.UseSelectable = true;
@@ -1521,6 +1528,7 @@
             // 
             this.tabSelection.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabSelection.BackgroundImage")));
             this.tabSelection.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabSelection.Controls.Add(this.btnBack);
             this.tabSelection.Controls.Add(this.plnGoTabFamily);
             this.tabSelection.Controls.Add(this.lblTitle);
             this.tabSelection.Controls.Add(this.plnGoTabPersonal);
@@ -1711,6 +1719,35 @@
             this.boderBtnFamily.Radius = 5;
             this.boderBtnFamily.TargetControl = this.plnGoTabFamily;
             // 
+            // btnBack
+            // 
+            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBack.AnimationHoverSpeed = 0.07F;
+            this.btnBack.AnimationSpeed = 0.03F;
+            this.btnBack.BackColor = System.Drawing.Color.Transparent;
+            this.btnBack.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
+            this.btnBack.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
+            this.btnBack.BorderColor = System.Drawing.Color.Black;
+            this.btnBack.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnBack.FocusedColor = System.Drawing.Color.Empty;
+            this.btnBack.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.ForeColor = System.Drawing.Color.White;
+            this.btnBack.Image = global::TrolyaoFara.Properties.Resources.next__2_;
+            this.btnBack.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnBack.Location = new System.Drawing.Point(3, 371);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
+            this.btnBack.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
+            this.btnBack.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnBack.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnBack.OnHoverImage = null;
+            this.btnBack.OnPressedColor = System.Drawing.Color.Black;
+            this.btnBack.Radius = 7;
+            this.btnBack.Size = new System.Drawing.Size(110, 45);
+            this.btnBack.TabIndex = 46;
+            this.btnBack.Text = "Quay lại";
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // frmSettingsMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1855,5 +1892,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Username;
         private System.Windows.Forms.DataGridViewImageColumn Delete;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Hide;
+        private Guna.UI.WinForms.GunaGradientButton btnBack;
     }
 }

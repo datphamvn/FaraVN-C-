@@ -105,7 +105,7 @@
             this.ProgressBarDown.BorderColor = System.Drawing.Color.Black;
             this.ProgressBarDown.ColorStyle = Guna.UI.WinForms.ColorStyle.Default;
             this.ProgressBarDown.IdleColor = System.Drawing.Color.Gainsboro;
-            this.ProgressBarDown.Location = new System.Drawing.Point(32, 17);
+            this.ProgressBarDown.Location = new System.Drawing.Point(33, 17);
             this.ProgressBarDown.Name = "ProgressBarDown";
             this.ProgressBarDown.ProgressMaxColor = System.Drawing.Color.FromArgb(((int)(((byte)(160)))), ((int)(((byte)(235)))), ((int)(((byte)(58)))));
             this.ProgressBarDown.ProgressMinColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,9 +12,9 @@ namespace TrolyaoFara
         public void macroCalo(double BMR, double TDEE, int mode, int level, ref int protein, ref int lipid, ref int carb, ref double calo)
         {
             int pProtein = protein, pLipid = lipid, pCarb = carb;
-            calo = (BMR + TDEE) / 2;
+            calo = (BMR + TDEE) * 0.6;
             calo = caloForTarget(mode, level, calo);
-            
+
             protein = Convert.ToInt32(calo * pProtein / 100 / 4);
             lipid = Convert.ToInt32(calo * pLipid / 100 / 9);
             carb = Convert.ToInt32((calo - (protein * 4 + lipid * 9)) / 4);
@@ -59,11 +60,11 @@ namespace TrolyaoFara
             // Nam 1; Nữ 2
             if (gender == 1)
             {
-                return 86.010 * Math.Log10(waist - neck) - 70.041 * Math.Log10(height) + 36.76;
+                return 495 / (1.0324 - 0.19077 * Math.Log10(waist - neck) + 0.15456 * Math.Log10(height)) - 450;
             }
             else
             {
-                return 163.205 * Math.Log10(hip + waist - neck) - 97.684 * Math.Log10(height) + 78.387;
+                return 495 / (1.29579 - 0.35004 * Math.Log10(waist + hip - neck) + 0.22100 * Math.Log10(height)) - 450;
             }
         }
 
@@ -130,32 +131,32 @@ namespace TrolyaoFara
             if (gender == 1)
             {
                 if (BodyFat < 2)
-                    return "Quá ít. Cần bổ sung gấp";
+                    return "                QUÁ ÍT. \n CẦN BỔ SUNG GẤP";
                 else if (2 <= BodyFat && BodyFat <= 4)
-                    return "Quá ít. Cần bổ sung";
+                    return "            QUÁ ÍT. \n CẦN BỔ SUNG";
                 else if (4 < BodyFat && BodyFat <= 13)
-                    return "Ít";
+                    return "ÍT";
                 else if (13 < BodyFat && BodyFat <= 17)
-                    return "Chuẩn";
+                    return "CHUẨN";
                 else if (17 < BodyFat && BodyFat <= 25)
-                    return "Bình thường";
+                    return "BÌNH THƯỜNG";
                 else
-                    return "Béo phì";
+                    return "BÉO PHÌ";
             }
             else
             {
                 if (BodyFat < 10)
-                    return "Quá ít. Cần bổ sung gấp";
+                    return "                QUÁ ÍT. \n CẦN BỔ SUNG GẤP";
                 else if (10 <= BodyFat && BodyFat <= 12)
-                    return "Quá ít. Cần bổ sung";
+                    return "            QUÁ ÍT. \n CẦN BỔ SUNG";
                 else if (12 < BodyFat && BodyFat <= 20)
-                    return "Ít";
+                    return "ÍT";
                 else if (20 < BodyFat && BodyFat <= 24)
-                    return "Chuẩn";
+                    return "CHUẨN";
                 else if (24 < BodyFat && BodyFat <= 31)
-                    return "Bình thường";
+                    return "BÌNH THƯỜNG";
                 else
-                    return "Béo phì";
+                    return "BÉO PHÌ";
             }
         }
     }

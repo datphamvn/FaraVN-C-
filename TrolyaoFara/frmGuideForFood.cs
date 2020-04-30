@@ -30,7 +30,7 @@ namespace TrolyaoFara
 
             if (lib.CheckForInternetConnection())
             {
-                getDataUsingAsync(idFood, factor, panelLoad, gunaDataGridView2);
+                getDataUsingAsync(idFood, factor, panelLoad, gunaDataGridView2, true);
             }
             else
                 alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
@@ -41,13 +41,14 @@ namespace TrolyaoFara
             new frmGuideForFood(idFood, nameFood, factor).Show();
         }
 
-        public async void getDataUsingAsync(int idFood, double factor, Panel pnlWaitingLoad, DataGridView tableData)
+        public async void getDataUsingAsync(int idFood, double factor, Panel pnlWaitingLoad, DataGridView tableData, bool main)
         {
             List<string> lstUnit = new List<string>();
             List<string> lstCompositionName = new List<string>();
             List<CalFood> compostion = new List<CalFood>();
             
-            getContent(idFood);
+            if(main) // Hàm gọi từ frmGuideForFood
+                getContent(idFood);
 
             Action getUnit = () => {
                 using (WebClient wc = new WebClient())
@@ -85,25 +86,29 @@ namespace TrolyaoFara
             int idx = 0;
             foreach (var item in compostion)
             {
-                if (tableData != null)
+                if (main)
+                    tableData.Rows.Add(lstCompositionName[idx], Math.Round(item.Amout * factor, 1), lstUnit[Convert.ToInt32(item.Unit) - 1]);
+                else
                 {
-                    bool found = false;
-                    foreach (DataGridViewRow row in tableData.Rows)
+                    if (tableData != null)
                     {
-                        if (row.Cells["nameCompostion"].Value.ToString() == lstCompositionName[idx])
+                        bool found = false;
+                        foreach (DataGridViewRow row in tableData.Rows)
                         {
-                            row.Cells["nameCompostion"].Value += " +1";
-                            found = true;
-                            break;
+                            if (row.Cells["nameCompostion"].Value.ToString() == lstCompositionName[idx])
+                            {
+                                row.Cells["nameCompostion"].Value += " +1";
+                                found = true;
+                                break;
+                            }
+                        }
+
+                        if (!found) // Item không tồn tại tồn tại
+                        {
+                            tableData.Rows.Add(lstCompositionName[idx], Math.Round(item.Amout * factor, 1), lstUnit[Convert.ToInt32(item.Unit) - 1], item.Main);
                         }
                     }
-                    if (!found) // Item không tồn tại tồn tại
-                    {
-                        tableData.Rows.Add(lstCompositionName[idx], Math.Round(item.Amout * factor, 1), lstUnit[Convert.ToInt32(item.Unit) - 1]);
-                    }
-                }
-
-                //tableData.Rows.Add(lstCompositionName[idx++], Math.Round(item.Amout * factor, 1), lstUnit[Convert.ToInt32(item.Unit) - 1]);
+                }               
                 idx++;
             }
 

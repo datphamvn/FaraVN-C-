@@ -46,7 +46,7 @@
             this.PicLogo = new System.Windows.Forms.PictureBox();
             this.panelLoad = new System.Windows.Forms.Panel();
             this.lblLoading = new System.Windows.Forms.Label();
-            this.loading = new TrolyaoFara.Load();
+            this.imgLoading = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.indicator)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnMinimize)).BeginInit();
@@ -54,6 +54,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ptUser)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).BeginInit();
             this.panelLoad.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLoading)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUsername
@@ -266,8 +267,8 @@
             // 
             // panelLoad
             // 
+            this.panelLoad.Controls.Add(this.imgLoading);
             this.panelLoad.Controls.Add(this.lblLoading);
-            this.panelLoad.Controls.Add(this.loading);
             this.panelLoad.Location = new System.Drawing.Point(43, 149);
             this.panelLoad.Name = "panelLoad";
             this.panelLoad.Size = new System.Drawing.Size(278, 162);
@@ -285,12 +286,15 @@
             this.lblLoading.TabIndex = 23;
             this.lblLoading.Text = "Đang đăng nhập ...";
             // 
-            // loading
+            // imgLoading
             // 
-            this.loading.Location = new System.Drawing.Point(90, 15);
-            this.loading.Name = "loading";
-            this.loading.Size = new System.Drawing.Size(97, 102);
-            this.loading.TabIndex = 22;
+            this.imgLoading.Image = ((System.Drawing.Image)(resources.GetObject("imgLoading.Image")));
+            this.imgLoading.Location = new System.Drawing.Point(84, 15);
+            this.imgLoading.Name = "imgLoading";
+            this.imgLoading.Size = new System.Drawing.Size(111, 111);
+            this.imgLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgLoading.TabIndex = 48;
+            this.imgLoading.TabStop = false;
             // 
             // frmLogin
             // 
@@ -325,6 +329,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.PicLogo)).EndInit();
             this.panelLoad.ResumeLayout(false);
             this.panelLoad.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLoading)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -346,8 +351,8 @@
         private System.Windows.Forms.Label lblCreateAcc;
         private System.Windows.Forms.PictureBox indicator;
         private System.Windows.Forms.Label lblForgotPassword;
-        private Load loading;
         private System.Windows.Forms.Panel panelLoad;
         private System.Windows.Forms.Label lblLoading;
+        private System.Windows.Forms.PictureBox imgLoading;
     }
 }

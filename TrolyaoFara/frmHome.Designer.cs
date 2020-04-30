@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmHome));
             this.bunifuGradientPanel3 = new Bunifu.Framework.UI.BunifuGradientPanel();
             this.lblWeight = new System.Windows.Forms.Label();
@@ -60,6 +61,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.plnFatPercent = new Bunifu.Framework.UI.BunifuGradientPanel();
+            this.lblWarmingBodyFat = new System.Windows.Forms.Label();
             this.lblFatPercent = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
@@ -73,6 +75,7 @@
             this.gunaCirclePictureBox1 = new Guna.UI.WinForms.GunaCirclePictureBox();
             this.lblHello = new System.Windows.Forms.Label();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.borderForm = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.bunifuGradientPanel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.bunifuGradientPanel4.SuspendLayout();
@@ -422,9 +425,9 @@
             this.flowLayoutPanel1.Controls.Add(this.bunifuGradientPanel6);
             this.flowLayoutPanel1.Controls.Add(this.plnFatPercent);
             this.flowLayoutPanel1.Controls.Add(this.bunifuGradientPanel8);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(166, 3);
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(165, 3);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(619, 404);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(618, 404);
             this.flowLayoutPanel1.TabIndex = 14;
             // 
             // bunifuGradientPanel7
@@ -494,6 +497,7 @@
             // 
             this.plnFatPercent.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("plnFatPercent.BackgroundImage")));
             this.plnFatPercent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.plnFatPercent.Controls.Add(this.lblWarmingBodyFat);
             this.plnFatPercent.Controls.Add(this.lblFatPercent);
             this.plnFatPercent.Controls.Add(this.label1);
             this.plnFatPercent.Controls.Add(this.pictureBox3);
@@ -507,13 +511,25 @@
             this.plnFatPercent.Size = new System.Drawing.Size(273, 95);
             this.plnFatPercent.TabIndex = 12;
             // 
+            // lblWarmingBodyFat
+            // 
+            this.lblWarmingBodyFat.AutoSize = true;
+            this.lblWarmingBodyFat.BackColor = System.Drawing.Color.Transparent;
+            this.lblWarmingBodyFat.Font = new System.Drawing.Font("Segoe UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarmingBodyFat.ForeColor = System.Drawing.Color.White;
+            this.lblWarmingBodyFat.Location = new System.Drawing.Point(111, 39);
+            this.lblWarmingBodyFat.Name = "lblWarmingBodyFat";
+            this.lblWarmingBodyFat.Size = new System.Drawing.Size(88, 20);
+            this.lblWarmingBodyFat.TabIndex = 3;
+            this.lblWarmingBodyFat.Text = "lblWarming";
+            // 
             // lblFatPercent
             // 
             this.lblFatPercent.AutoSize = true;
             this.lblFatPercent.BackColor = System.Drawing.Color.Transparent;
             this.lblFatPercent.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFatPercent.ForeColor = System.Drawing.Color.White;
-            this.lblFatPercent.Location = new System.Drawing.Point(69, 50);
+            this.lblFatPercent.Location = new System.Drawing.Point(60, 35);
             this.lblFatPercent.Name = "lblFatPercent";
             this.lblFatPercent.Size = new System.Drawing.Size(41, 25);
             this.lblFatPercent.TabIndex = 2;
@@ -535,7 +551,7 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(14, 25);
+            this.pictureBox3.Location = new System.Drawing.Point(14, 28);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(38, 38);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -604,7 +620,7 @@
             this.panel1.Controls.Add(this.lblHello);
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(157, 253);
+            this.panel1.Size = new System.Drawing.Size(156, 253);
             this.panel1.TabIndex = 11;
             // 
             // lblTab
@@ -668,8 +684,13 @@
             this.tableLayoutPanel3.Name = "tableLayoutPanel3";
             this.tableLayoutPanel3.RowCount = 1;
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(791, 446);
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(786, 446);
             this.tableLayoutPanel3.TabIndex = 15;
+            // 
+            // borderForm
+            // 
+            this.borderForm.ElipseRadius = 8;
+            this.borderForm.TargetControl = this;
             // 
             // frmHome
             // 
@@ -768,5 +789,7 @@
         private System.Windows.Forms.Label lblFatPercent;
         private System.Windows.Forms.Button btnOpenIndexBody;
         private System.Windows.Forms.Label lblTab;
+        private System.Windows.Forms.Label lblWarmingBodyFat;
+        private Bunifu.Framework.UI.BunifuElipse borderForm;
     }
 }

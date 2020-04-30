@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace TrolyaoFara
 {
-    public class LoadData
+    public class classData
     {
         public string loginimg = Environment.CurrentDirectory + "/" + "logouser.png";
         public string countryname = Environment.CurrentDirectory + "/" + "vn.json";

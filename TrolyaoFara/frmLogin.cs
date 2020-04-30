@@ -15,9 +15,9 @@ namespace TrolyaoFara
     {
         Database databaseObject = new Database();
         SettingSever sSever = new SettingSever();
-        LoadData lData = new LoadData();
+        classData lData = new classData();
         LibFunction lib = new LibFunction();
-        SQLquery sql = new SQLquery();
+        SQLquery runSQL = new SQLquery();
 
         public frmLogin()
         {
@@ -64,7 +64,7 @@ namespace TrolyaoFara
         private void frmLogin_Load(object sender, EventArgs e)
         {
             this.ActiveControl = PicLogo;
-            sql.createTableForDatabase();
+            runSQL.createTableForDatabase();
             LoadMainForm();
             panelLoad.Visible = false;
         }
@@ -212,8 +212,8 @@ namespace TrolyaoFara
             }
             catch (WebException)
             {
-                alert.Show("Lỗi Server!", alert.AlertType.error);
-                //alert.Show("ERROR: LDATA1 - Load họ tên user không thành công !", alert.AlertType.error);
+                //alert.Show("Lỗi Server!", alert.AlertType.error);
+                alert.Show("ERROR: LDATA1 - Load họ tên user không thành công !", alert.AlertType.error);
             }
 
             //Load thong tin ca nhan
@@ -237,8 +237,8 @@ namespace TrolyaoFara
             }
             catch (WebException)
             {
-                alert.Show("Lỗi Server!", alert.AlertType.error);
-                //alert.Show("ERROR: LDATA3 - Cập nhật thông tin User không thành công !", alert.AlertType.error);
+                //alert.Show("Lỗi Server!", alert.AlertType.error);
+                alert.Show("ERROR: LDATA3 - Cập nhật thông tin User không thành công !", alert.AlertType.error);
             }
 
             // Load thong tin suc khoe
@@ -256,11 +256,11 @@ namespace TrolyaoFara
             }
             catch (WebException)
             {
-                alert.Show("Lỗi Server!", alert.AlertType.error);
-                //alert.Show("ERROR: LDATA4 - Cập nhật thông số sức khỏe User không thành công !", alert.AlertType.error);
+                //alert.Show("Lỗi Server!", alert.AlertType.error);
+                alert.Show("ERROR: LDATA4 - Cập nhật thông số sức khỏe User không thành công !", alert.AlertType.error);
             }
 
-            sql.SQLforInfoTable(lname, fname, gender, birthday, district, city, country, height, weight, neck, waist, hip, intensity);
+            runSQL.SQLforInfoTable(lname, fname, gender, birthday, district, city, country, height, weight, neck, waist, hip, intensity, iduser);
         }
 
         private void LoginAsync(string stt, string username, string email, string password)

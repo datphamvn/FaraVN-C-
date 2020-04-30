@@ -83,7 +83,7 @@
             // 
             // panel_Main
             // 
-            this.panel_Main.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(46)))));
+            this.panel_Main.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(20)))), ((int)(((byte)(47)))));
             this.panel_Main.ColumnCount = 1;
             this.panel_Main.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panel_Main.Controls.Add(this.panel_TopMenu, 0, 0);
@@ -94,14 +94,14 @@
             this.panel_Main.Location = new System.Drawing.Point(0, 0);
             this.panel_Main.Name = "panel_Main";
             this.panel_Main.RowCount = 2;
-            this.panel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.panel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.panel_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.panel_Main.Size = new System.Drawing.Size(1000, 600);
             this.panel_Main.TabIndex = 0;
             // 
             // panel_TopMenu
             // 
-            this.panel_TopMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(46)))));
+            this.panel_TopMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(20)))), ((int)(((byte)(47)))));
             this.panel_TopMenu.ColumnCount = 2;
             this.panel_TopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 17.53247F));
             this.panel_TopMenu.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 82.46753F));
@@ -114,11 +114,12 @@
             this.panel_TopMenu.Name = "panel_TopMenu";
             this.panel_TopMenu.RowCount = 1;
             this.panel_TopMenu.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panel_TopMenu.Size = new System.Drawing.Size(994, 44);
+            this.panel_TopMenu.Size = new System.Drawing.Size(994, 37);
             this.panel_TopMenu.TabIndex = 0;
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(20)))), ((int)(((byte)(47)))));
             this.panel2.Controls.Add(this.lblTab);
             this.panel2.Controls.Add(this.btnMinimize);
             this.panel2.Controls.Add(this.lblButton);
@@ -130,7 +131,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(177, 3);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(814, 38);
+            this.panel2.Size = new System.Drawing.Size(814, 31);
             this.panel2.TabIndex = 1;
             // 
             // lblTab
@@ -139,7 +140,7 @@
             this.lblTab.BackColor = System.Drawing.Color.White;
             this.AnimationSidebar.SetDecoration(this.lblTab, BunifuAnimatorNS.DecorationType.None);
             this.AnimationSidebarBack.SetDecoration(this.lblTab, BunifuAnimatorNS.DecorationType.None);
-            this.lblTab.Location = new System.Drawing.Point(101, 14);
+            this.lblTab.Location = new System.Drawing.Point(101, 11);
             this.lblTab.Name = "lblTab";
             this.lblTab.Size = new System.Drawing.Size(36, 13);
             this.lblTab.TabIndex = 17;
@@ -172,7 +173,7 @@
             this.AnimationSidebar.SetDecoration(this.lblButton, BunifuAnimatorNS.DecorationType.None);
             this.AnimationSidebarBack.SetDecoration(this.lblButton, BunifuAnimatorNS.DecorationType.None);
             this.lblButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(46)))));
-            this.lblButton.Location = new System.Drawing.Point(47, 14);
+            this.lblButton.Location = new System.Drawing.Point(47, 11);
             this.lblButton.Name = "lblButton";
             this.lblButton.Size = new System.Drawing.Size(48, 13);
             this.lblButton.TabIndex = 1;
@@ -236,6 +237,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(20)))), ((int)(((byte)(47)))));
             this.panel1.Controls.Add(this.btnCustomSidebar);
             this.panel1.Controls.Add(this.lblDashboard);
             this.AnimationSidebarBack.SetDecoration(this.panel1, BunifuAnimatorNS.DecorationType.None);
@@ -243,7 +245,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(168, 38);
+            this.panel1.Size = new System.Drawing.Size(168, 31);
             this.panel1.TabIndex = 0;
             // 
             // btnCustomSidebar
@@ -254,9 +256,9 @@
             this.AnimationSidebar.SetDecoration(this.btnCustomSidebar, BunifuAnimatorNS.DecorationType.None);
             this.btnCustomSidebar.Image = ((System.Drawing.Image)(resources.GetObject("btnCustomSidebar.Image")));
             this.btnCustomSidebar.ImageActive = null;
-            this.btnCustomSidebar.Location = new System.Drawing.Point(9, 3);
+            this.btnCustomSidebar.Location = new System.Drawing.Point(9, 4);
             this.btnCustomSidebar.Name = "btnCustomSidebar";
-            this.btnCustomSidebar.Size = new System.Drawing.Size(30, 30);
+            this.btnCustomSidebar.Size = new System.Drawing.Size(22, 22);
             this.btnCustomSidebar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.btnCustomSidebar.TabIndex = 12;
             this.btnCustomSidebar.TabStop = false;
@@ -269,46 +271,49 @@
             this.lblDashboard.BackColor = System.Drawing.Color.Transparent;
             this.AnimationSidebar.SetDecoration(this.lblDashboard, BunifuAnimatorNS.DecorationType.None);
             this.AnimationSidebarBack.SetDecoration(this.lblDashboard, BunifuAnimatorNS.DecorationType.None);
-            this.lblDashboard.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDashboard.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDashboard.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.lblDashboard.Location = new System.Drawing.Point(41, 5);
             this.lblDashboard.Name = "lblDashboard";
-            this.lblDashboard.Size = new System.Drawing.Size(127, 25);
+            this.lblDashboard.Size = new System.Drawing.Size(107, 21);
             this.lblDashboard.TabIndex = 13;
             this.lblDashboard.Text = "DASHBOARD";
             // 
             // panelContent
             // 
+            this.panelContent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(20)))), ((int)(((byte)(47)))));
             this.panelContent.Controls.Add(this.panelOpenform);
             this.panelContent.Controls.Add(this.SidebarWapper);
             this.AnimationSidebarBack.SetDecoration(this.panelContent, BunifuAnimatorNS.DecorationType.None);
             this.AnimationSidebar.SetDecoration(this.panelContent, BunifuAnimatorNS.DecorationType.None);
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContent.Location = new System.Drawing.Point(3, 53);
+            this.panelContent.Location = new System.Drawing.Point(3, 46);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(994, 544);
+            this.panelContent.Size = new System.Drawing.Size(994, 551);
             this.panelContent.TabIndex = 1;
             // 
             // panelOpenform
             // 
-            this.panelOpenform.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(46)))));
+            this.panelOpenform.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(20)))), ((int)(((byte)(47)))));
             this.AnimationSidebarBack.SetDecoration(this.panelOpenform, BunifuAnimatorNS.DecorationType.None);
             this.AnimationSidebar.SetDecoration(this.panelOpenform, BunifuAnimatorNS.DecorationType.None);
             this.panelOpenform.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelOpenform.Location = new System.Drawing.Point(212, 0);
             this.panelOpenform.Name = "panelOpenform";
-            this.panelOpenform.Size = new System.Drawing.Size(782, 544);
+            this.panelOpenform.Padding = new System.Windows.Forms.Padding(2, 0, 5, 6);
+            this.panelOpenform.Size = new System.Drawing.Size(782, 551);
             this.panelOpenform.TabIndex = 2;
             // 
             // SidebarWapper
             // 
+            this.SidebarWapper.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(14)))), ((int)(((byte)(20)))), ((int)(((byte)(47)))));
             this.SidebarWapper.Controls.Add(this.Sidebar);
             this.AnimationSidebarBack.SetDecoration(this.SidebarWapper, BunifuAnimatorNS.DecorationType.None);
             this.AnimationSidebar.SetDecoration(this.SidebarWapper, BunifuAnimatorNS.DecorationType.None);
             this.SidebarWapper.Dock = System.Windows.Forms.DockStyle.Left;
             this.SidebarWapper.Location = new System.Drawing.Point(0, 0);
             this.SidebarWapper.Name = "SidebarWapper";
-            this.SidebarWapper.Size = new System.Drawing.Size(212, 544);
+            this.SidebarWapper.Size = new System.Drawing.Size(212, 551);
             this.SidebarWapper.TabIndex = 1;
             // 
             // Sidebar
@@ -333,10 +338,10 @@
             this.Sidebar.GradientBottomRight = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
             this.Sidebar.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
             this.Sidebar.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(46)))));
-            this.Sidebar.Location = new System.Drawing.Point(7, 5);
+            this.Sidebar.Location = new System.Drawing.Point(7, 1);
             this.Sidebar.Name = "Sidebar";
             this.Sidebar.Quality = 10;
-            this.Sidebar.Size = new System.Drawing.Size(200, 530);
+            this.Sidebar.Size = new System.Drawing.Size(200, 544);
             this.Sidebar.TabIndex = 0;
             // 
             // indicator
@@ -362,6 +367,7 @@
             this.AnimationSidebarBack.SetDecoration(this.btnAbout, BunifuAnimatorNS.DecorationType.None);
             this.AnimationSidebar.SetDecoration(this.btnAbout, BunifuAnimatorNS.DecorationType.None);
             this.btnAbout.DisabledColor = System.Drawing.Color.Gray;
+            this.btnAbout.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAbout.Iconcolor = System.Drawing.Color.Transparent;
             this.btnAbout.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnAbout.Iconimage")));
             this.btnAbout.Iconimage_right = null;
@@ -400,6 +406,7 @@
             this.AnimationSidebarBack.SetDecoration(this.btnSetting, BunifuAnimatorNS.DecorationType.None);
             this.AnimationSidebar.SetDecoration(this.btnSetting, BunifuAnimatorNS.DecorationType.None);
             this.btnSetting.DisabledColor = System.Drawing.Color.Gray;
+            this.btnSetting.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSetting.Iconcolor = System.Drawing.Color.Transparent;
             this.btnSetting.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnSetting.Iconimage")));
             this.btnSetting.Iconimage_right = null;
@@ -438,6 +445,7 @@
             this.AnimationSidebarBack.SetDecoration(this.btnAccount, BunifuAnimatorNS.DecorationType.None);
             this.AnimationSidebar.SetDecoration(this.btnAccount, BunifuAnimatorNS.DecorationType.None);
             this.btnAccount.DisabledColor = System.Drawing.Color.Gray;
+            this.btnAccount.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAccount.Iconcolor = System.Drawing.Color.Transparent;
             this.btnAccount.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnAccount.Iconimage")));
             this.btnAccount.Iconimage_right = null;
@@ -476,6 +484,7 @@
             this.AnimationSidebarBack.SetDecoration(this.btnMenu, BunifuAnimatorNS.DecorationType.None);
             this.AnimationSidebar.SetDecoration(this.btnMenu, BunifuAnimatorNS.DecorationType.None);
             this.btnMenu.DisabledColor = System.Drawing.Color.Gray;
+            this.btnMenu.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMenu.Iconcolor = System.Drawing.Color.Transparent;
             this.btnMenu.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnMenu.Iconimage")));
             this.btnMenu.Iconimage_right = null;
@@ -555,6 +564,7 @@
             this.AnimationSidebarBack.SetDecoration(this.btnHome, BunifuAnimatorNS.DecorationType.None);
             this.AnimationSidebar.SetDecoration(this.btnHome, BunifuAnimatorNS.DecorationType.None);
             this.btnHome.DisabledColor = System.Drawing.Color.Gray;
+            this.btnHome.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome.Iconcolor = System.Drawing.Color.Transparent;
             this.btnHome.Iconimage = ((System.Drawing.Image)(resources.GetObject("btnHome.Iconimage")));
             this.btnHome.Iconimage_right = null;

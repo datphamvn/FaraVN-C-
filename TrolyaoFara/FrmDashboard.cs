@@ -69,7 +69,7 @@ namespace TrolyaoFara
             {
                 Sidebar.Visible = false;
                 Sidebar.Width = 60;
-                SidebarWapper.Width = 75;
+                SidebarWapper.Width = 72;
                 LinearSidebar.Width = 40;
                 AnimationSidebar.Show(Sidebar);
                 ptLogo2.Visible = true;
@@ -184,6 +184,14 @@ namespace TrolyaoFara
             lblButton.Text = "1";
         }
 
+        private void openTabSettingsMenu()
+        {
+            frmSettingsMenu frm = new frmSettingsMenu();
+            frm.mydata = new frmSettingsMenu.GETDATA(GETVALUE);
+            openChildForm(frm);
+            lblButton.Text = "1";
+        }
+
         private void btnMenu_Click(object sender, EventArgs e)
         {
             openfrmRequireUpdateInfo(1);
@@ -210,14 +218,6 @@ namespace TrolyaoFara
             frmIndexBody frm = new frmIndexBody();
             frm.mydata = new frmIndexBody.GETDATA(GETVALUE);
             frm.dataFromDashboard = lblTab.Text;
-            openChildForm(frm);
-            lblButton.Text = "2";
-        }
-
-        private void openTabSettingsMenu()
-        {
-            frmSettingsMenu frm = new frmSettingsMenu();
-            frm.mydata = new frmSettingsMenu.GETDATA(GETVALUE);
             openChildForm(frm);
             lblButton.Text = "2";
         }

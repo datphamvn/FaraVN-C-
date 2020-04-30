@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmIndexBody));
             this.gunaGroupBox2 = new Guna.UI.WinForms.GunaGroupBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -67,6 +68,7 @@
             this.label12 = new System.Windows.Forms.Label();
             this.btnLoadInfoUser = new Guna.UI.WinForms.GunaGradientButton();
             this.plnCustom = new System.Windows.Forms.Panel();
+            this.BorderForm = new Bunifu.Framework.UI.BunifuElipse(this.components);
             this.gunaGroupBox2.SuspendLayout();
             this.grIndexBody.SuspendLayout();
             this.pnlIndexbody.SuspendLayout();
@@ -729,6 +731,11 @@
             this.plnCustom.Size = new System.Drawing.Size(213, 58);
             this.plnCustom.TabIndex = 62;
             // 
+            // BorderForm
+            // 
+            this.BorderForm.ElipseRadius = 8;
+            this.BorderForm.TargetControl = this;
+            // 
             // frmIndexBody
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -807,5 +814,6 @@
         private Guna.UI.WinForms.GunaComboBox cbxGender;
         private System.Windows.Forms.Panel pnlIndexbody;
         private Guna.UI.WinForms.GunaTextBox txtOld;
+        private Bunifu.Framework.UI.BunifuElipse BorderForm;
     }
 }

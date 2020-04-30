@@ -93,10 +93,10 @@ namespace TrolyaoFara
             return username;
         }
 
-        public List<string> getUserLocal()
+        public void getUserLocal(List<string> listUserLocal, List<int> listIDUserLocal)
         {
             Database databaseObject = new Database();
-            List<string> listUserLocal = new List<string>();
+            //List<string> listUserLocal = new List<string>();
 
             string sql = string.Format("SELECT * FROM info WHERE iduser < 0");
             databaseObject.OpenConnection();
@@ -105,10 +105,11 @@ namespace TrolyaoFara
             while (rd.Read())
             {
                 listUserLocal.Add(rd["fname"].ToString());
+                listIDUserLocal.Add(Convert.ToInt32(rd["iduser"]));
             }
             command.Dispose();
             databaseObject.CloseConnection();
-            return listUserLocal;
+            //return listUserLocal;
         }
     }
 }

@@ -17,10 +17,10 @@ namespace TrolyaoFara
     {
         Database databaseObject = new Database();
         LibFunction lib = new LibFunction();
-        SQLquery sql = new SQLquery();
+        SQLquery runSQL = new SQLquery();
         SettingSever sSever = new SettingSever();
         DataConfig datacf = new DataConfig();
-        LoadData lData = new LoadData();
+        classData lData = new classData();
         private static readonly HttpClient client = new HttpClient();
 
         public delegate void GETDATA(string data);
@@ -37,10 +37,10 @@ namespace TrolyaoFara
         string textFname = "Tên";
         string textLname = "Họ";
 
-        List<string> listFood = new List<string>();
-        List<long> listIdFood = new List<long>();
-        List<string> listComposition = new List<string>();
-        List<long> listIdComposition = new List<long>();
+        public List<string> listFood = new List<string>();
+        public List<long> listIdFood = new List<long>();
+        public List<string> listComposition = new List<string>();
+        public List<long> listIdComposition = new List<long>();
 
         public frmUpdateInfo()
         {
@@ -83,7 +83,7 @@ namespace TrolyaoFara
             lstDiung.Hide();
 
             //Load data BĐB
-            LoadFoodFavourite();
+            LoadFoodFavourite(loadFoodName, txtFoodName);
             LoadDatatxtDiung();
         }
 
@@ -91,7 +91,7 @@ namespace TrolyaoFara
         {
             if (metroTabControl1.SelectedTab == metroTabControl1.TabPages["tabFood"] && load[0] == false)
             {
-                GetFavoriteFormData();
+                getFoodFromData();
                 load[0] = true;
             }
             if (metroTabControl1.SelectedTab == metroTabControl1.TabPages["tabComposition"] && load[1] == false)
@@ -331,7 +331,7 @@ namespace TrolyaoFara
             }
         }
 
-        private void GetFavoriteFormData()
+        private void getFoodFromData()
         {
             txtFoodName.Text = textFood;
             txtFoodName.ForeColor = Color.Gray;
@@ -349,7 +349,7 @@ namespace TrolyaoFara
             databaseObject.CloseConnection();
         }
 
-        public async void LoadFoodFavourite()
+        public async void LoadFoodFavourite(PictureBox imgLoading, Guna.UI.WinForms.GunaTextBox txtInput)
         {
             Action load = () => {
                 if (lib.CheckForInternetConnection())
@@ -375,8 +375,8 @@ namespace TrolyaoFara
             task.Start();  
             await task;
             
-            txtFoodName.Enabled = true;
-            loadFoodName.Hide();
+            txtInput.Enabled = true;
+            imgLoading.Hide();
         }
 
         private void txtFoodName_KeyUp(object sender, KeyEventArgs e)
@@ -525,9 +525,9 @@ namespace TrolyaoFara
             {
                 string itemFood = lstIdFoodNameAdd.Items[i].ToString();
                 string nameFood = lstFoodNameAdd.Items[i].ToString();
-                sql.SQLforFavoriteTable(itemFood, nameFood);
+                runSQL.SQLforFavoriteTable(itemFood, nameFood);
 
-                sql.SQLforRatingsTable(itemFood, maxRatings);
+                runSQL.SQLforRatingsTable(itemFood, maxRatings);
             }
 
             string strDelete = string.Format("DELETE FROM favorite where stt='{0}'", false);
@@ -548,8 +548,8 @@ namespace TrolyaoFara
             lstFoodNameAdd.Items.Clear();
             lstIdFoodNameAdd.Items.Clear();
             lstFoodName.Items.Clear();
-            lstIdFoodName.Items.Clear(); 
-            GetFavoriteFormData();
+            lstIdFoodName.Items.Clear();
+            getFoodFromData();
             txtFoodName.Text = textFood;
             txtFoodName.ForeColor = Color.Gray;
         }
@@ -692,7 +692,7 @@ namespace TrolyaoFara
             {
                 string itemAllergic = lstIdDiungAdd.Items[i].ToString();
                 string nameAllergic = lstDiungAdd.Items[i].ToString();
-                sql.SQLforAllergicTable(itemAllergic, nameAllergic);
+                runSQL.SQLforAllergicTable(itemAllergic, nameAllergic);
             }
 
             string strDelete = string.Format("DELETE FROM allergic where stt='{0}'", false);

@@ -39,9 +39,11 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panelLoad = new System.Windows.Forms.Panel();
             this.lblLoading = new System.Windows.Forms.Label();
-            this.loading = new TrolyaoFara.Load();
+            this.main = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imgLoading = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView2)).BeginInit();
             this.panelLoad.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLoading)).BeginInit();
             this.SuspendLayout();
             // 
             // gunaDataGridView2
@@ -67,7 +69,8 @@
             this.gunaDataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.nameCompostion,
             this.Amout,
-            this.unit});
+            this.unit,
+            this.main});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -142,8 +145,8 @@
             // 
             // panelLoad
             // 
+            this.panelLoad.Controls.Add(this.imgLoading);
             this.panelLoad.Controls.Add(this.lblLoading);
-            this.panelLoad.Controls.Add(this.loading);
             this.panelLoad.Location = new System.Drawing.Point(192, 50);
             this.panelLoad.Name = "panelLoad";
             this.panelLoad.Size = new System.Drawing.Size(164, 204);
@@ -161,12 +164,21 @@
             this.lblLoading.TabIndex = 23;
             this.lblLoading.Text = "Đang tải dữ liệu ...";
             // 
-            // loading
+            // main
             // 
-            this.loading.Location = new System.Drawing.Point(23, 26);
-            this.loading.Name = "loading";
-            this.loading.Size = new System.Drawing.Size(111, 111);
-            this.loading.TabIndex = 22;
+            this.main.HeaderText = "Main";
+            this.main.Name = "main";
+            this.main.ReadOnly = true;
+            // 
+            // imgLoading
+            // 
+            this.imgLoading.Image = ((System.Drawing.Image)(resources.GetObject("imgLoading.Image")));
+            this.imgLoading.Location = new System.Drawing.Point(25, 31);
+            this.imgLoading.Name = "imgLoading";
+            this.imgLoading.Size = new System.Drawing.Size(111, 111);
+            this.imgLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgLoading.TabIndex = 48;
+            this.imgLoading.TabStop = false;
             // 
             // frmComposition
             // 
@@ -179,10 +191,12 @@
             this.Controls.Add(this.gunaDataGridView2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmComposition";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmComposition";
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView2)).EndInit();
             this.panelLoad.ResumeLayout(false);
             this.panelLoad.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLoading)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -196,6 +210,7 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panelLoad;
         private System.Windows.Forms.Label lblLoading;
-        private Load loading;
+        private System.Windows.Forms.DataGridViewTextBoxColumn main;
+        private System.Windows.Forms.PictureBox imgLoading;
     }
 }

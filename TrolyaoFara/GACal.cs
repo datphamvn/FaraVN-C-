@@ -10,6 +10,7 @@ namespace TrolyaoFara
     {
         Database databaseObject = new Database();
         LibFunction lib = new LibFunction();
+        SQLquery runSQL = new SQLquery();
 
         static string strmenu = "";
         static int GoalCalo = 0;
@@ -48,7 +49,8 @@ namespace TrolyaoFara
 
         public void RunGACal()
         {
-            string sql = string.Format("SELECT * FROM menu WHERE id=1");
+            string today = DateTime.Today.ToString("dd/MM/yyyy");
+            string sql = string.Format("SELECT * FROM menu WHERE date='{0}'", today);
             databaseObject.OpenConnection();
             SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
             SQLiteDataReader rd = command.ExecuteReader();
@@ -104,7 +106,7 @@ namespace TrolyaoFara
                 RankPopulation(Generation, FitnessTable, Database, idmenu);
             }
 
-
+            /*
             #region Log
             string path = Environment.CurrentDirectory + "/" + "log1.txt";
             using (StreamWriter sw = new StreamWriter(path))
@@ -124,25 +126,16 @@ namespace TrolyaoFara
                 sw.WriteLine();
             }
             #endregion
-
+            */
             //Output
             string recommend = "";
             foreach (double i in Generation[populationSize - 1])
             {
-                recommend += String.Format("{0:0.00}", i) + " ";
+                recommend += String.Format("{0:0.0000}", i) + " ";
             }
 
-            if (!lib.CheckExists("menu", "id", 2, ""))
-            {
-                string strInsert = string.Format("INSERT INTO menu(recommend, date, breakfast, lunch, dinner, calo) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')", recommend, DateTime.Today.ToString("dd/MM/yyyy"), 0, 0, 0, 0);
-                databaseObject.RunSQL(strInsert);
-            }
-            else
-            {
-                string strUdpate = string.Format("UPDATE menu set recommend='{0}', date='{1}', breakfast='{2}', lunch='{3}', dinner='{4}'  where id=2", recommend, DateTime.Today.ToString("dd/MM/yyyy"), breakfast, lunch, dinner);
-                databaseObject.RunSQL(strUdpate);
-            }
-
+            string strUdpate = string.Format("UPDATE menu set cal_menu='{0}' where date='{1}'", recommend, DateTime.Today.ToString("dd/MM/yyyy"));
+            databaseObject.RunSQL(strUdpate);
         }
 
         static void CreateDNA(List<double[]> Generation)

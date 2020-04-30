@@ -31,14 +31,14 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             BunifuAnimatorNS.Animation animation1 = new BunifuAnimatorNS.Animation();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGuideForFood));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.gunaDataGridView2 = new Guna.UI.WinForms.GunaDataGridView();
-            this.nameCompostion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amout = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlSidebar = new Guna.UI.WinForms.GunaGradient2Panel();
             this.btnShowSidebar = new Guna.UI.WinForms.GunaCircleButton();
             this.btnHideSidebar = new Guna.UI.WinForms.GunaCircleButton();
@@ -46,11 +46,14 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.panelLoad = new System.Windows.Forms.Panel();
             this.lblLoading = new System.Windows.Forms.Label();
-            this.loading = new TrolyaoFara.Load();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.gunaGradient2Panel2 = new Guna.UI.WinForms.GunaGradient2Panel();
             this.AnimationFooterBack = new BunifuAnimatorNS.BunifuTransition(this.components);
+            this.nameCompostion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amout = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.unit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.imgLoading = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView2)).BeginInit();
             this.pnlSidebar.SuspendLayout();
             this.pnlComposition.SuspendLayout();
@@ -58,6 +61,7 @@
             this.panelLoad.SuspendLayout();
             this.panel1.SuspendLayout();
             this.gunaGradient2Panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgLoading)).BeginInit();
             this.SuspendLayout();
             // 
             // webBrowser1
@@ -82,7 +86,6 @@
             this.gunaDataGridView2.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.gunaDataGridView2.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.gunaDataGridView2.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
@@ -96,14 +99,14 @@
             this.Amout,
             this.unit});
             this.AnimationFooterBack.SetDecoration(this.gunaDataGridView2, BunifuAnimatorNS.DecorationType.None);
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gunaDataGridView2.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gunaDataGridView2.DefaultCellStyle = dataGridViewCellStyle5;
             this.gunaDataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gunaDataGridView2.EnableHeadersVisualStyles = false;
             this.gunaDataGridView2.GridColor = System.Drawing.Color.White;
@@ -111,6 +114,14 @@
             this.gunaDataGridView2.Name = "gunaDataGridView2";
             this.gunaDataGridView2.ReadOnly = true;
             this.gunaDataGridView2.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gunaDataGridView2.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.gunaDataGridView2.RowHeadersVisible = false;
             this.gunaDataGridView2.RowTemplate.DividerHeight = 1;
             this.gunaDataGridView2.RowTemplate.Height = 25;
@@ -139,25 +150,6 @@
             this.gunaDataGridView2.ThemeStyle.RowsStyle.Height = 25;
             this.gunaDataGridView2.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.White;
             this.gunaDataGridView2.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.Black;
-            // 
-            // nameCompostion
-            // 
-            this.nameCompostion.FillWeight = 166.1283F;
-            this.nameCompostion.HeaderText = "Thành phần";
-            this.nameCompostion.Name = "nameCompostion";
-            this.nameCompostion.ReadOnly = true;
-            // 
-            // Amout
-            // 
-            this.Amout.HeaderText = "Số lượng";
-            this.Amout.Name = "Amout";
-            this.Amout.ReadOnly = true;
-            // 
-            // unit
-            // 
-            this.unit.HeaderText = "Đơn vị";
-            this.unit.Name = "unit";
-            this.unit.ReadOnly = true;
             // 
             // pnlSidebar
             // 
@@ -257,8 +249,8 @@
             // 
             // panelLoad
             // 
+            this.panelLoad.Controls.Add(this.imgLoading);
             this.panelLoad.Controls.Add(this.lblLoading);
-            this.panelLoad.Controls.Add(this.loading);
             this.AnimationFooterBack.SetDecoration(this.panelLoad, BunifuAnimatorNS.DecorationType.None);
             this.panelLoad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelLoad.Location = new System.Drawing.Point(0, 0);
@@ -278,14 +270,6 @@
             this.lblLoading.Size = new System.Drawing.Size(134, 20);
             this.lblLoading.TabIndex = 23;
             this.lblLoading.Text = "Đang tải dữ liệu ...";
-            // 
-            // loading
-            // 
-            this.AnimationFooterBack.SetDecoration(this.loading, BunifuAnimatorNS.DecorationType.None);
-            this.loading.Location = new System.Drawing.Point(70, 77);
-            this.loading.Name = "loading";
-            this.loading.Size = new System.Drawing.Size(111, 111);
-            this.loading.TabIndex = 22;
             // 
             // panel1
             // 
@@ -345,6 +329,45 @@
             this.AnimationFooterBack.DefaultAnimation = animation1;
             this.AnimationFooterBack.TimeStep = 0.08F;
             // 
+            // nameCompostion
+            // 
+            this.nameCompostion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.nameCompostion.FillWeight = 166.1283F;
+            this.nameCompostion.HeaderText = "Thành phần";
+            this.nameCompostion.Name = "nameCompostion";
+            this.nameCompostion.ReadOnly = true;
+            // 
+            // Amout
+            // 
+            this.Amout.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.Amout.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Amout.HeaderText = "Số lượng";
+            this.Amout.Name = "Amout";
+            this.Amout.ReadOnly = true;
+            this.Amout.Width = 72;
+            // 
+            // unit
+            // 
+            this.unit.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.unit.DefaultCellStyle = dataGridViewCellStyle4;
+            this.unit.HeaderText = "Đơn vị";
+            this.unit.Name = "unit";
+            this.unit.ReadOnly = true;
+            this.unit.Width = 59;
+            // 
+            // imgLoading
+            // 
+            this.AnimationFooterBack.SetDecoration(this.imgLoading, BunifuAnimatorNS.DecorationType.None);
+            this.imgLoading.Image = ((System.Drawing.Image)(resources.GetObject("imgLoading.Image")));
+            this.imgLoading.Location = new System.Drawing.Point(72, 83);
+            this.imgLoading.Name = "imgLoading";
+            this.imgLoading.Size = new System.Drawing.Size(111, 111);
+            this.imgLoading.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgLoading.TabIndex = 47;
+            this.imgLoading.TabStop = false;
+            // 
             // frmGuideForFood
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -356,6 +379,7 @@
             this.AnimationFooterBack.SetDecoration(this, BunifuAnimatorNS.DecorationType.None);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmGuideForFood";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmGuideForFood";
             ((System.ComponentModel.ISupportInitialize)(this.gunaDataGridView2)).EndInit();
             this.pnlSidebar.ResumeLayout(false);
@@ -366,6 +390,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.gunaGradient2Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.imgLoading)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -374,9 +399,6 @@
 
         private System.Windows.Forms.WebBrowser webBrowser1;
         private Guna.UI.WinForms.GunaDataGridView gunaDataGridView2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn nameCompostion;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Amout;
-        private System.Windows.Forms.DataGridViewTextBoxColumn unit;
         private Guna.UI.WinForms.GunaGradient2Panel pnlSidebar;
         private Guna.UI.WinForms.GunaGradient2Panel gunaGradient2Panel2;
         private Guna.UI.WinForms.GunaGradient2Panel pnlComposition;
@@ -388,6 +410,9 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel panelLoad;
         private System.Windows.Forms.Label lblLoading;
-        private Load loading;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameCompostion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amout;
+        private System.Windows.Forms.DataGridViewTextBoxColumn unit;
+        private System.Windows.Forms.PictureBox imgLoading;
     }
 }

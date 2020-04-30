@@ -31,22 +31,10 @@ namespace TrolyaoFara
             return _instance;
         }
 
-        private void ItemFood_Load(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void btnResetSetting_Click(object sender, EventArgs e)
+        private void btnInfo_Click(object sender, EventArgs e)
         {
             frmGuideForFood infofood = new frmGuideForFood(Convert.ToInt32(lblID.Text), lblNameFood.Text, Convert.ToDouble(lblFactor.Text));
             infofood.ShowDialog();
-        }
-
-        private void gunaGradientButton1_Click(object sender, EventArgs e)
-        {
-            //frmComposition cpFood = new frmComposition(Convert.ToInt32(lblID.Text), lblNameFood.Text, Convert.ToDouble(lblFactor.Text));
-            //cpFood.ShowDialog();
         }
     }
 }

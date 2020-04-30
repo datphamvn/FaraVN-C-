@@ -122,6 +122,7 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.Text = "alert";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.alert_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.btnClose)).EndInit();

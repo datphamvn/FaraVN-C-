@@ -111,23 +111,35 @@
     <Compile Include="frmAccount.Designer.cs">
       <DependentUpon>frmAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmAddData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAddData.Designer.cs">
+      <DependentUpon>frmAddData.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmComposition.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmComposition.Designer.cs">
       <DependentUpon>frmComposition.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmCustomMenu.cs">
+    <Compile Include="frmCustomFood.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmCustomMenu.Designer.cs">
-      <DependentUpon>frmCustomMenu.cs</DependentUpon>
+    <Compile Include="frmCustomFood.Designer.cs">
+      <DependentUpon>frmCustomFood.cs</DependentUpon>
     </Compile>
     <Compile Include="frmGuideForFood.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmGuideForFood.Designer.cs">
       <DependentUpon>frmGuideForFood.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmViewHistoryMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmViewHistoryMenu.Designer.cs">
+      <DependentUpon>frmViewHistoryMenu.cs</DependentUpon>
     </Compile>
     <Compile Include="ItemFoodCustom.cs">
       <SubType>UserControl</SubType>
@@ -142,12 +154,6 @@
     </Compile>
     <Compile Include="frmUpdateInfo.Designer.cs">
       <DependentUpon>frmUpdateInfo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmLoading.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmLoading.Designer.cs">
-      <DependentUpon>frmLoading.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSettings.cs">
       <SubType>Form</SubType>
@@ -164,7 +170,7 @@
     <Compile Include="GA.cs" />
     <Compile Include="GACal.cs" />
     <Compile Include="GAVer2.cs" />
-    <Compile Include="GetData.cs" />
+    <Compile Include="downloadData.cs" />
     <Compile Include="frmIndexBody.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -220,13 +226,7 @@
     <Compile Include="frmMenuFood.Designer.cs">
       <DependentUpon>frmMenuFood.cs</DependentUpon>
     </Compile>
-    <Compile Include="Load.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Load.Designer.cs">
-      <DependentUpon>Load.cs</DependentUpon>
-    </Compile>
-    <Compile Include="LoadData.cs" />
+    <Compile Include="classData.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="frmSettingsMenu.cs">
@@ -249,11 +249,14 @@
     <EmbeddedResource Include="frmAccount.resx">
       <DependentUpon>frmAccount.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmAddData.resx">
+      <DependentUpon>frmAddData.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmComposition.resx">
       <DependentUpon>frmComposition.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmCustomMenu.resx">
-      <DependentUpon>frmCustomMenu.cs</DependentUpon>
+    <EmbeddedResource Include="frmCustomFood.resx">
+      <DependentUpon>frmCustomFood.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmGuideForFood.resx">
       <DependentUpon>frmGuideForFood.cs</DependentUpon>
@@ -267,9 +270,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmHome.resx">
       <DependentUpon>frmHome.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmLoading.resx">
-      <DependentUpon>frmLoading.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -286,6 +286,9 @@
     <EmbeddedResource Include="frmIndexBody.resx">
       <DependentUpon>frmIndexBody.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmViewHistoryMenu.resx">
+      <DependentUpon>frmViewHistoryMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ItemFood.resx">
       <DependentUpon>ItemFood.cs</DependentUpon>
     </EmbeddedResource>
@@ -294,9 +297,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ItemFoodMini.resx">
       <DependentUpon>ItemFoodMini.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Load.resx">
-      <DependentUpon>Load.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

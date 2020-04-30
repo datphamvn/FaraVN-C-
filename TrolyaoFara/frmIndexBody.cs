@@ -52,8 +52,11 @@ namespace TrolyaoFara
         {
             cbxListUser.Items.Clear();
             cbxListUser.Items.Add(lib.GetUsername());
-            List<string> listUserLocal = lib.getUserLocal();
-            foreach(var user in listUserLocal)
+            //List<string> listUserLocal = lib.getUserLocal();
+            List<string> listUserLocal = new List<string>();
+            List<int> listIDUserLocal = new List<int>();
+            lib.getUserLocal(listUserLocal, listIDUserLocal);
+            foreach (var user in listUserLocal)
             {
                 cbxListUser.Items.Add(user);
             }
@@ -279,10 +282,18 @@ namespace TrolyaoFara
             else
             {
                 string strUpdate;
-                if(currentIDSelect == 0)
+                if (currentIDSelect == 0)
                     strUpdate = string.Format("UPDATE info set height='{0}', weight='{1}', intensity='{2}', neck='{3}', waist='{4}', hip='{5}' where iduser='{6}'", txtHeight.Text, txtWeight.Text, cbxIntensity.SelectedIndex, txtNeck.Text, txtWaist.Text, txtHip.Text, iduser);
                 else
+                {
+                    string idUser = iduser.ToString().Replace("-", "A");
+                    if (lib.CheckExists("family_member", "id_member", -1, idUser))
+                    {
+                        string strUdpate = string.Format("UPDATE family_member set username='{0}' where id_member='{1}'", txtFullname.Text +" ★", idUser);
+                        databaseObject.RunSQL(strUdpate);
+                    }
                     strUpdate = string.Format("UPDATE info set fname='{0}', gender='{1}', birthday='{2}', height='{3}', weight='{4}', intensity='{5}', neck='{6}', waist='{7}', hip='{8}' where iduser='{9}'", txtFullname.Text, cbxGender.SelectedIndex + 1, setBirthdayForSubInfo(), txtHeight.Text, txtWeight.Text, cbxIntensity.SelectedIndex, txtNeck.Text, txtWaist.Text, txtHip.Text, iduser);
+                }
                 databaseObject.RunSQL(strUpdate);
                 alert.Show("Cập nhật thông tin thành công!", alert.AlertType.success);
                 if (_message == "2.2.1")

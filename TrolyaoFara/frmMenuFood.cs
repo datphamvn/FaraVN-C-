@@ -12,15 +12,25 @@ namespace TrolyaoFara
         Database databaseObject = new Database();
         ExportMenuToImage exportMenu = new ExportMenuToImage();
         LibFunction lib = new LibFunction();
+        SQLquery runSQL = new SQLquery();
 
+        //Send data to frmDashboard
         public delegate void GETDATA(string data);
         public GETDATA mydata;
 
+        //Get data from frmViewHistoryMenu
+        public void GETVALUE(string value)
+        {
+            lblData.Text = value;
+        }
+
         string strmenu = "";
         int breakfast = 0, lunch = 0, dinner = 0;
-        int heightDefault = 0;
+        int heightDefault = 0, heightFullPanel = 0;
         int[] idMenu;
         double[] calMenuArr;
+        int historyMenu = 0;
+        string mainSQL;
 
         public frmMenuFood()
         {
@@ -29,42 +39,74 @@ namespace TrolyaoFara
 
         private void frmMenuFood_Load(object sender, EventArgs e)
         {
-            getDataFromMenuTable();
+            runSQL.createTableForDatabase(); // Dev Line
+            getDataFromMenuTable(true);
+
+            //Custom btnViewHistoryMenu
+            btnNextMenu.Enabled = false;
+            //Custom History menu
+            heightFullPanel = pnlBreakfast.Height;
+            //Custom Menu
+            pnlAdvCustomMenu.Hide();
         }
 
-        public void getDataFromMenuTable()
+        public void getDataFromMenuTable(bool todayView)
         {
-            string today = DateTime.Today.ToString("dd/MM/yyyy");
-            string day = "";
-            string sql = string.Format("SELECT * FROM menu WHERE id=1");
-            databaseObject.OpenConnection();
-            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
-            SQLiteDataReader rd = command.ExecuteReader();
-            while (rd.Read())
+            string day = DateTime.Today.AddDays(historyMenu).ToString("dd/MM/yyyy");
+
+            mainSQL = string.Format("SELECT * FROM menu WHERE date ='{0}'", day);
+            if(runSQL.countRow(mainSQL) > 0)
             {
-                strmenu = rd["recommend"].ToString();
-                breakfast = Convert.ToInt32(rd["breakfast"]);
-                lunch = Convert.ToInt32(rd["lunch"]);
-                dinner = Convert.ToInt32(rd["dinner"]);
-                day = rd["date"].ToString();
-            }
-            command.Dispose();
+                databaseObject.OpenConnection();
+                SQLiteCommand command = new SQLiteCommand(mainSQL, databaseObject.myConnection);
+                SQLiteDataReader rd = command.ExecuteReader();
+                while (rd.Read())
+                {
+                    strmenu = rd["recommend"].ToString();
+                    breakfast = Convert.ToInt32(rd["breakfast"]);
+                    lunch = Convert.ToInt32(rd["lunch"]);
+                    dinner = Convert.ToInt32(rd["dinner"]);
+                }
+                command.Dispose();
+                databaseObject.CloseConnection();
 
-            databaseObject.CloseConnection();
-            if (strmenu != "" && today == day)
-                loadMenuForUser();
+                loadMenuForUser(1); // Load itemFood
+                if (todayView)
+                    lblTitle.Text = "Thực đơn hôm nay (" + day + ")";
+                else
+                    lblTitle.Text = "Thực đơn ngày " + day;
+            }
             else
-                createNewMenu();
+            {
+                if (todayView)
+                    createNewMenu();
+                else
+                {
+                    lblTitle.Text = "Thực đơn ngày " + day;
+                    alert.Show("Thực đơn ngày " + day + " không tồn tại !", alert.AlertType.info);
+
+                    pnlBreakfast.Height = pnlTitleBreakfast.Height + 10;
+                    pnlLunch.Height = pnlTitleLunch.Height + 10;
+                    pnlDinner.Height = pnlTitleDinner.Height + 10;
+                }
+            }
         }
 
-        public void loadMenuForUser()
+        public void loadMenuForUser(int mode)
         {
+            //RestorePanel
+            if(heightFullPanel != 0)
+            {
+                pnlBreakfast.Height = heightFullPanel;
+                pnlLunch.Height = heightFullPanel;
+                pnlDinner.Height = heightFullPanel;
+            }
+
             idMenu = strmenu.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
             string calMenu = "";
 
-            string sql = string.Format("SELECT * FROM menu WHERE id=2");
             databaseObject.OpenConnection();
-            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+            SQLiteCommand command = new SQLiteCommand(mainSQL, databaseObject.myConnection);
             SQLiteDataReader rd = command.ExecuteReader();
             while (rd.Read())
             {
@@ -74,12 +116,13 @@ namespace TrolyaoFara
             databaseObject.CloseConnection();
 
             calMenuArr = calMenu.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(double.Parse).ToArray();
-            loadItemToPanel(0, breakfast, idMenu, calMenuArr, pnlLoadBreakfast);
-            loadItemToPanel(breakfast, breakfast + lunch, idMenu, calMenuArr, pnlLoadLunch);
-            loadItemToPanel(breakfast + lunch, breakfast + lunch + dinner, idMenu, calMenuArr, pnlLoadDinner);
+
+            loadItemToPanel(0, breakfast, idMenu, calMenuArr, pnlLoadBreakfast, mode);
+            loadItemToPanel(breakfast, breakfast + lunch, idMenu, calMenuArr, pnlLoadLunch, mode);
+            loadItemToPanel(breakfast + lunch, breakfast + lunch + dinner, idMenu, calMenuArr, pnlLoadDinner, mode);
         }
 
-        public void loadItemToPanel(int begin, int end, int[] idmenu, double[] grmenu, FlowLayoutPanel plnPanel)
+        public void loadItemToPanel(int begin, int end, int[] idmenu, double[] grmenu, FlowLayoutPanel plnPanel, int mode)
         {
             int id, timer;
             string namefood;
@@ -100,7 +143,10 @@ namespace TrolyaoFara
                     namefood = rd["name"].ToString();
                     timer = Convert.ToInt32(rd["timer"].ToString());
                     calo = Convert.ToDouble(rd["calo"].ToString());
-                    plnPanel.Controls.Add(ItemFood.Add(idFood, namefood, timer, calo, grmenu[i]));
+                    if(mode == 1) // Load itemFood
+                        plnPanel.Controls.Add(ItemFood.Add(idFood, namefood, timer, calo, grmenu[i]));
+                    if(mode == 2) // Load itemFoodCustom
+                        plnPanel.Controls.Add(ItemFoodCustom.Add(idFood, namefood));
                 }
                 command.Dispose();
             }
@@ -109,20 +155,30 @@ namespace TrolyaoFara
 
         private void createNewMenu()
         {
+            int mod = 0;
+            string sql = string.Format("SELECT * FROM settings WHERE id='{0}'", 1);
+            databaseObject.OpenConnection();
+            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+            SQLiteDataReader rd = command.ExecuteReader();
+            while (rd.Read())
+            {
+                mod = Convert.ToInt32(rd["mod"]);
+            }
+            command.Dispose();
+            databaseObject.CloseConnection();
+
             frmSettingsMenu frm = new frmSettingsMenu();
-            frm.generateMenuForToday();
-            getDataFromMenuTable();
+            frm.generateMenuForToday(mod);
+            getDataFromMenuTable(true);
         }
 
-
-        private void gunaGradientButton1_Click(object sender, EventArgs e)
+        private void btnSettingsMenu_Click(object sender, EventArgs e)
         {
-            lblTab.Text = "3";
-            mydata(lblTab.Text);
+            //lblTab.Text = "3";
+            mydata("3");
         }
 
         // Capture a picture
-
         private static Bitmap DrawControlToBitmap(Control control)
         {
             Bitmap bitmap = new Bitmap(control.Width, control.Height);
@@ -158,7 +214,10 @@ namespace TrolyaoFara
         string localstr;
         private void btnExportMenu_Click(object sender, EventArgs e)
         {
+            //Settings
             heightDefault = pnlLoadBreakfast.Height;
+            btnPreMenu.Hide();
+            btnNextMenu.Hide();
 
             localstr = lib.getPathDataInPCUser(@"\.faraVN\Data\img\");
             Bitmap bitmap = DrawControlToBitmap(pnlHeading);
@@ -167,6 +226,9 @@ namespace TrolyaoFara
             capturePanel(pnlBreakfast, pnlLunch, pnlLoadLunch, lunch, "lunch.png");
             capturePanel(pnlLunch, pnlDinner, pnlLoadDinner, dinner, "dinner.png");
 
+            // Restore Button
+            btnPreMenu.Show();
+            btnNextMenu.Show();
             // Restore Panel
             pnlHeading.Show();
             pnlBreakfast.Show();
@@ -179,27 +241,6 @@ namespace TrolyaoFara
             exportMenu.ExportToImage();
         }
 
-        private void bunifuFlatButton1_Click(object sender, EventArgs e)
-        {/*
-            string sql = "CREATE TABLE IF NOT EXISTS db_food([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, id_food INTEGER NOT NULL, id_purpose INTEGER NOT NULL, id_type INTEGER NOT NULL, id_method INTEGER NOT NULL, calo INTEGER NOT NULL)";
-            databaseObject.RunSQL(sql);
-            if (lib.CheckForInternetConnection())
-            {
-                using (WebClient wc = new WebClient())
-                {
-                    var json = wc.DownloadString(sSever.linksever + "ai/api/food/");
-                    List<Food> data = JsonConvert.DeserializeObject<List<Food>>(json);
-                    foreach (var item in data)
-                    {
-                        string strInsert = string.Format("INSERT INTO db_food(id_food, id_purpose, id_type, id_method, calo) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')", item.Id, lib.GetFirstValueinList(item.Purpose), lib.GetFirstValueinList(item.Type), lib.GetFirstValueinList(item.Method), item.Calo);
-                        databaseObject.RunSQL(strInsert);
-                    }
-                }
-            }
-            else
-                alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
-                */
-        }
 
         private void btnExportComposition_Click(object sender, EventArgs e)
         {
@@ -207,39 +248,86 @@ namespace TrolyaoFara
             composition.ShowDialog();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            //flowLayoutPanel1.Controls.Add(ItemFood.Instance);
-        }
-
-
-        #region TabSettings
-        /*
-        public void GetDataFormSettings()
-        {
-            string sql = string.Format("SELECT * FROM settings");
-            databaseObject.OpenConnection();
-            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
-            SQLiteDataReader rd = command.ExecuteReader();
-            while (rd.Read())
-            {
-                numBreakfast.Value = Convert.ToInt32(rd["breakfast"]);
-                numLunch.Value = Convert.ToInt32(rd["lunch"]);
-                numDinner.Value = Convert.ToInt32(rd["dinner"]);
-                cbxMode.SelectedIndex = Convert.ToInt32(rd["mode"]);
-            }
-            command.Dispose();
-            databaseObject.CloseConnection();
-        }
-        */
-        #endregion
-
-        private void RemoveControlInPanel()
+        private void removeControlInPanel()
         {
             pnlLoadBreakfast.Controls.Clear();
             pnlLoadLunch.Controls.Clear();
             pnlLoadDinner.Controls.Clear();
         }
 
+        //New feature
+        private void btnPreMenu_Click(object sender, EventArgs e)
+        {
+            historyMenu--;
+            lblData.Text = historyMenu.ToString();
+        }
+
+        private void btnNextMenu_Click(object sender, EventArgs e)
+        {
+            historyMenu++;
+            lblData.Text = historyMenu.ToString();
+        }
+
+        private void btnViewHistoryMenu_Click(object sender, EventArgs e)
+        {
+            frmViewHistoryMenu frm = new frmViewHistoryMenu();
+            frm.mydata = new frmViewHistoryMenu.GETDATA(GETVALUE);
+            frm.Show();
+        }
+
+        private void viewHistoryMenu()
+        {
+            removeControlInPanel();
+            historyMenu = Convert.ToInt32(lblData.Text);
+            if (historyMenu == 0)
+            {
+                btnNextMenu.Enabled = false;
+                btnCustomMenu.Enabled = true;
+                getDataFromMenuTable(true);
+            }
+            else
+            {
+                btnNextMenu.Enabled = true;
+                btnCustomMenu.Enabled = false;
+                getDataFromMenuTable(false);
+            }
+        }
+
+        private void lblData_TextChanged(object sender, EventArgs e)
+        {
+            viewHistoryMenu();
+        }
+
+        //Custom menu
+        private void btnCustomMenu_Click(object sender, EventArgs e)
+        {
+            btnPreMenu.Enabled = false;
+            btnNextMenu.Enabled = false;
+            pnlAdvCustomMenu.Show();
+            removeControlInPanel();
+            loadMenuForUser(2); // Load itemFoodCustom
+        }
+
+        private void btnClearMenu_Click(object sender, EventArgs e)
+        {
+            removeControlInPanel();
+        }
+
+        private void btnBackMenu_Click(object sender, EventArgs e)
+        {
+            pnlAdvCustomMenu.Hide();
+            btnPreMenu.Enabled = true;
+            removeControlInPanel();
+            loadMenuForUser(1); // Load itemFood
+        }
+
+        //Create menu
+        private void createMenu_Click(object sender, EventArgs e)
+        {
+            foreach (var ctrl in pnlLoadLunch.Controls.OfType<UserControl>())
+            {
+                lblTitle.Text += ctrl + " ;";
+            }
+        }
     }
 }
