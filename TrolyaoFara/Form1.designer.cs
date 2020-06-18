@@ -32,39 +32,39 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.simpleButton5 = new HPTCControl.SimpleButton();
-            this.simpleButton4 = new HPTCControl.SimpleButton();
+            this.btnViewMore = new HPTCControl.SimpleButton();
             this.lblGuide = new System.Windows.Forms.Label();
             this.plnMenu = new System.Windows.Forms.Panel();
             this.gunaGradient2Panel2 = new Guna.UI.WinForms.GunaGradient2Panel();
             this.lblNameOfMenu = new System.Windows.Forms.Label();
             this.plnLoadMenu = new System.Windows.Forms.FlowLayoutPanel();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblTitle = new System.Windows.Forms.Label();
             this.gunaMetroTrackBar1 = new Guna.UI.WinForms.GunaMetroTrackBar();
             this.simpleButton3 = new HPTCControl.SimpleButton();
             this.simpleButton2 = new HPTCControl.SimpleButton();
             this.lblNameUser = new System.Windows.Forms.Label();
-            this.gunaCirclePictureBox1 = new Guna.UI.WinForms.GunaCirclePictureBox();
+            this.imgAvatar = new Guna.UI.WinForms.GunaCirclePictureBox();
             this.simpleButton1 = new HPTCControl.SimpleButton();
             this.gunaElipse1 = new Guna.UI.WinForms.GunaElipse(this.components);
             this.panel1.SuspendLayout();
             this.plnMenu.SuspendLayout();
             this.gunaGradient2Panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gunaCirclePictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgAvatar)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.Controls.Add(this.simpleButton5);
-            this.panel1.Controls.Add(this.simpleButton4);
+            this.panel1.Controls.Add(this.btnViewMore);
             this.panel1.Controls.Add(this.lblGuide);
             this.panel1.Controls.Add(this.plnMenu);
-            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.lblTitle);
             this.panel1.Controls.Add(this.gunaMetroTrackBar1);
             this.panel1.Controls.Add(this.simpleButton3);
             this.panel1.Controls.Add(this.simpleButton2);
             this.panel1.Controls.Add(this.lblNameUser);
-            this.panel1.Controls.Add(this.gunaCirclePictureBox1);
+            this.panel1.Controls.Add(this.imgAvatar);
             this.panel1.Controls.Add(this.simpleButton1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -106,47 +106,48 @@
             this.simpleButton5.UsingImageHoverClick = false;
             this.simpleButton5.UsingLineColorHoverClick = false;
             this.simpleButton5.UsingTextColorHoverClick = true;
-            this.simpleButton5.Click += new System.EventHandler(this.simpleButton5_Click);
+            this.simpleButton5.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // simpleButton4
+            // btnViewMore
             // 
-            this.simpleButton4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.simpleButton4.BackColor = System.Drawing.Color.Transparent;
-            this.simpleButton4.BackgroundColorClicked = System.Drawing.Color.White;
-            this.simpleButton4.BackgroundColorHover = System.Drawing.Color.Black;
-            this.simpleButton4.BackgroundColorNormal = System.Drawing.Color.Transparent;
-            this.simpleButton4.BackgroundImageClicked = null;
-            this.simpleButton4.BackgroundImageHover = null;
-            this.simpleButton4.BackgroundImageNormal = null;
-            this.simpleButton4.ButtonLayout = HPTCControl.SimpleButton.BtnLayout.TextOnly;
-            this.simpleButton4.ImageClicked = null;
-            this.simpleButton4.ImageHover = null;
-            this.simpleButton4.ImageNormal = null;
-            this.simpleButton4.LineColorClicked = System.Drawing.Color.Empty;
-            this.simpleButton4.LineColorHover = System.Drawing.Color.Empty;
-            this.simpleButton4.LineColorNormal = System.Drawing.Color.White;
-            this.simpleButton4.LineLayout = HPTCControl.SimpleButton.LinePostion.BottomLine;
-            this.simpleButton4.LineSize = 2;
-            this.simpleButton4.Location = new System.Drawing.Point(113, 597);
-            this.simpleButton4.Name = "simpleButton4";
-            this.simpleButton4.Size = new System.Drawing.Size(75, 23);
-            this.simpleButton4.TabIndex = 42;
-            this.simpleButton4.Text = "Xem chi tiết";
-            this.simpleButton4.TextAlignmentHorizontal = System.Drawing.StringAlignment.Center;
-            this.simpleButton4.TextAlignmentVertical = System.Drawing.StringAlignment.Center;
-            this.simpleButton4.TextColorClicked = System.Drawing.Color.Black;
-            this.simpleButton4.TextColorHover = System.Drawing.Color.White;
-            this.simpleButton4.TextColorNormal = System.Drawing.Color.White;
-            this.simpleButton4.UsingBackgroundColorHoverClick = true;
-            this.simpleButton4.UsingBackgroundImageHoverClick = false;
-            this.simpleButton4.UsingImageHoverClick = false;
-            this.simpleButton4.UsingLineColorHoverClick = false;
-            this.simpleButton4.UsingTextColorHoverClick = true;
-            this.simpleButton4.Click += new System.EventHandler(this.simpleButton4_Click);
+            this.btnViewMore.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnViewMore.BackColor = System.Drawing.Color.Transparent;
+            this.btnViewMore.BackgroundColorClicked = System.Drawing.Color.White;
+            this.btnViewMore.BackgroundColorHover = System.Drawing.Color.Black;
+            this.btnViewMore.BackgroundColorNormal = System.Drawing.Color.Transparent;
+            this.btnViewMore.BackgroundImageClicked = null;
+            this.btnViewMore.BackgroundImageHover = null;
+            this.btnViewMore.BackgroundImageNormal = null;
+            this.btnViewMore.ButtonLayout = HPTCControl.SimpleButton.BtnLayout.TextOnly;
+            this.btnViewMore.ImageClicked = null;
+            this.btnViewMore.ImageHover = null;
+            this.btnViewMore.ImageNormal = null;
+            this.btnViewMore.LineColorClicked = System.Drawing.Color.Empty;
+            this.btnViewMore.LineColorHover = System.Drawing.Color.Empty;
+            this.btnViewMore.LineColorNormal = System.Drawing.Color.White;
+            this.btnViewMore.LineLayout = HPTCControl.SimpleButton.LinePostion.BottomLine;
+            this.btnViewMore.LineSize = 2;
+            this.btnViewMore.Location = new System.Drawing.Point(113, 603);
+            this.btnViewMore.Name = "btnViewMore";
+            this.btnViewMore.Size = new System.Drawing.Size(75, 23);
+            this.btnViewMore.TabIndex = 42;
+            this.btnViewMore.Text = "Xem chi tiết";
+            this.btnViewMore.TextAlignmentHorizontal = System.Drawing.StringAlignment.Center;
+            this.btnViewMore.TextAlignmentVertical = System.Drawing.StringAlignment.Center;
+            this.btnViewMore.TextColorClicked = System.Drawing.Color.Black;
+            this.btnViewMore.TextColorHover = System.Drawing.Color.White;
+            this.btnViewMore.TextColorNormal = System.Drawing.Color.White;
+            this.btnViewMore.UsingBackgroundColorHoverClick = true;
+            this.btnViewMore.UsingBackgroundImageHoverClick = false;
+            this.btnViewMore.UsingImageHoverClick = false;
+            this.btnViewMore.UsingLineColorHoverClick = false;
+            this.btnViewMore.UsingTextColorHoverClick = true;
+            this.btnViewMore.Click += new System.EventHandler(this.simpleButton4_Click);
             // 
             // lblGuide
             // 
             this.lblGuide.AutoSize = true;
+            this.lblGuide.BackColor = System.Drawing.Color.Transparent;
             this.lblGuide.Font = new System.Drawing.Font("SVN-Lobster", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGuide.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.lblGuide.Location = new System.Drawing.Point(7, 604);
@@ -154,9 +155,11 @@
             this.lblGuide.Size = new System.Drawing.Size(306, 46);
             this.lblGuide.TabIndex = 39;
             this.lblGuide.Text = "\"Dashboard\" -> Hoàn tất thông tin -> \"Thực đơn\" \r\nđể khởi tạo thực đơn của bạn";
+            this.lblGuide.Visible = false;
             // 
             // plnMenu
             // 
+            this.plnMenu.BackColor = System.Drawing.Color.Transparent;
             this.plnMenu.Controls.Add(this.gunaGradient2Panel2);
             this.plnMenu.Controls.Add(this.plnLoadMenu);
             this.plnMenu.Location = new System.Drawing.Point(3, 283);
@@ -190,28 +193,32 @@
             // plnLoadMenu
             // 
             this.plnLoadMenu.AutoScroll = true;
+            this.plnLoadMenu.BackColor = System.Drawing.Color.Transparent;
             this.plnLoadMenu.Location = new System.Drawing.Point(2, 29);
             this.plnLoadMenu.Margin = new System.Windows.Forms.Padding(0);
             this.plnLoadMenu.Name = "plnLoadMenu";
             this.plnLoadMenu.Size = new System.Drawing.Size(306, 274);
             this.plnLoadMenu.TabIndex = 40;
             // 
-            // label2
+            // lblTitle
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("SVN-Lobster", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.label2.Location = new System.Drawing.Point(69, 234);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(183, 35);
-            this.label2.TabIndex = 22;
-            this.label2.Text = "ĂN GÌ HÔM NAY";
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.BackColor = System.Drawing.Color.Transparent;
+            this.lblTitle.Font = new System.Drawing.Font("SVN-Lobster", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblTitle.Location = new System.Drawing.Point(69, 234);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(183, 35);
+            this.lblTitle.TabIndex = 22;
+            this.lblTitle.Text = "ĂN GÌ HÔM NAY";
             // 
             // gunaMetroTrackBar1
             // 
             this.gunaMetroTrackBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gunaMetroTrackBar1.BackColor = System.Drawing.Color.Transparent;
             this.gunaMetroTrackBar1.Location = new System.Drawing.Point(53, 703);
+            this.gunaMetroTrackBar1.Maximum = 255;
             this.gunaMetroTrackBar1.Name = "gunaMetroTrackBar1";
             this.gunaMetroTrackBar1.Size = new System.Drawing.Size(216, 23);
             this.gunaMetroTrackBar1.TabIndex = 37;
@@ -256,7 +263,7 @@
             this.simpleButton3.UsingImageHoverClick = false;
             this.simpleButton3.UsingLineColorHoverClick = false;
             this.simpleButton3.UsingTextColorHoverClick = true;
-            this.simpleButton3.Click += new System.EventHandler(this.simpleButton3_Click);
+            this.simpleButton3.Click += new System.EventHandler(this.btnOpenDashboard_Click);
             // 
             // simpleButton2
             // 
@@ -292,30 +299,34 @@
             this.simpleButton2.UsingImageHoverClick = false;
             this.simpleButton2.UsingLineColorHoverClick = false;
             this.simpleButton2.UsingTextColorHoverClick = true;
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
+            this.simpleButton2.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // lblNameUser
             // 
+            this.lblNameUser.BackColor = System.Drawing.Color.Transparent;
             this.lblNameUser.Font = new System.Drawing.Font("SVN-Lobster", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNameUser.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblNameUser.Location = new System.Drawing.Point(63, 148);
+            this.lblNameUser.Location = new System.Drawing.Point(63, 144);
             this.lblNameUser.Name = "lblNameUser";
             this.lblNameUser.Size = new System.Drawing.Size(202, 35);
             this.lblNameUser.TabIndex = 21;
             this.lblNameUser.Text = "TÊN NGƯỜI DÙNG";
             this.lblNameUser.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // gunaCirclePictureBox1
+            // imgAvatar
             // 
-            this.gunaCirclePictureBox1.BaseColor = System.Drawing.Color.White;
-            this.gunaCirclePictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("gunaCirclePictureBox1.Image")));
-            this.gunaCirclePictureBox1.Location = new System.Drawing.Point(98, 12);
-            this.gunaCirclePictureBox1.Name = "gunaCirclePictureBox1";
-            this.gunaCirclePictureBox1.Size = new System.Drawing.Size(120, 120);
-            this.gunaCirclePictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.gunaCirclePictureBox1.TabIndex = 20;
-            this.gunaCirclePictureBox1.TabStop = false;
-            this.gunaCirclePictureBox1.UseTransfarantBackground = false;
+            this.imgAvatar.BackColor = System.Drawing.Color.Transparent;
+            this.imgAvatar.BaseColor = System.Drawing.Color.White;
+            this.imgAvatar.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgAvatar.ErrorImage")));
+            this.imgAvatar.Image = ((System.Drawing.Image)(resources.GetObject("imgAvatar.Image")));
+            this.imgAvatar.InitialImage = ((System.Drawing.Image)(resources.GetObject("imgAvatar.InitialImage")));
+            this.imgAvatar.Location = new System.Drawing.Point(104, 13);
+            this.imgAvatar.Name = "imgAvatar";
+            this.imgAvatar.Size = new System.Drawing.Size(120, 120);
+            this.imgAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgAvatar.TabIndex = 20;
+            this.imgAvatar.TabStop = false;
+            this.imgAvatar.UseTransfarantBackground = false;
             // 
             // simpleButton1
             // 
@@ -351,7 +362,7 @@
             this.simpleButton1.UsingImageHoverClick = false;
             this.simpleButton1.UsingLineColorHoverClick = false;
             this.simpleButton1.UsingTextColorHoverClick = true;
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
+            this.simpleButton1.Click += new System.EventHandler(this.btnRefesh_Click);
             // 
             // gunaElipse1
             // 
@@ -378,7 +389,7 @@
             this.plnMenu.ResumeLayout(false);
             this.gunaGradient2Panel2.ResumeLayout(false);
             this.gunaGradient2Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gunaCirclePictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgAvatar)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -387,9 +398,9 @@
 
         private System.Windows.Forms.Panel panel1;
         private HPTCControl.SimpleButton simpleButton1;
-        private Guna.UI.WinForms.GunaCirclePictureBox gunaCirclePictureBox1;
+        private Guna.UI.WinForms.GunaCirclePictureBox imgAvatar;
         private System.Windows.Forms.Label lblNameUser;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblTitle;
         private HPTCControl.SimpleButton simpleButton3;
         private HPTCControl.SimpleButton simpleButton2;
         private Guna.UI.WinForms.GunaMetroTrackBar gunaMetroTrackBar1;
@@ -399,7 +410,7 @@
         private System.Windows.Forms.Label lblNameOfMenu;
         private System.Windows.Forms.Panel plnMenu;
         private Guna.UI.WinForms.GunaElipse gunaElipse1;
-        private HPTCControl.SimpleButton simpleButton4;
+        private HPTCControl.SimpleButton btnViewMore;
         private HPTCControl.SimpleButton simpleButton5;
     }
 }

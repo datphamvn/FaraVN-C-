@@ -29,28 +29,29 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddData));
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlBackground = new System.Windows.Forms.Panel();
             this.btnSend = new Guna.UI.WinForms.GunaGradientButton();
             this.lstIDData = new System.Windows.Forms.ListBox();
             this.imgLoading = new System.Windows.Forms.PictureBox();
             this.lstData = new System.Windows.Forms.ListBox();
             this.txtInput = new Guna.UI.WinForms.GunaTextBox();
-            this.panel1.SuspendLayout();
+            this.pnlBackground.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.imgLoading)).BeginInit();
             this.SuspendLayout();
             // 
-            // panel1
+            // pnlBackground
             // 
-            this.panel1.Controls.Add(this.btnSend);
-            this.panel1.Controls.Add(this.lstIDData);
-            this.panel1.Controls.Add(this.imgLoading);
-            this.panel1.Controls.Add(this.lstData);
-            this.panel1.Controls.Add(this.txtInput);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(316, 183);
-            this.panel1.TabIndex = 0;
+            this.pnlBackground.BackColor = System.Drawing.Color.Transparent;
+            this.pnlBackground.Controls.Add(this.btnSend);
+            this.pnlBackground.Controls.Add(this.lstIDData);
+            this.pnlBackground.Controls.Add(this.imgLoading);
+            this.pnlBackground.Controls.Add(this.lstData);
+            this.pnlBackground.Controls.Add(this.txtInput);
+            this.pnlBackground.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlBackground.Location = new System.Drawing.Point(0, 0);
+            this.pnlBackground.Name = "pnlBackground";
+            this.pnlBackground.Size = new System.Drawing.Size(316, 183);
+            this.pnlBackground.TabIndex = 0;
             // 
             // btnSend
             // 
@@ -82,6 +83,7 @@
             this.btnSend.Radius = 5;
             this.btnSend.Size = new System.Drawing.Size(90, 38);
             this.btnSend.TabIndex = 66;
+            this.btnSend.Click += new System.EventHandler(this.btnSend_Click);
             // 
             // lstIDData
             // 
@@ -100,8 +102,9 @@
             this.imgLoading.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.imgLoading.BackColor = System.Drawing.Color.White;
             this.imgLoading.Image = ((System.Drawing.Image)(resources.GetObject("imgLoading.Image")));
-            this.imgLoading.Location = new System.Drawing.Point(44, 55);
+            this.imgLoading.Location = new System.Drawing.Point(44, 58);
             this.imgLoading.MaximumSize = new System.Drawing.Size(130, 130);
             this.imgLoading.MinimumSize = new System.Drawing.Size(90, 90);
             this.imgLoading.Name = "imgLoading";
@@ -156,12 +159,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(316, 183);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.pnlBackground);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmAddData";
             this.Text = "frmAddData";
             this.Load += new System.EventHandler(this.frmAddData_Load);
-            this.panel1.ResumeLayout(false);
+            this.pnlBackground.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.imgLoading)).EndInit();
             this.ResumeLayout(false);
 
@@ -169,7 +172,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel pnlBackground;
         private Guna.UI.WinForms.GunaGradientButton btnSend;
         private System.Windows.Forms.ListBox lstIDData;
         private System.Windows.Forms.PictureBox imgLoading;

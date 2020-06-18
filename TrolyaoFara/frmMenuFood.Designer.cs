@@ -48,20 +48,20 @@
             this.gunaElipsePanel1 = new Guna.UI.WinForms.GunaElipsePanel();
             this.pnlAdv = new Guna.UI.WinForms.GunaGradient2Panel();
             this.pnlAdvCustomMenu = new Guna.UI.WinForms.GunaGradient2Panel();
-            this.gunaGradientButton1 = new Guna.UI.WinForms.GunaGradientButton();
+            this.pnlHeading = new System.Windows.Forms.Panel();
+            this.lblData = new System.Windows.Forms.Label();
             this.createMenu = new Guna.UI.WinForms.GunaGradientButton();
-            this.gunaGradientButton3 = new Guna.UI.WinForms.GunaGradientButton();
+            this.btnAddItem = new Guna.UI.WinForms.GunaGradientButton();
             this.btnBackMenu = new Guna.UI.WinForms.GunaGradientButton();
             this.btnClearMenu = new Guna.UI.WinForms.GunaGradientButton();
+            this.btnInfomationMenu = new Guna.UI.WinForms.GunaGradientButton();
             this.btnCustomMenu = new Guna.UI.WinForms.GunaGradientButton();
             this.btnViewHistoryMenu = new Guna.UI.WinForms.GunaGradientButton();
             this.btnExportComposition = new Guna.UI.WinForms.GunaGradientButton();
             this.btnSettingsMenu = new Guna.UI.WinForms.GunaGradientButton();
             this.btnExportMenu = new Guna.UI.WinForms.GunaGradientButton();
-            this.pnlHeading = new System.Windows.Forms.Panel();
             this.btnNextMenu = new Guna.UI.WinForms.GunaGradientButton();
             this.btnPreMenu = new Guna.UI.WinForms.GunaGradientButton();
-            this.lblData = new System.Windows.Forms.Label();
             this.pnlFullMenu.SuspendLayout();
             this.pnlBreakfast.SuspendLayout();
             this.pnlTitleBreakfast.SuspendLayout();
@@ -237,6 +237,7 @@
             // 
             this.gunaElipsePanel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(23)))), ((int)(((byte)(48)))));
             this.gunaElipsePanel1.BaseColor = System.Drawing.Color.Transparent;
+            this.gunaElipsePanel1.Controls.Add(this.pnlAdvCustomMenu);
             this.gunaElipsePanel1.Controls.Add(this.pnlAdv);
             this.gunaElipsePanel1.Controls.Add(this.pnlHeading);
             this.gunaElipsePanel1.Controls.Add(this.pnlFullMenu);
@@ -249,7 +250,7 @@
             // pnlAdv
             // 
             this.pnlAdv.BackColor = System.Drawing.Color.Transparent;
-            this.pnlAdv.Controls.Add(this.pnlAdvCustomMenu);
+            this.pnlAdv.Controls.Add(this.btnInfomationMenu);
             this.pnlAdv.Controls.Add(this.btnCustomMenu);
             this.pnlAdv.Controls.Add(this.btnViewHistoryMenu);
             this.pnlAdv.Controls.Add(this.btnExportComposition);
@@ -266,46 +267,42 @@
             // pnlAdvCustomMenu
             // 
             this.pnlAdvCustomMenu.BackColor = System.Drawing.Color.Transparent;
-            this.pnlAdvCustomMenu.Controls.Add(this.gunaGradientButton1);
             this.pnlAdvCustomMenu.Controls.Add(this.createMenu);
-            this.pnlAdvCustomMenu.Controls.Add(this.gunaGradientButton3);
+            this.pnlAdvCustomMenu.Controls.Add(this.btnAddItem);
             this.pnlAdvCustomMenu.Controls.Add(this.btnBackMenu);
             this.pnlAdvCustomMenu.Controls.Add(this.btnClearMenu);
             this.pnlAdvCustomMenu.GradientColor1 = System.Drawing.Color.Transparent;
             this.pnlAdvCustomMenu.GradientColor2 = System.Drawing.Color.Transparent;
-            this.pnlAdvCustomMenu.Location = new System.Drawing.Point(0, 1);
+            this.pnlAdvCustomMenu.Location = new System.Drawing.Point(19, 1);
             this.pnlAdvCustomMenu.Name = "pnlAdvCustomMenu";
             this.pnlAdvCustomMenu.Radius = 6;
-            this.pnlAdvCustomMenu.Size = new System.Drawing.Size(586, 42);
+            this.pnlAdvCustomMenu.Size = new System.Drawing.Size(744, 42);
             this.pnlAdvCustomMenu.TabIndex = 61;
             // 
-            // gunaGradientButton1
+            // pnlHeading
             // 
-            this.gunaGradientButton1.AnimationHoverSpeed = 0.07F;
-            this.gunaGradientButton1.AnimationSpeed = 0.03F;
-            this.gunaGradientButton1.BackColor = System.Drawing.Color.Transparent;
-            this.gunaGradientButton1.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(106)))), ((int)(((byte)(138)))));
-            this.gunaGradientButton1.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
-            this.gunaGradientButton1.BorderColor = System.Drawing.Color.Black;
-            this.gunaGradientButton1.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.gunaGradientButton1.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaGradientButton1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaGradientButton1.ForeColor = System.Drawing.Color.White;
-            this.gunaGradientButton1.Image = ((System.Drawing.Image)(resources.GetObject("gunaGradientButton1.Image")));
-            this.gunaGradientButton1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.gunaGradientButton1.ImageSize = new System.Drawing.Size(25, 25);
-            this.gunaGradientButton1.Location = new System.Drawing.Point(491, 4);
-            this.gunaGradientButton1.Name = "gunaGradientButton1";
-            this.gunaGradientButton1.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
-            this.gunaGradientButton1.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(106)))), ((int)(((byte)(138)))));
-            this.gunaGradientButton1.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaGradientButton1.OnHoverForeColor = System.Drawing.Color.White;
-            this.gunaGradientButton1.OnHoverImage = null;
-            this.gunaGradientButton1.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaGradientButton1.Radius = 5;
-            this.gunaGradientButton1.Size = new System.Drawing.Size(48, 33);
-            this.gunaGradientButton1.TabIndex = 60;
-            this.gunaGradientButton1.Text = "x";
+            this.pnlHeading.BackColor = System.Drawing.Color.Transparent;
+            this.pnlHeading.Controls.Add(this.btnNextMenu);
+            this.pnlHeading.Controls.Add(this.btnPreMenu);
+            this.pnlHeading.Controls.Add(this.lblTitle);
+            this.pnlHeading.Controls.Add(this.lblData);
+            this.pnlHeading.Location = new System.Drawing.Point(8, 47);
+            this.pnlHeading.Name = "pnlHeading";
+            this.pnlHeading.Size = new System.Drawing.Size(767, 36);
+            this.pnlHeading.TabIndex = 58;
+            // 
+            // lblData
+            // 
+            this.lblData.AutoSize = true;
+            this.lblData.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
+            this.lblData.Location = new System.Drawing.Point(159, 9);
+            this.lblData.Name = "lblData";
+            this.lblData.Size = new System.Drawing.Size(58, 20);
+            this.lblData.TabIndex = 56;
+            this.lblData.Text = "lblData";
+            this.lblData.Visible = false;
+            this.lblData.TextChanged += new System.EventHandler(this.lblData_TextChanged);
             // 
             // createMenu
             // 
@@ -319,10 +316,10 @@
             this.createMenu.FocusedColor = System.Drawing.Color.Empty;
             this.createMenu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createMenu.ForeColor = System.Drawing.Color.White;
-            this.createMenu.Image = ((System.Drawing.Image)(resources.GetObject("createMenu.Image")));
+            this.createMenu.Image = global::TrolyaoFara.Properties.Resources.tick;
             this.createMenu.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.createMenu.ImageSize = new System.Drawing.Size(25, 25);
-            this.createMenu.Location = new System.Drawing.Point(295, 5);
+            this.createMenu.ImageSize = new System.Drawing.Size(22, 22);
+            this.createMenu.Location = new System.Drawing.Point(286, 5);
             this.createMenu.Name = "createMenu";
             this.createMenu.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
             this.createMenu.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(106)))), ((int)(((byte)(138)))));
@@ -331,38 +328,39 @@
             this.createMenu.OnHoverImage = null;
             this.createMenu.OnPressedColor = System.Drawing.Color.Black;
             this.createMenu.Radius = 5;
-            this.createMenu.Size = new System.Drawing.Size(121, 33);
+            this.createMenu.Size = new System.Drawing.Size(122, 33);
             this.createMenu.TabIndex = 59;
             this.createMenu.Text = "Tạo menu";
             this.createMenu.Click += new System.EventHandler(this.createMenu_Click);
             // 
-            // gunaGradientButton3
+            // btnAddItem
             // 
-            this.gunaGradientButton3.AnimationHoverSpeed = 0.07F;
-            this.gunaGradientButton3.AnimationSpeed = 0.03F;
-            this.gunaGradientButton3.BackColor = System.Drawing.Color.Transparent;
-            this.gunaGradientButton3.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(106)))), ((int)(((byte)(138)))));
-            this.gunaGradientButton3.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
-            this.gunaGradientButton3.BorderColor = System.Drawing.Color.Black;
-            this.gunaGradientButton3.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.gunaGradientButton3.FocusedColor = System.Drawing.Color.Empty;
-            this.gunaGradientButton3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gunaGradientButton3.ForeColor = System.Drawing.Color.White;
-            this.gunaGradientButton3.Image = ((System.Drawing.Image)(resources.GetObject("gunaGradientButton3.Image")));
-            this.gunaGradientButton3.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.gunaGradientButton3.ImageSize = new System.Drawing.Size(25, 25);
-            this.gunaGradientButton3.Location = new System.Drawing.Point(137, 5);
-            this.gunaGradientButton3.Name = "gunaGradientButton3";
-            this.gunaGradientButton3.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
-            this.gunaGradientButton3.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(106)))), ((int)(((byte)(138)))));
-            this.gunaGradientButton3.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.gunaGradientButton3.OnHoverForeColor = System.Drawing.Color.White;
-            this.gunaGradientButton3.OnHoverImage = null;
-            this.gunaGradientButton3.OnPressedColor = System.Drawing.Color.Black;
-            this.gunaGradientButton3.Radius = 5;
-            this.gunaGradientButton3.Size = new System.Drawing.Size(152, 33);
-            this.gunaGradientButton3.TabIndex = 58;
-            this.gunaGradientButton3.Text = "Thêm món ăn";
+            this.btnAddItem.AnimationHoverSpeed = 0.07F;
+            this.btnAddItem.AnimationSpeed = 0.03F;
+            this.btnAddItem.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddItem.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(106)))), ((int)(((byte)(138)))));
+            this.btnAddItem.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
+            this.btnAddItem.BorderColor = System.Drawing.Color.Black;
+            this.btnAddItem.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnAddItem.FocusedColor = System.Drawing.Color.Empty;
+            this.btnAddItem.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddItem.ForeColor = System.Drawing.Color.White;
+            this.btnAddItem.Image = ((System.Drawing.Image)(resources.GetObject("btnAddItem.Image")));
+            this.btnAddItem.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnAddItem.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnAddItem.Location = new System.Drawing.Point(137, 5);
+            this.btnAddItem.Name = "btnAddItem";
+            this.btnAddItem.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
+            this.btnAddItem.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(106)))), ((int)(((byte)(138)))));
+            this.btnAddItem.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnAddItem.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnAddItem.OnHoverImage = null;
+            this.btnAddItem.OnPressedColor = System.Drawing.Color.Black;
+            this.btnAddItem.Radius = 5;
+            this.btnAddItem.Size = new System.Drawing.Size(143, 33);
+            this.btnAddItem.TabIndex = 58;
+            this.btnAddItem.Text = "Thêm món ăn";
+            this.btnAddItem.Click += new System.EventHandler(this.btnAddItem_Click);
             // 
             // btnBackMenu
             // 
@@ -376,10 +374,10 @@
             this.btnBackMenu.FocusedColor = System.Drawing.Color.Empty;
             this.btnBackMenu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBackMenu.ForeColor = System.Drawing.Color.White;
-            this.btnBackMenu.Image = global::TrolyaoFara.Properties.Resources.reset;
+            this.btnBackMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnBackMenu.Image")));
             this.btnBackMenu.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btnBackMenu.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnBackMenu.Location = new System.Drawing.Point(657, 5);
+            this.btnBackMenu.Location = new System.Drawing.Point(632, 5);
             this.btnBackMenu.Name = "btnBackMenu";
             this.btnBackMenu.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
             this.btnBackMenu.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(106)))), ((int)(((byte)(138)))));
@@ -388,9 +386,9 @@
             this.btnBackMenu.OnHoverImage = null;
             this.btnBackMenu.OnPressedColor = System.Drawing.Color.Black;
             this.btnBackMenu.Radius = 5;
-            this.btnBackMenu.Size = new System.Drawing.Size(85, 33);
+            this.btnBackMenu.Size = new System.Drawing.Size(103, 33);
             this.btnBackMenu.TabIndex = 29;
-            this.btnBackMenu.Text = "Menu";
+            this.btnBackMenu.Text = "Quay lại";
             this.btnBackMenu.Click += new System.EventHandler(this.btnBackMenu_Click);
             // 
             // btnClearMenu
@@ -407,7 +405,7 @@
             this.btnClearMenu.ForeColor = System.Drawing.Color.White;
             this.btnClearMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnClearMenu.Image")));
             this.btnClearMenu.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.btnClearMenu.ImageSize = new System.Drawing.Size(25, 25);
+            this.btnClearMenu.ImageSize = new System.Drawing.Size(22, 22);
             this.btnClearMenu.Location = new System.Drawing.Point(7, 5);
             this.btnClearMenu.Name = "btnClearMenu";
             this.btnClearMenu.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
@@ -421,6 +419,34 @@
             this.btnClearMenu.TabIndex = 57;
             this.btnClearMenu.Text = "Xóa menu";
             this.btnClearMenu.Click += new System.EventHandler(this.btnClearMenu_Click);
+            // 
+            // btnInfomationMenu
+            // 
+            this.btnInfomationMenu.AnimationHoverSpeed = 0.07F;
+            this.btnInfomationMenu.AnimationSpeed = 0.03F;
+            this.btnInfomationMenu.BackColor = System.Drawing.Color.Transparent;
+            this.btnInfomationMenu.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(106)))), ((int)(((byte)(138)))));
+            this.btnInfomationMenu.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
+            this.btnInfomationMenu.BorderColor = System.Drawing.Color.Black;
+            this.btnInfomationMenu.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnInfomationMenu.FocusedColor = System.Drawing.Color.Empty;
+            this.btnInfomationMenu.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInfomationMenu.ForeColor = System.Drawing.Color.White;
+            this.btnInfomationMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnInfomationMenu.Image")));
+            this.btnInfomationMenu.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnInfomationMenu.ImageSize = new System.Drawing.Size(18, 18);
+            this.btnInfomationMenu.Location = new System.Drawing.Point(3, 5);
+            this.btnInfomationMenu.Name = "btnInfomationMenu";
+            this.btnInfomationMenu.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
+            this.btnInfomationMenu.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(106)))), ((int)(((byte)(138)))));
+            this.btnInfomationMenu.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnInfomationMenu.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnInfomationMenu.OnHoverImage = null;
+            this.btnInfomationMenu.OnPressedColor = System.Drawing.Color.Black;
+            this.btnInfomationMenu.Radius = 5;
+            this.btnInfomationMenu.Size = new System.Drawing.Size(38, 33);
+            this.btnInfomationMenu.TabIndex = 61;
+            this.btnInfomationMenu.Click += new System.EventHandler(this.btnInfomationMenu_Click);
             // 
             // btnCustomMenu
             // 
@@ -436,8 +462,8 @@
             this.btnCustomMenu.ForeColor = System.Drawing.Color.White;
             this.btnCustomMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnCustomMenu.Image")));
             this.btnCustomMenu.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.btnCustomMenu.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnCustomMenu.Location = new System.Drawing.Point(455, 5);
+            this.btnCustomMenu.ImageSize = new System.Drawing.Size(22, 22);
+            this.btnCustomMenu.Location = new System.Drawing.Point(504, 5);
             this.btnCustomMenu.Name = "btnCustomMenu";
             this.btnCustomMenu.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
             this.btnCustomMenu.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(106)))), ((int)(((byte)(138)))));
@@ -446,9 +472,9 @@
             this.btnCustomMenu.OnHoverImage = null;
             this.btnCustomMenu.OnPressedColor = System.Drawing.Color.Black;
             this.btnCustomMenu.Radius = 5;
-            this.btnCustomMenu.Size = new System.Drawing.Size(167, 33);
+            this.btnCustomMenu.Size = new System.Drawing.Size(119, 33);
             this.btnCustomMenu.TabIndex = 60;
-            this.btnCustomMenu.Text = "Tùy chỉnh Memu";
+            this.btnCustomMenu.Text = "Sửa Menu";
             this.btnCustomMenu.Click += new System.EventHandler(this.btnCustomMenu_Click);
             // 
             // btnViewHistoryMenu
@@ -465,8 +491,8 @@
             this.btnViewHistoryMenu.ForeColor = System.Drawing.Color.White;
             this.btnViewHistoryMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnViewHistoryMenu.Image")));
             this.btnViewHistoryMenu.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.btnViewHistoryMenu.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnViewHistoryMenu.Location = new System.Drawing.Point(310, 5);
+            this.btnViewHistoryMenu.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnViewHistoryMenu.Location = new System.Drawing.Point(356, 5);
             this.btnViewHistoryMenu.Name = "btnViewHistoryMenu";
             this.btnViewHistoryMenu.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
             this.btnViewHistoryMenu.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(106)))), ((int)(((byte)(138)))));
@@ -494,8 +520,8 @@
             this.btnExportComposition.ForeColor = System.Drawing.Color.White;
             this.btnExportComposition.Image = ((System.Drawing.Image)(resources.GetObject("btnExportComposition.Image")));
             this.btnExportComposition.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.btnExportComposition.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnExportComposition.Location = new System.Drawing.Point(137, 5);
+            this.btnExportComposition.ImageSize = new System.Drawing.Size(22, 22);
+            this.btnExportComposition.Location = new System.Drawing.Point(184, 5);
             this.btnExportComposition.Name = "btnExportComposition";
             this.btnExportComposition.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
             this.btnExportComposition.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(106)))), ((int)(((byte)(138)))));
@@ -504,7 +530,7 @@
             this.btnExportComposition.OnHoverImage = null;
             this.btnExportComposition.OnPressedColor = System.Drawing.Color.Black;
             this.btnExportComposition.Radius = 5;
-            this.btnExportComposition.Size = new System.Drawing.Size(167, 33);
+            this.btnExportComposition.Size = new System.Drawing.Size(163, 33);
             this.btnExportComposition.TabIndex = 58;
             this.btnExportComposition.Text = "Xem nguyên liệu";
             this.btnExportComposition.Click += new System.EventHandler(this.btnExportComposition_Click);
@@ -533,7 +559,7 @@
             this.btnSettingsMenu.OnHoverImage = null;
             this.btnSettingsMenu.OnPressedColor = System.Drawing.Color.Black;
             this.btnSettingsMenu.Radius = 5;
-            this.btnSettingsMenu.Size = new System.Drawing.Size(110, 33);
+            this.btnSettingsMenu.Size = new System.Drawing.Size(105, 33);
             this.btnSettingsMenu.TabIndex = 29;
             this.btnSettingsMenu.Text = "Thiết lập";
             this.btnSettingsMenu.Click += new System.EventHandler(this.btnSettingsMenu_Click);
@@ -553,7 +579,7 @@
             this.btnExportMenu.Image = ((System.Drawing.Image)(resources.GetObject("btnExportMenu.Image")));
             this.btnExportMenu.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btnExportMenu.ImageSize = new System.Drawing.Size(25, 25);
-            this.btnExportMenu.Location = new System.Drawing.Point(7, 5);
+            this.btnExportMenu.Location = new System.Drawing.Point(49, 5);
             this.btnExportMenu.Name = "btnExportMenu";
             this.btnExportMenu.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(120)))), ((int)(((byte)(113)))));
             this.btnExportMenu.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(19)))), ((int)(((byte)(106)))), ((int)(((byte)(138)))));
@@ -562,22 +588,10 @@
             this.btnExportMenu.OnHoverImage = null;
             this.btnExportMenu.OnPressedColor = System.Drawing.Color.Black;
             this.btnExportMenu.Radius = 5;
-            this.btnExportMenu.Size = new System.Drawing.Size(124, 33);
+            this.btnExportMenu.Size = new System.Drawing.Size(126, 33);
             this.btnExportMenu.TabIndex = 57;
             this.btnExportMenu.Text = "Xuất Menu";
             this.btnExportMenu.Click += new System.EventHandler(this.btnExportMenu_Click);
-            // 
-            // pnlHeading
-            // 
-            this.pnlHeading.BackColor = System.Drawing.Color.Transparent;
-            this.pnlHeading.Controls.Add(this.btnNextMenu);
-            this.pnlHeading.Controls.Add(this.btnPreMenu);
-            this.pnlHeading.Controls.Add(this.lblTitle);
-            this.pnlHeading.Controls.Add(this.lblData);
-            this.pnlHeading.Location = new System.Drawing.Point(8, 47);
-            this.pnlHeading.Name = "pnlHeading";
-            this.pnlHeading.Size = new System.Drawing.Size(767, 36);
-            this.pnlHeading.TabIndex = 58;
             // 
             // btnNextMenu
             // 
@@ -634,19 +648,6 @@
             this.btnPreMenu.Size = new System.Drawing.Size(35, 35);
             this.btnPreMenu.TabIndex = 58;
             this.btnPreMenu.Click += new System.EventHandler(this.btnPreMenu_Click);
-            // 
-            // lblData
-            // 
-            this.lblData.AutoSize = true;
-            this.lblData.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblData.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.lblData.Location = new System.Drawing.Point(159, 9);
-            this.lblData.Name = "lblData";
-            this.lblData.Size = new System.Drawing.Size(58, 20);
-            this.lblData.TabIndex = 56;
-            this.lblData.Text = "lblData";
-            this.lblData.Visible = false;
-            this.lblData.TextChanged += new System.EventHandler(this.lblData_TextChanged);
             // 
             // frmMenuFood
             // 
@@ -709,10 +710,10 @@
         private Guna.UI.WinForms.GunaGradientButton btnCustomMenu;
         private Guna.UI.WinForms.GunaGradientButton btnViewHistoryMenu;
         private Guna.UI.WinForms.GunaGradient2Panel pnlAdvCustomMenu;
-        private Guna.UI.WinForms.GunaGradientButton gunaGradientButton1;
         private Guna.UI.WinForms.GunaGradientButton createMenu;
-        private Guna.UI.WinForms.GunaGradientButton gunaGradientButton3;
+        private Guna.UI.WinForms.GunaGradientButton btnAddItem;
         private Guna.UI.WinForms.GunaGradientButton btnBackMenu;
         private Guna.UI.WinForms.GunaGradientButton btnClearMenu;
+        private Guna.UI.WinForms.GunaGradientButton btnInfomationMenu;
     }
 }

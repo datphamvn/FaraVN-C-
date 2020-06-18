@@ -5,6 +5,9 @@ using System.Drawing;
 using System.Net.NetworkInformation;
 using System.IO;
 using System.Collections.Generic;
+using System.Net;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace TrolyaoFara
 {
@@ -110,6 +113,47 @@ namespace TrolyaoFara
             command.Dispose();
             databaseObject.CloseConnection();
             //return listUserLocal;
+        }
+
+        public async void getImgForFoodItem(string idx, PictureBox picPreviewFood)
+        {
+            if (CheckForInternetConnection())
+            {
+                SettingSever sSever = new SettingSever();
+                Food food = null;
+                Action load = () =>
+                {
+                    if (CheckForInternetConnection())
+                    {
+                        using (WebClient wc = new WebClient())
+                        {
+                            var json = wc.DownloadString(sSever.linksever + "ai/api/food/" + idx);
+                            food = JsonConvert.DeserializeObject<Food>(json);
+                        }
+                    }
+                };
+                Task task = new Task(load);
+                task.Start();
+                await task;
+                picPreviewFood.Show();
+                picPreviewFood.LoadAsync(sSever.linkimg + food.URLimg);
+            }
+        }
+
+        public int countRow(string sql) 
+        {
+            int nRow = 0;
+            Database databaseObject = new Database();
+            databaseObject.OpenConnection();
+            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+            SQLiteDataReader rd = command.ExecuteReader();
+            while (rd.Read())
+            {
+                nRow++;
+            }
+            command.Dispose();
+            databaseObject.CloseConnection();
+            return nRow;
         }
     }
 }

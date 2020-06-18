@@ -12,6 +12,8 @@ namespace TrolyaoFara
 {
     public partial class ItemFood : UserControl
     {
+        LibFunction lib = new LibFunction();
+
         public ItemFood(long id, string namefood, int timer, double calo, double factor)
         {
             InitializeComponent();
@@ -21,6 +23,7 @@ namespace TrolyaoFara
             lblNameFood.Text = namefood;
             lblTimer.Text = timer.ToString() + " min";
             lblGr.Text = Convert.ToInt32(factor*calo).ToString() + " Calo";
+            lib.getImgForFoodItem(lblID.Text, imgFood);
         }
 
         private static ItemFood _instance;

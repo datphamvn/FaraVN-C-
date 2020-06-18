@@ -32,8 +32,8 @@ namespace TrolyaoFara
 
         private void FrmDashboard_Load(object sender, EventArgs e)
         {
-            //openfrmRequireUpdateInfo(0); // Open home tab
-            openChildForm(new frmSettingsMenu());
+            openfrmRequireUpdateInfo(0); // Open home tab
+            //openChildForm(new frmSettingsMenu());
             if (strNhan == "1")
                 openTabMenuFood();       
         }
@@ -131,20 +131,24 @@ namespace TrolyaoFara
             SetcurrentTab(Int32.Parse(lblButton.Text));
         }
 
-        private bool CheckUpdateData()
+        public bool CheckUpdateData()
         {
             bool check = true;
             string sql = string.Format("SELECT * FROM info WHERE iduser='{0}'", lib.GetID());
+            if (lib.countRow(sql) == 0)
+                return false;
+
             databaseObject.OpenConnection();
             SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
             SQLiteDataReader rd = command.ExecuteReader();
             while (rd.Read())
             {
-                if (String.IsNullOrEmpty(rd["fname"].ToString()) || String.IsNullOrEmpty(rd["birthday"].ToString()) || String.IsNullOrEmpty(rd["gender"].ToString()))
+                if (String.IsNullOrEmpty(rd["fname"].ToString()) || String.IsNullOrEmpty(rd["birthday"].ToString()) || Convert.ToInt32(rd["gender"]) == 0)
                     check = false;
             }
             command.Dispose();
             databaseObject.CloseConnection();
+
             return check;
         }
 
@@ -160,7 +164,10 @@ namespace TrolyaoFara
                     openTabAccount();
             }
             else
+            {
+                alert.Show("Bạn phải cập nhật thông tin cá nhân !", alert.AlertType.info);
                 openTabUpdateInfo();
+            }
         }
 
         private void openTabHome()
@@ -178,10 +185,22 @@ namespace TrolyaoFara
 
         private void openTabMenuFood()
         {
-            frmMenuFood frm = new frmMenuFood();
-            frm.mydata = new frmMenuFood.GETDATA(GETVALUE);
-            openChildForm(frm);
-            lblButton.Text = "1";
+            string querySQL = string.Format("SELECT * FROM settings");
+            if (lib.countRow(querySQL) > 0)
+            {
+                string sql = "SELECT * FROM menu ";
+                if (lib.countRow(sql) == 0)
+                    openTabSettingsMenu();
+                else
+                {
+                    frmMenuFood frm = new frmMenuFood();
+                    frm.mydata = new frmMenuFood.GETDATA(GETVALUE);
+                    openChildForm(frm);
+                    lblButton.Text = "1";
+                }
+            }
+            else
+                openTabSettingsMenu();
         }
 
         private void openTabSettingsMenu()

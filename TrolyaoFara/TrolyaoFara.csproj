@@ -135,6 +135,12 @@
     <Compile Include="frmGuideForFood.Designer.cs">
       <DependentUpon>frmGuideForFood.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmInfoMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmInfoMenu.Designer.cs">
+      <DependentUpon>frmInfoMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmViewHistoryMenu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -260,6 +266,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmGuideForFood.resx">
       <DependentUpon>frmGuideForFood.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmInfoMenu.resx">
+      <DependentUpon>frmInfoMenu.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpdateInfo.resx">
       <DependentUpon>frmUpdateInfo.cs</DependentUpon>

@@ -30,24 +30,25 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ItemFoodMini));
-            this.gunaPictureBox1 = new Guna.UI.WinForms.GunaPictureBox();
+            this.imgFood = new Guna.UI.WinForms.GunaPictureBox();
             this.lblName = new System.Windows.Forms.Label();
             this.gunaGradient2Panel2 = new Guna.UI.WinForms.GunaGradient2Panel();
             this.gunaElipse1 = new Guna.UI.WinForms.GunaElipse(this.components);
-            ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).BeginInit();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.imgFood)).BeginInit();
             this.gunaGradient2Panel2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // gunaPictureBox1
+            // imgFood
             // 
-            this.gunaPictureBox1.BaseColor = System.Drawing.Color.White;
-            this.gunaPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("gunaPictureBox1.Image")));
-            this.gunaPictureBox1.Location = new System.Drawing.Point(0, 29);
-            this.gunaPictureBox1.Name = "gunaPictureBox1";
-            this.gunaPictureBox1.Size = new System.Drawing.Size(138, 92);
-            this.gunaPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.gunaPictureBox1.TabIndex = 0;
-            this.gunaPictureBox1.TabStop = false;
+            this.imgFood.BaseColor = System.Drawing.Color.White;
+            this.imgFood.Image = ((System.Drawing.Image)(resources.GetObject("imgFood.Image")));
+            this.imgFood.Location = new System.Drawing.Point(0, 29);
+            this.imgFood.Name = "imgFood";
+            this.imgFood.Size = new System.Drawing.Size(138, 92);
+            this.imgFood.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgFood.TabIndex = 0;
+            this.imgFood.TabStop = false;
             // 
             // lblName
             // 
@@ -76,27 +77,42 @@
             this.gunaElipse1.Radius = 2;
             this.gunaElipse1.TargetControl = this;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(3, 103);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(20, 17);
+            this.label1.TabIndex = 38;
+            this.label1.Text = "ID";
+            this.label1.Visible = false;
+            // 
             // ItemFoodMini
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.gunaGradient2Panel2);
-            this.Controls.Add(this.gunaPictureBox1);
+            this.Controls.Add(this.imgFood);
             this.Name = "ItemFoodMini";
             this.Size = new System.Drawing.Size(138, 120);
-            ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgFood)).EndInit();
             this.gunaGradient2Panel2.ResumeLayout(false);
             this.gunaGradient2Panel2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private Guna.UI.WinForms.GunaPictureBox gunaPictureBox1;
+        private Guna.UI.WinForms.GunaPictureBox imgFood;
         private System.Windows.Forms.Label lblName;
         private Guna.UI.WinForms.GunaGradient2Panel gunaGradient2Panel2;
         private Guna.UI.WinForms.GunaElipse gunaElipse1;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -18,23 +18,30 @@ namespace TrolyaoFara
         List<string> listComposition = new List<string>();
         List<long> listIdComposition = new List<long>();
 
-        private string _typeForm;
-        public string typeForm
-        {
-            get { return _typeForm; }
-            set { _typeForm = value; }
-        }
+        //Send data to other form
+        public delegate void GETDATA(string data);
+        public GETDATA mydata;
 
-        public frmAddData()
+        private string typeForm;
+
+        public frmAddData(string _typeForm)
         {
             InitializeComponent();
+            typeForm = _typeForm;
         }
 
         private void frmAddData_Load(object sender, EventArgs e)
         {
             frmUpdateInfo frm = new frmUpdateInfo();
+
+            //setting when call from frmMenuFood
+            if(typeForm == "frmMenuFood")
+            {
+                this.BackColor = Color.FromArgb(14, 20, 47);
+            }
+
+            txtInput.Enabled = false;
             frm.LoadFoodFavourite(imgLoading, txtInput);
-            txtInput.Hide();
 
             listFood = frm.listFood;
             listIdFood = frm.listIdFood;
@@ -84,6 +91,18 @@ namespace TrolyaoFara
             }
             else
                 lstData.Hide();
+        }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            string itemsel = lstData.GetItemText(lstData.SelectedItem);
+            if (string.IsNullOrEmpty(itemsel))
+                return;
+
+            lstIDData.SelectedIndex = lstData.Items.IndexOf(lstData.SelectedItem);
+            string idUser = lstIDData.GetItemText(lstIDData.SelectedItem);
+
+            mydata(idUser + ";" + itemsel);
         }
     }
 }

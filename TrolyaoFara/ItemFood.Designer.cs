@@ -39,12 +39,12 @@
             this.lblID = new System.Windows.Forms.Label();
             this.gunaGradient2Panel1 = new Guna.UI.WinForms.GunaGradient2Panel();
             this.btnInfo = new Guna.UI.WinForms.GunaGradientButton();
-            this.gunaPictureBox1 = new Guna.UI.WinForms.GunaPictureBox();
+            this.imgFood = new Guna.UI.WinForms.GunaPictureBox();
             this.lblFactor = new System.Windows.Forms.Label();
             this.gunaGradient2Panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox2)).BeginInit();
             this.gunaGradient2Panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgFood)).BeginInit();
             this.SuspendLayout();
             // 
             // borderItem
@@ -164,18 +164,19 @@
             this.btnInfo.TabIndex = 29;
             this.btnInfo.Click += new System.EventHandler(this.btnInfo_Click);
             // 
-            // gunaPictureBox1
+            // imgFood
             // 
-            this.gunaPictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.gunaPictureBox1.BaseColor = System.Drawing.Color.White;
-            this.gunaPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("gunaPictureBox1.Image")));
-            this.gunaPictureBox1.Location = new System.Drawing.Point(7, 7);
-            this.gunaPictureBox1.Name = "gunaPictureBox1";
-            this.gunaPictureBox1.Radius = 7;
-            this.gunaPictureBox1.Size = new System.Drawing.Size(140, 130);
-            this.gunaPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.gunaPictureBox1.TabIndex = 0;
-            this.gunaPictureBox1.TabStop = false;
+            this.imgFood.BackColor = System.Drawing.Color.Transparent;
+            this.imgFood.BaseColor = System.Drawing.Color.White;
+            this.imgFood.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgFood.ErrorImage")));
+            this.imgFood.Image = ((System.Drawing.Image)(resources.GetObject("imgFood.Image")));
+            this.imgFood.Location = new System.Drawing.Point(7, 7);
+            this.imgFood.Name = "imgFood";
+            this.imgFood.Radius = 7;
+            this.imgFood.Size = new System.Drawing.Size(140, 130);
+            this.imgFood.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgFood.TabIndex = 0;
+            this.imgFood.TabStop = false;
             // 
             // lblFactor
             // 
@@ -200,7 +201,7 @@
             this.Controls.Add(this.btnInfo);
             this.Controls.Add(this.gunaGradient2Panel2);
             this.Controls.Add(this.lblNameFood);
-            this.Controls.Add(this.gunaPictureBox1);
+            this.Controls.Add(this.imgFood);
             this.Name = "ItemFood";
             this.Size = new System.Drawing.Size(345, 144);
             this.gunaGradient2Panel2.ResumeLayout(false);
@@ -208,7 +209,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox2)).EndInit();
             this.gunaGradient2Panel1.ResumeLayout(false);
             this.gunaGradient2Panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imgFood)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -217,7 +218,7 @@
         #endregion
 
         private Guna.UI.WinForms.GunaElipse borderItem;
-        private Guna.UI.WinForms.GunaPictureBox gunaPictureBox1;
+        private Guna.UI.WinForms.GunaPictureBox imgFood;
         private System.Windows.Forms.Label lblNameFood;
         private Guna.UI.WinForms.GunaGradient2Panel gunaGradient2Panel2;
         private Guna.UI.WinForms.GunaGradientButton btnInfo;

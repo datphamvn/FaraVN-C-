@@ -40,11 +40,11 @@
             this.txtGram = new Guna.UI.WinForms.GunaTextBox();
             this.lblGr = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.gunaPictureBox1 = new Guna.UI.WinForms.GunaPictureBox();
+            this.imgFood = new Guna.UI.WinForms.GunaPictureBox();
             this.lblNameFood = new System.Windows.Forms.Label();
-            this.gunaGradient2Panel1 = new Guna.UI.WinForms.GunaGradient2Panel();
-            ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).BeginInit();
-            this.gunaGradient2Panel1.SuspendLayout();
+            this.pnlCustomGr = new Guna.UI.WinForms.GunaGradient2Panel();
+            ((System.ComponentModel.ISupportInitialize)(this.imgFood)).BeginInit();
+            this.pnlCustomGr.SuspendLayout();
             this.SuspendLayout();
             // 
             // borderItem
@@ -63,6 +63,7 @@
             this.lblID.TabIndex = 42;
             this.lblID.Text = "ID";
             this.lblID.Visible = false;
+            this.lblID.TextChanged += new System.EventHandler(this.lblID_TextChanged);
             // 
             // btnClose
             // 
@@ -229,18 +230,20 @@
             this.label1.TabIndex = 50;
             this.label1.Text = "KL: Auto";
             // 
-            // gunaPictureBox1
+            // imgFood
             // 
-            this.gunaPictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.gunaPictureBox1.BaseColor = System.Drawing.Color.White;
-            this.gunaPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("gunaPictureBox1.Image")));
-            this.gunaPictureBox1.Location = new System.Drawing.Point(7, 7);
-            this.gunaPictureBox1.Name = "gunaPictureBox1";
-            this.gunaPictureBox1.Radius = 7;
-            this.gunaPictureBox1.Size = new System.Drawing.Size(140, 130);
-            this.gunaPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.gunaPictureBox1.TabIndex = 51;
-            this.gunaPictureBox1.TabStop = false;
+            this.imgFood.BackColor = System.Drawing.Color.Transparent;
+            this.imgFood.BaseColor = System.Drawing.Color.White;
+            this.imgFood.ErrorImage = ((System.Drawing.Image)(resources.GetObject("imgFood.ErrorImage")));
+            this.imgFood.Image = ((System.Drawing.Image)(resources.GetObject("imgFood.Image")));
+            this.imgFood.InitialImage = null;
+            this.imgFood.Location = new System.Drawing.Point(7, 7);
+            this.imgFood.Name = "imgFood";
+            this.imgFood.Radius = 7;
+            this.imgFood.Size = new System.Drawing.Size(140, 130);
+            this.imgFood.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.imgFood.TabIndex = 51;
+            this.imgFood.TabStop = false;
             // 
             // lblNameFood
             // 
@@ -254,22 +257,22 @@
             this.lblNameFood.Text = "Tên món ăn";
             this.lblNameFood.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // gunaGradient2Panel1
+            // pnlCustomGr
             // 
-            this.gunaGradient2Panel1.BackColor = System.Drawing.Color.Transparent;
-            this.gunaGradient2Panel1.Controls.Add(this.btnUpGr);
-            this.gunaGradient2Panel1.Controls.Add(this.btnDownGr);
-            this.gunaGradient2Panel1.Controls.Add(this.lblGr);
-            this.gunaGradient2Panel1.Controls.Add(this.txtGram);
-            this.gunaGradient2Panel1.Controls.Add(this.switchStt);
-            this.gunaGradient2Panel1.Controls.Add(this.label1);
-            this.gunaGradient2Panel1.GradientColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
-            this.gunaGradient2Panel1.GradientColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
-            this.gunaGradient2Panel1.Location = new System.Drawing.Point(152, 48);
-            this.gunaGradient2Panel1.Name = "gunaGradient2Panel1";
-            this.gunaGradient2Panel1.Radius = 7;
-            this.gunaGradient2Panel1.Size = new System.Drawing.Size(185, 32);
-            this.gunaGradient2Panel1.TabIndex = 60;
+            this.pnlCustomGr.BackColor = System.Drawing.Color.Transparent;
+            this.pnlCustomGr.Controls.Add(this.btnUpGr);
+            this.pnlCustomGr.Controls.Add(this.btnDownGr);
+            this.pnlCustomGr.Controls.Add(this.lblGr);
+            this.pnlCustomGr.Controls.Add(this.txtGram);
+            this.pnlCustomGr.Controls.Add(this.switchStt);
+            this.pnlCustomGr.Controls.Add(this.label1);
+            this.pnlCustomGr.GradientColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
+            this.pnlCustomGr.GradientColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
+            this.pnlCustomGr.Location = new System.Drawing.Point(152, 48);
+            this.pnlCustomGr.Name = "pnlCustomGr";
+            this.pnlCustomGr.Radius = 7;
+            this.pnlCustomGr.Size = new System.Drawing.Size(185, 32);
+            this.pnlCustomGr.TabIndex = 60;
             // 
             // ItemFoodCustom
             // 
@@ -277,17 +280,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Controls.Add(this.gunaGradient2Panel1);
+            this.Controls.Add(this.pnlCustomGr);
             this.Controls.Add(this.lblNameFood);
             this.Controls.Add(this.lblID);
-            this.Controls.Add(this.gunaPictureBox1);
+            this.Controls.Add(this.imgFood);
             this.Controls.Add(this.btnSwitch);
             this.Controls.Add(this.btnClose);
             this.Name = "ItemFoodCustom";
             this.Size = new System.Drawing.Size(345, 144);
-            ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).EndInit();
-            this.gunaGradient2Panel1.ResumeLayout(false);
-            this.gunaGradient2Panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.imgFood)).EndInit();
+            this.pnlCustomGr.ResumeLayout(false);
+            this.pnlCustomGr.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -305,8 +308,8 @@
         private Guna.UI.WinForms.GunaTextBox txtGram;
         private Guna.UI.WinForms.GunaGradientButton btnUpGr;
         private Guna.UI.WinForms.GunaGradientButton btnDownGr;
-        private Guna.UI.WinForms.GunaPictureBox gunaPictureBox1;
+        private Guna.UI.WinForms.GunaPictureBox imgFood;
         private System.Windows.Forms.Label lblNameFood;
-        private Guna.UI.WinForms.GunaGradient2Panel gunaGradient2Panel1;
+        private Guna.UI.WinForms.GunaGradient2Panel pnlCustomGr;
     }
 }

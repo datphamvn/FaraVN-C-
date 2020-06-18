@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Data.SQLite;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TrolyaoFara
 {
@@ -12,25 +10,23 @@ namespace TrolyaoFara
     {
         Database databaseObject = new Database();
         LibFunction lib = new LibFunction();
+        SQLquery runSQL = new SQLquery();
 
         //Variable Data
         static Random rd = new Random();
-        static int nInfo = 6;
-        static int nBreakfast = 10;//Update
-        static int nOtherFood = 60;//Update
-
-        //Setting Menu
-        //static int day = 1; // Nhận từ cài đặt
+        static int nInfo = 4;
+        static int nBreakfast = 10;//Future: Update from sever
+        static int nOtherFood = 60;//Future: Update from sever
 
         //GA Variable
         static double totalFitness = 0.0;
+        static int populationSize = 400;
+        static int generationSize = 900;
+        static double mutationRate = 0.05; // Nhỏ hơn hoặc bằng 0,05
+        static double crossoverRate = 0.55;
 
-        static int populationSize = 20;
-        static int generationSize = 100;
-        static double mutationRate = 0.05;
-        static double crossoverRate = 0.8;
+        int breakfast = 0, lunch = 0, dinner = 0, mod = 0, lengthDNA = 0;
 
-        int breakfast = 0, lunch = 0, dinner = 0, lengthDNA = 0;
         public void GetDataFromSetting()
         {
             string sql = string.Format("SELECT * FROM settings WHERE id=1");
@@ -42,6 +38,7 @@ namespace TrolyaoFara
                 breakfast = Convert.ToInt32(rd["breakfast"]);
                 lunch = Convert.ToInt32(rd["lunch"]);
                 dinner = Convert.ToInt32(rd["dinner"]);
+                mod = Convert.ToInt32(rd["mod"]); // Mod is (Personal / Family / Group)
             }
             command.Dispose();
             databaseObject.CloseConnection();
@@ -49,65 +46,37 @@ namespace TrolyaoFara
             lengthDNA = breakfast + lunch + dinner;
         }
 
-        private void createTable()
-        {
-            string sql = "CREATE TABLE IF NOT EXISTS menu([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, recommend string, date string, breakfast INTEGER NOT NULL, lunch INTEGER NOT NULL, dinner INTEGER NOT NULL)";
-            databaseObject.RunSQL(sql);
-
-            if (!lib.CheckExists("menu", "id", 1, ""))
-            {
-                string strInsert = string.Format("INSERT INTO menu(recommend, date, breakfast, lunch, dinner) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')", "", DateTime.Today.ToString("dd/MM/yyyy"), 0, 0, 0);
-                databaseObject.RunSQL(strInsert);
-            }
-        }
-
-        public void GA1Day()
+        public void MainGA(string editMenu, string day)
         {
             GetDataFromSetting();
 
             //Load Database
             List<int[]> Database = new List<int[]>();
 
-            string path = Environment.CurrentDirectory + "/" + "dulieu.dat";
             int[] getdata = new int[nInfo];
-            if (System.IO.File.Exists(path))
+            string sql = string.Format("SELECT * FROM food_db");
+            databaseObject.OpenConnection();
+            SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+            SQLiteDataReader rd = command.ExecuteReader();
+            while (rd.Read())
             {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string[] words = sr.ReadToEnd().Split('\n');
-                    foreach (string i in words)
-                    {
-                        if (i == "")
-                            break;
-                        string[] getline = i.Split(' ');
-                        int k = 0;
-                        foreach (string d in getline)
-                        {
-                            int data;
-                            if (Int32.TryParse(d, out data))
-                            {
-                                getdata[k] = data;
-                                k++;
-                            }
-                            else
-                                break;
-                        }
-                        Database.Add(new int[nInfo]);
-                        for (int lst = 0; lst < nInfo; lst++)
-                            Database[Database.Count() - 1][lst] = getdata[lst];
-                    }
-                }
+                getdata[0] = Convert.ToInt32(rd["id_food"]);
+                getdata[1] = Convert.ToInt32(rd["id_purpose"]);
+                getdata[2] = Convert.ToInt32(rd["id_type"]);
+                getdata[3] = Convert.ToInt32(rd["id_method"]);
+                Database.Add(new int[nInfo]);
+                for (int lst = 0; lst < nInfo; lst++)
+                    Database[Database.Count() - 1][lst] = getdata[lst];
             }
-            else
-            {
-                Console.WriteLine("File does not exist");
-            }
+            command.Dispose();
+            databaseObject.CloseConnection();
+            //alert.Show("Load Data Success !", alert.AlertType.success);
 
             List<int[]> Generation = new List<int[]>();
             List<int[]> Generation2 = new List<int[]>();
             List<double> FitnessTable = new List<double>();
 
-            CreateDNA(Generation);
+            CreateDNA(Generation, editMenu);
             RankPopulation(Generation, FitnessTable, Database);
 
             for (int i = 0; i < generationSize; i++)
@@ -118,94 +87,76 @@ namespace TrolyaoFara
                 RankPopulation(Generation, FitnessTable, Database);
             }
 
-            //Log
-            path = Environment.CurrentDirectory + "/" + "log.txt";
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-
-                sw.WriteLine();
-                foreach (var k in FitnessTable)
-                {
-                    sw.WriteLine(k);
-                }
-
-                int a = RouletteSelection(FitnessTable);
-                sw.WriteLine(a);
-                foreach (int i in Generation[populationSize - 1])
-                {
-                    sw.Write(i + " ");
-                }
-                sw.WriteLine();
-                foreach (int i in Generation[populationSize - 2])
-                {
-                    sw.Write(i + " ");
-                }
-                sw.WriteLine();
-
-            }
-
-            //Output
-
-            //Load Database
-            List<string> ListFood = new List<string>();
-
-            path = Environment.CurrentDirectory + "/" + "namefood.dat";
-            if (System.IO.File.Exists(path))
-            {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string[] data = sr.ReadToEnd().Split('\n');
-                    foreach (string i in data)
-                    {
-                        ListFood.Add(i);
-                    }
-                }
-            }
-            else
-            {
-                Console.WriteLine("File does not exist");
-            }
-
-            DateTime today = DateTime.Today;
-            path = Environment.CurrentDirectory + "/" + "menu.dat";
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                sw.WriteLine(today.ToString("dd/MM/yyyy") + ";" + Math.Max(lunch, dinner) + ";" + breakfast);
-                int k = 0;
-                foreach (int i in Generation[populationSize - 1])
-                {
-                    sw.Write(ListFood[i].Trim() + "|");
-                    k++;
-                    if (k == breakfast || k == (breakfast + lunch))
-                        sw.WriteLine();
-                }
-                //sw.WriteLine();
-            }
-
+            //Log(FitnessTable, Generation); // Dev mode
             //Save Recommend
             string recommend = "";
             foreach (int i in Generation[populationSize - 1])
             {
-                recommend += i + " ";
+                recommend += i + " "; // Old code
+                //recommend += Database[i][0] + " "; // Database[i][0]: Id food
             }
-            createTable();
-            string strUdpate = string.Format("UPDATE menu set recommend='{0}', date='{1}', breakfast='{2}', lunch='{3}', dinner='{4}'  where id=1", recommend, DateTime.Today.ToString("dd/MM/yyyy"), breakfast, lunch, dinner);
+
+            string strUdpate = string.Format("UPDATE menu set recommend='{0}' where date='{1}'", recommend, day);
             databaseObject.RunSQL(strUdpate);
         }
 
-        public void CreateDNA(List<int[]> Generation)
+        private void convertIDFoodtoID(int[] editDNA)
         {
+            databaseObject.OpenConnection();
+            for (int i = 0; i < lengthDNA; i++)
+            {
+                int idFood = editDNA[i];
+                if (idFood >= 0)
+                {
+                    string sql = string.Format("SELECT * FROM food_db WHERE id_food='{0}'", idFood);
+
+                    SQLiteCommand command = new SQLiteCommand(sql, databaseObject.myConnection);
+                    SQLiteDataReader rd = command.ExecuteReader();
+                    while (rd.Read())
+                    {
+                        int id = Convert.ToInt32(rd["id"].ToString());
+                        editDNA[i] = -(id - 1);
+                    }
+
+                    command.Dispose();
+                }
+                else
+                    editDNA[i] = 0;
+            }
+            databaseObject.CloseConnection();
+        }
+
+        public void CreateDNA(List<int[]> Generation, string editMenu)
+        {
+            int[] editDNA = new int[lengthDNA];
+
+            if (editMenu != "")
+            {
+                editDNA = editMenu.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToArray();
+                convertIDFoodtoID(editDNA);
+            }
+
             for (int n = 0; n < populationSize; n++)
             {
                 int[] DNA = new int[lengthDNA];
-                for (int i = breakfast; i < lengthDNA; i++)
+
+                if (editMenu != "") //Chế độ chỉnh sửa thực đơn
                 {
-                    DNA[i] = rd.Next(nBreakfast, (nBreakfast + nOtherFood));
+                    CopyArray(editDNA, DNA);
                 }
+
                 for (int i = 0; i < breakfast; i++)
                 {
-                    DNA[i] = rd.Next(0, nBreakfast);
+                    if (DNA[i] >= 0)
+                        DNA[i] = rd.Next(0, nBreakfast);
                 }
+
+                for (int i = breakfast; i < lengthDNA; i++)
+                {
+                    if (DNA[i] >= 0)
+                        DNA[i] = rd.Next(nBreakfast, (nBreakfast + nOtherFood));
+                }
+
                 AddDNA(Generation, DNA);
             }
         }
@@ -229,108 +180,52 @@ namespace TrolyaoFara
                 FitnessTable.Add(FitnessCal(t, Database));
             }
 
-            foreach(var t in FitnessTable)
+            foreach (var t in FitnessTable)
             {
                 totalFitness += t;
             }
         }
-
-        //Hàm mục tiêu
-        public double FitnessCal(int[] x, List<int[]> Database)
+        #region Finess Process
+        private int FinessTypeOfFood(List<int[]> Database, int[] x, int idxBegin, int idxEnd, int idType1, int idType2)
         {
-            // Bữa sáng chuẩn
-            int Value_conflict = 0;
             int Idx0, Idx1, Idx2;
             Idx0 = Idx1 = Idx2 = 0;
-            for (int i = 0; i < lengthDNA; i++)
+            for (int i = idxBegin; i < idxEnd; i++)
             {
-                if (i % lengthDNA < breakfast)
-                {
-                    if (Database[x[i]][4] == 0)
-                        Idx0++;
-                    else if (Database[x[i]][4] == 1)
-                        Idx1++;
-                    else
-                        Idx2++;
-                }
+                int index = Math.Abs(x[i]);
+                if (Database[index][2] == idType1)
+                    Idx0++;
+                else if (Database[index][2] == idType2)
+                    Idx1++;
+                else
+                    Idx2++;
             }
-            
-            //Console.WriteLine("GT: " + BreakfastId0.ToString() + BreakfastId1.ToString() + BreakfastId2.ToString());
-            if (Idx0 == 1 && breakfast <= 2)
-                Value_conflict += 0;
-            else if (Idx0 == 1 && Idx1 == 1 && Idx2 == 1)
-                Value_conflict += 0;
-            else
-                Value_conflict = Value_conflict + (Idx0 * 1 + Idx1 * 2 + Idx2 * 3 + 1);
-
-
-            // Bữa trưa có canh rau thịt
-            Idx0 = Idx1 = Idx2 = 0;
-            for (int i = 0; i < lengthDNA; i++)
+            if (idxBegin == 0)
             {
-                if (i % lengthDNA >= breakfast && i % lengthDNA < (breakfast + lunch))
-                {
-                    if (Database[x[i]][4] == 0)
-                        Idx0++;
-                    else if (Database[x[i]][4] == 1)
-                        Idx1++;
-                    else
-                        Idx2++;
-                }
+                if ((Idx0 == 1 && breakfast <= 2) || (Idx0 == 1 && Idx1 == 1 && Idx2 == 1))
+                    return 0;
             }
-            if (Idx0 >= 1 && Idx1 >= 1 && Idx2 >= 1)
-                Value_conflict += 0;
             else
-                Value_conflict = Value_conflict + (Idx0 * 1 + Idx1 * 2 + Idx2 * 3 + 1);
-
-            // Bữa tối có canh rau thịt
-            Idx0 = Idx1 = Idx2 = 0;
-            for (int i = 0; i < lengthDNA; i++)
             {
-                if (i % lengthDNA >= (breakfast + lunch) && i % lengthDNA < lengthDNA)
-                {
-                    if (Database[x[i]][4] == 0)
-                        Idx0++;
-                    else if (Database[x[i]][4] == 1)
-                        Idx1++;
-                    else
-                        Idx2++;
-                }
+                if (Idx0 >= 1 && Idx1 >= 1 && Idx2 >= 1)
+                    return 0;
             }
-            if (Idx0 >= 1 && Idx1 >= 1 && Idx2 >= 1)
-                Value_conflict += 0;
-            else
-                Value_conflict = Value_conflict + (Idx0 * 1 + Idx1 * 2 + Idx2 * 3 + 1);
+            return Idx0 * 1 + Idx1 * 2 + Idx2 * 3 + 1;
+        }
 
-            // SelectionSort(x, 0, breakfast - 1, Database);
-            // SelectionSort(x, breakfast, lengthDNA - 1, Database);
-
-
-            // Bữa trưa có cách chế biến phù hợp
+        private int FinessMethodOfFood(List<int[]> Database, int[] x, int idxBegin, int idxEnd, int nFood)
+        {
             int[] Method = new int[lengthDNA];
+            Array.Clear(Method, 0, Method.Length);
             int k = 0;
-            for (int i = 0; i < lengthDNA; i++)
+            for (int i = idxBegin; i < idxEnd; i++)
             {
-                if ((i % lengthDNA >= breakfast) && (i % lengthDNA < (breakfast + lunch)))
-                {
-                    Method[k] = Database[x[i]][5];
-                    k++;
-                }
+                int index = Math.Abs(x[i]);
+                Method[k] = Database[index][3];
+                k++;
             }
 
-            // Sắp xếp
-            for (int i = 0; i < lengthDNA - 1; i++)
-            {
-                for (int j = i + 1; j < lengthDNA; j++)
-                {
-                    if (Method[i] < Method[j])
-                    {
-                        int temp = Method[i];
-                        Method[i] = Method[j];
-                        Method[j] = temp;
-                    }
-                }
-            }
+            Array.Sort(Method);
 
             int c_method = 1;
             for (int i = 0; i < k - 1; i++)
@@ -338,51 +233,69 @@ namespace TrolyaoFara
                 if (Method[i] != Method[i + 1])
                     c_method++;
             }
-            if (c_method >= lunch / 2)
-                Value_conflict += 0;
-            else
-                Value_conflict += 1;
+            if (c_method - 1 >= nFood / 2)
+                return 0;
+            return nFood / 2 - c_method + 1;
+        }
 
-
-            // Bữa tối có cách chế biến phù hợp
-            Array.Clear(Method, 0, Method.Length);
-            k = 0;
-            for (int i = 0; i < lengthDNA; i++)
-            {
-                if (i % lengthDNA >= (breakfast + lunch) && i % lengthDNA < lengthDNA)
-                {
-                    Method[k++] = Database[x[i]][5];
-                }
-            }
+        private int checkDuplicate(int[] x)
+        {
+            int conflict = 0;
+            int[] check = new int[lengthDNA];
+            CopyArray(x, check);
+            Array.Sort(check);
 
             for (int i = 0; i < lengthDNA - 1; i++)
             {
-                for (int j = i + 1; j < lengthDNA; j++)
+                if (Math.Abs(check[i]) == Math.Abs(check[i + 1]))
                 {
-                    if (Method[i] < Method[j])
-                    {
-                        int temp = Method[i];
-                        Method[i] = Method[j];
-                        Method[j] = temp;
-                    }
+                    conflict += 100;
                 }
             }
+            return conflict;
+        }
 
-            c_method = 1;
-            for (int i = 0; i < k - 1; i++)
-            {
-                if (Method[i] != Method[i + 1])
-                    c_method++;
-            }
-            if (c_method >= lunch / 2)
-                Value_conflict += 0;
-            else
-                Value_conflict += 1;
+        // cột 0 -> ID món ăn
+        // cột 1 -> purpose (mục đích) sáng/trưa/tối
+        // cột 2 -> Type (Phân loại món ăn)
+        // cột 3 -> Phương pháp chế biến (method)
 
+        //Hàm mục tiêu
+        private double FitnessCal(int[] x, List<int[]> Database)
+        {
+            int Value_conflict = 0;
+            //int idxBegin, idxEnd;
 
+            Value_conflict += checkDuplicate(x);
+
+            // Bữa sáng chuẩn
+            //idxBegin = 0;
+            //idxEnd = breakfast;
+            Value_conflict += FinessTypeOfFood(Database, x, 0, breakfast, 10, 12);
+
+            // Bữa trưa có canh rau thịt
+            //idxBegin = breakfast;
+            //idxEnd = breakfast + lunch;
+            Value_conflict += FinessTypeOfFood(Database, x, breakfast, (breakfast + lunch), 1, 2);
+
+            // Bữa tối có canh rau thịt
+            //idxBegin = breakfast + lunch;
+            //idxEnd = lengthDNA;
+            Value_conflict += FinessTypeOfFood(Database, x, (breakfast + lunch), lengthDNA, 1, 2);
+
+            // Bữa trưa có cách chế biến phù hợp
+            //idxBegin = breakfast;
+            //idxEnd = breakfast + lunch;
+            //Value_conflict += FinessMethodOfFood(Database, x, breakfast, (breakfast + lunch), lunch);
+
+            // Bữa tối có cách chế biến phù hợp
+            //idxBegin = breakfast + lunch;
+            //idxEnd = lengthDNA;
+            //Value_conflict += FinessMethodOfFood(Database, x, (breakfast + lunch), lengthDNA, dinner);
 
             return (1.0 / (Value_conflict + 1));
         }
+        #endregion
 
         public void CopyArray(int[] arrCopy, int[] arrPaste)
         {
@@ -390,7 +303,7 @@ namespace TrolyaoFara
                 arrPaste[i] = arrCopy[i];
         }
 
-        public void Crossover(int[] parent1, int[] parent2, int[] child1, int[] child2)
+        private void Crossover(int[] parent1, int[] parent2, int[] child1, int[] child2)
         {
             int pos = rd.Next(0, lengthDNA);
 
@@ -409,11 +322,11 @@ namespace TrolyaoFara
             }
         }
 
-        public void Mutate(int[] DNA)
+        private void Mutate(int[] DNA)
         {
             for (int pos = 0; pos < lengthDNA; pos++)
             {
-                if (rd.NextDouble() < mutationRate)
+                if (rd.NextDouble() < mutationRate && DNA[pos] >= 0)
                 {
                     if (pos % lengthDNA < breakfast)
                     {
@@ -427,7 +340,7 @@ namespace TrolyaoFara
             }
         }
 
-        public void CreateNextGeneration(List<int[]> Generation, List<int[]> Generation2, List<double> FitnessTable)
+        private void CreateNextGeneration(List<int[]> Generation, List<int[]> Generation2, List<double> FitnessTable)
         {
             Generation2.Clear();
 
@@ -497,6 +410,32 @@ namespace TrolyaoFara
                     idx = last;
             }
             return idx;
+        }
+
+        private void Log(List<double> FitnessTable, List<int[]> Generation)
+        {
+            string path = Environment.CurrentDirectory + "/" + "log.txt";
+            using (StreamWriter sw = new StreamWriter(path))
+            {
+                sw.WriteLine();
+                foreach (var k in FitnessTable)
+                {
+                    sw.WriteLine(k);
+                }
+
+                int a = RouletteSelection(FitnessTable);
+                sw.WriteLine(a);
+                foreach (int i in Generation[populationSize - 1])
+                {
+                    sw.Write(i + " ");
+                }
+                sw.WriteLine();
+                foreach (int i in Generation[populationSize - 2])
+                {
+                    sw.Write(i + " ");
+                }
+                sw.WriteLine();
+            }
         }
     }
 }

@@ -195,7 +195,8 @@ namespace TrolyaoFara
         {
             // Biến lưu thông tin
             string lname = "", fname = "";
-            string birthday = DateTime.Now.ToString("dd/MM/yyyy"), district = "", city = "", country = "";
+            //string birthday = DateTime.Now.ToString("dd/MM/yyyy");
+            string birthday = "", district = "", city = "", country = "";
             int gender = 0;
             int height = 0, weight = 0, neck = 0, waist = 0, hip = 0, intensity = 0;
 
@@ -212,7 +213,6 @@ namespace TrolyaoFara
             }
             catch (WebException)
             {
-                //alert.Show("Lỗi Server!", alert.AlertType.error);
                 alert.Show("ERROR: LDATA1 - Load họ tên user không thành công !", alert.AlertType.error);
             }
 
@@ -221,23 +221,23 @@ namespace TrolyaoFara
             {
                 var jsondata = new WebClient().DownloadString(sSever.linksever + "dashboard/api/profile/" + iduser.ToString());
                 var info = JsonConvert.DeserializeObject<LoadInfo>(jsondata);
-                //Download Avata User
-                /*
-                    using (WebClient img = new WebClient())
-                    {
-                        img.DownloadFile(new Uri(info.image.ToString()), lData.loginimg);
-                    }
-                */
 
                 birthday = info.birthday;
-                district = info.district;
-                city = info.city;
-                country = info.country;
+
+                byte[] bytes = Encoding.Default.GetBytes(info.district.ToString());
+                district = Encoding.UTF8.GetString(bytes);
+                byte[] bytes1 = Encoding.Default.GetBytes(info.city.ToString());
+                city = Encoding.UTF8.GetString(bytes1);
+                byte[] bytes2 = Encoding.Default.GetBytes(info.country.ToString());
+                country = Encoding.UTF8.GetString(bytes2);
+
+                //district = info.district;
+                //city = info.city;
+                //country = info.country;
                 gender = info.gender;
             }
             catch (WebException)
             {
-                //alert.Show("Lỗi Server!", alert.AlertType.error);
                 alert.Show("ERROR: LDATA3 - Cập nhật thông tin User không thành công !", alert.AlertType.error);
             }
 
@@ -256,7 +256,6 @@ namespace TrolyaoFara
             }
             catch (WebException)
             {
-                //alert.Show("Lỗi Server!", alert.AlertType.error);
                 alert.Show("ERROR: LDATA4 - Cập nhật thông số sức khỏe User không thành công !", alert.AlertType.error);
             }
 
@@ -283,15 +282,16 @@ namespace TrolyaoFara
 
         private void lblPasswordReset_Click(object sender, EventArgs e)
         {
-            if (lib.CheckForInternetConnection())
-                System.Diagnostics.Process.Start(sSever.linksever + "accounts/password_reset");
-            else
-                alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
+            goToServer("accounts/password_reset");
         }
 
         private void lblCreateAcc_Click(object sender, EventArgs e)
         {
+            goToServer("register");
+        }
 
+        private void goToServer(string path)
+        {
             if (lib.CheckForInternetConnection())
                 System.Diagnostics.Process.Start(sSever.linksever + "register");
             else

@@ -24,10 +24,11 @@ namespace TrolyaoFara
         GAVer2 GA = new GAVer2();
         GACal gaCal = new GACal();
 
+        //Send data to ...
         public delegate void GETDATA(string data);
         public GETDATA mydata;
 
-        long iduser;
+        public long iduser;
         int mode, level, mod;
         int old, weight, height, neck, waist, hip, gender, intensity;// Male 1; Female 2
         double calo;
@@ -66,6 +67,7 @@ namespace TrolyaoFara
             //Tab Family
             txtUsername.Enabled = false;
             lstUsername.Hide();
+            lstIDUsername.Hide();
             //Settings Datagridview tab Family
             datatableFamily.ReadOnly = false;
             datatableFamily.Columns[0].ReadOnly = true;
@@ -101,6 +103,11 @@ namespace TrolyaoFara
         private void btnTabFamily_Click(object sender, EventArgs e)
         {
             metroTabControl.SelectedTab = tabFamily;
+        }
+
+        private void btnGoTabGroup_Click(object sender, EventArgs e)
+        {
+            
         }
         #endregion
 
@@ -181,6 +188,18 @@ namespace TrolyaoFara
         }
         #endregion
         #region Setting_PercentBar
+
+        //Setting of tabAdv 
+        private void btnDefaultTabAdv_Click(object sender, EventArgs e)
+        {
+            trackbarAdvTotalCalo.Value = 100;
+        }
+
+        private void trackbarAdvTotalCalo_ValueChanged(object sender, EventArgs e)
+        {
+            lblPercentTabAdv.Text = trackbarAdvTotalCalo.Value.ToString() + "%";
+        }
+
         //Tab1: Tỉ lệ dinh dưỡng
         //Tab2: Tỉ lệ NL trong ngày
         private void SetValue(int value1, int value2, int value3, int tab)
@@ -190,29 +209,29 @@ namespace TrolyaoFara
                 trackbarProtein.Value = value1;
                 trackbarLipid.Value = value2;
                 trackbarCarb.Value = value3;
-                lblProteinPercent.Text = value1.ToString() + " %";
-                lblLipidPercent.Text = value2.ToString() + " %";
-                lblCarbPercent.Text = value3.ToString() + " %";
-                lblTotalPercent.Text = "100 %";
+                lblProteinPercent.Text = value1.ToString() + "%";
+                lblLipidPercent.Text = value2.ToString() + "%";
+                lblCarbPercent.Text = value3.ToString() + "%";
+                lblTotalPercent.Text = "100%";
             }
             else
             {
                 trackbarCaloBreakfast.Value = value1;
                 trackbarCaloLunch.Value = value2;
                 trackbarCaloDinner.Value = value3;
-                lblCaloBreakfast.Text = value1.ToString() + " %";
-                lblCaloLunch.Text = value2.ToString() + " %";
-                lblCaloDinner.Text = value3.ToString() + " %";
-                lblSumCaloPercent.Text = "100 %";
+                lblCaloBreakfast.Text = value1.ToString() + "%";
+                lblCaloLunch.Text = value2.ToString() + "%";
+                lblCaloDinner.Text = value3.ToString() + "%";
+                lblSumCaloPercent.Text = "100%";
             }
         }
 
         private void sumPercent(int tab)
         {
             if(tab == 1)
-                lblTotalPercent.Text = (trackbarProtein.Value + trackbarLipid.Value + trackbarCarb.Value).ToString() + " %";
+                lblTotalPercent.Text = (trackbarProtein.Value + trackbarLipid.Value + trackbarCarb.Value).ToString() + "%";
             else
-                lblSumCaloPercent.Text = (trackbarCaloBreakfast.Value + trackbarCaloLunch.Value + trackbarCaloDinner.Value).ToString() + " %";
+                lblSumCaloPercent.Text = (trackbarCaloBreakfast.Value + trackbarCaloLunch.Value + trackbarCaloDinner.Value).ToString() + "%";
         }
         #endregion
         #region PercentMacronutri
@@ -246,19 +265,19 @@ namespace TrolyaoFara
 
         private void trackbarProtein_ValueChanged(object sender, EventArgs e)
         {
-            lblProteinPercent.Text = trackbarProtein.Value.ToString() + " %";
+            lblProteinPercent.Text = trackbarProtein.Value.ToString() + "%";
             sumPercent(1);
         }
 
         private void trackbarLipid_ValueChanged(object sender, EventArgs e)
         {
-            lblLipidPercent.Text = trackbarLipid.Value.ToString() + " %";
+            lblLipidPercent.Text = trackbarLipid.Value.ToString() + "%";
             sumPercent(1);
         }
 
         private void trackbarCarb_ValueChanged(object sender, EventArgs e)
         {
-            lblCarbPercent.Text = trackbarCarb.Value.ToString() + " %";
+            lblCarbPercent.Text = trackbarCarb.Value.ToString() + "%";
             sumPercent(1);
         }
         #endregion
@@ -270,26 +289,26 @@ namespace TrolyaoFara
 
         private void trackbarCaloBreakfast_ValueChanged(object sender, EventArgs e)
         {
-            lblCaloBreakfast.Text = trackbarCaloBreakfast.Value.ToString() + " %";
+            lblCaloBreakfast.Text = trackbarCaloBreakfast.Value.ToString() + "%";
             sumPercent(2);
         }
 
         private void trackbarCaloLunch_ValueChanged(object sender, EventArgs e)
         {
-            lblCaloLunch.Text = trackbarCaloLunch.Value.ToString() + " %";
+            lblCaloLunch.Text = trackbarCaloLunch.Value.ToString() + "%";
             sumPercent(2);
         }
 
         private void trackbarCaloDinner_ValueChanged(object sender, EventArgs e)
         {
-            lblCaloDinner.Text = trackbarCaloDinner.Value.ToString() + " %";
+            lblCaloDinner.Text = trackbarCaloDinner.Value.ToString() + "%";
             sumPercent(2);
         }
         #endregion
         #endregion
 
         #region tabPersonal
-        private void getDataPersonal(long iduser)
+        public void getDataPersonal(long iduser)
         {
             string sql = string.Format("SELECT * FROM info WHERE iduser='{0}'", iduser);
             databaseObject.OpenConnection();
@@ -358,7 +377,10 @@ namespace TrolyaoFara
         }
         #endregion
 
-        public void calMacroGeneral()
+
+
+
+        public void calMacroGeneral(string day)
         {
             int protein = trackbarProtein.Value;
             int lipid = trackbarLipid.Value;
@@ -377,7 +399,7 @@ namespace TrolyaoFara
 
             if (mod == 1) //tab Personal
             {
-                runSQL.SQLforMenuTable(Convert.ToInt32(numBreakfast.Value), Convert.ToInt32(numLunch.Value), Convert.ToInt32(numDinner.Value), Convert.ToInt32(calo), protein, lipid, carb, mod);
+                runSQL.SQLforMenuTable(Convert.ToInt32(numBreakfast.Value), Convert.ToInt32(numLunch.Value), Convert.ToInt32(numDinner.Value), Convert.ToInt32(calo)*trackbarAdvTotalCalo.Value/100, protein, lipid, carb, trackbarCaloBreakfast.Value, trackbarCaloLunch.Value, trackbarCaloDinner.Value, mod, day);
             }
             if(mod == 2) // Tab family
             {
@@ -388,53 +410,81 @@ namespace TrolyaoFara
             }
         }
 
-        public void generateMenuForToday(int mod)// Update function
+        public void generateMenuForToday(int mod, string day)// Update function
         {
             if(mod == 1)
             {
                 getDataPersonal(iduser);
-                calMacroGeneral();
+                calMacroGeneral(day);
+                string strUdpate = string.Format("UPDATE menu set mod='{0}' where date='{1}'", 1, day);
+                databaseObject.RunSQL(strUdpate);
             }
-            if(mod == 2)
-                calMacroNutriForFamily();
+            if (mod == 2)
+            {
+                calMacroNutriForFamily(day);
+                string strUdpate = string.Format("UPDATE menu set mod='{0}' where date='{1}'", 2, day);
+                databaseObject.RunSQL(strUdpate);
+            }
 
-            GA.MainGA();
-            gaCal.RunGACal();
+            GA.MainGA("", day);
+            gaCal.RunGACal(day);
+        }
+
+        private void codeBtnRun(string today)
+        {
+            if (lblTotalPercent.Text == lblSumCaloPercent.Text && lblTotalPercent.Text == "100%")
+            {
+                if (metroTabControl.SelectedTab == metroTabControl.TabPages["tabPersonal"])
+                {
+                    mod = 1;
+                    //Get level tab personal
+                    mode = cbxMode.SelectedIndex;
+                    if (mode == 0)
+                        level = 0;
+                    else
+                        level = Convert.ToInt32(numLevel.Value);
+                }
+
+                if (metroTabControl.SelectedTab == metroTabControl.TabPages["tabFamily"])
+                {
+                    mod = 2;
+                    //Save data member family
+                    for (int i = 0; i < datatableFamily.Rows.Count; i++)
+                    {
+                        string id = datatableFamily.Rows[i].Cells[0].Value.ToString();
+                        string username = datatableFamily.Rows[i].Cells[1].Value.ToString();
+                        bool hide = Convert.ToBoolean(datatableFamily.Rows[i].Cells[3].Value);
+                        runSQL.SQLforMemberFamily(id, username, hide);
+                    }
+                }
+                //Save settings
+                runSQL.SQLforSettingsMenu(Convert.ToInt32(numBreakfast.Value), Convert.ToInt32(numLunch.Value), Convert.ToInt32(numDinner.Value), cbxMode.SelectedIndex, Convert.ToInt32(numLevel.Value), trackbarProtein.Value, trackbarLipid.Value, trackbarCarb.Value, trackbarCaloBreakfast.Value, trackbarCaloLunch.Value, trackbarCaloDinner.Value, trackbarAdvTotalCalo.Value, mod);
+
+                generateMenuForToday(mod, today);
+                mydata("1");
+                alert.Show("Khởi tạo thực đơn hoàn tất!", alert.AlertType.success);
+                //alert.Show("Test OK !", alert.AlertType.success);
+            }
+            else
+                alert.Show("Tổng tỉ lệ dinh dưỡng và năng lượng \n hằng ngày phải là 100% !", alert.AlertType.error, 96);
         }
 
         private void btnRun_Click(object sender, EventArgs e)
         {
-            if (metroTabControl.SelectedTab == metroTabControl.TabPages["tabPersonal"])
+            alert.Show("Đang khởi tạo ...", alert.AlertType.success);
+            string today = DateTime.Today.ToString("dd/MM/yyyy");
+            if (lib.CheckExists("menu", "date ", -1, today))
             {
-                mod = 1;
-                //Get level tab personal
-                mode = cbxMode.SelectedIndex;
-                if (mode == 0)
-                    level = 0;
-                else
-                    level = Convert.ToInt32(numLevel.Value);
-            }
-
-            if (metroTabControl.SelectedTab == metroTabControl.TabPages["tabFamily"])
-            {
-                mod = 2;
-                //Save data member family
-                for (int i = 0; i < datatableFamily.Rows.Count; i++)
+                if (MessageBox.Show("Bạn có muốn khởi tạo một thực đơn mới cho ngày hôm nay không? \nLưu ý: Thực đơn hiện tại sẽ không được lưu lại", "Thực đơn hôm nay đã được khởi tạo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                 {
-                    string id = datatableFamily.Rows[i].Cells[0].Value.ToString();
-                    string username = datatableFamily.Rows[i].Cells[1].Value.ToString();
-                    bool hide = Convert.ToBoolean(datatableFamily.Rows[i].Cells[3].Value);
-                    runSQL.SQLforMemberFamily(id, username, hide);
+                    codeBtnRun(today);
                 }
             }
-            //Save settings
-            runSQL.SQLforSettingsMenu(Convert.ToInt32(numBreakfast.Value), Convert.ToInt32(numLunch.Value), Convert.ToInt32(numDinner.Value), cbxMode.SelectedIndex, Convert.ToInt32(numLevel.Value), trackbarProtein.Value, trackbarLipid.Value, trackbarCarb.Value, trackbarCaloBreakfast.Value, trackbarCaloLunch.Value, trackbarCaloDinner.Value, mod);
-
-            generateMenuForToday(mod);
-            alert.Show("Test OK !", alert.AlertType.success);
+            else
+                codeBtnRun(today);
         }
 
-        public void calMacroNutriForFamily()
+        public void calMacroNutriForFamily(string day)
         {
             for (int i = 0; i < datatableFamily.Rows.Count; i++)
             {
@@ -444,13 +494,13 @@ namespace TrolyaoFara
                     if(i == 0) // Main account
                     {
                         getDataPersonal(Convert.ToInt32(id));
-                        calMacroGeneral();
+                        calMacroGeneral(day);
                     }
                     else if (id[0] == 'A') // Ktra User local
                     {
                         id = id.Replace("A", "-");
                         getDataPersonal(Convert.ToInt32(id));
-                        calMacroGeneral();
+                        calMacroGeneral(day);
                     }
                     else // Ktra user sever
                     {
@@ -458,11 +508,11 @@ namespace TrolyaoFara
                         frmLogin frm = new frmLogin();
                         frm.getInfoUserFormServer(Convert.ToInt32(idSubUser));
                         getDataPersonal(idSubUser);
-                        calMacroGeneral();
+                        calMacroGeneral(day);
                     }
                 }
             }
-            runSQL.SQLforMenuTable(Convert.ToInt32(numBreakfast.Value), Convert.ToInt32(numLunch.Value), Convert.ToInt32(numDinner.Value), sumCalo, sumProtein, sumLipid, sumCarb, mod);
+            runSQL.SQLforMenuTable(Convert.ToInt32(numBreakfast.Value), Convert.ToInt32(numLunch.Value), Convert.ToInt32(numDinner.Value), sumCalo * trackbarAdvTotalCalo.Value / 100, sumProtein, sumLipid, sumCarb, trackbarCaloBreakfast.Value, trackbarCaloLunch.Value, trackbarCaloDinner.Value, mod, day);
         }
 
         #region TabFamily
@@ -494,8 +544,9 @@ namespace TrolyaoFara
 
         private async void loadUserOnlineToTxtSearch()
         {
-            Action load = () => {
-                if (lib.CheckForInternetConnection())
+            if (lib.CheckForInternetConnection())
+            {
+                Action load = () =>
                 {
                     using (WebClient wc = new WebClient())
                     {
@@ -509,13 +560,14 @@ namespace TrolyaoFara
                             listIDUsername.Add(item.Id);
                         }
                     }
-                }
-                else
-                    alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
-            };
-            Task task = new Task(load);
-            task.Start();
-            await task;
+
+                };
+                Task task = new Task(load);
+                task.Start();
+                await task;
+            }
+            else
+                alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
 
             txtUsername.Enabled = true;
             loadUsername.Hide();

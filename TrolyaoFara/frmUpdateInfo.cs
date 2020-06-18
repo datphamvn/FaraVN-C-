@@ -351,8 +351,9 @@ namespace TrolyaoFara
 
         public async void LoadFoodFavourite(PictureBox imgLoading, Guna.UI.WinForms.GunaTextBox txtInput)
         {
-            Action load = () => {
-                if (lib.CheckForInternetConnection())
+            if (lib.CheckForInternetConnection())
+            {
+                Action load = () =>
                 {
                     using (WebClient wc = new WebClient())
                     {
@@ -367,14 +368,15 @@ namespace TrolyaoFara
                             listIdFood.Add(item.Id);
                         }
                     }
-                }
-                else
-                    alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
-            };
-            Task task = new Task(load);
-            task.Start();  
-            await task;
-            
+
+                };
+                Task task = new Task(load);
+                task.Start();
+                await task;
+            }
+            else
+                alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
+
             txtInput.Enabled = true;
             imgLoading.Hide();
         }
@@ -416,25 +418,9 @@ namespace TrolyaoFara
         {
             if (lib.CheckForInternetConnection())
             {
-                //try
-                //{
-                using (WebClient wc = new WebClient())
-                {
-                    int index = lstFoodName.Items.IndexOf(lstFoodName.SelectedItem);
-                    var json = wc.DownloadString(sSever.linksever + "ai/api/food/" + lstIdFoodName.Items[index].ToString());
-                    json = "[" + json + "]";
-                        List<Food> data = JsonConvert.DeserializeObject<List<Food>>(json);
-                        foreach (var item in data)
-                        {
-                            picPreviewFood.Show();
-                            picPreviewFood.LoadAsync(sSever.linkimg +  item.URLimg);
-                        }
-                    }
-               /* }
-                catch (Exception)
-                {
-                    alert.Show("Lỗi Server !", alert.AlertType.error);
-                }*/
+                int idxSelect = lstFoodName.Items.IndexOf(lstFoodName.SelectedItem);
+                string idx = lstIdFoodName.Items[idxSelect].ToString();
+                lib.getImgForFoodItem(idx, picPreviewFood);
             }
             else
                 picPreviewFood.Hide();
@@ -594,9 +580,11 @@ namespace TrolyaoFara
 
         public async void LoadDatatxtDiung()
         {
-            Action load = () => {
-                if (lib.CheckForInternetConnection())
+            if (lib.CheckForInternetConnection())
+            {
+                Action load = () =>
                 {
+
                     using (WebClient wc = new WebClient())
                     {
                         var json = wc.DownloadString(sSever.linksever + "ai/api/composition/?search=");
@@ -609,13 +597,14 @@ namespace TrolyaoFara
                             listIdComposition.Add(item.id);
                         }
                     }
-                }
-                else
-                    alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
-            };
-            Task task = new Task(load);
-            task.Start();
-            await task;
+
+                };
+                Task task = new Task(load);
+                task.Start();
+                await task;
+            }
+            //else
+                //alert.Show("Vui lòng kết nối Internet !", alert.AlertType.error);
 
             txtDiung.Enabled = true;
             loadDiung.Hide();

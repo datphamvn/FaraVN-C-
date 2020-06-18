@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpdateInfo));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnNext1 = new Guna.UI.WinForms.GunaGradientButton();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDistrict = new Guna.UI.WinForms.GunaComboBox();
@@ -39,21 +41,33 @@
             this.txtCity = new Guna.UI.WinForms.GunaComboBox();
             this.lblGender = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.btnMale = new Guna.UI.WinForms.GunaCircleButton();
+            this.btnFemale = new Guna.UI.WinForms.GunaCircleButton();
             this.txtLname = new Guna.UI.WinForms.GunaTextBox();
             this.inputBirthday = new Bunifu.Framework.UI.BunifuDatepicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtFname = new Guna.UI.WinForms.GunaTextBox();
+            this.btnReset1 = new Guna.UI.WinForms.GunaGradientButton();
             this.metroTabControl1 = new MetroFramework.Controls.MetroTabControl();
             this.tabInfo = new MetroFramework.Controls.MetroTabPage();
-            this.tabFood = new MetroFramework.Controls.MetroTabPage();
             this.tabComposition = new MetroFramework.Controls.MetroTabPage();
-            this.gunaElipse1 = new Guna.UI.WinForms.GunaElipse(this.components);
-            this.label5 = new System.Windows.Forms.Label();
-            this.btnNext1 = new Guna.UI.WinForms.GunaGradientButton();
-            this.btnMale = new Guna.UI.WinForms.GunaCircleButton();
-            this.btnFemale = new Guna.UI.WinForms.GunaCircleButton();
-            this.btnReset1 = new Guna.UI.WinForms.GunaGradientButton();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.loadDiung = new System.Windows.Forms.PictureBox();
+            this.lblTab = new System.Windows.Forms.Label();
+            this.lstDiung = new System.Windows.Forms.ListBox();
+            this.btnReset3 = new Guna.UI.WinForms.GunaGradientButton();
+            this.btnPre3 = new Guna.UI.WinForms.GunaGradientButton();
+            this.lstDiungAdd = new System.Windows.Forms.ListBox();
+            this.btnNext3 = new Guna.UI.WinForms.GunaGradientButton();
+            this.txtDiung = new Guna.UI.WinForms.GunaTextBox();
+            this.lstIdDiungAdd = new System.Windows.Forms.ListBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lstIdDiung = new System.Windows.Forms.ListBox();
+            this.btnAddComposition = new Guna.UI.WinForms.GunaButton();
+            this.btnCompositionDel = new Guna.UI.WinForms.GunaButton();
+            this.tabFood = new MetroFramework.Controls.MetroTabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.loadFoodName = new System.Windows.Forms.PictureBox();
@@ -70,33 +84,19 @@
             this.lstIdFoodNameAdd = new System.Windows.Forms.ListBox();
             this.btnDeleteFood = new Guna.UI.WinForms.GunaButton();
             this.lstIdFoodName = new System.Windows.Forms.ListBox();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.loadDiung = new System.Windows.Forms.PictureBox();
-            this.lblTab = new System.Windows.Forms.Label();
-            this.lstDiung = new System.Windows.Forms.ListBox();
-            this.btnReset3 = new Guna.UI.WinForms.GunaGradientButton();
-            this.btnPre3 = new Guna.UI.WinForms.GunaGradientButton();
-            this.lstDiungAdd = new System.Windows.Forms.ListBox();
-            this.btnNext3 = new Guna.UI.WinForms.GunaGradientButton();
-            this.txtDiung = new Guna.UI.WinForms.GunaTextBox();
-            this.lstIdDiungAdd = new System.Windows.Forms.ListBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lstIdDiung = new System.Windows.Forms.ListBox();
-            this.btnAddComposition = new Guna.UI.WinForms.GunaButton();
-            this.btnCompositionDel = new Guna.UI.WinForms.GunaButton();
+            this.gunaElipse1 = new Guna.UI.WinForms.GunaElipse(this.components);
             this.panel1.SuspendLayout();
             this.metroTabControl1.SuspendLayout();
             this.tabInfo.SuspendLayout();
-            this.tabFood.SuspendLayout();
             this.tabComposition.SuspendLayout();
+            this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadDiung)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabFood.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadFoodName)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPreviewFood)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.loadDiung)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -125,6 +125,46 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(771, 498);
             this.panel1.TabIndex = 49;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.White;
+            this.label5.Location = new System.Drawing.Point(271, 34);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(227, 30);
+            this.label5.TabIndex = 61;
+            this.label5.Text = "THÔNG TIN CÁ NHÂN";
+            // 
+            // btnNext1
+            // 
+            this.btnNext1.AnimationHoverSpeed = 0.07F;
+            this.btnNext1.AnimationSpeed = 0.03F;
+            this.btnNext1.BackColor = System.Drawing.Color.Transparent;
+            this.btnNext1.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
+            this.btnNext1.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
+            this.btnNext1.BorderColor = System.Drawing.Color.Black;
+            this.btnNext1.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnNext1.FocusedColor = System.Drawing.Color.Empty;
+            this.btnNext1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext1.ForeColor = System.Drawing.Color.White;
+            this.btnNext1.Image = global::TrolyaoFara.Properties.Resources.next__1_;
+            this.btnNext1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnNext1.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnNext1.Location = new System.Drawing.Point(642, 449);
+            this.btnNext1.Name = "btnNext1";
+            this.btnNext1.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
+            this.btnNext1.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
+            this.btnNext1.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnNext1.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnNext1.OnHoverImage = null;
+            this.btnNext1.OnPressedColor = System.Drawing.Color.Black;
+            this.btnNext1.Radius = 7;
+            this.btnNext1.Size = new System.Drawing.Size(110, 45);
+            this.btnNext1.TabIndex = 6;
+            this.btnNext1.Text = "    Tiếp";
+            this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
             // 
             // label1
             // 
@@ -262,6 +302,58 @@
             this.label18.TabIndex = 0;
             this.label18.Text = "GIỚI TÍNH CỦA BẠN LÀ: ";
             // 
+            // btnMale
+            // 
+            this.btnMale.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnMale.Animated = true;
+            this.btnMale.AnimationHoverSpeed = 0.7F;
+            this.btnMale.AnimationSpeed = 0.3F;
+            this.btnMale.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(138)))), ((int)(((byte)(225)))));
+            this.btnMale.BorderColor = System.Drawing.Color.White;
+            this.btnMale.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnMale.FocusedColor = System.Drawing.Color.Empty;
+            this.btnMale.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMale.ForeColor = System.Drawing.Color.White;
+            this.btnMale.Image = ((System.Drawing.Image)(resources.GetObject("btnMale.Image")));
+            this.btnMale.ImageSize = new System.Drawing.Size(50, 50);
+            this.btnMale.Location = new System.Drawing.Point(466, 187);
+            this.btnMale.Name = "btnMale";
+            this.btnMale.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(138)))), ((int)(((byte)(225)))));
+            this.btnMale.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnMale.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnMale.OnHoverImage = ((System.Drawing.Image)(resources.GetObject("btnMale.OnHoverImage")));
+            this.btnMale.OnPressedColor = System.Drawing.Color.Black;
+            this.btnMale.Size = new System.Drawing.Size(120, 120);
+            this.btnMale.TabIndex = 0;
+            this.btnMale.Text = "Nam";
+            this.btnMale.Click += new System.EventHandler(this.btnMale_Click);
+            // 
+            // btnFemale
+            // 
+            this.btnFemale.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnFemale.Animated = true;
+            this.btnFemale.AnimationHoverSpeed = 0.7F;
+            this.btnFemale.AnimationSpeed = 0.3F;
+            this.btnFemale.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(57)))), ((int)(((byte)(139)))));
+            this.btnFemale.BorderColor = System.Drawing.Color.White;
+            this.btnFemale.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnFemale.FocusedColor = System.Drawing.Color.Empty;
+            this.btnFemale.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFemale.ForeColor = System.Drawing.Color.White;
+            this.btnFemale.Image = ((System.Drawing.Image)(resources.GetObject("btnFemale.Image")));
+            this.btnFemale.ImageSize = new System.Drawing.Size(50, 50);
+            this.btnFemale.Location = new System.Drawing.Point(621, 187);
+            this.btnFemale.Name = "btnFemale";
+            this.btnFemale.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(57)))), ((int)(((byte)(129)))));
+            this.btnFemale.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnFemale.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnFemale.OnHoverImage = ((System.Drawing.Image)(resources.GetObject("btnFemale.OnHoverImage")));
+            this.btnFemale.OnPressedColor = System.Drawing.Color.Black;
+            this.btnFemale.Size = new System.Drawing.Size(120, 120);
+            this.btnFemale.TabIndex = 0;
+            this.btnFemale.Text = "Nữ";
+            this.btnFemale.Click += new System.EventHandler(this.btnFemale_Click);
+            // 
             // txtLname
             // 
             this.txtLname.BackColor = System.Drawing.Color.Transparent;
@@ -339,167 +431,6 @@
             this.txtFname.Enter += new System.EventHandler(this.txtFname_Enter);
             this.txtFname.Leave += new System.EventHandler(this.txtFname_Leave);
             // 
-            // metroTabControl1
-            // 
-            this.metroTabControl1.Controls.Add(this.tabInfo);
-            this.metroTabControl1.Controls.Add(this.tabFood);
-            this.metroTabControl1.Controls.Add(this.tabComposition);
-            this.metroTabControl1.Location = new System.Drawing.Point(2, 0);
-            this.metroTabControl1.Name = "metroTabControl1";
-            this.metroTabControl1.SelectedIndex = 2;
-            this.metroTabControl1.Size = new System.Drawing.Size(779, 540);
-            this.metroTabControl1.TabIndex = 2;
-            this.metroTabControl1.UseSelectable = true;
-            this.metroTabControl1.SelectedIndexChanged += new System.EventHandler(this.metroTabControl1_SelectedIndexChanged);
-            // 
-            // tabInfo
-            // 
-            this.tabInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(46)))));
-            this.tabInfo.Controls.Add(this.panel1);
-            this.tabInfo.HorizontalScrollbarBarColor = true;
-            this.tabInfo.HorizontalScrollbarHighlightOnWheel = false;
-            this.tabInfo.HorizontalScrollbarSize = 10;
-            this.tabInfo.Location = new System.Drawing.Point(4, 38);
-            this.tabInfo.Name = "tabInfo";
-            this.tabInfo.Size = new System.Drawing.Size(771, 498);
-            this.tabInfo.TabIndex = 0;
-            this.tabInfo.Text = " Thông tin cá nhân ";
-            this.tabInfo.UseCustomBackColor = true;
-            this.tabInfo.UseCustomForeColor = true;
-            this.tabInfo.UseStyleColors = true;
-            this.tabInfo.VerticalScrollbarBarColor = true;
-            this.tabInfo.VerticalScrollbarHighlightOnWheel = false;
-            this.tabInfo.VerticalScrollbarSize = 10;
-            // 
-            // tabFood
-            // 
-            this.tabFood.Controls.Add(this.panel2);
-            this.tabFood.HorizontalScrollbarBarColor = true;
-            this.tabFood.HorizontalScrollbarHighlightOnWheel = false;
-            this.tabFood.HorizontalScrollbarSize = 10;
-            this.tabFood.Location = new System.Drawing.Point(4, 38);
-            this.tabFood.Name = "tabFood";
-            this.tabFood.Size = new System.Drawing.Size(771, 498);
-            this.tabFood.TabIndex = 1;
-            this.tabFood.Text = " Món ăn yêu thích";
-            this.tabFood.VerticalScrollbarBarColor = true;
-            this.tabFood.VerticalScrollbarHighlightOnWheel = false;
-            this.tabFood.VerticalScrollbarSize = 10;
-            // 
-            // tabComposition
-            // 
-            this.tabComposition.Controls.Add(this.panel3);
-            this.tabComposition.HorizontalScrollbarBarColor = true;
-            this.tabComposition.HorizontalScrollbarHighlightOnWheel = false;
-            this.tabComposition.HorizontalScrollbarSize = 10;
-            this.tabComposition.Location = new System.Drawing.Point(4, 38);
-            this.tabComposition.Name = "tabComposition";
-            this.tabComposition.Size = new System.Drawing.Size(771, 498);
-            this.tabComposition.TabIndex = 2;
-            this.tabComposition.Text = " Thực phẩm dị ứng";
-            this.tabComposition.UseCustomBackColor = true;
-            this.tabComposition.UseCustomForeColor = true;
-            this.tabComposition.UseStyleColors = true;
-            this.tabComposition.VerticalScrollbarBarColor = true;
-            this.tabComposition.VerticalScrollbarHighlightOnWheel = false;
-            this.tabComposition.VerticalScrollbarSize = 10;
-            // 
-            // gunaElipse1
-            // 
-            this.gunaElipse1.TargetControl = this.metroTabControl1;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(271, 34);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(227, 30);
-            this.label5.TabIndex = 61;
-            this.label5.Text = "THÔNG TIN CÁ NHÂN";
-            // 
-            // btnNext1
-            // 
-            this.btnNext1.AnimationHoverSpeed = 0.07F;
-            this.btnNext1.AnimationSpeed = 0.03F;
-            this.btnNext1.BackColor = System.Drawing.Color.Transparent;
-            this.btnNext1.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
-            this.btnNext1.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
-            this.btnNext1.BorderColor = System.Drawing.Color.Black;
-            this.btnNext1.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnNext1.FocusedColor = System.Drawing.Color.Empty;
-            this.btnNext1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext1.ForeColor = System.Drawing.Color.White;
-            this.btnNext1.Image = global::TrolyaoFara.Properties.Resources.next__1_;
-            this.btnNext1.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.btnNext1.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnNext1.Location = new System.Drawing.Point(642, 449);
-            this.btnNext1.Name = "btnNext1";
-            this.btnNext1.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
-            this.btnNext1.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
-            this.btnNext1.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnNext1.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnNext1.OnHoverImage = null;
-            this.btnNext1.OnPressedColor = System.Drawing.Color.Black;
-            this.btnNext1.Radius = 7;
-            this.btnNext1.Size = new System.Drawing.Size(110, 45);
-            this.btnNext1.TabIndex = 6;
-            this.btnNext1.Text = "    Tiếp";
-            this.btnNext1.Click += new System.EventHandler(this.btnNext1_Click);
-            // 
-            // btnMale
-            // 
-            this.btnMale.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnMale.Animated = true;
-            this.btnMale.AnimationHoverSpeed = 0.7F;
-            this.btnMale.AnimationSpeed = 0.3F;
-            this.btnMale.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(138)))), ((int)(((byte)(225)))));
-            this.btnMale.BorderColor = System.Drawing.Color.White;
-            this.btnMale.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnMale.FocusedColor = System.Drawing.Color.Empty;
-            this.btnMale.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMale.ForeColor = System.Drawing.Color.White;
-            this.btnMale.Image = ((System.Drawing.Image)(resources.GetObject("btnMale.Image")));
-            this.btnMale.ImageSize = new System.Drawing.Size(50, 50);
-            this.btnMale.Location = new System.Drawing.Point(466, 187);
-            this.btnMale.Name = "btnMale";
-            this.btnMale.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(73)))), ((int)(((byte)(138)))), ((int)(((byte)(225)))));
-            this.btnMale.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnMale.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnMale.OnHoverImage = ((System.Drawing.Image)(resources.GetObject("btnMale.OnHoverImage")));
-            this.btnMale.OnPressedColor = System.Drawing.Color.Black;
-            this.btnMale.Size = new System.Drawing.Size(120, 120);
-            this.btnMale.TabIndex = 0;
-            this.btnMale.Text = "Nam";
-            this.btnMale.Click += new System.EventHandler(this.btnMale_Click);
-            // 
-            // btnFemale
-            // 
-            this.btnFemale.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnFemale.Animated = true;
-            this.btnFemale.AnimationHoverSpeed = 0.7F;
-            this.btnFemale.AnimationSpeed = 0.3F;
-            this.btnFemale.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(57)))), ((int)(((byte)(139)))));
-            this.btnFemale.BorderColor = System.Drawing.Color.White;
-            this.btnFemale.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnFemale.FocusedColor = System.Drawing.Color.Empty;
-            this.btnFemale.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFemale.ForeColor = System.Drawing.Color.White;
-            this.btnFemale.Image = ((System.Drawing.Image)(resources.GetObject("btnFemale.Image")));
-            this.btnFemale.ImageSize = new System.Drawing.Size(50, 50);
-            this.btnFemale.Location = new System.Drawing.Point(621, 187);
-            this.btnFemale.Name = "btnFemale";
-            this.btnFemale.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(57)))), ((int)(((byte)(129)))));
-            this.btnFemale.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnFemale.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnFemale.OnHoverImage = ((System.Drawing.Image)(resources.GetObject("btnFemale.OnHoverImage")));
-            this.btnFemale.OnPressedColor = System.Drawing.Color.Black;
-            this.btnFemale.Size = new System.Drawing.Size(120, 120);
-            this.btnFemale.TabIndex = 0;
-            this.btnFemale.Text = "Nữ";
-            this.btnFemale.Click += new System.EventHandler(this.btnFemale_Click);
-            // 
             // btnReset1
             // 
             this.btnReset1.AnimationHoverSpeed = 0.07F;
@@ -528,287 +459,55 @@
             this.btnReset1.TabIndex = 50;
             this.btnReset1.Click += new System.EventHandler(this.btnReset1_Click);
             // 
-            // panel2
+            // metroTabControl1
             // 
-            this.panel2.BackColor = System.Drawing.Color.Transparent;
-            this.panel2.BackgroundImage = global::TrolyaoFara.Properties.Resources.background;
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel2.Controls.Add(this.lblTitle);
-            this.panel2.Controls.Add(this.loadFoodName);
-            this.panel2.Controls.Add(this.lstFoodName);
-            this.panel2.Controls.Add(this.btnReset2);
-            this.panel2.Controls.Add(this.lblUpdateRequire);
-            this.panel2.Controls.Add(this.lstFoodNameAdd);
-            this.panel2.Controls.Add(this.picPreviewFood);
-            this.panel2.Controls.Add(this.txtFoodName);
-            this.panel2.Controls.Add(this.btnPre2);
-            this.panel2.Controls.Add(this.pictureBox4);
-            this.panel2.Controls.Add(this.btnNext2);
-            this.panel2.Controls.Add(this.btnAddFood);
-            this.panel2.Controls.Add(this.lstIdFoodNameAdd);
-            this.panel2.Controls.Add(this.btnDeleteFood);
-            this.panel2.Controls.Add(this.lstIdFoodName);
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(771, 498);
-            this.panel2.TabIndex = 2;
+            this.metroTabControl1.Controls.Add(this.tabInfo);
+            this.metroTabControl1.Controls.Add(this.tabFood);
+            this.metroTabControl1.Controls.Add(this.tabComposition);
+            this.metroTabControl1.Location = new System.Drawing.Point(2, 0);
+            this.metroTabControl1.Name = "metroTabControl1";
+            this.metroTabControl1.SelectedIndex = 0;
+            this.metroTabControl1.Size = new System.Drawing.Size(779, 540);
+            this.metroTabControl1.TabIndex = 2;
+            this.metroTabControl1.UseSelectable = true;
+            this.metroTabControl1.SelectedIndexChanged += new System.EventHandler(this.metroTabControl1_SelectedIndexChanged);
             // 
-            // lblTitle
+            // tabInfo
             // 
-            this.lblTitle.AutoSize = true;
-            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitle.ForeColor = System.Drawing.Color.White;
-            this.lblTitle.Location = new System.Drawing.Point(182, 10);
-            this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(420, 30);
-            this.lblTitle.TabIndex = 47;
-            this.lblTitle.Text = "HÃY LIỆT KÊ NHỮNG MÓN ĂN BẠN THÍCH";
+            this.tabInfo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(46)))));
+            this.tabInfo.Controls.Add(this.panel1);
+            this.tabInfo.HorizontalScrollbarBarColor = true;
+            this.tabInfo.HorizontalScrollbarHighlightOnWheel = false;
+            this.tabInfo.HorizontalScrollbarSize = 10;
+            this.tabInfo.Location = new System.Drawing.Point(4, 38);
+            this.tabInfo.Name = "tabInfo";
+            this.tabInfo.Size = new System.Drawing.Size(771, 498);
+            this.tabInfo.TabIndex = 0;
+            this.tabInfo.Text = " Thông tin cá nhân ";
+            this.tabInfo.UseCustomBackColor = true;
+            this.tabInfo.UseCustomForeColor = true;
+            this.tabInfo.UseStyleColors = true;
+            this.tabInfo.VerticalScrollbarBarColor = true;
+            this.tabInfo.VerticalScrollbarHighlightOnWheel = false;
+            this.tabInfo.VerticalScrollbarSize = 10;
             // 
-            // loadFoodName
+            // tabComposition
             // 
-            this.loadFoodName.Image = ((System.Drawing.Image)(resources.GetObject("loadFoodName.Image")));
-            this.loadFoodName.Location = new System.Drawing.Point(156, 104);
-            this.loadFoodName.Name = "loadFoodName";
-            this.loadFoodName.Size = new System.Drawing.Size(111, 111);
-            this.loadFoodName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.loadFoodName.TabIndex = 46;
-            this.loadFoodName.TabStop = false;
-            // 
-            // lstFoodName
-            // 
-            this.lstFoodName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstFoodName.FormattingEnabled = true;
-            this.lstFoodName.ItemHeight = 17;
-            this.lstFoodName.Location = new System.Drawing.Point(62, 88);
-            this.lstFoodName.Name = "lstFoodName";
-            this.lstFoodName.Size = new System.Drawing.Size(299, 191);
-            this.lstFoodName.TabIndex = 32;
-            this.lstFoodName.SelectedIndexChanged += new System.EventHandler(this.lstFoodName_SelectedIndexChanged);
-            // 
-            // btnReset2
-            // 
-            this.btnReset2.AnimationHoverSpeed = 0.07F;
-            this.btnReset2.AnimationSpeed = 0.03F;
-            this.btnReset2.BackColor = System.Drawing.Color.Transparent;
-            this.btnReset2.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
-            this.btnReset2.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
-            this.btnReset2.BorderColor = System.Drawing.Color.Black;
-            this.btnReset2.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnReset2.FocusedColor = System.Drawing.Color.Empty;
-            this.btnReset2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset2.ForeColor = System.Drawing.Color.White;
-            this.btnReset2.Image = global::TrolyaoFara.Properties.Resources.reset;
-            this.btnReset2.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.btnReset2.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnReset2.Location = new System.Drawing.Point(723, 3);
-            this.btnReset2.Name = "btnReset2";
-            this.btnReset2.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
-            this.btnReset2.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
-            this.btnReset2.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnReset2.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnReset2.OnHoverImage = null;
-            this.btnReset2.OnPressedColor = System.Drawing.Color.Black;
-            this.btnReset2.Radius = 7;
-            this.btnReset2.Size = new System.Drawing.Size(41, 45);
-            this.btnReset2.TabIndex = 45;
-            this.btnReset2.Click += new System.EventHandler(this.btnReset2_Click);
-            // 
-            // lblUpdateRequire
-            // 
-            this.lblUpdateRequire.AutoSize = true;
-            this.lblUpdateRequire.BackColor = System.Drawing.Color.Transparent;
-            this.lblUpdateRequire.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblUpdateRequire.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUpdateRequire.ForeColor = System.Drawing.Color.RoyalBlue;
-            this.lblUpdateRequire.Location = new System.Drawing.Point(72, 288);
-            this.lblUpdateRequire.Name = "lblUpdateRequire";
-            this.lblUpdateRequire.Size = new System.Drawing.Size(284, 17);
-            this.lblUpdateRequire.TabIndex = 39;
-            this.lblUpdateRequire.Text = "Gửi yêu cầu cập nhật dữ liệu cho món ăn này";
-            this.lblUpdateRequire.Click += new System.EventHandler(this.lblUpdateRequire_Click);
-            // 
-            // lstFoodNameAdd
-            // 
-            this.lstFoodNameAdd.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lstFoodNameAdd.FormattingEnabled = true;
-            this.lstFoodNameAdd.ItemHeight = 17;
-            this.lstFoodNameAdd.Location = new System.Drawing.Point(503, 89);
-            this.lstFoodNameAdd.Name = "lstFoodNameAdd";
-            this.lstFoodNameAdd.Size = new System.Drawing.Size(245, 208);
-            this.lstFoodNameAdd.TabIndex = 34;
-            // 
-            // picPreviewFood
-            // 
-            this.picPreviewFood.BackColor = System.Drawing.Color.Transparent;
-            this.picPreviewFood.BaseColor = System.Drawing.Color.White;
-            this.picPreviewFood.Image = ((System.Drawing.Image)(resources.GetObject("picPreviewFood.Image")));
-            this.picPreviewFood.Location = new System.Drawing.Point(72, 287);
-            this.picPreviewFood.Name = "picPreviewFood";
-            this.picPreviewFood.Radius = 6;
-            this.picPreviewFood.Size = new System.Drawing.Size(276, 157);
-            this.picPreviewFood.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picPreviewFood.TabIndex = 44;
-            this.picPreviewFood.TabStop = false;
-            this.picPreviewFood.UseTransfarantBackground = true;
-            // 
-            // txtFoodName
-            // 
-            this.txtFoodName.BackColor = System.Drawing.Color.Transparent;
-            this.txtFoodName.BaseColor = System.Drawing.Color.White;
-            this.txtFoodName.BorderColor = System.Drawing.Color.Silver;
-            this.txtFoodName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtFoodName.FocusedBaseColor = System.Drawing.Color.White;
-            this.txtFoodName.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.txtFoodName.FocusedForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtFoodName.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtFoodName.Location = new System.Drawing.Point(62, 51);
-            this.txtFoodName.MultiLine = true;
-            this.txtFoodName.Name = "txtFoodName";
-            this.txtFoodName.PasswordChar = '\0';
-            this.txtFoodName.Radius = 4;
-            this.txtFoodName.Size = new System.Drawing.Size(299, 32);
-            this.txtFoodName.TabIndex = 33;
-            this.txtFoodName.Enter += new System.EventHandler(this.txtFoodName_Enter);
-            this.txtFoodName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtFoodName_KeyUp);
-            this.txtFoodName.Leave += new System.EventHandler(this.txtFoodName_Leave);
-            // 
-            // btnPre2
-            // 
-            this.btnPre2.AnimationHoverSpeed = 0.07F;
-            this.btnPre2.AnimationSpeed = 0.03F;
-            this.btnPre2.BackColor = System.Drawing.Color.Transparent;
-            this.btnPre2.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
-            this.btnPre2.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
-            this.btnPre2.BorderColor = System.Drawing.Color.Black;
-            this.btnPre2.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnPre2.FocusedColor = System.Drawing.Color.Empty;
-            this.btnPre2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPre2.ForeColor = System.Drawing.Color.White;
-            this.btnPre2.Image = global::TrolyaoFara.Properties.Resources.next__2_;
-            this.btnPre2.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnPre2.Location = new System.Drawing.Point(6, 450);
-            this.btnPre2.Name = "btnPre2";
-            this.btnPre2.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
-            this.btnPre2.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
-            this.btnPre2.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnPre2.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnPre2.OnHoverImage = null;
-            this.btnPre2.OnPressedColor = System.Drawing.Color.Black;
-            this.btnPre2.Radius = 7;
-            this.btnPre2.Size = new System.Drawing.Size(110, 45);
-            this.btnPre2.TabIndex = 43;
-            this.btnPre2.Text = "Quay lại";
-            this.btnPre2.Click += new System.EventHandler(this.btnPre2_Click);
-            // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox4.Image = global::TrolyaoFara.Properties.Resources.search;
-            this.pictureBox4.Location = new System.Drawing.Point(24, 51);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(32, 32);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox4.TabIndex = 35;
-            this.pictureBox4.TabStop = false;
-            // 
-            // btnNext2
-            // 
-            this.btnNext2.AnimationHoverSpeed = 0.07F;
-            this.btnNext2.AnimationSpeed = 0.03F;
-            this.btnNext2.BackColor = System.Drawing.Color.Transparent;
-            this.btnNext2.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
-            this.btnNext2.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
-            this.btnNext2.BorderColor = System.Drawing.Color.Black;
-            this.btnNext2.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnNext2.FocusedColor = System.Drawing.Color.Empty;
-            this.btnNext2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNext2.ForeColor = System.Drawing.Color.White;
-            this.btnNext2.Image = global::TrolyaoFara.Properties.Resources.next__1_;
-            this.btnNext2.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.btnNext2.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnNext2.Location = new System.Drawing.Point(654, 449);
-            this.btnNext2.Name = "btnNext2";
-            this.btnNext2.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
-            this.btnNext2.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
-            this.btnNext2.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnNext2.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnNext2.OnHoverImage = null;
-            this.btnNext2.OnPressedColor = System.Drawing.Color.Black;
-            this.btnNext2.Radius = 7;
-            this.btnNext2.Size = new System.Drawing.Size(110, 45);
-            this.btnNext2.TabIndex = 42;
-            this.btnNext2.Text = "    Tiếp";
-            this.btnNext2.Click += new System.EventHandler(this.btnNext2_Click);
-            // 
-            // btnAddFood
-            // 
-            this.btnAddFood.AnimationHoverSpeed = 0.07F;
-            this.btnAddFood.AnimationSpeed = 0.03F;
-            this.btnAddFood.BackColor = System.Drawing.Color.Transparent;
-            this.btnAddFood.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.btnAddFood.BorderColor = System.Drawing.Color.Black;
-            this.btnAddFood.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnAddFood.FocusedColor = System.Drawing.Color.Empty;
-            this.btnAddFood.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddFood.ForeColor = System.Drawing.Color.White;
-            this.btnAddFood.Image = ((System.Drawing.Image)(resources.GetObject("btnAddFood.Image")));
-            this.btnAddFood.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.btnAddFood.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnAddFood.Location = new System.Drawing.Point(387, 156);
-            this.btnAddFood.Name = "btnAddFood";
-            this.btnAddFood.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
-            this.btnAddFood.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnAddFood.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnAddFood.OnHoverImage = null;
-            this.btnAddFood.OnPressedColor = System.Drawing.Color.Black;
-            this.btnAddFood.Radius = 6;
-            this.btnAddFood.Size = new System.Drawing.Size(90, 38);
-            this.btnAddFood.TabIndex = 36;
-            this.btnAddFood.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.btnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
-            // 
-            // lstIdFoodNameAdd
-            // 
-            this.lstIdFoodNameAdd.FormattingEnabled = true;
-            this.lstIdFoodNameAdd.Location = new System.Drawing.Point(685, 92);
-            this.lstIdFoodNameAdd.Name = "lstIdFoodNameAdd";
-            this.lstIdFoodNameAdd.Size = new System.Drawing.Size(59, 199);
-            this.lstIdFoodNameAdd.TabIndex = 41;
-            // 
-            // btnDeleteFood
-            // 
-            this.btnDeleteFood.AnimationHoverSpeed = 0.07F;
-            this.btnDeleteFood.AnimationSpeed = 0.03F;
-            this.btnDeleteFood.BackColor = System.Drawing.Color.Transparent;
-            this.btnDeleteFood.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
-            this.btnDeleteFood.BorderColor = System.Drawing.Color.Black;
-            this.btnDeleteFood.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnDeleteFood.FocusedColor = System.Drawing.Color.Empty;
-            this.btnDeleteFood.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDeleteFood.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteFood.Image = global::TrolyaoFara.Properties.Resources.quit;
-            this.btnDeleteFood.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnDeleteFood.Location = new System.Drawing.Point(577, 308);
-            this.btnDeleteFood.Name = "btnDeleteFood";
-            this.btnDeleteFood.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
-            this.btnDeleteFood.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnDeleteFood.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnDeleteFood.OnHoverImage = null;
-            this.btnDeleteFood.OnPressedColor = System.Drawing.Color.Black;
-            this.btnDeleteFood.Radius = 7;
-            this.btnDeleteFood.Size = new System.Drawing.Size(100, 35);
-            this.btnDeleteFood.TabIndex = 37;
-            this.btnDeleteFood.Text = "    Xóa";
-            this.btnDeleteFood.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.btnDeleteFood.Click += new System.EventHandler(this.btnDeleteFood_Click);
-            // 
-            // lstIdFoodName
-            // 
-            this.lstIdFoodName.FormattingEnabled = true;
-            this.lstIdFoodName.Location = new System.Drawing.Point(297, 90);
-            this.lstIdFoodName.Name = "lstIdFoodName";
-            this.lstIdFoodName.Size = new System.Drawing.Size(60, 186);
-            this.lstIdFoodName.TabIndex = 40;
+            this.tabComposition.Controls.Add(this.panel3);
+            this.tabComposition.HorizontalScrollbarBarColor = true;
+            this.tabComposition.HorizontalScrollbarHighlightOnWheel = false;
+            this.tabComposition.HorizontalScrollbarSize = 10;
+            this.tabComposition.Location = new System.Drawing.Point(4, 38);
+            this.tabComposition.Name = "tabComposition";
+            this.tabComposition.Size = new System.Drawing.Size(771, 498);
+            this.tabComposition.TabIndex = 2;
+            this.tabComposition.Text = " Thực phẩm dị ứng";
+            this.tabComposition.UseCustomBackColor = true;
+            this.tabComposition.UseCustomForeColor = true;
+            this.tabComposition.UseStyleColors = true;
+            this.tabComposition.VerticalScrollbarBarColor = true;
+            this.tabComposition.VerticalScrollbarHighlightOnWheel = false;
+            this.tabComposition.VerticalScrollbarSize = 10;
             // 
             // panel3
             // 
@@ -1074,6 +773,308 @@
             this.btnCompositionDel.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.btnCompositionDel.Click += new System.EventHandler(this.btnCompositionDel_Click);
             // 
+            // tabFood
+            // 
+            this.tabFood.Controls.Add(this.panel2);
+            this.tabFood.HorizontalScrollbarBarColor = true;
+            this.tabFood.HorizontalScrollbarHighlightOnWheel = false;
+            this.tabFood.HorizontalScrollbarSize = 10;
+            this.tabFood.Location = new System.Drawing.Point(4, 38);
+            this.tabFood.Name = "tabFood";
+            this.tabFood.Size = new System.Drawing.Size(771, 498);
+            this.tabFood.TabIndex = 1;
+            this.tabFood.Text = " Món ăn yêu thích";
+            this.tabFood.VerticalScrollbarBarColor = true;
+            this.tabFood.VerticalScrollbarHighlightOnWheel = false;
+            this.tabFood.VerticalScrollbarSize = 10;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.BackgroundImage = global::TrolyaoFara.Properties.Resources.background;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel2.Controls.Add(this.lblTitle);
+            this.panel2.Controls.Add(this.loadFoodName);
+            this.panel2.Controls.Add(this.lstFoodName);
+            this.panel2.Controls.Add(this.btnReset2);
+            this.panel2.Controls.Add(this.lblUpdateRequire);
+            this.panel2.Controls.Add(this.lstFoodNameAdd);
+            this.panel2.Controls.Add(this.picPreviewFood);
+            this.panel2.Controls.Add(this.txtFoodName);
+            this.panel2.Controls.Add(this.btnPre2);
+            this.panel2.Controls.Add(this.pictureBox4);
+            this.panel2.Controls.Add(this.btnNext2);
+            this.panel2.Controls.Add(this.btnAddFood);
+            this.panel2.Controls.Add(this.lstIdFoodNameAdd);
+            this.panel2.Controls.Add(this.btnDeleteFood);
+            this.panel2.Controls.Add(this.lstIdFoodName);
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(771, 498);
+            this.panel2.TabIndex = 2;
+            // 
+            // lblTitle
+            // 
+            this.lblTitle.AutoSize = true;
+            this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitle.ForeColor = System.Drawing.Color.White;
+            this.lblTitle.Location = new System.Drawing.Point(182, 10);
+            this.lblTitle.Name = "lblTitle";
+            this.lblTitle.Size = new System.Drawing.Size(420, 30);
+            this.lblTitle.TabIndex = 47;
+            this.lblTitle.Text = "HÃY LIỆT KÊ NHỮNG MÓN ĂN BẠN THÍCH";
+            // 
+            // loadFoodName
+            // 
+            this.loadFoodName.Image = ((System.Drawing.Image)(resources.GetObject("loadFoodName.Image")));
+            this.loadFoodName.Location = new System.Drawing.Point(156, 104);
+            this.loadFoodName.Name = "loadFoodName";
+            this.loadFoodName.Size = new System.Drawing.Size(111, 111);
+            this.loadFoodName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.loadFoodName.TabIndex = 46;
+            this.loadFoodName.TabStop = false;
+            // 
+            // lstFoodName
+            // 
+            this.lstFoodName.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstFoodName.FormattingEnabled = true;
+            this.lstFoodName.ItemHeight = 17;
+            this.lstFoodName.Location = new System.Drawing.Point(62, 88);
+            this.lstFoodName.Name = "lstFoodName";
+            this.lstFoodName.Size = new System.Drawing.Size(299, 191);
+            this.lstFoodName.TabIndex = 32;
+            this.lstFoodName.SelectedIndexChanged += new System.EventHandler(this.lstFoodName_SelectedIndexChanged);
+            // 
+            // btnReset2
+            // 
+            this.btnReset2.AnimationHoverSpeed = 0.07F;
+            this.btnReset2.AnimationSpeed = 0.03F;
+            this.btnReset2.BackColor = System.Drawing.Color.Transparent;
+            this.btnReset2.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
+            this.btnReset2.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
+            this.btnReset2.BorderColor = System.Drawing.Color.Black;
+            this.btnReset2.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnReset2.FocusedColor = System.Drawing.Color.Empty;
+            this.btnReset2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset2.ForeColor = System.Drawing.Color.White;
+            this.btnReset2.Image = global::TrolyaoFara.Properties.Resources.reset;
+            this.btnReset2.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnReset2.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnReset2.Location = new System.Drawing.Point(723, 3);
+            this.btnReset2.Name = "btnReset2";
+            this.btnReset2.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
+            this.btnReset2.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
+            this.btnReset2.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnReset2.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnReset2.OnHoverImage = null;
+            this.btnReset2.OnPressedColor = System.Drawing.Color.Black;
+            this.btnReset2.Radius = 7;
+            this.btnReset2.Size = new System.Drawing.Size(41, 45);
+            this.btnReset2.TabIndex = 45;
+            this.btnReset2.Click += new System.EventHandler(this.btnReset2_Click);
+            // 
+            // lblUpdateRequire
+            // 
+            this.lblUpdateRequire.AutoSize = true;
+            this.lblUpdateRequire.BackColor = System.Drawing.Color.Transparent;
+            this.lblUpdateRequire.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblUpdateRequire.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpdateRequire.ForeColor = System.Drawing.Color.RoyalBlue;
+            this.lblUpdateRequire.Location = new System.Drawing.Point(72, 288);
+            this.lblUpdateRequire.Name = "lblUpdateRequire";
+            this.lblUpdateRequire.Size = new System.Drawing.Size(284, 17);
+            this.lblUpdateRequire.TabIndex = 39;
+            this.lblUpdateRequire.Text = "Gửi yêu cầu cập nhật dữ liệu cho món ăn này";
+            this.lblUpdateRequire.Click += new System.EventHandler(this.lblUpdateRequire_Click);
+            // 
+            // lstFoodNameAdd
+            // 
+            this.lstFoodNameAdd.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstFoodNameAdd.FormattingEnabled = true;
+            this.lstFoodNameAdd.ItemHeight = 17;
+            this.lstFoodNameAdd.Location = new System.Drawing.Point(503, 89);
+            this.lstFoodNameAdd.Name = "lstFoodNameAdd";
+            this.lstFoodNameAdd.Size = new System.Drawing.Size(245, 208);
+            this.lstFoodNameAdd.TabIndex = 34;
+            // 
+            // picPreviewFood
+            // 
+            this.picPreviewFood.BackColor = System.Drawing.Color.Transparent;
+            this.picPreviewFood.BaseColor = System.Drawing.Color.White;
+            this.picPreviewFood.ErrorImage = ((System.Drawing.Image)(resources.GetObject("picPreviewFood.ErrorImage")));
+            this.picPreviewFood.Image = ((System.Drawing.Image)(resources.GetObject("picPreviewFood.Image")));
+            this.picPreviewFood.Location = new System.Drawing.Point(72, 287);
+            this.picPreviewFood.Name = "picPreviewFood";
+            this.picPreviewFood.Radius = 6;
+            this.picPreviewFood.Size = new System.Drawing.Size(276, 157);
+            this.picPreviewFood.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picPreviewFood.TabIndex = 44;
+            this.picPreviewFood.TabStop = false;
+            this.picPreviewFood.UseTransfarantBackground = true;
+            // 
+            // txtFoodName
+            // 
+            this.txtFoodName.BackColor = System.Drawing.Color.Transparent;
+            this.txtFoodName.BaseColor = System.Drawing.Color.White;
+            this.txtFoodName.BorderColor = System.Drawing.Color.Silver;
+            this.txtFoodName.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtFoodName.FocusedBaseColor = System.Drawing.Color.White;
+            this.txtFoodName.FocusedBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
+            this.txtFoodName.FocusedForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtFoodName.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtFoodName.Location = new System.Drawing.Point(62, 51);
+            this.txtFoodName.MultiLine = true;
+            this.txtFoodName.Name = "txtFoodName";
+            this.txtFoodName.PasswordChar = '\0';
+            this.txtFoodName.Radius = 4;
+            this.txtFoodName.Size = new System.Drawing.Size(299, 32);
+            this.txtFoodName.TabIndex = 33;
+            this.txtFoodName.Enter += new System.EventHandler(this.txtFoodName_Enter);
+            this.txtFoodName.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtFoodName_KeyUp);
+            this.txtFoodName.Leave += new System.EventHandler(this.txtFoodName_Leave);
+            // 
+            // btnPre2
+            // 
+            this.btnPre2.AnimationHoverSpeed = 0.07F;
+            this.btnPre2.AnimationSpeed = 0.03F;
+            this.btnPre2.BackColor = System.Drawing.Color.Transparent;
+            this.btnPre2.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
+            this.btnPre2.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
+            this.btnPre2.BorderColor = System.Drawing.Color.Black;
+            this.btnPre2.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnPre2.FocusedColor = System.Drawing.Color.Empty;
+            this.btnPre2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPre2.ForeColor = System.Drawing.Color.White;
+            this.btnPre2.Image = global::TrolyaoFara.Properties.Resources.next__2_;
+            this.btnPre2.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnPre2.Location = new System.Drawing.Point(6, 450);
+            this.btnPre2.Name = "btnPre2";
+            this.btnPre2.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
+            this.btnPre2.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
+            this.btnPre2.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnPre2.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnPre2.OnHoverImage = null;
+            this.btnPre2.OnPressedColor = System.Drawing.Color.Black;
+            this.btnPre2.Radius = 7;
+            this.btnPre2.Size = new System.Drawing.Size(110, 45);
+            this.btnPre2.TabIndex = 43;
+            this.btnPre2.Text = "Quay lại";
+            this.btnPre2.Click += new System.EventHandler(this.btnPre2_Click);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox4.Image = global::TrolyaoFara.Properties.Resources.search;
+            this.pictureBox4.Location = new System.Drawing.Point(24, 51);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 35;
+            this.pictureBox4.TabStop = false;
+            // 
+            // btnNext2
+            // 
+            this.btnNext2.AnimationHoverSpeed = 0.07F;
+            this.btnNext2.AnimationSpeed = 0.03F;
+            this.btnNext2.BackColor = System.Drawing.Color.Transparent;
+            this.btnNext2.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
+            this.btnNext2.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
+            this.btnNext2.BorderColor = System.Drawing.Color.Black;
+            this.btnNext2.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnNext2.FocusedColor = System.Drawing.Color.Empty;
+            this.btnNext2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNext2.ForeColor = System.Drawing.Color.White;
+            this.btnNext2.Image = global::TrolyaoFara.Properties.Resources.next__1_;
+            this.btnNext2.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnNext2.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnNext2.Location = new System.Drawing.Point(654, 449);
+            this.btnNext2.Name = "btnNext2";
+            this.btnNext2.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
+            this.btnNext2.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
+            this.btnNext2.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnNext2.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnNext2.OnHoverImage = null;
+            this.btnNext2.OnPressedColor = System.Drawing.Color.Black;
+            this.btnNext2.Radius = 7;
+            this.btnNext2.Size = new System.Drawing.Size(110, 45);
+            this.btnNext2.TabIndex = 42;
+            this.btnNext2.Text = "    Tiếp";
+            this.btnNext2.Click += new System.EventHandler(this.btnNext2_Click);
+            // 
+            // btnAddFood
+            // 
+            this.btnAddFood.AnimationHoverSpeed = 0.07F;
+            this.btnAddFood.AnimationSpeed = 0.03F;
+            this.btnAddFood.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddFood.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
+            this.btnAddFood.BorderColor = System.Drawing.Color.Black;
+            this.btnAddFood.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnAddFood.FocusedColor = System.Drawing.Color.Empty;
+            this.btnAddFood.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddFood.ForeColor = System.Drawing.Color.White;
+            this.btnAddFood.Image = ((System.Drawing.Image)(resources.GetObject("btnAddFood.Image")));
+            this.btnAddFood.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnAddFood.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnAddFood.Location = new System.Drawing.Point(387, 156);
+            this.btnAddFood.Name = "btnAddFood";
+            this.btnAddFood.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
+            this.btnAddFood.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnAddFood.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnAddFood.OnHoverImage = null;
+            this.btnAddFood.OnPressedColor = System.Drawing.Color.Black;
+            this.btnAddFood.Radius = 6;
+            this.btnAddFood.Size = new System.Drawing.Size(90, 38);
+            this.btnAddFood.TabIndex = 36;
+            this.btnAddFood.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
+            // 
+            // lstIdFoodNameAdd
+            // 
+            this.lstIdFoodNameAdd.FormattingEnabled = true;
+            this.lstIdFoodNameAdd.Location = new System.Drawing.Point(685, 92);
+            this.lstIdFoodNameAdd.Name = "lstIdFoodNameAdd";
+            this.lstIdFoodNameAdd.Size = new System.Drawing.Size(59, 199);
+            this.lstIdFoodNameAdd.TabIndex = 41;
+            // 
+            // btnDeleteFood
+            // 
+            this.btnDeleteFood.AnimationHoverSpeed = 0.07F;
+            this.btnDeleteFood.AnimationSpeed = 0.03F;
+            this.btnDeleteFood.BackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteFood.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(21)))), ((int)(((byte)(80)))));
+            this.btnDeleteFood.BorderColor = System.Drawing.Color.Black;
+            this.btnDeleteFood.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnDeleteFood.FocusedColor = System.Drawing.Color.Empty;
+            this.btnDeleteFood.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteFood.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteFood.Image = global::TrolyaoFara.Properties.Resources.quit;
+            this.btnDeleteFood.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnDeleteFood.Location = new System.Drawing.Point(577, 308);
+            this.btnDeleteFood.Name = "btnDeleteFood";
+            this.btnDeleteFood.OnHoverBaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
+            this.btnDeleteFood.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnDeleteFood.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnDeleteFood.OnHoverImage = null;
+            this.btnDeleteFood.OnPressedColor = System.Drawing.Color.Black;
+            this.btnDeleteFood.Radius = 7;
+            this.btnDeleteFood.Size = new System.Drawing.Size(100, 35);
+            this.btnDeleteFood.TabIndex = 37;
+            this.btnDeleteFood.Text = "    Xóa";
+            this.btnDeleteFood.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnDeleteFood.Click += new System.EventHandler(this.btnDeleteFood_Click);
+            // 
+            // lstIdFoodName
+            // 
+            this.lstIdFoodName.FormattingEnabled = true;
+            this.lstIdFoodName.Location = new System.Drawing.Point(297, 90);
+            this.lstIdFoodName.Name = "lstIdFoodName";
+            this.lstIdFoodName.Size = new System.Drawing.Size(60, 186);
+            this.lstIdFoodName.TabIndex = 40;
+            // 
+            // gunaElipse1
+            // 
+            this.gunaElipse1.TargetControl = this.metroTabControl1;
+            // 
             // frmUpdateInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1090,17 +1091,17 @@
             this.panel1.PerformLayout();
             this.metroTabControl1.ResumeLayout(false);
             this.tabInfo.ResumeLayout(false);
-            this.tabFood.ResumeLayout(false);
             this.tabComposition.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loadDiung)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabFood.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loadFoodName)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picPreviewFood)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.loadDiung)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }

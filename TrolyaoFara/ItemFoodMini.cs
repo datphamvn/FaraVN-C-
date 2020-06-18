@@ -12,18 +12,21 @@ namespace TrolyaoFara
 {
     public partial class ItemFoodMini : UserControl
     {
-        public ItemFoodMini(string namefood)
+        LibFunction lib = new LibFunction();
+
+        public ItemFoodMini(long idFood, string namefood)
         {
             InitializeComponent();
 
             lblName.Text = namefood;
+            lib.getImgForFoodItem(idFood.ToString(), imgFood);
         }
 
         private static ItemFoodMini _instance;
 
-        public static ItemFoodMini Add(string namefood)
+        public static ItemFoodMini Add(long idFood, string namefood)
         {
-            _instance = new ItemFoodMini(namefood);
+            _instance = new ItemFoodMini(idFood, namefood);
             return _instance;
         }
     }

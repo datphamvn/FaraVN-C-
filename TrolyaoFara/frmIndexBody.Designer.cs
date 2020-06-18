@@ -495,7 +495,7 @@
             this.btnReset.Image = global::TrolyaoFara.Properties.Resources.reset;
             this.btnReset.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.btnReset.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnReset.Location = new System.Drawing.Point(738, 3);
+            this.btnReset.Location = new System.Drawing.Point(735, 3);
             this.btnReset.Name = "btnReset";
             this.btnReset.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
             this.btnReset.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));

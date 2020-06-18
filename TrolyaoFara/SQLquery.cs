@@ -12,24 +12,25 @@ namespace TrolyaoFara
         Database databaseObject = new Database();
         LibFunction lib = new LibFunction();
 
+        /*
         public int countRow(string sql)
         {
             databaseObject.OpenConnection();
             SQLiteCommand cmd = new SQLiteCommand(sql, databaseObject.myConnection);
             int count = Convert.ToInt32(cmd.ExecuteScalar());
             return count;
-        }
+        }*/
 
-        public void SQLforSettingsMenu(int breakfast, int lunch, int dinner, int mode, int level, int protein, int lipid, int carb, int p_breakfast, int p_lunch, int p_dinner, int mod)
+        public void SQLforSettingsMenu(int breakfast, int lunch, int dinner, int mode, int level, int protein, int lipid, int carb, int p_breakfast, int p_lunch, int p_dinner, int p_calo, int mod)
         {
             if (lib.CheckExists("settings", "id", 1, ""))
             {
-                string strUdpate = string.Format("UPDATE settings set breakfast='{0}', lunch='{1}', dinner='{2}', mode='{3}', level='{4}', protein='{5}', lipid='{6}', carb='{7}', p_breakfast='{8}', p_lunch='{9}', p_dinner='{10}', mod='{11}' where id=1", breakfast, lunch, dinner, mode, level, protein, lipid, carb, p_breakfast, p_lunch, p_dinner, mod);
+                string strUdpate = string.Format("UPDATE settings set breakfast='{0}', lunch='{1}', dinner='{2}', mode='{3}', level='{4}', protein='{5}', lipid='{6}', carb='{7}', p_breakfast='{8}', p_lunch='{9}', p_dinner='{10}', p_calo='{11}', mod='{12}' where id=1", breakfast, lunch, dinner, mode, level, protein, lipid, carb, p_breakfast, p_lunch, p_dinner, p_calo, mod);
                 databaseObject.RunSQL(strUdpate);
             }
             else
             {
-                string strInsert = string.Format("INSERT INTO settings(breakfast, lunch, dinner, mode, level, protein, lipid, carb, p_breakfast, p_lunch, p_dinner, mod) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}')", breakfast, lunch, dinner, mode, level, protein, lipid, carb, p_breakfast, p_lunch, p_dinner, mod);
+                string strInsert = string.Format("INSERT INTO settings(breakfast, lunch, dinner, mode, level, protein, lipid, carb, p_breakfast, p_lunch, p_dinner, p_calo, mod) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}', '{11}', '{12}')", breakfast, lunch, dinner, mode, level, protein, lipid, carb, p_breakfast, p_lunch, p_dinner, p_calo, mod);
                 databaseObject.RunSQL(strInsert);
             }
         }
@@ -48,17 +49,17 @@ namespace TrolyaoFara
             }
         }
       
-        public void SQLforMenuTable(int numBreakfast, int numLunch, int numDinner, int calo, int protein, int lipid, int carb, int mod)
+        public void SQLforMenuTable(int numBreakfast, int numLunch, int numDinner, int calo, int protein, int lipid, int carb, int p_breakfast, int p_lunch, int p_dinner, int mod, string day)
         {
-            string today = DateTime.Today.ToString("dd/MM/yyyy");
-            if (lib.CheckExists("menu", "date", -1, today))
+            //string today = DateTime.Today.ToString("dd/MM/yyyy");
+            if (lib.CheckExists("menu", "date", -1, day))
             { 
-                string strUdpate = string.Format("UPDATE menu set breakfast='{0}', lunch='{1}', dinner='{2}', calo='{3}', protein='{4}', lipid='{5}', carb='{6}', mod='{7}' where date='{8}'", numBreakfast, numLunch, numDinner, calo, protein, lipid, carb, mod, today); ;
+                string strUdpate = string.Format("UPDATE menu set breakfast='{0}', lunch='{1}', dinner='{2}', calo='{3}', protein='{4}', lipid='{5}', carb='{6}', p_breakfast='{7}', p_lunch='{8}', p_dinner='{9}', mod='{10}' where date='{8}'", numBreakfast, numLunch, numDinner, calo, protein, lipid, carb, p_breakfast, p_lunch, p_dinner, mod, day); ;
                 databaseObject.RunSQL(strUdpate);
             }
             else
             {
-                string strInsert = string.Format("INSERT INTO menu(recommend, cal_menu, date, breakfast, lunch, dinner, calo, protein, lipid, carb, mod) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}')", "", "", today, numBreakfast, numLunch, numDinner, calo, protein, lipid, carb, mod);
+                string strInsert = string.Format("INSERT INTO menu(recommend, cal_menu, date, breakfast, lunch, dinner, calo, protein, lipid, carb, p_breakfast, p_lunch, p_dinner, mod) VALUES('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}','{10}','{11}','{12}','{13}')", "", "", day, numBreakfast, numLunch, numDinner, calo, protein, lipid, carb, p_breakfast, p_lunch, p_dinner, mod);
                 databaseObject.RunSQL(strInsert);
             }
         }
@@ -124,7 +125,7 @@ namespace TrolyaoFara
         public void createTableForDatabase()
         {
             //Table Menu
-            string sql = "CREATE TABLE IF NOT EXISTS menu([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, recommend STRING, cal_menu STRING, date STRING, breakfast INTEGER, lunch INTEGER, dinner INTEGER, calo INTEGER, protein INTEGER, lipid INTEGER, carb INTEGER, mod INTEGER)";
+            string sql = "CREATE TABLE IF NOT EXISTS menu([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, recommend STRING, cal_menu STRING, date STRING, breakfast INTEGER, lunch INTEGER, dinner INTEGER, calo INTEGER, protein INTEGER, lipid INTEGER, carb INTEGER, p_breakfast INTEGER, p_lunch INTEGER, p_dinner INTEGER,  mod INTEGER)";
             databaseObject.RunSQL(sql);
             sql = "CREATE TABLE IF NOT EXISTS account ([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, username varchar NULL UNIQUE, email varchar NULL UNIQUE, password varchar NOT NULL, iduser INTEGER, login bool)";
             databaseObject.RunSQL(sql);
@@ -142,7 +143,7 @@ namespace TrolyaoFara
             databaseObject.RunSQL(sql);
             sql = "CREATE TABLE IF NOT EXISTS family_member([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, id_member STRING, username STRING, hide BOOL)";
             databaseObject.RunSQL(sql);
-            sql = "CREATE TABLE IF NOT EXISTS settings([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, breakfast INTEGER, lunch INTEGER, dinner INTEGER, mode INTEGER, level INTEGER, protein INTEGER, lipid INTEGER, carb INTEGER, p_breakfast INTEGER, p_lunch INTEGER, p_dinner INTEGER, mod INTEGER)";
+            sql = "CREATE TABLE IF NOT EXISTS settings([id] INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, breakfast INTEGER, lunch INTEGER, dinner INTEGER, mode INTEGER, level INTEGER, protein INTEGER, lipid INTEGER, carb INTEGER, p_breakfast INTEGER, p_lunch INTEGER, p_dinner INTEGER, p_calo INTEGER, mod INTEGER)";
             databaseObject.RunSQL(sql);
         }
     }

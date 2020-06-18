@@ -15,17 +15,22 @@ namespace TrolyaoFara
         LibFunction lib = new LibFunction();
         SettingSever sSever = new SettingSever();
         SQLquery runSQL = new SQLquery();
-        int nType1 = 10, nType2 = 60;
+        Variables var = new Variables();
+        int count = 0;
+        List<Food> food = new List<Food>();
 
         public void MainGetData()
         {
             runSQL.createTableForDatabase(); // Dev Line
 
-            GetFoodRecommend();
+            //GetFoodRecommend();
             string url = sSever.linksever + "ai/api/food/?search=1";
-            DownloadData(url, nType1 - CountRow(1));
+            DownloadData(url, var.nBreakfast - CountRow(1));
             url = sSever.linksever + "ai/api/food/?search=2&3";
-            DownloadData(url, nType2 - CountRow(2));
+            count = 0;
+            DownloadData(url, var.nOther - CountRow(2));
+
+            alert.Show("Đã tải xong dữ liệu!", alert.AlertType.success);
         }
 
         #region GetFoodFromRecommend
@@ -43,11 +48,12 @@ namespace TrolyaoFara
                     {
                         json = wc.DownloadString(sSever.linksever + "ai/api/food/" + item);
                         json = "[" + json + "]";
-                        List<Food> food = JsonConvert.DeserializeObject<List<Food>>(json);
+                        food = JsonConvert.DeserializeObject<List<Food>>(json); // Xử lý function
+                        /*
                         foreach (var ifood in food)
                         {
                             getFoodProcess(ifood);
-                        }
+                        }*/
                     }
                 }
             }
@@ -57,6 +63,7 @@ namespace TrolyaoFara
         
         private void getFoodProcess(Food ifood)
         {
+            Random random = new Random();
             if (ifood.Draft == false && !lib.CheckExists("food_db", "id_food", ifood.Id, ""))
             {
                 if (GetCompositionOfFood(ifood.Id)) // Kiểm tra tp món ăn thỏa mãn không -(True)-> Lưu vào bảng calforfood
@@ -64,8 +71,9 @@ namespace TrolyaoFara
                     byte[] bytes = Encoding.Default.GetBytes(ifood.Title.ToString());
                     string foodname = Encoding.UTF8.GetString(bytes);
 
-                    string strInsert = string.Format("INSERT INTO food_db(id_food, id_purpose, id_type, id_method, calo, name, timer) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')", ifood.Id, ifood.Purpose[0], ifood.Type[0], ifood.Method[0], ifood.Calo, foodname, ifood.Timer);
+                    string strInsert = string.Format("INSERT INTO food_db(id_food, id_purpose, id_type, id_method, calo, name, timer) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}')", ifood.Id, ifood.Purpose[0], ifood.Type[0], ifood.Method[0], random.Next(330, 360), foodname, ifood.Timer);
                     databaseObject.RunSQL(strInsert);
+                    count++;
                 }
             }
         }
@@ -125,18 +133,16 @@ namespace TrolyaoFara
         }
         #endregion
 
-        private int CountRow(int nType)
+     
+        private int CountRow(int typeID)
         {
-            databaseObject.OpenConnection();
-            string sql = "SELECT * FROM food_db WHERE id_purpose = " + nType;
-            SQLiteCommand cmd = new SQLiteCommand(sql, databaseObject.myConnection);
-            int count = Convert.ToInt32(cmd.ExecuteScalar());
-            return count;
+            string sql = "SELECT * FROM food_db WHERE id_purpose = " + typeID;
+            int nRow = lib.countRow(sql);
+            return nRow;
         }
 
         public void DownloadData(string url, int limit)
         {
-            int i = 0;
             if (lib.CheckForInternetConnection())
             {
                 using (WebClient wc = new WebClient())
@@ -145,9 +151,10 @@ namespace TrolyaoFara
                     List<Food> food = JsonConvert.DeserializeObject<List<Food>>(json);
                     foreach (var ifood in food)
                     {
-                        if (i == limit)
+                        if (count == limit)
                             break;
                         getFoodProcess(ifood);
+                        //i++;
                     }
                 }
             }

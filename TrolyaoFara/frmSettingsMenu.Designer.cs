@@ -111,24 +111,35 @@
             this.lblCaloDinner = new System.Windows.Forms.Label();
             this.lblCaloBreakfast = new System.Windows.Forms.Label();
             this.lblCaloLunch = new System.Windows.Forms.Label();
+            this.tabAdvMore = new MetroFramework.Controls.MetroTabPage();
+            this.btnDefaultTabAdv = new Guna.UI.WinForms.GunaGradientButton();
+            this.label13 = new System.Windows.Forms.Label();
+            this.trackbarAdvTotalCalo = new Guna.UI.WinForms.GunaTrackBar();
+            this.label10 = new System.Windows.Forms.Label();
+            this.lblPercentTabAdv = new System.Windows.Forms.Label();
             this.btnRun = new Guna.UI.WinForms.GunaGradientButton();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.metroTabControl = new MetroFramework.Controls.MetroTabControl();
             this.tabSelection = new MetroFramework.Controls.MetroTabPage();
+            this.gunaGradientPanel1 = new Guna.UI.WinForms.GunaGradientPanel();
+            this.label14 = new System.Windows.Forms.Label();
+            this.btnGoTabGroup = new Guna.UI.WinForms.GunaCircleButton();
+            this.label12 = new System.Windows.Forms.Label();
+            this.gunaPictureBox3 = new Guna.UI.WinForms.GunaPictureBox();
+            this.btnBack = new Guna.UI.WinForms.GunaGradientButton();
             this.plnGoTabFamily = new Guna.UI.WinForms.GunaGradientPanel();
             this.btnGoTabFamily = new Guna.UI.WinForms.GunaCircleButton();
             this.label7 = new System.Windows.Forms.Label();
             this.gunaPictureBox2 = new Guna.UI.WinForms.GunaPictureBox();
             this.lblTitle = new System.Windows.Forms.Label();
-            this.tabFamily = new MetroFramework.Controls.MetroTabPage();
             this.tabPersonal = new MetroFramework.Controls.MetroTabPage();
+            this.tabFamily = new MetroFramework.Controls.MetroTabPage();
             this.metroTabPage4 = new MetroFramework.Controls.MetroTabPage();
             this.plnButton = new System.Windows.Forms.Panel();
             this.btnBacktabSelection = new Guna.UI.WinForms.GunaGradientButton();
             this.boderTabControl = new Guna.UI.WinForms.GunaElipse(this.components);
             this.boderBtnPersonal = new Guna.UI.WinForms.GunaElipse(this.components);
             this.boderBtnFamily = new Guna.UI.WinForms.GunaElipse(this.components);
-            this.btnBack = new Guna.UI.WinForms.GunaGradientButton();
             this.plnGoTabPersonal.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox1)).BeginInit();
             this.gunaGroupBox3.SuspendLayout();
@@ -144,13 +155,16 @@
             this.tabcontrolAdvanced.SuspendLayout();
             this.metroTabPage1.SuspendLayout();
             this.metroTabPage2.SuspendLayout();
+            this.tabAdvMore.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.metroTabControl.SuspendLayout();
             this.tabSelection.SuspendLayout();
+            this.gunaGradientPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox3)).BeginInit();
             this.plnGoTabFamily.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox2)).BeginInit();
-            this.tabFamily.SuspendLayout();
             this.tabPersonal.SuspendLayout();
+            this.tabFamily.SuspendLayout();
             this.metroTabPage4.SuspendLayout();
             this.plnButton.SuspendLayout();
             this.SuspendLayout();
@@ -166,7 +180,7 @@
             this.plnGoTabPersonal.GradientColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(244)))), ((int)(((byte)(146)))));
             this.plnGoTabPersonal.GradientColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(139)))), ((int)(((byte)(147)))));
             this.plnGoTabPersonal.GradientColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(139)))), ((int)(((byte)(147)))));
-            this.plnGoTabPersonal.Location = new System.Drawing.Point(68, 125);
+            this.plnGoTabPersonal.Location = new System.Drawing.Point(57, 125);
             this.plnGoTabPersonal.Name = "plnGoTabPersonal";
             this.plnGoTabPersonal.Size = new System.Drawing.Size(200, 279);
             this.plnGoTabPersonal.TabIndex = 0;
@@ -201,11 +215,11 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("SVN-Lobster", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(6, 137);
+            this.label1.Location = new System.Drawing.Point(8, 138);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(189, 29);
+            this.label1.Size = new System.Drawing.Size(181, 23);
             this.label1.TabIndex = 1;
             this.label1.Text = "THỰC ĐƠN CÁ NHÂN";
             // 
@@ -853,7 +867,7 @@
             this.numDinner.ForeColor = System.Drawing.Color.Black;
             this.numDinner.Location = new System.Drawing.Point(149, 147);
             this.numDinner.Maximum = ((long)(8));
-            this.numDinner.Minimum = ((long)(0));
+            this.numDinner.Minimum = ((long)(3));
             this.numDinner.Name = "numDinner";
             this.numDinner.Radius = 3;
             this.numDinner.Size = new System.Drawing.Size(78, 30);
@@ -884,7 +898,7 @@
             this.numLunch.ForeColor = System.Drawing.Color.Black;
             this.numLunch.Location = new System.Drawing.Point(149, 108);
             this.numLunch.Maximum = ((long)(8));
-            this.numLunch.Minimum = ((long)(0));
+            this.numLunch.Minimum = ((long)(3));
             this.numLunch.Name = "numLunch";
             this.numLunch.Radius = 3;
             this.numLunch.Size = new System.Drawing.Size(78, 30);
@@ -915,7 +929,7 @@
             this.numBreakfast.ForeColor = System.Drawing.Color.Black;
             this.numBreakfast.Location = new System.Drawing.Point(149, 69);
             this.numBreakfast.Maximum = ((long)(3));
-            this.numBreakfast.Minimum = ((long)(0));
+            this.numBreakfast.Minimum = ((long)(1));
             this.numBreakfast.Name = "numBreakfast";
             this.numBreakfast.Radius = 3;
             this.numBreakfast.Size = new System.Drawing.Size(78, 30);
@@ -1022,6 +1036,7 @@
             // 
             this.tabcontrolAdvanced.Controls.Add(this.metroTabPage1);
             this.tabcontrolAdvanced.Controls.Add(this.metroTabPage2);
+            this.tabcontrolAdvanced.Controls.Add(this.tabAdvMore);
             this.tabcontrolAdvanced.Location = new System.Drawing.Point(3, 37);
             this.tabcontrolAdvanced.Name = "tabcontrolAdvanced";
             this.tabcontrolAdvanced.SelectedIndex = 0;
@@ -1470,6 +1485,105 @@
             this.lblCaloLunch.TabIndex = 51;
             this.lblCaloLunch.Text = "100%";
             // 
+            // tabAdvMore
+            // 
+            this.tabAdvMore.Controls.Add(this.btnDefaultTabAdv);
+            this.tabAdvMore.Controls.Add(this.label13);
+            this.tabAdvMore.Controls.Add(this.trackbarAdvTotalCalo);
+            this.tabAdvMore.Controls.Add(this.label10);
+            this.tabAdvMore.Controls.Add(this.lblPercentTabAdv);
+            this.tabAdvMore.HorizontalScrollbarBarColor = true;
+            this.tabAdvMore.HorizontalScrollbarHighlightOnWheel = false;
+            this.tabAdvMore.HorizontalScrollbarSize = 10;
+            this.tabAdvMore.Location = new System.Drawing.Point(4, 38);
+            this.tabAdvMore.Name = "tabAdvMore";
+            this.tabAdvMore.Size = new System.Drawing.Size(500, 139);
+            this.tabAdvMore.TabIndex = 2;
+            this.tabAdvMore.Text = "Khác";
+            this.tabAdvMore.VerticalScrollbarBarColor = true;
+            this.tabAdvMore.VerticalScrollbarHighlightOnWheel = false;
+            this.tabAdvMore.VerticalScrollbarSize = 10;
+            // 
+            // btnDefaultTabAdv
+            // 
+            this.btnDefaultTabAdv.AnimationHoverSpeed = 0.07F;
+            this.btnDefaultTabAdv.AnimationSpeed = 0.03F;
+            this.btnDefaultTabAdv.BackColor = System.Drawing.Color.Transparent;
+            this.btnDefaultTabAdv.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
+            this.btnDefaultTabAdv.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
+            this.btnDefaultTabAdv.BorderColor = System.Drawing.Color.Black;
+            this.btnDefaultTabAdv.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnDefaultTabAdv.FocusedColor = System.Drawing.Color.Empty;
+            this.btnDefaultTabAdv.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDefaultTabAdv.ForeColor = System.Drawing.Color.White;
+            this.btnDefaultTabAdv.Image = null;
+            this.btnDefaultTabAdv.ImageAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnDefaultTabAdv.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnDefaultTabAdv.Location = new System.Drawing.Point(204, 100);
+            this.btnDefaultTabAdv.Name = "btnDefaultTabAdv";
+            this.btnDefaultTabAdv.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
+            this.btnDefaultTabAdv.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
+            this.btnDefaultTabAdv.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnDefaultTabAdv.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnDefaultTabAdv.OnHoverImage = null;
+            this.btnDefaultTabAdv.OnPressedColor = System.Drawing.Color.Black;
+            this.btnDefaultTabAdv.Radius = 5;
+            this.btnDefaultTabAdv.Size = new System.Drawing.Size(95, 36);
+            this.btnDefaultTabAdv.TabIndex = 62;
+            this.btnDefaultTabAdv.Text = " Mặc định";
+            this.btnDefaultTabAdv.Click += new System.EventHandler(this.btnDefaultTabAdv_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.Transparent;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label13.Location = new System.Drawing.Point(317, 18);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(120, 20);
+            this.label13.TabIndex = 60;
+            this.label13.Text = "so với tiêu chuẩn";
+            // 
+            // trackbarAdvTotalCalo
+            // 
+            this.trackbarAdvTotalCalo.BackColor = System.Drawing.Color.Transparent;
+            this.trackbarAdvTotalCalo.Location = new System.Drawing.Point(79, 57);
+            this.trackbarAdvTotalCalo.Maximum = 200;
+            this.trackbarAdvTotalCalo.Name = "trackbarAdvTotalCalo";
+            this.trackbarAdvTotalCalo.Size = new System.Drawing.Size(348, 23);
+            this.trackbarAdvTotalCalo.TabIndex = 59;
+            this.trackbarAdvTotalCalo.TrackColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.trackbarAdvTotalCalo.TrackHoverColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
+            this.trackbarAdvTotalCalo.TrackIdleColor = System.Drawing.Color.Silver;
+            this.trackbarAdvTotalCalo.TrackPressedColor = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
+            this.trackbarAdvTotalCalo.Value = 100;
+            this.trackbarAdvTotalCalo.ValueChanged += new System.EventHandler(this.trackbarAdvTotalCalo_ValueChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.BackColor = System.Drawing.Color.Transparent;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label10.Location = new System.Drawing.Point(53, 18);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(229, 20);
+            this.label10.TabIndex = 58;
+            this.label10.Text = "Khởi tạo thực đơn với lượng Calo";
+            // 
+            // lblPercentTabAdv
+            // 
+            this.lblPercentTabAdv.AutoSize = true;
+            this.lblPercentTabAdv.BackColor = System.Drawing.Color.Transparent;
+            this.lblPercentTabAdv.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPercentTabAdv.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(176)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.lblPercentTabAdv.Location = new System.Drawing.Point(276, 18);
+            this.lblPercentTabAdv.Name = "lblPercentTabAdv";
+            this.lblPercentTabAdv.Size = new System.Drawing.Size(45, 20);
+            this.lblPercentTabAdv.TabIndex = 57;
+            this.lblPercentTabAdv.Text = "100%";
+            // 
             // btnRun
             // 
             this.btnRun.AnimationHoverSpeed = 0.07F;
@@ -1528,6 +1642,7 @@
             // 
             this.tabSelection.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("tabSelection.BackgroundImage")));
             this.tabSelection.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.tabSelection.Controls.Add(this.gunaGradientPanel1);
             this.tabSelection.Controls.Add(this.btnBack);
             this.tabSelection.Controls.Add(this.plnGoTabFamily);
             this.tabSelection.Controls.Add(this.lblTitle);
@@ -1544,6 +1659,114 @@
             this.tabSelection.VerticalScrollbarHighlightOnWheel = false;
             this.tabSelection.VerticalScrollbarSize = 10;
             // 
+            // gunaGradientPanel1
+            // 
+            this.gunaGradientPanel1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gunaGradientPanel1.BackgroundImage")));
+            this.gunaGradientPanel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.gunaGradientPanel1.Controls.Add(this.label14);
+            this.gunaGradientPanel1.Controls.Add(this.btnGoTabGroup);
+            this.gunaGradientPanel1.Controls.Add(this.label12);
+            this.gunaGradientPanel1.Controls.Add(this.gunaPictureBox3);
+            this.gunaGradientPanel1.GradientColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(139)))), ((int)(((byte)(147)))));
+            this.gunaGradientPanel1.GradientColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(244)))), ((int)(((byte)(146)))));
+            this.gunaGradientPanel1.GradientColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(139)))), ((int)(((byte)(147)))));
+            this.gunaGradientPanel1.GradientColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(139)))), ((int)(((byte)(147)))));
+            this.gunaGradientPanel1.Location = new System.Drawing.Point(513, 125);
+            this.gunaGradientPanel1.Name = "gunaGradientPanel1";
+            this.gunaGradientPanel1.Size = new System.Drawing.Size(200, 279);
+            this.gunaGradientPanel1.TabIndex = 47;
+            this.gunaGradientPanel1.Text = "gunaGradientPanel1";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.Transparent;
+            this.label14.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Location = new System.Drawing.Point(30, 171);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(145, 23);
+            this.label14.TabIndex = 2;
+            this.label14.Text = "(COMING SOON)";
+            // 
+            // btnGoTabGroup
+            // 
+            this.btnGoTabGroup.Animated = true;
+            this.btnGoTabGroup.AnimationHoverSpeed = 0.1F;
+            this.btnGoTabGroup.AnimationSpeed = 0.1F;
+            this.btnGoTabGroup.BackColor = System.Drawing.Color.Transparent;
+            this.btnGoTabGroup.BaseColor = System.Drawing.Color.Transparent;
+            this.btnGoTabGroup.BorderColor = System.Drawing.Color.Black;
+            this.btnGoTabGroup.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnGoTabGroup.FocusedColor = System.Drawing.Color.Empty;
+            this.btnGoTabGroup.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnGoTabGroup.ForeColor = System.Drawing.Color.White;
+            this.btnGoTabGroup.Image = ((System.Drawing.Image)(resources.GetObject("btnGoTabGroup.Image")));
+            this.btnGoTabGroup.ImageSize = new System.Drawing.Size(52, 52);
+            this.btnGoTabGroup.Location = new System.Drawing.Point(73, 210);
+            this.btnGoTabGroup.Name = "btnGoTabGroup";
+            this.btnGoTabGroup.OnHoverBaseColor = System.Drawing.Color.Transparent;
+            this.btnGoTabGroup.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnGoTabGroup.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnGoTabGroup.OnHoverImage = ((System.Drawing.Image)(resources.GetObject("btnGoTabGroup.OnHoverImage")));
+            this.btnGoTabGroup.OnPressedColor = System.Drawing.Color.Black;
+            this.btnGoTabGroup.Size = new System.Drawing.Size(52, 52);
+            this.btnGoTabGroup.TabIndex = 1;
+            this.btnGoTabGroup.Click += new System.EventHandler(this.btnGoTabGroup_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.Transparent;
+            this.label12.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.ForeColor = System.Drawing.Color.White;
+            this.label12.Location = new System.Drawing.Point(18, 138);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(170, 23);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "THỰC ĐƠN TẬP THỂ";
+            // 
+            // gunaPictureBox3
+            // 
+            this.gunaPictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.gunaPictureBox3.BaseColor = System.Drawing.Color.White;
+            this.gunaPictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("gunaPictureBox3.Image")));
+            this.gunaPictureBox3.Location = new System.Drawing.Point(51, 20);
+            this.gunaPictureBox3.Name = "gunaPictureBox3";
+            this.gunaPictureBox3.Size = new System.Drawing.Size(100, 100);
+            this.gunaPictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.gunaPictureBox3.TabIndex = 1;
+            this.gunaPictureBox3.TabStop = false;
+            // 
+            // btnBack
+            // 
+            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnBack.AnimationHoverSpeed = 0.07F;
+            this.btnBack.AnimationSpeed = 0.03F;
+            this.btnBack.BackColor = System.Drawing.Color.Transparent;
+            this.btnBack.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
+            this.btnBack.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
+            this.btnBack.BorderColor = System.Drawing.Color.Black;
+            this.btnBack.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnBack.FocusedColor = System.Drawing.Color.Empty;
+            this.btnBack.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBack.ForeColor = System.Drawing.Color.White;
+            this.btnBack.Image = global::TrolyaoFara.Properties.Resources.next__2_;
+            this.btnBack.ImageSize = new System.Drawing.Size(20, 20);
+            this.btnBack.Location = new System.Drawing.Point(3, 371);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
+            this.btnBack.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
+            this.btnBack.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.btnBack.OnHoverForeColor = System.Drawing.Color.White;
+            this.btnBack.OnHoverImage = null;
+            this.btnBack.OnPressedColor = System.Drawing.Color.Black;
+            this.btnBack.Radius = 7;
+            this.btnBack.Size = new System.Drawing.Size(110, 45);
+            this.btnBack.TabIndex = 46;
+            this.btnBack.Text = "Quay lại";
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
             // plnGoTabFamily
             // 
             this.plnGoTabFamily.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("plnGoTabFamily.BackgroundImage")));
@@ -1555,7 +1778,7 @@
             this.plnGoTabFamily.GradientColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(182)))), ((int)(((byte)(244)))), ((int)(((byte)(146)))));
             this.plnGoTabFamily.GradientColor3 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(139)))), ((int)(((byte)(147)))));
             this.plnGoTabFamily.GradientColor4 = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(139)))), ((int)(((byte)(147)))));
-            this.plnGoTabFamily.Location = new System.Drawing.Point(296, 125);
+            this.plnGoTabFamily.Location = new System.Drawing.Point(285, 125);
             this.plnGoTabFamily.Name = "plnGoTabFamily";
             this.plnGoTabFamily.Size = new System.Drawing.Size(200, 279);
             this.plnGoTabFamily.TabIndex = 5;
@@ -1590,11 +1813,11 @@
             // 
             this.label7.AutoSize = true;
             this.label7.BackColor = System.Drawing.Color.Transparent;
-            this.label7.Font = new System.Drawing.Font("SVN-Lobster", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 12.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(6, 137);
+            this.label7.Location = new System.Drawing.Point(10, 138);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(193, 29);
+            this.label7.Size = new System.Drawing.Size(180, 23);
             this.label7.TabIndex = 1;
             this.label7.Text = "THỰC ĐƠN GIA ĐÌNH";
             // 
@@ -1616,26 +1839,11 @@
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(139)))), ((int)(((byte)(147)))));
-            this.lblTitle.Location = new System.Drawing.Point(276, 30);
+            this.lblTitle.Location = new System.Drawing.Point(224, 14);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(273, 32);
+            this.lblTitle.Size = new System.Drawing.Size(327, 32);
             this.lblTitle.TabIndex = 4;
-            this.lblTitle.Text = "Đối tượng lên thực đơn";
-            // 
-            // tabFamily
-            // 
-            this.tabFamily.Controls.Add(this.gunaGroupBox1);
-            this.tabFamily.HorizontalScrollbarBarColor = true;
-            this.tabFamily.HorizontalScrollbarHighlightOnWheel = false;
-            this.tabFamily.HorizontalScrollbarSize = 10;
-            this.tabFamily.Location = new System.Drawing.Point(4, 38);
-            this.tabFamily.Name = "tabFamily";
-            this.tabFamily.Size = new System.Drawing.Size(763, 419);
-            this.tabFamily.TabIndex = 2;
-            this.tabFamily.Text = "  Gia đình";
-            this.tabFamily.VerticalScrollbarBarColor = true;
-            this.tabFamily.VerticalScrollbarHighlightOnWheel = false;
-            this.tabFamily.VerticalScrollbarSize = 10;
+            this.lblTitle.Text = "LỰA CHỌN LOẠI THỰC ĐƠN";
             // 
             // tabPersonal
             // 
@@ -1651,6 +1859,21 @@
             this.tabPersonal.VerticalScrollbarBarColor = true;
             this.tabPersonal.VerticalScrollbarHighlightOnWheel = false;
             this.tabPersonal.VerticalScrollbarSize = 10;
+            // 
+            // tabFamily
+            // 
+            this.tabFamily.Controls.Add(this.gunaGroupBox1);
+            this.tabFamily.HorizontalScrollbarBarColor = true;
+            this.tabFamily.HorizontalScrollbarHighlightOnWheel = false;
+            this.tabFamily.HorizontalScrollbarSize = 10;
+            this.tabFamily.Location = new System.Drawing.Point(4, 38);
+            this.tabFamily.Name = "tabFamily";
+            this.tabFamily.Size = new System.Drawing.Size(763, 419);
+            this.tabFamily.TabIndex = 2;
+            this.tabFamily.Text = "  Gia đình";
+            this.tabFamily.VerticalScrollbarBarColor = true;
+            this.tabFamily.VerticalScrollbarHighlightOnWheel = false;
+            this.tabFamily.VerticalScrollbarSize = 10;
             // 
             // metroTabPage4
             // 
@@ -1719,35 +1942,6 @@
             this.boderBtnFamily.Radius = 5;
             this.boderBtnFamily.TargetControl = this.plnGoTabFamily;
             // 
-            // btnBack
-            // 
-            this.btnBack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnBack.AnimationHoverSpeed = 0.07F;
-            this.btnBack.AnimationSpeed = 0.03F;
-            this.btnBack.BackColor = System.Drawing.Color.Transparent;
-            this.btnBack.BaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(218)))), ((int)(((byte)(68)))), ((int)(((byte)(83)))));
-            this.btnBack.BaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(137)))), ((int)(((byte)(33)))), ((int)(((byte)(107)))));
-            this.btnBack.BorderColor = System.Drawing.Color.Black;
-            this.btnBack.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnBack.FocusedColor = System.Drawing.Color.Empty;
-            this.btnBack.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBack.ForeColor = System.Drawing.Color.White;
-            this.btnBack.Image = global::TrolyaoFara.Properties.Resources.next__2_;
-            this.btnBack.ImageSize = new System.Drawing.Size(20, 20);
-            this.btnBack.Location = new System.Drawing.Point(3, 371);
-            this.btnBack.Name = "btnBack";
-            this.btnBack.OnHoverBaseColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(57)))), ((int)(((byte)(43)))));
-            this.btnBack.OnHoverBaseColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(68)))), ((int)(((byte)(173)))));
-            this.btnBack.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.btnBack.OnHoverForeColor = System.Drawing.Color.White;
-            this.btnBack.OnHoverImage = null;
-            this.btnBack.OnPressedColor = System.Drawing.Color.Black;
-            this.btnBack.Radius = 7;
-            this.btnBack.Size = new System.Drawing.Size(110, 45);
-            this.btnBack.TabIndex = 46;
-            this.btnBack.Text = "Quay lại";
-            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
-            // 
             // frmSettingsMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1784,15 +1978,20 @@
             this.metroTabPage1.PerformLayout();
             this.metroTabPage2.ResumeLayout(false);
             this.metroTabPage2.PerformLayout();
+            this.tabAdvMore.ResumeLayout(false);
+            this.tabAdvMore.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.metroTabControl.ResumeLayout(false);
             this.tabSelection.ResumeLayout(false);
             this.tabSelection.PerformLayout();
+            this.gunaGradientPanel1.ResumeLayout(false);
+            this.gunaGradientPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox3)).EndInit();
             this.plnGoTabFamily.ResumeLayout(false);
             this.plnGoTabFamily.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gunaPictureBox2)).EndInit();
-            this.tabFamily.ResumeLayout(false);
             this.tabPersonal.ResumeLayout(false);
+            this.tabFamily.ResumeLayout(false);
             this.metroTabPage4.ResumeLayout(false);
             this.plnButton.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -1893,5 +2092,16 @@
         private System.Windows.Forms.DataGridViewImageColumn Delete;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Hide;
         private Guna.UI.WinForms.GunaGradientButton btnBack;
+        private MetroFramework.Controls.MetroTabPage tabAdvMore;
+        private Guna.UI.WinForms.GunaGradientButton btnDefaultTabAdv;
+        private System.Windows.Forms.Label label13;
+        private Guna.UI.WinForms.GunaTrackBar trackbarAdvTotalCalo;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblPercentTabAdv;
+        private Guna.UI.WinForms.GunaGradientPanel gunaGradientPanel1;
+        private Guna.UI.WinForms.GunaCircleButton btnGoTabGroup;
+        private System.Windows.Forms.Label label12;
+        private Guna.UI.WinForms.GunaPictureBox gunaPictureBox3;
+        private System.Windows.Forms.Label label14;
     }
 }

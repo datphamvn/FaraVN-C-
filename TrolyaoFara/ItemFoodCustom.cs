@@ -12,40 +12,65 @@ namespace TrolyaoFara
 {
     public partial class ItemFoodCustom : UserControl
     {
-        public ItemFoodCustom(long id, string namefood)
+        LibFunction lib = new LibFunction();
+
+        // Mode = 1 -> Preview mode
+        public ItemFoodCustom(long id, string namefood, int mode)
         {
             InitializeComponent();
 
+            this.Name = id.ToString();
             lblID.Text = id.ToString();
             lblNameFood.Text = namefood;
-
             hideCustomGram();
             txtGram.Text = "100";
+
+            if(mode == 1)
+            {
+                btnSwitch.Enabled = false;
+                btnClose.Enabled = false;
+                pnlCustomGr.Enabled = false;
+            }
+
+            if(id >= 0)
+                lib.getImgForFoodItem(lblID.Text, imgFood);
         }
 
-        public String foodNamePreview
+        //Get data from frmCustomFood
+        public void GETVALUE(string[] infoUpdate)
         {
-            //get { return FoodName; }
-            set { lblNameFood.Text = value; }
+            lblID.Text = infoUpdate[0];
+            lblNameFood.Text = infoUpdate[1];
         }
 
-        public string FoodName;
+        public string _foodName;
         public String foodName
         {
-            get { return FoodName; }
+            get { return _foodName; }
             set { lblNameFood.Text = value; }
+        }
+
+        public string _IDfoodName;
+        public String IDfoodName
+        {
+            get { return _IDfoodName; }
+            set { lblID.Text = value; }
         }
 
         private static ItemFoodCustom _instance;
-        public static ItemFoodCustom Add(long id, string namefood)
+        public static ItemFoodCustom Add(long id, string namefood, int mode)
         {
-            _instance = new ItemFoodCustom(id, namefood);
+            _instance = new ItemFoodCustom(id, namefood, mode);
             return _instance;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            if (MessageBox.Show("Bạn có muốn xóa item này không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                this.Hide();
+                this.Name = "-1";
+            }
         }
 
         private void hideCustomGram()
@@ -92,8 +117,18 @@ namespace TrolyaoFara
 
         private void btnSwitch_Click(object sender, EventArgs e)
         {
-            frmCustomFood frm = new frmCustomFood();
+            frmCustomFood frm = new frmCustomFood(1, lblID.Text, lblNameFood.Text); // Edit item
+            frm.mydata = new frmCustomFood.GETDATA(GETVALUE); //Get data from frmAddData
             frm.Show();
+        }
+
+        private void lblID_TextChanged(object sender, EventArgs e)
+        {
+            if (Convert.ToInt64(lblID.Text) >= 0)
+            {
+                lib.getImgForFoodItem(lblID.Text, imgFood);
+                this.Name = lblID.Text;
+            }
         }
     }
 }

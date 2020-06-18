@@ -88,7 +88,7 @@ namespace TrolyaoFara
             {
                 if (main)
                     tableData.Rows.Add(lstCompositionName[idx], Math.Round(item.Amout * factor, 1), lstUnit[Convert.ToInt32(item.Unit) - 1]);
-                else
+                else // Function Export Compostion
                 {
                     if (tableData != null)
                     {
@@ -97,7 +97,14 @@ namespace TrolyaoFara
                         {
                             if (row.Cells["nameCompostion"].Value.ToString() == lstCompositionName[idx])
                             {
-                                row.Cells["nameCompostion"].Value += " +1";
+                                if(row.Cells["unit"].Value.ToString() == lstUnit[Convert.ToInt32(item.Unit) - 1])
+                                {
+                                    row.Cells["Amout"].Value = Convert.ToDouble(row.Cells["Amout"].Value) + Math.Round(item.Amout * factor, 1);
+                                    row.Cells["main"].Value = Convert.ToBoolean(row.Cells["main"].Value) || item.Main;
+                                }
+                                else
+                                    tableData.Rows.Add(lstCompositionName[idx], Math.Round(item.Amout * factor, 1), lstUnit[Convert.ToInt32(item.Unit) - 1], item.Main);
+                                //row.Cells["nameCompostion"].Value += " +1";
                                 found = true;
                                 break;
                             }
@@ -108,7 +115,7 @@ namespace TrolyaoFara
                             tableData.Rows.Add(lstCompositionName[idx], Math.Round(item.Amout * factor, 1), lstUnit[Convert.ToInt32(item.Unit) - 1], item.Main);
                         }
                     }
-                }               
+                }             
                 idx++;
             }
 

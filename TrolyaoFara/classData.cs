@@ -11,7 +11,6 @@ namespace TrolyaoFara
 {
     public class classData
     {
-        public string loginimg = Environment.CurrentDirectory + "/" + "logouser.png";
         public string countryname = Environment.CurrentDirectory + "/" + "vn.json";
         public string keyGetLocation = "scbFnhg3VEhNerT0CMe6zZhx79PDqc0VMLFDNjW6gTgdGb0G";
         public string userGetLocation = "pvtd264";
@@ -19,9 +18,16 @@ namespace TrolyaoFara
 
     public class SettingSever
     {
-        public string linksever = "http://localhost:8000/";
+        //public string linksever = "http://localhost:8000/";
         public string linkimg = "https://res.cloudinary.com/pvtd264/";
-        //public string linksever = "https://faravn.herokuapp.com/";
+        public string linksever = "https://faravn.herokuapp.com/";
+    }
+
+    
+    public class Variables
+    {
+        public int nBreakfast = 10;
+        public int nOther = 60;
     }
 
     public class DataConfig
